@@ -39,6 +39,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
         }
 
         .logo {
@@ -102,6 +103,56 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #d4a574;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 1rem 0;
+        }
+
+        .mobile-menu li {
+            padding: 0.8rem 2rem;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .mobile-menu a:hover {
+            color: #d4a574;
         }
 
         /* Основной контент */
@@ -233,6 +284,14 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        .btn-danger {
+            background: #ff6b6b;
+        }
+
+        .btn-danger:hover {
+            background: #ff5252;
+        }
+
         /* Корзина */
         .cart-modal {
             display: none;
@@ -325,17 +384,84 @@
             margin-bottom: 1rem;
         }
 
+        .about-content ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .about-content li {
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .about-content li:before {
+            content: "🐝";
+            position: absolute;
+            left: -1.5rem;
+        }
+
+        /* Успешное уведомление */
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
         /* Адаптивность */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
             }
 
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: relative;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
 
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
             .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-content {
+                width: 95%;
+                max-width: none;
+                padding: 1.5rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -354,9 +480,26 @@
         .section.active {
             animation: fadeIn 0.5s ease-in-out;
         }
+
+        /* Демо индикатор для показа мобильной версии */
+        .demo-indicator {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(212, 165, 116, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 10000;
+        }
     </style>
 </head>
 <body>
+    <!-- Индикатор демонстрации -->
+    <div class="demo-indicator">📱 Мобільна версія</div>
+
     <!-- Шапка сайта с навигацией -->
     <header>
         <nav>
@@ -368,10 +511,22 @@
                 <li><a onclick="showSection('contacts')">Контакти</a></li>
                 <li><a onclick="showSection('admin')">Керування</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             <button class="cart-icon" onclick="toggleCart()">
                 🛒
                 <span class="cart-count" id="cartCount">0</span>
             </button>
+            
+            <!-- Мобильное меню -->
+            <div class="mobile-menu" id="mobileMenu">
+                <ul>
+                    <li><a onclick="showSection('home'); closeMobileMenu()">Головна</a></li>
+                    <li><a onclick="showSection('products'); closeMobileMenu()">Товари</a></li>
+                    <li><a onclick="showSection('about'); closeMobileMenu()">Про нас</a></li>
+                    <li><a onclick="showSection('contacts'); closeMobileMenu()">Контакти</a></li>
+                    <li><a onclick="showSection('admin'); closeMobileMenu()">Керування</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -415,7 +570,7 @@
             <section id="products" class="section">
                 <h2>Наші товари</h2>
                 <div class="products-grid" id="productsContainer">
-                    <!-- Товари будут добавляться динамически -->
+                    <!-- Товары будут добавляться динамически -->
                 </div>
             </section>
 
@@ -468,6 +623,7 @@
                 <h2>Панель керування</h2>
                 <div class="admin-panel">
                     <h3>Додати новий товар</h3>
+                    <div class="success-message" id="successMessage">Товар успішно додано!</div>
                     <form class="admin-form" onsubmit="addProduct(event)">
                         <input type="text" id="productName" placeholder="Назва товару" required>
                         <input type="number" id="productPrice" placeholder="Ціна (грн)" required>
@@ -494,7 +650,8 @@
             <div id="cartItems"></div>
             <div class="cart-total" id="cartTotal">Разом: 0 грн</div>
             <button class="btn" onclick="checkout()">Оформити замовлення</button>
-            <button class="btn" onclick="toggleCart()" style="background: #666; margin-top: 1rem;">Закрити</button>
+            <button class="btn" onclick="clearCart()" style="background: #ff6b6b; margin-top: 0.5rem;">Очистити кошик</button>
+            <button class="btn" onclick="toggleCart()" style="background: #666; margin-top: 0.5rem;">Закрити</button>
         </div>
     </div>
 
@@ -562,6 +719,27 @@
         let cart = []; // Корзина покупок
         let nextProductId = 9; // Для генерации ID новых товаров
 
+        // Функции для мобильного меню
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('active');
+        }
+
+        // Закрытие мобильного меню при клике вне его
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
         // Функция для переключения между секциями
         function showSection(sectionName) {
             // Скрываем все секции
@@ -606,15 +784,20 @@
             const container = document.getElementById('adminProductsList');
             container.innerHTML = '';
 
+            if (products.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">Товарів поки немає</p>';
+                return;
+            }
+
             products.forEach(product => {
                 const productItem = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; margin: 0.5rem 0; border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; margin: 0.5rem 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                         <div>
                             <strong>${product.emoji} ${product.name}</strong><br>
-                            <small>${product.description}</small><br>
-                            <span style="color: #d4a574;">${product.price} грн</span>
+                            <small style="color: #666;">${product.description}</small><br>
+                            <span style="color: #d4a574; font-weight: bold;">${product.price} грн</span>
                         </div>
-                        <button onclick="removeProduct(${product.id})" style="background: #ff6b6b; color: white; border: none; padding: 0.5rem; border-radius: 5px; cursor: pointer;">Видалити</button>
+                        <button onclick="removeProduct(${product.id})" class="btn btn-danger" style="width: auto; padding: 0.5rem 1rem;">Видалити</button>
                     </div>
                 `;
                 container.innerHTML += productItem;
@@ -656,6 +839,12 @@
             cartItems.innerHTML = '';
             let total = 0;
 
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Кошик порожній</p>';
+                cartTotal.textContent = 'Разом: 0 грн';
+                return;
+            }
+
             cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 total += itemTotal;
@@ -668,7 +857,11 @@
                         </div>
                         <div style="text-align: right;">
                             <div><strong>${itemTotal} грн</strong></div>
-                            <button onclick="removeFromCart(${index})" style="background: #ff6b6b; color: white; border: none; padding: 0.3rem; border-radius: 3px; cursor: pointer; margin-top: 0.5rem;">×</button>
+                            <div style="margin-top: 0.5rem;">
+                                <button onclick="decreaseQuantity(${index})" style="background: #666; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer; margin-right: 0.3rem;">-</button>
+                                <button onclick="increaseQuantity(${index})" style="background: #d4a574; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer; margin-right: 0.3rem;">+</button>
+                                <button onclick="removeFromCart(${index})" style="background: #ff6b6b; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer;">×</button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -683,42 +876,77 @@
             updateCartDisplay();
         }
 
-        // Функция переключения отображения корзины
+        // Функция увеличения количества товара
+        function increaseQuantity(index) {
+            cart[index].quantity += 1;
+            updateCartDisplay();
+        }
+
+        // Функция уменьшения количества товара
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1); // Удаляем товар если количество стало 0
+            }
+            updateCartDisplay();
+        }
+
+        // Функция переключения видимости корзины
         function toggleCart() {
             const cartModal = document.getElementById('cartModal');
-            cartModal.style.display = cartModal.style.display === 'block' ? 'none' : 'block';
+            if (cartModal.style.display === 'block') {
+                cartModal.style.display = 'none';
+            } else {
+                cartModal.style.display = 'block';
+                updateCartDisplay();
+            }
+        }
+
+        // Функция очистки корзины
+        function clearCart() {
+            if (cart.length === 0) {
+                alert('Кошик вже порожній!');
+                return;
+            }
+
+            if (confirm('Ви впевнені, що хочете очистити кошик?')) {
+                cart = [];
+                updateCartDisplay();
+                alert('Кошик очищено!');
+            }
         }
 
         // Функция оформления заказа
         function checkout() {
             if (cart.length === 0) {
-                alert('Кошик порожній!');
+                alert('Кошик порожній! Додайте товари для оформлення замовлення.');
                 return;
             }
 
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             let orderText = 'Ваше замовлення:\n\n';
-            let total = 0;
-
+            
             cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                orderText += `${item.emoji} ${item.name} - ${item.quantity} шт. = ${itemTotal} грн\n`;
-                total += itemTotal;
+                orderText += `${item.emoji} ${item.name} - ${item.quantity} шт. x ${item.price} грн = ${item.price * item.quantity} грн\n`;
             });
-
-            orderText += `\nРазом: ${total} грн\n\n`;
-            orderText += 'Для оформлення замовлення зв\'яжіться з нами:\n';
+            
+            orderText += `\nЗагальна сума: ${total} грн\n\n`;
+            orderText += 'Для завершення замовлення зв\'яжіться з нами:\n';
             orderText += 'Телефон: +38 (095) 217-56-74\n';
-            orderText += 'Email: falieievrostik@gmail.com';
+            orderText += 'Email: falieievrostik@gmail.com\n';
+            orderText += 'Telegram: @beebloom_ua';
 
             alert(orderText);
 
-            // Очищаем корзину после заказа
-            cart = [];
-            updateCartDisplay();
-            toggleCart();
+            // Предлагаем отправить заказ в Telegram
+            const telegramUrl = `https://t.me/beebloom_ua?text=${encodeURIComponent(orderText)}`;
+            if (confirm('Хочете відправити замовлення через Telegram?')) {
+                window.open(telegramUrl, '_blank');
+            }
         }
 
-        // Функция добавления нового товара (для админа)
+        // Функция добавления нового товара (админ панель)
         function addProduct(event) {
             event.preventDefault();
 
@@ -727,7 +955,12 @@
             const emoji = document.getElementById('productEmoji').value || '📦';
             const description = document.getElementById('productDescription').value;
 
-            // Создаем новый товар
+            // Проверяем, не существует ли уже товар с таким названием
+            if (products.find(p => p.name === name)) {
+                alert('Товар з такою назвою вже існує!');
+                return;
+            }
+
             const newProduct = {
                 id: nextProductId++,
                 name: name,
@@ -744,33 +977,231 @@
             document.getElementById('productEmoji').value = '';
             document.getElementById('productDescription').value = '';
 
-            // Обновляем отображение
+            // Показываем сообщение об успехе
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 3000);
+
+            // Обновляем списки товаров
             displayAdminProducts();
-
-            alert(`Товар "${name}" успішно додано!`);
-        }
-
-        // Функция удаления товара (для админа)
-        function removeProduct(productId) {
-            if (confirm('Ви впевнені, що хочете видалити цей товар?')) {
-                products = products.filter(product => product.id !== productId);
-                displayAdminProducts();
-                alert('Товар видалено!');
+            if (document.getElementById('products').classList.contains('active')) {
+                displayProducts();
             }
         }
 
-        // Закрытие модального окна при клике вне его
-        window.onclick = function(event) {
+        // Функция удаления товара (админ панель)
+        function removeProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) {
+                alert('Товар не знайдено!');
+                return;
+            }
+
+            if (confirm(`Ви впевнені, що хочете видалити "${product.name}"?`)) {
+                products = products.filter(p => p.id !== productId);
+                
+                // Удаляем товар из корзины, если он там есть
+                cart = cart.filter(item => item.name !== product.name);
+                updateCartDisplay();
+
+                // Обновляем списки товаров
+                displayAdminProducts();
+                if (document.getElementById('products').classList.contains('active')) {
+                    displayProducts();
+                }
+
+                alert(`Товар "${product.name}" видалено!`);
+            }
+        }
+
+        // Закрытие модальных окон при клике вне их
+        document.addEventListener('click', function(event) {
             const cartModal = document.getElementById('cartModal');
-            if (event.target === cartModal) {
+            const cartContent = document.querySelector('.cart-content');
+            
+            if (event.target === cartModal && !cartContent.contains(event.target)) {
                 cartModal.style.display = 'none';
             }
-        }
+        });
 
         // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             updateCartDisplay();
+            
+            // Показываем главную страницу по умолчанию
+            showSection('home');
+
+            // Добавляем обработчик для клавиши Escape
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    const cartModal = document.getElementById('cartModal');
+                    if (cartModal.style.display === 'block') {
+                        cartModal.style.display = 'none';
+                    }
+                    closeMobileMenu();
+                }
+            });
         });
+
+        // Дополнительные функции для улучшения пользовательского опыта
+        
+        // Функция поиска товаров (можно добавить поле поиска при необходимости)
+        function searchProducts(query) {
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query.toLowerCase()) ||
+                product.description.toLowerCase().includes(query.toLowerCase())
+            );
+            return filteredProducts;
+        }
+
+        // Функция сортировки товаров
+        function sortProducts(sortBy) {
+            let sortedProducts = [...products];
+            
+            switch(sortBy) {
+                case 'price-low':
+                    sortedProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    sortedProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                default:
+                    // По умолчанию оставляем исходный порядок
+                    break;
+            }
+            
+            return sortedProducts;
+        }
+
+        // Функция для отображения уведомлений
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 120px;
+                right: 20px;
+                background: ${type === 'success' ? '#4CAF50' : '#ff6b6b'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                z-index: 10000;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // CSS анимации для уведомлений (добавляем через JavaScript)
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Функция для проверки доступности товара (имитация)
+        function checkProductAvailability(productId) {
+            // В реальном приложении здесь был бы запрос к серверу
+            return Math.random() > 0.1; // 90% товаров доступны
+        }
+
+        // Функция для расчета скидки (можно расширить)
+        function calculateDiscount(total) {
+            if (total > 1000) {
+                return total * 0.1; // 10% скидка при заказе свыше 1000 грн
+            } else if (total > 500) {
+                return total * 0.05; // 5% скидка при заказе свыше 500 грн
+            }
+            return 0;
+        }
+
+        // Функция для валидации формы админ панели
+        function validateProductForm() {
+            const name = document.getElementById('productName').value.trim();
+            const price = document.getElementById('productPrice').value;
+            const description = document.getElementById('productDescription').value.trim();
+
+            if (name.length < 3) {
+                alert('Назва товару повинна містити мінімум 3 символи');
+                return false;
+            }
+
+            if (price < 1) {
+                alert('Ціна повинна бути більше 0');
+                return false;
+            }
+
+            if (description.length < 10) {
+                alert('Опис товару повинен містити мінімум 10 символів');
+                return false;
+            }
+
+            return true;
+        }
+
+        // Улучшенная функция добавления товара с валидацией
+        function addProduct(event) {
+            event.preventDefault();
+
+            if (!validateProductForm()) {
+                return;
+            }
+
+            const name = document.getElementById('productName').value.trim();
+            const price = parseInt(document.getElementById('productPrice').value);
+            const emoji = document.getElementById('productEmoji').value || '📦';
+            const description = document.getElementById('productDescription').value.trim();
+
+            // Проверяем, не существует ли уже товар с таким названием
+            if (products.find(p => p.name.toLowerCase() === name.toLowerCase())) {
+                alert('Товар з такою назвою вже існує!');
+                return;
+            }
+
+            const newProduct = {
+                id: nextProductId++,
+                name: name,
+                price: price,
+                emoji: emoji,
+                description: description
+            };
+
+            products.push(newProduct);
+
+            // Очищаем форму
+            event.target.reset();
+
+            // Показываем уведомление об успехе
+            showNotification(`Товар "${name}" успішно додано!`);
+
+            // Обновляем списки товаров
+            displayAdminProducts();
+            if (document.getElementById('products').classList.contains('active')) {
+                displayProducts();
+            }
+        }
+
+        console.log('BeeBloom website loaded successfully! 🍯');
     </script>
 </body>
 </html>

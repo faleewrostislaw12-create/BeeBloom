@@ -497,8 +497,7 @@
     </style>
 </head>
 <body>
-    <!-- Индикатор демонстрации -->
-    <div class="demo-indicator">📱 Мобільна версія</div>
+
 
     <!-- Шапка сайта с навигацией -->
     <header>
@@ -509,14 +508,13 @@
                 <li><a onclick="showSection('products')">Товари</a></li>
                 <li><a onclick="showSection('about')">Про нас</a></li>
                 <li><a onclick="showSection('contacts')">Контакти</a></li>
-                <li><a onclick="showSection('admin')">Керування</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             <button class="cart-icon" onclick="toggleCart()">
                 🛒
                 <span class="cart-count" id="cartCount">0</span>
             </button>
-            
+
             <!-- Мобильное меню -->
             <div class="mobile-menu" id="mobileMenu">
                 <ul>
@@ -524,7 +522,6 @@
                     <li><a onclick="showSection('products'); closeMobileMenu()">Товари</a></li>
                     <li><a onclick="showSection('about'); closeMobileMenu()">Про нас</a></li>
                     <li><a onclick="showSection('contacts'); closeMobileMenu()">Контакти</a></li>
-                    <li><a onclick="showSection('admin'); closeMobileMenu()">Керування</a></li>
                 </ul>
             </div>
         </nav>
@@ -620,7 +617,6 @@
 
             <!-- Админ панель -->
             <section id="admin" class="section">
-                <h2>Панель керування</h2>
                 <div class="admin-panel">
                     <h3>Додати новий товар</h3>
                     <div class="success-message" id="successMessage">Товар успішно додано!</div>
@@ -734,7 +730,7 @@
         document.addEventListener('click', function(event) {
             const mobileMenu = document.getElementById('mobileMenu');
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            
+
             if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                 mobileMenu.classList.remove('active');
             }
@@ -926,16 +922,13 @@
 
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             let orderText = 'Ваше замовлення:\n\n';
-            
+
             cart.forEach(item => {
                 orderText += `${item.emoji} ${item.name} - ${item.quantity} шт. x ${item.price} грн = ${item.price * item.quantity} грн\n`;
             });
-            
+
             orderText += `\nЗагальна сума: ${total} грн\n\n`;
-            orderText += 'Для завершення замовлення зв\'яжіться з нами:\n';
-            orderText += 'Телефон: +38 (095) 217-56-74\n';
-            orderText += 'Email: falieievrostik@gmail.com\n';
-            orderText += 'Telegram: @beebloom_ua';
+            orderText += 'Для замовлення вкажіть ПІБ, місто, номер відділення або адреса, телефон:\n';
 
             alert(orderText);
 
@@ -1001,7 +994,7 @@
 
             if (confirm(`Ви впевнені, що хочете видалити "${product.name}"?`)) {
                 products = products.filter(p => p.id !== productId);
-                
+
                 // Удаляем товар из корзины, если он там есть
                 cart = cart.filter(item => item.name !== product.name);
                 updateCartDisplay();
@@ -1020,7 +1013,7 @@
         document.addEventListener('click', function(event) {
             const cartModal = document.getElementById('cartModal');
             const cartContent = document.querySelector('.cart-content');
-            
+
             if (event.target === cartModal && !cartContent.contains(event.target)) {
                 cartModal.style.display = 'none';
             }
@@ -1029,7 +1022,7 @@
         // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             updateCartDisplay();
-            
+
             // Показываем главную страницу по умолчанию
             showSection('home');
 
@@ -1046,10 +1039,10 @@
         });
 
         // Дополнительные функции для улучшения пользовательского опыта
-        
+
         // Функция поиска товаров (можно добавить поле поиска при необходимости)
         function searchProducts(query) {
-            const filteredProducts = products.filter(product => 
+            const filteredProducts = products.filter(product =>
                 product.name.toLowerCase().includes(query.toLowerCase()) ||
                 product.description.toLowerCase().includes(query.toLowerCase())
             );
@@ -1059,7 +1052,7 @@
         // Функция сортировки товаров
         function sortProducts(sortBy) {
             let sortedProducts = [...products];
-            
+
             switch(sortBy) {
                 case 'price-low':
                     sortedProducts.sort((a, b) => a.price - b.price);
@@ -1074,7 +1067,7 @@
                     // По умолчанию оставляем исходный порядок
                     break;
             }
-            
+
             return sortedProducts;
         }
 
@@ -1094,9 +1087,9 @@
                 animation: slideIn 0.3s ease-out;
             `;
             notification.textContent = message;
-            
+
             document.body.appendChild(notification);
-            
+
             setTimeout(() => {
                 notification.style.animation = 'slideOut 0.3s ease-in forwards';
                 setTimeout(() => {

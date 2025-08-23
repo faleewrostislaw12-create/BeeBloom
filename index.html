@@ -74,6 +74,97 @@
             color: #d4a574;
         }
 
+        /* Поиск */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            padding: 0.6rem 2.5rem 0.6rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            width: 250px;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #d4a574;
+            box-shadow: 0 0 10px rgba(212, 165, 116, 0.2);
+            width: 300px;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            background: #d4a574;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-btn:hover {
+            background: #c19952;
+            transform: scale(1.1);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #d4a574;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-result-item {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .search-result-item:hover {
+            background: #f8f8f8;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-no-results {
+            padding: 1.5rem;
+            text-align: center;
+            color: #666;
+        }
+
         .cart-icon {
             position: relative;
             background: #d4a574;
@@ -427,6 +518,25 @@
             }
 
             nav {
+                flex-wrap: wrap;
+            }
+
+            .search-container {
+                order: 2;
+                width: 100%;
+                margin-top: 1rem;
+                justify-content: center;
+            }
+
+            .search-input {
+                width: 250px;
+            }
+
+            .search-input:focus {
+                width: 280px;
+            }
+
+            nav {
                 position: relative;
             }
 
@@ -497,8 +607,6 @@
     </style>
 </head>
 <body>
-
-
     <!-- Шапка сайта с навигацией -->
     <header>
         <nav>
@@ -509,6 +617,16 @@
                 <li><a onclick="showSection('about')">Про нас</a></li>
                 <li><a onclick="showSection('contacts')">Контакти</a></li>
             </ul>
+
+            <!-- Поиск -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Пошук товарів..." onkeyup="handleSearchInput(event)">
+                    <button class="search-btn" onclick="performSearch()">🔍</button>
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+            </div>
+
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             <button class="cart-icon" onclick="toggleCart()">
                 🛒
@@ -726,16 +844,6 @@
             mobileMenu.classList.remove('active');
         }
 
-        // Закрытие мобильного меню при клике вне его
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-
-            if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-                mobileMenu.classList.remove('active');
-            }
-        });
-
         // Функция для переключения между секциями
         function showSection(sectionName) {
             // Скрываем все секции
@@ -754,6 +862,149 @@
             if (sectionName === 'admin') {
                 displayAdminProducts();
             }
+        }
+
+        // Функция поиска товаров
+        function searchProducts(query) {
+            if (!query.trim()) return products;
+            
+            const searchTerm = query.toLowerCase().trim();
+            return products.filter(product =>
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
+            );
+        }
+
+        // Обработка ввода в поле поиска
+        function handleSearchInput(event) {
+            const query = event.target.value;
+            
+            if (event.key === 'Enter') {
+                performSearch();
+                return;
+            }
+
+            if (query.length >= 1) {
+                showSearchResults(query);
+            } else {
+                hideSearchResults();
+            }
+        }
+
+        // Выполнение поиска
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            
+            if (!query) {
+                alert('Введіть запит для пошуку');
+                return;
+            }
+
+            // Переключаемся на секцию товаров
+            showSection('products');
+            
+            // Фильтруем и отображаем результаты
+            const searchResults = searchProducts(query);
+            displaySearchResults(searchResults, query);
+            
+            // Скрываем выпадающий список
+            hideSearchResults();
+        }
+
+        // Показ выпадающего списка результатов поиска
+        function showSearchResults(query) {
+            const searchResults = searchProducts(query);
+            const resultsContainer = document.getElementById('searchResults');
+            
+            resultsContainer.innerHTML = '';
+            
+            if (searchResults.length === 0) {
+                resultsContainer.innerHTML = '<div class="search-no-results">Товари не знайдено</div>';
+            } else {
+                searchResults.slice(0, 5).forEach(product => { // Показываем только первые 5 результатов
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    resultItem.innerHTML = `
+                        <span style="font-size: 1.5rem;">${product.emoji}</span>
+                        <div>
+                            <div><strong>${product.name}</strong></div>
+                            <div style="font-size: 0.9rem; color: #666;">${product.price} грн</div>
+                        </div>
+                    `;
+                    resultItem.onclick = () => selectSearchResult(product);
+                    resultsContainer.appendChild(resultItem);
+                });
+                
+                if (searchResults.length > 5) {
+                    const moreResults = document.createElement('div');
+                    moreResults.className = 'search-result-item';
+                    moreResults.style.color = '#d4a574';
+                    moreResults.style.fontWeight = 'bold';
+                    moreResults.innerHTML = `Ще ${searchResults.length - 5} товарів... Натисніть Enter для перегляду всіх`;
+                    resultsContainer.appendChild(moreResults);
+                }
+            }
+            
+            resultsContainer.style.display = 'block';
+        }
+
+        // Скрытие результатов поиска
+        function hideSearchResults() {
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.style.display = 'none';
+        }
+
+        // Выбор товара из результатов поиска
+        function selectSearchResult(product) {
+            addToCart(product.name, product.price, product.emoji);
+            hideSearchResults();
+            document.getElementById('searchInput').value = '';
+        }
+
+        // Отображение результатов поиска на странице товаров
+        function displaySearchResults(searchResults, query) {
+            const container = document.getElementById('productsContainer');
+            const sectionTitle = document.querySelector('#products h2');
+            
+            if (searchResults.length === 0) {
+                sectionTitle.textContent = `Результати пошуку: "${query}" (не знайдено)`;
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #666;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">😔</div>
+                        <h3>Товари не знайдено</h3>
+                        <p>Спробуйте змінити запит пошуку або перегляньте всі товари</p>
+                        <button class="btn" onclick="showAllProducts()" style="margin-top: 1rem;">Показати всі товари</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            sectionTitle.textContent = `Результати пошуку: "${query}" (${searchResults.length} товарів)`;
+            container.innerHTML = '';
+
+            searchResults.forEach(product => {
+                const productCard = `
+                    <div class="product-card">
+                        <div class="product-image">${product.emoji}</div>
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-price">${product.price} грн${product.name.includes('мед') ? '/кг' : ''}</div>
+                        <button class="btn" onclick="addToCart('${product.name}', ${product.price}, '${product.emoji}')">У кошик</button>
+                    </div>
+                `;
+                container.innerHTML += productCard;
+            });
+            
+            // Добавляем кнопку "Показать все товары" в конце
+            container.innerHTML += `
+                <div class="product-card" style="display: flex; align-items: center; justify-content: center; min-height: 200px; background: linear-gradient(45deg, #f8f9fa, #e9ecef);">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🛍️</div>
+                        <h3 style="margin-bottom: 1rem; color: #666;">Переглянути всі товари</h3>
+                        <button class="btn" onclick="showAllProducts()">Показати всі</button>
+                    </div>
+                </div>
+            `;
         }
 
         // Функция для отображения всех товаров
@@ -1009,13 +1260,27 @@
             }
         }
 
-        // Закрытие модальных окон при клике вне их
+        // Закрытие результатов поиска при клике вне области поиска
         document.addEventListener('click', function(event) {
             const cartModal = document.getElementById('cartModal');
             const cartContent = document.querySelector('.cart-content');
+            const searchBox = document.querySelector('.search-box');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 
+            // Закрытие корзины
             if (event.target === cartModal && !cartContent.contains(event.target)) {
                 cartModal.style.display = 'none';
+            }
+
+            // Закрытие мобильного меню
+            if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+
+            // Закрытие результатов поиска
+            if (!searchBox.contains(event.target)) {
+                hideSearchResults();
             }
         });
 
@@ -1034,167 +1299,12 @@
                         cartModal.style.display = 'none';
                     }
                     closeMobileMenu();
+                    hideSearchResults();
                 }
             });
         });
 
-        // Дополнительные функции для улучшения пользовательского опыта
-
-        // Функция поиска товаров (можно добавить поле поиска при необходимости)
-        function searchProducts(query) {
-            const filteredProducts = products.filter(product =>
-                product.name.toLowerCase().includes(query.toLowerCase()) ||
-                product.description.toLowerCase().includes(query.toLowerCase())
-            );
-            return filteredProducts;
-        }
-
-        // Функция сортировки товаров
-        function sortProducts(sortBy) {
-            let sortedProducts = [...products];
-
-            switch(sortBy) {
-                case 'price-low':
-                    sortedProducts.sort((a, b) => a.price - b.price);
-                    break;
-                case 'price-high':
-                    sortedProducts.sort((a, b) => b.price - a.price);
-                    break;
-                case 'name':
-                    sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-                    break;
-                default:
-                    // По умолчанию оставляем исходный порядок
-                    break;
-            }
-
-            return sortedProducts;
-        }
-
-        // Функция для отображения уведомлений
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 120px;
-                right: 20px;
-                background: ${type === 'success' ? '#4CAF50' : '#ff6b6b'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                z-index: 10000;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                animation: slideIn 0.3s ease-out;
-            `;
-            notification.textContent = message;
-
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease-in forwards';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-
-        // CSS анимации для уведомлений (добавляем через JavaScript)
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Функция для проверки доступности товара (имитация)
-        function checkProductAvailability(productId) {
-            // В реальном приложении здесь был бы запрос к серверу
-            return Math.random() > 0.1; // 90% товаров доступны
-        }
-
-        // Функция для расчета скидки (можно расширить)
-        function calculateDiscount(total) {
-            if (total > 1000) {
-                return total * 0.1; // 10% скидка при заказе свыше 1000 грн
-            } else if (total > 500) {
-                return total * 0.05; // 5% скидка при заказе свыше 500 грн
-            }
-            return 0;
-        }
-
-        // Функция для валидации формы админ панели
-        function validateProductForm() {
-            const name = document.getElementById('productName').value.trim();
-            const price = document.getElementById('productPrice').value;
-            const description = document.getElementById('productDescription').value.trim();
-
-            if (name.length < 3) {
-                alert('Назва товару повинна містити мінімум 3 символи');
-                return false;
-            }
-
-            if (price < 1) {
-                alert('Ціна повинна бути більше 0');
-                return false;
-            }
-
-            if (description.length < 10) {
-                alert('Опис товару повинен містити мінімум 10 символів');
-                return false;
-            }
-
-            return true;
-        }
-
-        // Улучшенная функция добавления товара с валидацией
-        function addProduct(event) {
-            event.preventDefault();
-
-            if (!validateProductForm()) {
-                return;
-            }
-
-            const name = document.getElementById('productName').value.trim();
-            const price = parseInt(document.getElementById('productPrice').value);
-            const emoji = document.getElementById('productEmoji').value || '📦';
-            const description = document.getElementById('productDescription').value.trim();
-
-            // Проверяем, не существует ли уже товар с таким названием
-            if (products.find(p => p.name.toLowerCase() === name.toLowerCase())) {
-                alert('Товар з такою назвою вже існує!');
-                return;
-            }
-
-            const newProduct = {
-                id: nextProductId++,
-                name: name,
-                price: price,
-                emoji: emoji,
-                description: description
-            };
-
-            products.push(newProduct);
-
-            // Очищаем форму
-            event.target.reset();
-
-            // Показываем уведомление об успехе
-            showNotification(`Товар "${name}" успішно додано!`);
-
-            // Обновляем списки товаров
-            displayAdminProducts();
-            if (document.getElementById('products').classList.contains('active')) {
-                displayProducts();
-            }
-        }
-
-        console.log('BeeBloom website loaded successfully! 🍯');
+        console.log('BeeBloom website with search loaded successfully! 🍯');
     </script>
 </body>
 </html>

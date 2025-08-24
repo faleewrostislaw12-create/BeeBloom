@@ -305,132 +305,6 @@
             margin: 0 auto;
         }
 
-        /* Сетка категорий */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-            height: 400px;
-        }
-
-        .category-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
-            border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        .category-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(212, 165, 116, 0.1), rgba(253, 203, 110, 0.1));
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .category-card:hover:before {
-            opacity: 1;
-        }
-
-        .category-large {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-
-        .category-wide {
-            grid-column: span 2;
-        }
-
-        .category-image {
-            position: relative;
-            z-index: 2;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        .category-large .category-image {
-            height: 200px;
-        }
-
-        .category-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .category-card:hover .category-image img {
-            transform: scale(1.1);
-        }
-
-        .category-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .category-content h3 {
-            color: #d4a574;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .category-large .category-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .category-content p {
-            color: #666;
-            margin-bottom: 0.8rem;
-            font-size: 0.95rem;
-        }
-
-        .category-large .category-content p {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .category-count {
-            background: rgba(212, 165, 116, 0.2);
-            color: #d4a574;
-            padding: 0.4rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            display: inline-block;
-        }
-
-        .category-large .category-count {
-            font-size: 1rem;
-            padding: 0.6rem 1.2rem;
-        }
-
         /* Секции сайта */
         .section {
             display: none;
@@ -633,14 +507,14 @@
             max-width: 600px;
         }
 
-        .admin-form input, .admin-form textarea, .admin-form select {
+        .admin-form input, .admin-form textarea {
             padding: 0.8rem;
             border: 2px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
         }
 
-        .admin-form input:focus, .admin-form textarea:focus, .admin-form select:focus {
+        .admin-form input:focus, .admin-form textarea:focus {
             border-color: #d4a574;
             outline: none;
         }
@@ -773,41 +647,6 @@
                 font-size: 2rem;
             }
 
-            .categories-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: repeat(4, 200px);
-                height: auto;
-            }
-
-            .category-large, .category-wide {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-
-            .category-image {
-                height: 80px;
-            }
-
-            .category-large .category-image {
-                height: 80px;
-            }
-
-            .category-content h3 {
-                font-size: 1.1rem;
-            }
-
-            .category-large .category-content h3 {
-                font-size: 1.3rem;
-            }
-
-            .category-content p {
-                font-size: 0.9rem;
-            }
-
-            .category-large .category-content p {
-                font-size: 1rem;
-            }
-
             .contact-grid {
                 grid-template-columns: 1fr;
             }
@@ -909,68 +748,807 @@
                     <p>Ласкаво просимо до BeeBloom! Ми пропонуємо тільки якісні продукти бджільництва та натуральні трав'яні чаї. Наш мед зібрано в екологічно чистих районах і він зберігає всі корисні властивості природи.</p>
                 </div>
 
-                <!-- Категории товаров -->
-                <div class="categories-grid">
-                    <div class="category-card category-large" onclick="showCategoryProducts('honey')">
-                        <div class="category-image">
-                            <img src="https://placehold.co/400x300?text=🍯+МЕД" alt="Мед">
+                <div class="products-grid">
+                    <div class="product-card" onclick="showProductDetails(1)">
+                        <div class="product-image">
+                            <img src="https://placehold.co/300x200?text=Квітковий+мед" alt="Квітковий мед">
                         </div>
-                        <div class="category-content">
-                            <h3>МЕД</h3>
-                            <p>Натуральний мед різних сортів</p>
-                            <div class="category-count">5 товарів</div>
-                        </div>
+                        <h3>Квітковий мед</h3>
+                        <p>Ароматний мед із різнотрав'я з ніжним смаком</p>
+                        <div class="product-price">450 грн/кг</div>
                     </div>
 
-                    <div class="category-card" onclick="showCategoryProducts('tea')">
-                        <div class="category-image">
-                            <img src="https://placehold.co/300x200?text=🍃+ЧАЙ" alt="Чай">
+                    <div class="product-card" onclick="showProductDetails(2)">
+                        <div class="product-image">
+                            <img src="https://placehold.co/300x200?text=Липовий+мед" alt="Липовий мед">
                         </div>
-                        <div class="category-content">
-                            <h3>ЧАЙ</h3>
-                            <p>Трав'яні чаї</p>
-                            <div class="category-count">5 товарів</div>
-                        </div>
+                        <h3>Липовий мед</h3>
+                        <p>Цілющий мед з неповторним ароматом липи</p>
+                        <div class="product-price">520 грн/кг</div>
                     </div>
 
-                    <div class="category-card" onclick="showCategoryProducts('pollen')">
-                        <div class="category-image">
-                            <img src="https://placehold.co/300x200?text=🌼+КВІТКОВА+ПИЛКА" alt="Квіткова пилка">
+                    <div class="product-card" onclick="showProductDetails(3)">
+                        <div class="product-image">
+                            <img src="https://placehold.co/300x200?text=Акацієвий+мед" alt="Акацієвий мед">
                         </div>
-                        <div class="category-content">
-                            <h3>КВІТКОВА ПИЛКА</h3>
-                            <p>Бджолиний пилок</p>
-                            <div class="category-count">3 товари</div>
-                        </div>
-                    </div>
-
-                    <div class="category-card category-wide" onclick="showCategoryProducts('honey-nuts')">
-                        <div class="category-image">
-                            <img src="https://placehold.co/400x200?text=🥜+МЕД+З+ГОРІХАМИ" alt="Мед з горіхами">
-                        </div>
-                        <div class="category-content">
-                            <h3>МЕД З ГОРІХАМИ ТА НАСІННЯМ</h3>
-                            <p>Мед з додаванням горіхів та насіння</p>
-                            <div class="category-count">5 товарів</div>
-                        </div>
+                        <h3>Акацієвий мед</h3>
+                        <p>Прозорий мед з делікатним смаком</p>
+                        <div class="product-price">580 грн/кг</div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Популярные товары -->
-                <div style="margin-top: 3rem;">
-                    <h2 style="text-align: center; color: #d4a574; margin-bottom: 2rem;">Популярні товари</h2>
-                    <div class="products-grid">
-                        <div class="product-card" onclick="showProductDetails(1)">
-                            <div class="product-image">
-                                <img src="https://placehold.co/300x200?text=Квітковий+мед" alt="Квітковий мед">
-                            </div>
-                            <h3>Квітковий мед</h3>
-                            <p>Ароматний мед із різнотрав'я з ніжним смаком</p>
-                            <div class="product-price">450 грн/кг</div>
+            <!-- Секция товаров -->
+            <section id="products" class="section">
+                <h2>Наші товари</h2>
+                <div class="products-grid" id="productsContainer">
+                    <!-- Товары будут добавляться динамически -->
+                </div>
+            </section>
+
+            <!-- Детали товара -->
+            <section id="product-details" class="section">
+                <div class="product-details" id="productDetailsContainer">
+                    <!-- Содержимое будет добавляться динамически -->
+                </div>
+            </section>
+
+            <!-- О нас -->
+            <section id="about" class="section">
+                <h2>Про магазин BeeBloom</h2>
+                <div class="about-content">
+                    <p>BeeBloom - це молодий і динамічний магазин натуральних продуктів бджільництва. Ми працюємо напряму з найкращими пасічниками України, які знаходяться в екологічно чистих районах.</p>
+                    <br>
+                    <p>Наші принципи:</p>
+                    <ul>
+                        <li>Натуральність - тільки справжні продукти без додатків</li>
+                        <li>Якість - строгий відбір постачальників і контроль якості</li>
+                        <li>Свіжість - швидка доставка прямо з пасік</li>
+                        <li>Доступність - справедливі ціни на якісні продукти</li>
+                        <li>Сервіс - індивідуальний підхід до кожного клієнта</li>
+                    </ul>
+                    <br>
+                    <p>У BeeBloom ви знайдете не тільки традиційний мед, але й рідкісні сорти, бджолині продукти для здоров'я, а також натуральні трав'яні чаї від найкращих травників.</p>
+                </div>
+            </section>
+
+            <!-- Контакты -->
+            <section id="contacts" class="section">
+                <h2>Контакти</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h3>📞 Телефон</h3>
+                        <p>+38 (095) 217-56-74</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                        <p>falieievrostik@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📍 Адреса</h3>
+                        <p>с. Михайлівка<br>Полтавський район</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📱 Соціальні мережі</h3>
+                        <p><a href="https://instagram.com/beebloom.ua" target="_blank" style="color: #d4a574;">📸 Instagram: @beebloom.ua</a></p>
+                        <p><a href="https://tiktok.com/@beebloom.ua" target="_blank" style="color: #d4a574;">🎵 TikTok: @beebloom.ua</a></p>
+                        <p><a href="https://t.me/beebloom_ua" target="_blank" style="color: #d4a574;">📞 Telegram: @beebloom_ua</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Админ панель -->
+            <section id="admin" class="section">
+                <div class="admin-panel">
+                    <h3>Додати новий товар</h3>
+                    <div class="success-message" id="successMessage">Товар успішно додано!</div>
+                    <form class="admin-form" onsubmit="addProduct(event)">
+                        <input type="text" id="productName" placeholder="Назва товару" required>
+                        <input type="number" id="productPrice" placeholder="Ціна (грн)" required>
+                        <input type="text" id="productImage" placeholder="URL зображення (або залиште порожнім для заглушки)">
+                        <textarea id="productDescription" placeholder="Опис товару" rows="3" required></textarea>
+                        <button type="submit" class="btn">Додати товар</button>
+                    </form>
+                </div>
+
+                <div class="admin-panel">
+                    <h3>Існуючі товари</h3>
+                    <div id="adminProductsList">
+                        <!-- Список товарів для адміністратора -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Модальное окно корзины -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <h3>Кошик покупок</h3>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal">Разом: 0 грн</div>
+            <button class="btn" onclick="checkout()">Оформити замовлення</button>
+            <button class="btn" onclick="clearCart()" style="background: #ff6b6b; margin-top: 0.5rem;">Очистити кошик</button>
+            <button class="btn" onclick="toggleCart()" style="background: #666; margin-top: 0.5rem;">Закрити</button>
+        </div>
+    </div>
+
+    <script>
+        // Глобальные переменные для хранения данных
+        let products = [
+            {
+                id: 1,
+                name: 'Квітковий мед',
+                price: 450,
+                image: 'https://placehold.co/300x200?text=Квітковий+мед',
+                description: 'Ароматний мед із різнотрав\'я з ніжним смаком'
+            },
+            {
+                id: 2,
+                name: 'Липовий мед',
+                price: 520,
+                image: 'https://placehold.co/300x200?text=Липовий+мед',
+                description: 'Цілющий мед з неповторним ароматом липи'
+            },
+            {
+                id: 3,
+                name: 'Акацієвий мед',
+                price: 580,
+                image: 'https://placehold.co/300x200?text=Акацієвий+мед',
+                description: 'Прозорий мед з делікатним смаком'
+            },
+            {
+                id: 4,
+                name: 'Прополіс',
+                price: 320,
+                image: 'https://placehold.co/300x200?text=Прополіс',
+                description: 'Натуральний прополіс для зміцнення імунітету'
+            },
+            {
+                id: 5,
+                name: 'Бджолиний пилок',
+                price: 280,
+                image: 'https://placehold.co/300x200?text=Бджолиний+пилок',
+                description: 'Багатий на вітаміни пилок бджіл'
+            },
+            {
+                id: 6,
+                name: 'Трав\'яний чай "Польові трави"',
+                price: 95,
+                image: 'https://placehold.co/300x200?text=Трав\'яний+чай+Польові+трави',
+                description: 'Ароматний чай із лікарських трав'
+            },
+            {
+                id: 7,
+                name: 'Чай "Меліса і м\'ята"',
+                price: 85,
+                image: 'https://placehold.co/300x200?text=Чай+Меліса+і+м\'ята',
+                description: 'Заспокійливий чай для гарного сну'
+            },
+            {
+                id: 8,
+                name: 'Чай "Ромашковий"',
+                price: 75,
+                image: 'https://placehold.co/300x200?text=Чай+Ромашковий',
+                description: 'Ніжний ромашковий чай з цілючими властивостями'
+            }
+        ];
+
+        let cart = []; // Корзина покупок
+        let nextProductId = 9; // Для генерации ID новых товаров
+
+        // Функции для мобильного меню
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (!mobileMenu) {
+                console.error('Мобильное меню не найдено!');
+                return;
+            }
+            mobileMenu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (!mobileMenu) {
+                console.error('Мобильное меню не найдено!');
+                return;
+            }
+            mobileMenu.classList.remove('active');
+        }
+
+        // Функция для переключения между секциями
+        function showSection(sectionName) {
+            // Скрываем все секции
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Показываем выбранную секцию
+            const section = document.getElementById(sectionName);
+            if (!section) {
+                console.error(`Секция "${sectionName}" не найдена!`);
+                return;
+            }
+            section.classList.add('active');
+
+            // Если открываем секцию товаров, обновляем их список
+            if (sectionName === 'products') {
+                displayProducts();
+            }
+
+            // Если открываем админ панель, обновляем список товаров для админа
+            if (sectionName === 'admin') {
+                displayAdminProducts();
+            }
+        }
+
+        // Функция для отображения всех товаров
+        function showAllProducts() {
+            showSection('products');
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = ''; // Очищаем поле поиска
+            }
+            displayProducts();
+        }
+
+        // Функция для отображения деталей товара
+        function showProductDetails(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) {
+                alert('Товар не знайдено!');
+                console.error(`Товар с ID ${productId} не найден!`);
+                return;
+            }
+
+            const container = document.getElementById('productDetailsContainer');
+            if (!container) {
+                console.error('Контейнер для деталей товара не найден!');
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image || 'https://placehold.co/300x200?text=Товар'}" alt="${product.name || 'Без названия'}">
+                </div>
+                <h3>${product.name || 'Без названия'}</h3>
+                <p>${product.description || 'Без описания'}</p>
+                <div class="product-price">${product.price || 0} грн${product.name && product.name.includes('мед') ? '/кг' : ''}</div>
+                <button class="btn add-to-cart-btn">Додати до кошика</button>
+                <button class="btn back-btn" onclick="showSection('products')">Назад до товарів</button>
+            `;
+            showSection('product-details');
+
+            // Привязываем событие клика для кнопки "Додати до кошика"
+            const addToCartButton = container.querySelector('.add-to-cart-btn');
+            if (addToCartButton) {
+                addToCartButton.addEventListener('click', () => {
+                    console.log('Клик по кнопке "Додати до кошика" для товара:', product);
+                    addToCart(product.name, product.price, product.image);
+                });
+            } else {
+                console.error('Кнопка "Додати до кошика" не найдена в DOM!');
+            }
+        }
+
+        // Функция поиска товаров
+        function searchProducts(query) {
+            if (!query || typeof query !== 'string') {
+                console.log('Пустой запрос поиска, возвращаем все товары');
+                return products;
+            }
+
+            const searchTerm = query.toLowerCase().trim();
+            return products.filter(product =>
+                (product.name && product.name.toLowerCase().includes(searchTerm)) ||
+                (product.description && product.description.toLowerCase().includes(searchTerm))
+            );
+        }
+
+        // Обработка ввода в поле поиска
+        function handleSearchInput(event) {
+            const query = event.target.value;
+
+            if (event.key === 'Enter') {
+                performSearch();
+                return;
+            }
+
+            if (query.length >= 1) {
+                showSearchResults(query);
+            } else {
+                hideSearchResults();
+            }
+        }
+
+        // Выполнение поиска
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) {
+                console.error('Поле поиска не найдено!');
+                return;
+            }
+            const query = searchInput.value.trim();
+
+            if (!query) {
+                alert('Введіть запит для пошуку');
+                return;
+            }
+
+            // Переключаемся на секцию товаров
+            showSection('products');
+
+            // Фильтруем и отображаем результаты
+            const searchResults = searchProducts(query);
+            displaySearchResults(searchResults, query);
+
+            // Скрываем выпадающий список
+            hideSearchResults();
+        }
+
+        // Показ выпадающего списка результатов поиска
+        function showSearchResults(query) {
+            const searchResults = searchProducts(query);
+            const resultsContainer = document.getElementById('searchResults');
+            if (!resultsContainer) {
+                console.error('Контейнер для результатов поиска не найден!');
+                return;
+            }
+
+            resultsContainer.innerHTML = '';
+
+            if (searchResults.length === 0) {
+                resultsContainer.innerHTML = '<div class="search-no-results">Товари не знайдено</div>';
+            } else {
+                searchResults.slice(0, 5).forEach(product => { // Показываем только первые 5 результатов
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    resultItem.innerHTML = `
+                        <img src="${product.image || 'https://placehold.co/40x40?text=Товар'}" alt="${product.name || 'Товар'}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px;">
+                        <div>
+                            <div><strong>${product.name || 'Без названия'}</strong></div>
+                            <div style="font-size: 0.9rem; color: #666;">${product.price || 0} грн</div>
                         </div>
+                    `;
+                    resultItem.onclick = () => selectSearchResult(product);
+                    resultsContainer.appendChild(resultItem);
+                });
 
-                        <div class="product-card" onclick="showProductDetails(14)">
-                            <div class="product-image">
-                                <img src="https://placehold.co/300x200?text=Мед+з+волоськими+горіхами" alt="Мед з горіхами">
+                if (searchResults.length > 5) {
+                    const moreResults = document.createElement('div');
+                    moreResults.className = 'search-result-item';
+                    moreResults.style.color = '#d4a574';
+                    moreResults.style.fontWeight = 'bold';
+                    moreResults.innerHTML = `Ще ${searchResults.length - 5} товарів... Натисніть Enter для перегляду всіх`;
+                    resultsContainer.appendChild(moreResults);
+                }
+            }
+
+            resultsContainer.style.display = 'block';
+        }
+
+        // Скрытие результатов поиска
+        function hideSearchResults() {
+            const resultsContainer = document.getElementById('searchResults');
+            if (resultsContainer) {
+                resultsContainer.style.display = 'none';
+            }
+        }
+
+        // Выбор товара из результатов поиска
+        function selectSearchResult(product) {
+            if (product && product.id) {
+                showProductDetails(product.id);
+                hideSearchResults();
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.value = '';
+                }
+            }
+        }
+
+        // Отображение результатов поиска на странице товаров
+        function displaySearchResults(searchResults, query) {
+            const container = document.getElementById('productsContainer');
+            const sectionTitle = document.querySelector('#products h2');
+
+            if (!container || !sectionTitle) {
+                console.error('Контейнер или заголовок для товаров не найден!');
+                return;
+            }
+
+            if (searchResults.length === 0) {
+                sectionTitle.textContent = `Результати пошуку: "${query}" (не знайдено)`;
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #666;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">😔</div>
+                        <h3>Товари не знайдено</h3>
+                        <p>Спробуйте змінити запит пошуку або перегляньте всі товари</p>
+                        <button class="btn" onclick="showAllProducts()" style="margin-top: 1rem;">Показати всі товари</button>
+                    </div>
+                `;
+                return;
+            }
+
+            sectionTitle.textContent = `Результати пошуку: "${query}" (${searchResults.length} товарів)`;
+            container.innerHTML = '';
+
+            searchResults.forEach(product => {
+                const productCard = `
+                    <div class="product-card" onclick="showProductDetails(${product.id})">
+                        <div class="product-image">
+                            <img src="${product.image || 'https://placehold.co/300x200?text=Товар'}" alt="${product.name || 'Товар'}">
+                        </div>
+                        <h3>${product.name || 'Без названия'}</h3>
+                        <p>${product.description || 'Без описания'}</p>
+                        <div class="product-price">${product.price || 0} грн${product.name && product.name.includes('мед') ? '/кг' : ''}</div>
+                    </div>
+                `;
+                container.innerHTML += productCard;
+            });
+
+            // Добавляем кнопку "Показать все товары" в конце
+            container.innerHTML += `
+                <div class="product-card" style="display: flex; align-items: center; justify-content: center; min-height: 200px; background: linear-gradient(45deg, #f8f9fa, #e9ecef);">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🛍️</div>
+                        <h3 style="margin-bottom: 1rem; color: #666;">Переглянути всі товари</h3>
+                        <button class="btn" onclick="showAllProducts()">Показати всі</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Функция для отображения всех товаров
+        function displayProducts() {
+            const container = document.getElementById('productsContainer');
+            const sectionTitle = document.querySelector('#products h2');
+            if (!container || !sectionTitle) {
+                console.error('Контейнер или заголовок для товаров не найден!');
+                return;
+            }
+
+            container.innerHTML = '';
+            sectionTitle.textContent = 'Наші товари';
+
+            products.forEach(product => {
+                const productCard = `
+                    <div class="product-card" onclick="showProductDetails(${product.id})">
+                        <div class="product-image">
+                            <img src="${product.image || 'https://placehold.co/300x200?text=Товар'}" alt="${product.name || 'Товар'}">
+                        </div>
+                        <h3>${product.name || 'Без названия'}</h3>
+                        <p>${product.description || 'Без описания'}</p>
+                        <div class="product-price">${product.price || 0} грн${product.name && product.name.includes('мед') ? '/кг' : ''}</div>
+                    </div>
+                `;
+                container.innerHTML += productCard;
+            });
+        }
+
+        // Функция для отображения товаров в админ панели
+        function displayAdminProducts() {
+            const container = document.getElementById('adminProductsList');
+            if (!container) {
+                console.error('Контейнер для админ-панели не найден!');
+                return;
+            }
+
+            container.innerHTML = '';
+
+            if (products.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">Товарів поки немає</p>';
+                return;
+            }
+
+            products.forEach(product => {
+                const productItem = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; margin: 0.5rem 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="${product.image || 'https://placehold.co/40x40?text=Товар'}" alt="${product.name || 'Товар'}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px;">
+                            <div>
+                                <strong>${product.name || 'Без названия'}</strong><br>
+                                <small style="color: #666;">${product.description || 'Без описания'}</small><br>
+                                <span style="color: #d4a574; font-weight: bold;">${product.price || 0} грн</span>
                             </div>
-                            <h3>Мед з воло
+                        </div>
+                        <button onclick="removeProduct(${product.id})" class="btn btn-danger" style="width: auto; padding: 0.5rem 1rem;">Видалити</button>
+                    </div>
+                `;
+                container.innerHTML += productItem;
+            });
+        }
+
+        // Функция добавления товара в корзину
+        function addToCart(name, price, image) {
+            console.log('Вызов addToCart с параметрами:', { name, price, image });
+            if (!name || typeof name !== 'string' || name.trim() === '' || isNaN(price) || price <= 0) {
+                console.error('Некорректные параметры для addToCart:', { name, price, image });
+                alert('Ошибка: товар не может быть добавлен в корзину!');
+                return;
+            }
+
+            // Проверяем, есть ли уже такой товар в корзине
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1; // Увеличиваем количество
+                console.log(`Увеличено количество товара "${name}" в корзине:`, existingItem.quantity);
+            } else {
+                const newItem = {
+                    name: name,
+                    price: price,
+                    image: image || 'https://placehold.co/40x40?text=Товар',
+                    quantity: 1
+                };
+                cart.push(newItem);
+                console.log(`Добавлен новый товар в корзину:`, newItem);
+            }
+
+            updateCartDisplay();
+
+            // Показываем уведомление
+            alert(`${name} додано до кошика!`);
+        }
+
+        // Функция обновления отображения корзины
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            if (!cartCount || !cartItems || !cartTotal) {
+                console.error('Элементы корзины не найдены!');
+                return;
+            }
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Кошик порожній</p>';
+                cartTotal.textContent = 'Разом: 0 грн';
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="${item.image}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px;">
+                            <div>
+                                <strong>${item.name}</strong><br>
+                                <small>${item.price} грн x ${item.quantity} шт.</small>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div><strong>${itemTotal} грн</strong></div>
+                            <div style="margin-top: 0.5rem;">
+                                <button onclick="decreaseQuantity(${index})" style="background: #666; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer; margin-right: 0.3rem;">-</button>
+                                <button onclick="increaseQuantity(${index})" style="background: #d4a574; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer; margin-right: 0.3rem;">+</button>
+                                <button onclick="removeFromCart(${index})" style="background: #ff6b6b; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer;">×</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartTotal.textContent = `Разом: ${total} грн`;
+        }
+
+        // Функция удаления товара из корзины
+        function removeFromCart(index) {
+            console.log(`Удаление товара из корзины по индексу ${index}`);
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        // Функция увеличения количества товара
+        function increaseQuantity(index) {
+            console.log(`Увеличение количества товара по индексу ${index}`);
+            cart[index].quantity += 1;
+            updateCartDisplay();
+        }
+
+        // Функция уменьшения количества товара
+        function decreaseQuantity(index) {
+            console.log(`Уменьшение количества товара по индексу ${index}`);
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1); // Удаляем товар если количество стало 0
+            }
+            updateCartDisplay();
+        }
+
+        // Функция переключения видимости корзины
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            if (!cartModal) {
+                console.error('Модальное окно корзины не найдено!');
+                return;
+            }
+
+            if (cartModal.style.display === 'block') {
+                cartModal.style.display = 'none';
+            } else {
+                cartModal.style.display = 'block';
+                updateCartDisplay();
+            }
+        }
+
+        // Функция очистки корзины
+        function clearCart() {
+            if (cart.length === 0) {
+                alert('Кошик вже порожній!');
+                return;
+            }
+
+            if (confirm('Ви впевнені, що хочете очистити кошик?')) {
+                console.log('Очистка корзины');
+                cart = [];
+                updateCartDisplay();
+                alert('Кошик очищено!');
+            }
+        }
+
+        // Функция оформления заказа
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Кошик порожній! Додайте товари для оформлення замовлення.');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let orderText = 'Ваше замовлення:\n\n';
+
+            cart.forEach(item => {
+                orderText += `${item.name} - ${item.quantity} шт. x ${item.price} грн = ${item.price * item.quantity} грн\n`;
+            });
+
+            orderText += `\nЗагальна сума: ${total} грн\n\n`;
+            orderText += 'Для замовлення вкажіть ПІБ, місто, номер відділення або адреса, телефон:\n';
+
+            alert(orderText);
+
+            // Предлагаем отправить заказ в Telegram
+            const telegramUrl = `https://t.me/beebloom_ua?text=${encodeURIComponent(orderText)}`;
+            if (confirm('Хочете відправити замовлення через Telegram?')) {
+                window.open(telegramUrl, '_blank');
+            }
+        }
+
+        // Функция добавления нового товара (админ панель)
+        function addProduct(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('productName').value;
+            const price = parseInt(document.getElementById('productPrice').value);
+            const image = document.getElementById('productImage').value || `https://placehold.co/300x200?text=${encodeURIComponent(name)}`;
+            const description = document.getElementById('productDescription').value;
+
+            // Проверяем, не существует ли уже товар с таким названием
+            if (products.find(p => p.name === name)) {
+                alert('Товар з такою назвою вже існує!');
+                return;
+            }
+
+            const newProduct = {
+                id: nextProductId++,
+                name: name,
+                price: price,
+                image: image,
+                description: description
+            };
+
+            products.push(newProduct);
+            console.log('Добавлен новый товар:', newProduct);
+
+            // Очищаем форму
+            document.getElementById('productName').value = '';
+            document.getElementById('productPrice').value = '';
+            document.getElementById('productImage').value = '';
+            document.getElementById('productDescription').value = '';
+
+            // Показываем сообщение об успехе
+            const successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                successMessage.classList.add('show');
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 3000);
+            }
+
+            // Обновляем списки товаров
+            displayAdminProducts();
+            if (document.getElementById('products').classList.contains('active')) {
+                displayProducts();
+            }
+        }
+
+        // Функция удаления товара (админ панель)
+        function removeProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) {
+                alert('Товар не знайдено!');
+                console.error(`Товар с ID ${productId} не найден для удаления!`);
+                return;
+            }
+
+            if (confirm(`Ви впевнені, що хочете видалити "${product.name}"?`)) {
+                products = products.filter(p => p.id !== productId);
+
+                // Удаляем товар из корзины, если он там есть
+                cart = cart.filter(item => item.name !== product.name);
+                updateCartDisplay();
+
+                // Обновляем списки товаров
+                displayAdminProducts();
+                if (document.getElementById('products').classList.contains('active')) {
+                    displayProducts();
+                }
+
+                // Если мы находимся в секции деталей товара, возвращаемся к товарам
+                if (document.getElementById('product-details').classList.contains('active')) {
+                    showSection('products');
+                }
+
+                alert(`Товар "${product.name}" видалено!`);
+            }
+        }
+
+        // Закрытие результатов поиска при клике вне области поиска
+        document.addEventListener('click', function(event) {
+            const cartModal = document.getElementById('cartModal');
+            const cartContent = document.querySelector('.cart-content');
+            const searchBox = document.querySelector('.search-box');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+
+            // Закрытие корзины
+            if (cartModal && event.target === cartModal && !cartContent.contains(event.target)) {
+                cartModal.style.display = 'none';
+            }
+
+            // Закрытие мобильного меню
+            if (mobileMenu && !mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+
+            // Закрытие результатов поиска
+            if (searchBox && !searchBox.contains(event.target)) {
+                hideSearchResults();
+            }
+        });
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+
+            // Показываем главную страницу по умолчанию
+            showSection('home');
+
+            // Добавляем обработчик для клавиши Escape
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    const cartModal = document.getElementById('cartModal');
+                    if (cartModal && cartModal.style.display === 'block') {
+                        cartModal.style.display = 'none';
+                    }
+                    closeMobileMenu();
+                    hideSearchResults();
+                    if (document.getElementById('product-details').classList.contains('active')) {
+                        showSection('products');
+                    }
+                }
+            });
+
+            console.log('Страница BeeBloom загружена успешно! 🍯');
+        });
+    </script>
+</body>
+</html>

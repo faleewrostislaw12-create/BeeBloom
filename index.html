@@ -95,9 +95,7 @@
             margin-left: auto;
         }
 
-        .search-wrap {
-            position: relative;
-        }
+        .search-wrap { position: relative; }
 
         .search-input {
             padding: 0.55rem 2.8rem 0.55rem 1.1rem;
@@ -111,29 +109,19 @@
             transition: all 0.25s;
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: var(--honey);
-            width: 270px;
-            background: var(--white);
-        }
+        .search-input:focus { outline: none; border-color: var(--honey); width: 270px; background: var(--white); }
 
         .search-btn {
             position: absolute;
-            right: 8px;
-            top: 50%;
+            right: 8px; top: 50%;
             transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            color: var(--honey);
+            background: none; border: none;
+            cursor: pointer; font-size: 1rem; color: var(--honey);
         }
 
         .search-dropdown {
             position: absolute;
-            top: calc(100% + 6px);
-            right: 0;
+            top: calc(100% + 6px); right: 0;
             width: 300px;
             background: var(--white);
             border: 1.5px solid var(--honey-light);
@@ -145,24 +133,15 @@
         }
 
         .search-dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 0.7rem 1rem;
-            cursor: pointer;
+            display: flex; align-items: center; gap: 0.8rem;
+            padding: 0.7rem 1rem; cursor: pointer;
             transition: background 0.15s;
             border-bottom: 1px solid #F5EDD8;
         }
 
         .search-dropdown-item:last-child { border-bottom: none; }
         .search-dropdown-item:hover { background: var(--honey-pale); }
-
-        .search-dropdown-item img {
-            width: 40px; height: 40px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
+        .search-dropdown-item img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
         .search-dropdown-item .sdi-name { font-weight: 500; font-size: 0.9rem; }
         .search-dropdown-item .sdi-price { font-size: 0.82rem; color: var(--honey); font-weight: 600; }
 
@@ -172,43 +151,29 @@
             border-radius: 50%;
             width: 42px; height: 42px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-            color: var(--text);
+            font-size: 1.2rem; cursor: pointer;
+            transition: all 0.2s; position: relative; color: var(--text);
         }
 
         .icon-btn:hover { border-color: var(--honey); color: var(--honey); background: rgba(200,134,42,0.06); }
 
         .badge {
-            position: absolute;
-            top: -5px; right: -5px;
-            background: var(--danger);
-            color: white;
-            border-radius: 50%;
-            width: 18px; height: 18px;
-            font-size: 0.7rem;
-            font-weight: 700;
+            position: absolute; top: -5px; right: -5px;
+            background: var(--danger); color: white;
+            border-radius: 50%; width: 18px; height: 18px;
+            font-size: 0.7rem; font-weight: 700;
             display: flex; align-items: center; justify-content: center;
         }
 
         .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--honey);
+            display: none; background: none; border: none;
+            font-size: 1.5rem; cursor: pointer; color: var(--honey);
         }
 
         /* ── MAIN ── */
         main {
-            margin-top: 70px;
-            padding: 2.5rem 2rem;
-            max-width: 1280px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-top: 70px; padding: 2.5rem 2rem;
+            max-width: 1280px; margin-left: auto; margin-right: auto;
         }
 
         .page { display: none; animation: fadeUp 0.4s ease; }
@@ -222,424 +187,191 @@
         /* ── HERO ── */
         .hero {
             background: linear-gradient(135deg, var(--dark) 0%, #3D2000 100%);
-            border-radius: 24px;
-            padding: 5rem 4rem;
-            margin-bottom: 3rem;
-            position: relative;
-            overflow: hidden;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            border-radius: 24px; padding: 5rem 4rem;
+            margin-bottom: 3rem; position: relative; overflow: hidden;
+            color: white; display: flex; flex-direction: column; align-items: flex-start;
         }
 
         .hero::before {
-            content: '🍯';
-            position: absolute;
-            right: 4rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 12rem;
-            opacity: 0.12;
+            content: '🍯'; position: absolute; right: 4rem; top: 50%;
+            transform: translateY(-50%); font-size: 12rem; opacity: 0.12;
         }
 
         .hero-tag {
-            background: var(--honey);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
+            background: var(--honey); color: white;
+            padding: 0.3rem 1rem; border-radius: 20px;
+            font-size: 0.82rem; font-weight: 600;
+            letter-spacing: 0.05em; margin-bottom: 1.5rem; text-transform: uppercase;
         }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            line-height: 1.15;
-            margin-bottom: 1.2rem;
-            max-width: 560px;
-        }
-
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; line-height: 1.15; margin-bottom: 1.2rem; max-width: 560px; }
         .hero h1 em { color: var(--honey-light); font-style: normal; }
-
-        .hero p {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.05rem;
-            max-width: 500px;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
+        .hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 500px; margin-bottom: 2rem; line-height: 1.7; }
         .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
         .btn-primary {
-            background: var(--honey);
-            color: white;
-            padding: 0.85rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s;
-            font-family: 'DM Sans', sans-serif;
+            background: var(--honey); color: white;
+            padding: 0.85rem 2rem; border: none;
+            border-radius: 12px; font-size: 1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif;
         }
 
         .btn-primary:hover { background: #B5761F; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(200,134,42,0.4); }
 
         .btn-outline {
-            background: transparent;
-            color: white;
-            padding: 0.85rem 2rem;
-            border: 1.5px solid rgba(255,255,255,0.3);
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.25s;
-            font-family: 'DM Sans', sans-serif;
+            background: transparent; color: white;
+            padding: 0.85rem 2rem; border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 12px; font-size: 1rem; font-weight: 500;
+            cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif;
         }
 
         .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
 
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.12);
-        }
-
-        .stat-num {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--honey-light);
-        }
-
+        .hero-stats { display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.12); }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--honey-light); }
         .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
 
-        /* ── FEATURED ── */
-        .section-header {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            margin-bottom: 1.8rem;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--dark);
-        }
-
-        .section-link {
-            color: var(--honey);
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            border-bottom: 1px solid var(--honey);
-            padding-bottom: 1px;
-            transition: opacity 0.2s;
-        }
-
+        /* ── SECTION HEADER ── */
+        .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.8rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--dark); }
+        .section-link { color: var(--honey); font-size: 0.9rem; font-weight: 600; cursor: pointer; text-decoration: none; border-bottom: 1px solid var(--honey); padding-bottom: 1px; transition: opacity 0.2s; }
         .section-link:hover { opacity: 0.7; }
 
-        /* ── CATEGORY FILTERS ── */
-        .filter-bar {
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            align-items: center;
-        }
-
+        /* ── FILTER BAR ── */
+        .filter-bar { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
         .filter-label { font-size: 0.85rem; color: var(--muted); font-weight: 500; margin-right: 0.4rem; }
-
-        .filter-btn {
-            padding: 0.45rem 1.1rem;
-            border: 1.5px solid #E0D0B0;
-            border-radius: 25px;
-            background: white;
-            color: var(--muted);
-            font-size: 0.88rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'DM Sans', sans-serif;
-        }
-
+        .filter-btn { padding: 0.45rem 1.1rem; border: 1.5px solid #E0D0B0; border-radius: 25px; background: white; color: var(--muted); font-size: 0.88rem; font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
         .filter-btn:hover { border-color: var(--honey); color: var(--honey); }
         .filter-btn.active { background: var(--honey); color: white; border-color: var(--honey); }
 
         /* ── PRODUCT GRID ── */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.8rem;
-        }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; }
 
         /* ── PRODUCT CARD ── */
         .product-card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1.5px solid #EDE0C4;
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
+            background: var(--card-bg); border-radius: 18px; overflow: hidden;
+            border: 1.5px solid #EDE0C4; transition: all 0.3s; cursor: pointer; position: relative;
         }
 
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(200,134,42,0.18);
-            border-color: var(--honey-light);
-        }
+        .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(200,134,42,0.18); border-color: var(--honey-light); }
+        .product-card.out-of-stock { opacity: 0.7; }
+        .product-card.out-of-stock:hover { transform: none; box-shadow: none; }
 
-        .card-img-wrap {
-            position: relative;
-            height: 210px;
-            overflow: hidden;
-        }
-
-        .card-img-wrap img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-
+        .card-img-wrap { position: relative; height: 210px; overflow: hidden; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
         .product-card:hover .card-img-wrap img { transform: scale(1.06); }
 
         .card-category {
-            position: absolute;
-            top: 12px; left: 12px;
-            background: rgba(26,18,8,0.75);
-            color: var(--honey-light);
-            padding: 0.25rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            backdrop-filter: blur(6px);
-            letter-spacing: 0.04em;
+            position: absolute; top: 12px; left: 12px;
+            background: rgba(26,18,8,0.75); color: var(--honey-light);
+            padding: 0.25rem 0.7rem; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 600;
+            backdrop-filter: blur(6px); letter-spacing: 0.04em;
+        }
+
+        .out-of-stock-badge {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(26,18,8,0.55);
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .out-of-stock-badge span {
+            background: #D94F3D; color: white;
+            padding: 0.4rem 1.2rem; border-radius: 25px;
+            font-size: 0.9rem; font-weight: 700; letter-spacing: 0.04em;
+        }
+
+        .sale-badge {
+            position: absolute; top: 12px; right: 50px;
+            background: var(--danger); color: white;
+            padding: 0.25rem 0.6rem; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 700;
+            animation: pulseSale 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulseSale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
         }
 
         .wishlist-btn {
-            position: absolute;
-            top: 10px; right: 10px;
-            background: rgba(255,255,255,0.85);
-            border: none;
-            border-radius: 50%;
-            width: 34px; height: 34px;
-            cursor: pointer;
-            font-size: 1rem;
+            position: absolute; top: 10px; right: 10px;
+            background: rgba(255,255,255,0.85); border: none;
+            border-radius: 50%; width: 34px; height: 34px;
+            cursor: pointer; font-size: 1rem;
             display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s;
-            backdrop-filter: blur(4px);
+            transition: all 0.2s; backdrop-filter: blur(4px);
         }
 
         .wishlist-btn:hover { transform: scale(1.15); background: white; }
         .wishlist-btn.active { color: var(--danger); }
 
         .card-body { padding: 1.2rem; }
-
-        .card-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 0.4rem;
-        }
-
-        .card-desc {
-            font-size: 0.85rem;
-            color: var(--muted);
-            line-height: 1.5;
-            margin-bottom: 0.9rem;
-        }
-
-        .card-rating {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-bottom: 0.9rem;
-        }
-
+        .card-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 0.4rem; }
+        .card-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.9rem; }
+        .card-rating { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.9rem; }
         .stars { color: var(--honey); font-size: 0.85rem; letter-spacing: 1px; }
         .rating-count { font-size: 0.78rem; color: var(--muted); }
 
-        .card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        .card-footer { display: flex; align-items: center; justify-content: space-between; }
 
-        .card-price {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--honey);
-        }
-
+        .card-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--honey); }
         .card-price small { font-size: 0.7rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+        .card-price .old-price { font-size: 0.85rem; color: var(--muted); text-decoration: line-through; font-family: 'DM Sans', sans-serif; font-weight: 400; display: block; }
 
         .add-btn {
-            background: var(--honey);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 0.55rem 1.1rem;
-            font-size: 0.88rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'DM Sans', sans-serif;
+            background: var(--honey); color: white; border: none;
+            border-radius: 10px; padding: 0.55rem 1.1rem;
+            font-size: 0.88rem; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; font-family: 'DM Sans', sans-serif;
             display: flex; align-items: center; gap: 0.4rem;
         }
 
         .add-btn:hover { background: #B5761F; transform: scale(1.04); }
+        .add-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
 
         /* ── PRODUCT DETAIL ── */
-        .detail-wrap {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1.5px solid #EDE0C4;
-        }
-
-        .detail-img {
-            border-radius: 14px;
-            overflow: hidden;
-            height: 380px;
-        }
-
+        .detail-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; background: var(--card-bg); border-radius: 20px; padding: 2.5rem; border: 1.5px solid #EDE0C4; }
+        .detail-img { border-radius: 14px; overflow: hidden; height: 380px; position: relative; }
         .detail-img img { width: 100%; height: 100%; object-fit: cover; }
-
         .detail-info { display: flex; flex-direction: column; gap: 1rem; }
-
-        .detail-category {
-            display: inline-block;
-            background: rgba(200,134,42,0.12);
-            color: var(--honey);
-            padding: 0.3rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .detail-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--dark);
-            line-height: 1.2;
-        }
-
+        .detail-category { display: inline-block; background: rgba(200,134,42,0.12); color: var(--honey); padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .detail-name { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--dark); line-height: 1.2; }
         .detail-rating { display: flex; align-items: center; gap: 0.6rem; }
         .detail-rating .stars { font-size: 1rem; }
         .detail-price { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--honey); font-weight: 700; }
         .detail-price small { font-size: 1rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
-
         .detail-desc { color: var(--muted); line-height: 1.8; font-size: 0.95rem; }
-
         .detail-props { display: flex; flex-direction: column; gap: 0.6rem; }
         .prop-row { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; }
         .prop-icon { font-size: 1.1rem; }
         .prop-label { color: var(--muted); }
         .prop-value { font-weight: 600; color: var(--dark); }
-
         .detail-actions { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; }
 
-        .qty-selector {
-            display: flex;
-            align-items: center;
-            gap: 0; border: 1.5px solid #E0D0B0; border-radius: 10px;
-            width: fit-content; overflow: hidden;
-        }
-
-        .qty-btn {
-            background: none; border: none;
-            padding: 0.6rem 1rem; font-size: 1.1rem;
-            cursor: pointer; color: var(--honey);
-            transition: background 0.2s;
-        }
-
+        .qty-selector { display: flex; align-items: center; gap: 0; border: 1.5px solid #E0D0B0; border-radius: 10px; width: fit-content; overflow: hidden; }
+        .qty-btn { background: none; border: none; padding: 0.6rem 1rem; font-size: 1.1rem; cursor: pointer; color: var(--honey); transition: background 0.2s; }
         .qty-btn:hover { background: rgba(200,134,42,0.08); }
         .qty-num { padding: 0 1rem; font-weight: 600; color: var(--dark); min-width: 40px; text-align: center; }
 
-        .back-link {
-            display: inline-flex; align-items: center; gap: 0.4rem;
-            color: var(--muted); font-size: 0.9rem; cursor: pointer;
-            margin-bottom: 1.5rem;
-            transition: color 0.2s;
-        }
-
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); font-size: 0.9rem; cursor: pointer; margin-bottom: 1.5rem; transition: color 0.2s; }
         .back-link:hover { color: var(--honey); }
 
         /* ── REVIEWS ── */
         .reviews-section { margin-top: 3rem; }
-        .reviews-section h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem; margin-bottom: 1.5rem;
-        }
-
-        .review-form {
-            background: white;
-            border-radius: 14px;
-            padding: 1.5rem;
-            border: 1.5px solid #EDE0C4;
-            margin-bottom: 2rem;
-        }
-
+        .reviews-section h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .review-form { background: white; border-radius: 14px; padding: 1.5rem; border: 1.5px solid #EDE0C4; margin-bottom: 2rem; }
         .review-form h4 { margin-bottom: 1rem; font-size: 1rem; color: var(--dark); }
-
         .star-select { display: flex; gap: 0.3rem; margin-bottom: 1rem; font-size: 1.4rem; cursor: pointer; }
         .star-select span { transition: transform 0.15s; }
         .star-select span:hover { transform: scale(1.2); }
-
-        .review-textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1.5px solid #E0D0B0;
-            border-radius: 10px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
-            resize: vertical;
-            min-height: 80px;
-            margin-bottom: 0.8rem;
-            color: var(--text);
-            transition: border-color 0.2s;
-        }
-
+        .review-textarea { width: 100%; padding: 0.8rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; resize: vertical; min-height: 80px; margin-bottom: 0.8rem; color: var(--text); transition: border-color 0.2s; }
         .review-textarea:focus { outline: none; border-color: var(--honey); }
-
-        .review-name-input {
-            width: 100%;
-            padding: 0.7rem 1rem;
-            border: 1.5px solid #E0D0B0;
-            border-radius: 10px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
-            color: var(--text);
-        }
-
+        .review-name-input { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; margin-bottom: 0.8rem; color: var(--text); }
         .review-name-input:focus { outline: none; border-color: var(--honey); }
-
         .reviews-list { display: flex; flex-direction: column; gap: 1rem; }
-
-        .review-item {
-            background: white;
-            border-radius: 12px;
-            padding: 1.2rem 1.4rem;
-            border: 1.5px solid #EDE0C4;
-        }
-
+        .review-item { background: white; border-radius: 12px; padding: 1.2rem 1.4rem; border: 1.5px solid #EDE0C4; }
         .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; }
         .reviewer-name { font-weight: 600; font-size: 0.95rem; }
         .review-date { font-size: 0.78rem; color: var(--muted); }
@@ -647,239 +379,387 @@
         .review-text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
 
         /* ── WISHLIST ── */
-        .wishlist-empty {
-            text-align: center;
-            padding: 5rem 2rem;
-            color: var(--muted);
-        }
-
+        .wishlist-empty { text-align: center; padding: 5rem 2rem; color: var(--muted); }
         .wishlist-empty .empty-icon { font-size: 4rem; margin-bottom: 1rem; }
         .wishlist-empty h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--dark); }
 
         /* ── CART MODAL ── */
-        .modal-overlay {
-            display: none;
-            position: fixed; inset: 0;
-            background: rgba(26,18,8,0.5);
-            z-index: 3000;
-            backdrop-filter: blur(4px);
-        }
-
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,18,8,0.5); z-index: 3000; backdrop-filter: blur(4px); }
         .modal-overlay.open { display: flex; align-items: center; justify-content: center; }
-
-        .cart-panel {
-            position: fixed;
-            right: 0; top: 0; bottom: 0;
-            width: 420px;
-            background: var(--white);
-            z-index: 3001;
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-            box-shadow: -10px 0 40px rgba(0,0,0,0.15);
-        }
-
+        .cart-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 420px; background: var(--white); z-index: 3001; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); box-shadow: -10px 0 40px rgba(0,0,0,0.15); }
         .cart-panel.open { transform: translateX(0); }
-
-        .cart-header {
-            padding: 1.5rem 1.8rem;
-            border-bottom: 1.5px solid #EDE0C4;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-
+        .cart-header { padding: 1.5rem 1.8rem; border-bottom: 1.5px solid #EDE0C4; display: flex; align-items: center; justify-content: space-between; }
         .cart-header h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
-
-        .close-btn {
-            background: none; border: none; font-size: 1.4rem;
-            cursor: pointer; color: var(--muted); padding: 0.2rem;
-            transition: color 0.2s;
-        }
-
+        .close-btn { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); padding: 0.2rem; transition: color 0.2s; }
         .close-btn:hover { color: var(--dark); }
-
         .cart-items { flex: 1; overflow-y: auto; padding: 1.2rem 1.8rem; }
-
-        .cart-item {
-            display: flex; gap: 1rem; align-items: center;
-            padding: 1rem 0; border-bottom: 1px solid #F5EDD8;
-        }
-
+        .cart-item { display: flex; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid #F5EDD8; }
         .cart-item:last-child { border-bottom: none; }
-
-        .cart-item img {
-            width: 60px; height: 60px;
-            border-radius: 10px; object-fit: cover;
-        }
-
+        .cart-item img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; }
         .ci-info { flex: 1; }
         .ci-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
         .ci-price { font-size: 0.82rem; color: var(--muted); }
-
         .ci-controls { display: flex; align-items: center; gap: 0.5rem; }
-
-        .ci-qty-btn {
-            background: var(--honey-pale); border: 1.5px solid #E0D0B0;
-            border-radius: 6px; width: 26px; height: 26px;
-            cursor: pointer; font-size: 0.9rem; color: var(--honey);
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.15s;
-        }
-
+        .ci-qty-btn { background: var(--honey-pale); border: 1.5px solid #E0D0B0; border-radius: 6px; width: 26px; height: 26px; cursor: pointer; font-size: 0.9rem; color: var(--honey); display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
         .ci-qty-btn:hover { background: var(--honey); color: white; border-color: var(--honey); }
-
         .ci-qty { font-weight: 600; font-size: 0.9rem; min-width: 20px; text-align: center; }
-
-        .ci-remove {
-            background: none; border: none;
-            color: var(--muted); cursor: pointer; font-size: 1.1rem;
-            margin-left: 0.3rem; transition: color 0.2s;
-        }
-
+        .ci-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; margin-left: 0.3rem; transition: color 0.2s; }
         .ci-remove:hover { color: var(--danger); }
-
-        .cart-footer {
-            padding: 1.5rem 1.8rem;
-            border-top: 1.5px solid #EDE0C4;
-        }
-
-        .cart-total-row {
-            display: flex; justify-content: space-between;
-            align-items: baseline; margin-bottom: 1.2rem;
-        }
-
+        .cart-footer { padding: 1.5rem 1.8rem; border-top: 1.5px solid #EDE0C4; }
+        .cart-total-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.2rem; }
         .cart-total-label { font-size: 0.9rem; color: var(--muted); }
-        .cart-total-val {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem; color: var(--honey); font-weight: 700;
-        }
-
-        .cart-empty {
-            text-align: center; padding: 3rem 1rem; color: var(--muted);
-        }
-
+        .cart-total-val { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--honey); font-weight: 700; }
+        .cart-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); }
         .cart-empty .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
 
-        /* ── CONTACT FORM ── */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
+        /* ── PROMO CODE ── */
+        .promo-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+        .promo-input { flex: 1; padding: 0.6rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); }
+        .promo-input:focus { outline: none; border-color: var(--honey); }
+        .promo-apply-btn { padding: 0.6rem 1rem; background: var(--honey); color: white; border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; }
+        .promo-apply-btn:hover { background: #B5761F; }
+        .promo-result { font-size: 0.85rem; margin-bottom: 0.6rem; padding: 0.5rem 1rem; border-radius: 8px; }
+        .promo-result.ok { background: rgba(74,140,92,0.1); color: var(--success); }
+        .promo-result.err { background: rgba(217,79,61,0.1); color: var(--danger); }
 
-        .contact-info-card {
-            background: var(--dark);
-            border-radius: 20px;
-            padding: 2.5rem;
-            color: white;
-            display: flex; flex-direction: column; gap: 2rem;
-        }
-
-        .contact-info-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--honey-light);
-        }
-
+        /* ── CONTACT ── */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .contact-info-card { background: var(--dark); border-radius: 20px; padding: 2.5rem; color: white; display: flex; flex-direction: column; gap: 2rem; }
+        .contact-info-card h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--honey-light); }
         .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
         .contact-icon { font-size: 1.4rem; margin-top: 2px; }
         .contact-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 0.2rem; }
         .contact-val { font-size: 1rem; }
         .contact-val a { color: var(--honey-light); text-decoration: none; }
-
-        .contact-form-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1.5px solid #EDE0C4;
-        }
-
-        .contact-form-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--dark);
-        }
-
+        .contact-form-card { background: var(--card-bg); border-radius: 20px; padding: 2.5rem; border: 1.5px solid #EDE0C4; }
+        .contact-form-card h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--dark); }
         .form-group { margin-bottom: 1rem; }
         .form-label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--text); }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1.5px solid #E0D0B0;
-            border-radius: 10px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
-            color: var(--text);
-            background: white;
-            transition: border-color 0.2s;
-        }
-
+        .form-input, .form-textarea { width: 100%; padding: 0.8rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); background: white; transition: border-color 0.2s; }
         .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--honey); }
-
         .form-textarea { resize: vertical; min-height: 120px; }
 
         /* ── ABOUT ── */
-        .about-hero {
-            background: linear-gradient(135deg, #3D2000, var(--dark));
-            border-radius: 20px;
-            padding: 4rem;
-            color: white;
-            margin-bottom: 2.5rem;
-            text-align: center;
-        }
-
-        .about-hero h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--honey-light);
-            margin-bottom: 1rem;
-        }
-
+        .about-hero { background: linear-gradient(135deg, #3D2000, var(--dark)); border-radius: 20px; padding: 4rem; color: white; margin-bottom: 2.5rem; text-align: center; }
+        .about-hero h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--honey-light); margin-bottom: 1rem; }
         .about-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; line-height: 1.8; }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .value-card {
-            background: var(--card-bg);
-            border: 1.5px solid #EDE0C4;
-            border-radius: 16px;
-            padding: 1.8rem;
-            text-align: center;
-        }
-
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .value-card { background: var(--card-bg); border: 1.5px solid #EDE0C4; border-radius: 16px; padding: 1.8rem; text-align: center; }
         .value-icon { font-size: 2.5rem; margin-bottom: 1rem; }
         .value-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--dark); }
         .value-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
         /* ── TOAST ── */
-        .toast-wrap {
-            position: fixed;
-            bottom: 2rem; left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            display: flex; flex-direction: column; gap: 0.6rem;
-            align-items: center;
-        }
-
-        .toast {
-            background: var(--dark);
-            color: white;
-            padding: 0.7rem 1.4rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-            animation: toastIn 0.35s ease, toastOut 0.3s ease 2.4s forwards;
-            white-space: nowrap;
-        }
-
+        .toast-wrap { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 0.6rem; align-items: center; }
+        .toast { background: var(--dark); color: white; padding: 0.7rem 1.4rem; border-radius: 25px; font-size: 0.9rem; font-weight: 500; box-shadow: 0 8px 30px rgba(0,0,0,0.3); animation: toastIn 0.35s ease, toastOut 0.3s ease 2.4s forwards; white-space: nowrap; }
         @keyframes toastIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
         @keyframes toastOut { to { opacity:0; transform:translateY(20px); } }
+
+        /* Page header */
+        .page-header { margin-bottom: 2rem; }
+        .page-header h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--dark); margin-bottom: 0.3rem; }
+        .page-header p { color: var(--muted); font-size: 0.95rem; }
+
+        /* ══════════════════════════════════════════════
+           ADMIN PANEL STYLES
+        ══════════════════════════════════════════════ */
+
+        /* Admin entry button */
+        .admin-entry-btn {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            background: var(--dark); color: var(--honey-light);
+            border: 2px solid var(--honey);
+            border-radius: 50%; width: 52px; height: 52px;
+            font-size: 1.3rem; cursor: pointer; z-index: 4000;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: all 0.2s;
+        }
+
+        .admin-entry-btn:hover { transform: scale(1.1); background: var(--honey); color: white; }
+
+        /* Admin modal */
+        .admin-modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(26,18,8,0.7); z-index: 5000;
+            backdrop-filter: blur(6px);
+            align-items: center; justify-content: center;
+        }
+
+        .admin-modal-overlay.open { display: flex; }
+
+        .admin-login-box {
+            background: var(--white); border-radius: 20px;
+            padding: 2.5rem; width: 380px;
+            border: 2px solid var(--honey-light);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .admin-login-box h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.3rem; color: var(--dark); }
+        .admin-login-box p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+        .admin-panel {
+            position: fixed; inset: 0;
+            background: #F5EDD8;
+            z-index: 5000; overflow-y: auto;
+            display: none;
+        }
+
+        .admin-panel.open { display: block; }
+
+        .admin-topbar {
+            background: var(--dark);
+            color: white; padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 10;
+        }
+
+        .admin-topbar h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--honey-light); }
+
+        .admin-topbar-right { display: flex; gap: 0.8rem; align-items: center; }
+
+        .admin-close-btn {
+            background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2);
+            color: white; border-radius: 10px; padding: 0.5rem 1rem;
+            cursor: pointer; font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .admin-close-btn:hover { background: rgba(255,255,255,0.2); }
+
+        .admin-tabs {
+            display: flex; gap: 0; background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 0 2rem;
+        }
+
+        .admin-tab {
+            padding: 0.8rem 1.5rem; cursor: pointer;
+            color: rgba(255,255,255,0.5); font-size: 0.9rem; font-weight: 500;
+            border-bottom: 3px solid transparent; transition: all 0.2s;
+        }
+
+        .admin-tab:hover { color: rgba(255,255,255,0.8); }
+        .admin-tab.active { color: var(--honey-light); border-bottom-color: var(--honey); }
+
+        .admin-content { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+
+        .admin-tab-content { display: none; }
+        .admin-tab-content.active { display: block; }
+
+        /* ── ADMIN: INVENTORY ── */
+        .admin-section-title {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            color: var(--dark); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem;
+        }
+
+        .inventory-table {
+            background: white; border-radius: 16px;
+            border: 1.5px solid #EDE0C4; overflow: hidden;
+        }
+
+        .inv-row {
+            display: grid;
+            grid-template-columns: 60px 1fr 130px 130px 110px;
+            align-items: center; gap: 1rem;
+            padding: 1rem 1.4rem;
+            border-bottom: 1px solid #F5EDD8;
+            transition: background 0.15s;
+        }
+
+        .inv-row:last-child { border-bottom: none; }
+        .inv-row:hover { background: var(--honey-pale); }
+
+        .inv-row.header {
+            background: var(--dark); color: rgba(255,255,255,0.7);
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+
+        .inv-row.header:hover { background: var(--dark); }
+
+        .inv-img { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; }
+        .inv-name { font-weight: 600; font-size: 0.95rem; }
+        .inv-category { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+        .stock-toggle {
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .toggle-switch {
+            position: relative; width: 46px; height: 24px; cursor: pointer;
+        }
+
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+
+        .toggle-slider {
+            position: absolute; inset: 0;
+            background: #ccc; border-radius: 24px;
+            transition: background 0.25s;
+        }
+
+        .toggle-slider::after {
+            content: ''; position: absolute;
+            width: 18px; height: 18px; left: 3px; top: 3px;
+            background: white; border-radius: 50%;
+            transition: transform 0.25s;
+        }
+
+        .toggle-switch input:checked + .toggle-slider { background: var(--success); }
+        .toggle-switch input:checked + .toggle-slider::after { transform: translateX(22px); }
+
+        .toggle-label { font-size: 0.82rem; font-weight: 500; }
+        .toggle-label.in { color: var(--success); }
+        .toggle-label.out { color: var(--danger); }
+
+        .inv-price-input {
+            width: 100%; padding: 0.5rem 0.7rem;
+            border: 1.5px solid #E0D0B0; border-radius: 8px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+            color: var(--text); transition: border-color 0.2s;
+        }
+
+        .inv-price-input:focus { outline: none; border-color: var(--honey); }
+
+        .inv-save-btn {
+            background: var(--honey); color: white; border: none;
+            border-radius: 8px; padding: 0.45rem 0.9rem;
+            font-size: 0.82rem; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+        }
+
+        .inv-save-btn:hover { background: #B5761F; }
+
+        /* ── ADMIN: SALES ── */
+        .sales-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+
+        .sale-card {
+            background: white; border-radius: 16px;
+            border: 1.5px solid #EDE0C4; padding: 1.4rem;
+            position: relative; transition: border-color 0.2s;
+        }
+
+        .sale-card:hover { border-color: var(--honey-light); }
+        .sale-card.active-sale { border-color: var(--success); background: rgba(74,140,92,0.03); }
+
+        .sale-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .sale-card-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--dark); }
+        .sale-active-tag { background: var(--success); color: white; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; }
+        .sale-inactive-tag { background: #ccc; color: white; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; }
+
+        .sale-form-group { margin-bottom: 0.8rem; }
+        .sale-label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-bottom: 0.3rem; }
+
+        .sale-input, .sale-select {
+            width: 100%; padding: 0.6rem 0.8rem;
+            border: 1.5px solid #E0D0B0; border-radius: 8px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--text);
+        }
+
+        .sale-input:focus, .sale-select:focus { outline: none; border-color: var(--honey); }
+
+        .sale-row { display: flex; gap: 0.5rem; }
+        .sale-row .sale-form-group { flex: 1; }
+
+        .sale-toggle-row { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.5rem; }
+        .sale-toggle-label { font-size: 0.85rem; font-weight: 500; color: var(--dark); }
+
+        .add-sale-btn {
+            background: var(--honey); color: white; border: none;
+            border-radius: 12px; padding: 0.85rem 2rem;
+            font-size: 0.95rem; font-weight: 600; cursor: pointer;
+            transition: all 0.25s; font-family: 'DM Sans', sans-serif;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .add-sale-btn:hover { background: #B5761F; }
+
+        .delete-sale-btn {
+            position: absolute; top: 1rem; right: 1rem;
+            background: none; border: none; cursor: pointer;
+            color: var(--muted); font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .delete-sale-btn:hover { color: var(--danger); }
+
+        .new-sale-form {
+            background: white; border-radius: 16px;
+            border: 2px dashed #E0D0B0; padding: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .new-sale-form h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--dark); margin-bottom: 1.2rem; }
+
+        /* ── ADMIN: PROMO CODES ── */
+        .promo-table {
+            background: white; border-radius: 16px;
+            border: 1.5px solid #EDE0C4; overflow: hidden; margin-bottom: 2rem;
+        }
+
+        .promo-row-head {
+            display: grid;
+            grid-template-columns: 1fr 100px 130px 80px 80px;
+            gap: 1rem; padding: 0.8rem 1.4rem;
+            background: var(--dark); color: rgba(255,255,255,0.7);
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+
+        .promo-row-data {
+            display: grid;
+            grid-template-columns: 1fr 100px 130px 80px 80px;
+            gap: 1rem; padding: 1rem 1.4rem;
+            border-bottom: 1px solid #F5EDD8; align-items: center;
+        }
+
+        .promo-row-data:last-child { border-bottom: none; }
+        .promo-row-data:hover { background: var(--honey-pale); }
+
+        .promo-code-tag {
+            font-family: monospace; font-size: 1rem; font-weight: 700;
+            color: var(--honey); background: rgba(200,134,42,0.1);
+            padding: 0.2rem 0.6rem; border-radius: 6px;
+        }
+
+        .promo-discount { font-weight: 600; color: var(--dark); }
+        .promo-applies { font-size: 0.82rem; color: var(--muted); }
+
+        .promo-status-on { color: var(--success); font-weight: 600; font-size: 0.85rem; }
+        .promo-status-off { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
+
+        .promo-del-btn { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 1rem; transition: color 0.2s; }
+        .promo-del-btn:hover { color: var(--danger); }
+
+        .new-promo-form {
+            background: white; border-radius: 16px;
+            border: 2px dashed #E0D0B0; padding: 1.8rem;
+        }
+
+        .new-promo-form h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--dark); margin-bottom: 1.2rem; }
+
+        .promo-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+
+        .admin-input {
+            width: 100%; padding: 0.7rem 0.9rem;
+            border: 1.5px solid #E0D0B0; border-radius: 8px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text);
+        }
+
+        .admin-input:focus { outline: none; border-color: var(--honey); }
+        .admin-select { width: 100%; padding: 0.7rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); }
+        .admin-select:focus { outline: none; border-color: var(--honey); }
+        .admin-label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-bottom: 0.3rem; }
+
+        /* ── ADMIN: STATS ── */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
+
+        .stat-card {
+            background: white; border-radius: 14px;
+            border: 1.5px solid #EDE0C4; padding: 1.4rem;
+        }
+
+        .stat-card-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .stat-card-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--honey); font-weight: 700; }
+        .stat-card-label { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
 
         /* ── MOBILE ── */
         @media (max-width: 768px) {
@@ -888,7 +768,7 @@
             .mobile-menu-btn { display: block; }
             .search-input { width: 150px; }
             .search-input:focus { width: 180px; }
-            main { padding: 1.5rem 1rem; margin-top: 100px; }
+            main { padding: 1.5rem 1rem; }
             .hero { padding: 2.5rem 1.8rem; }
             .hero h1 { font-size: 2rem; }
             .hero::before { display: none; }
@@ -897,17 +777,20 @@
             .detail-img { height: 260px; }
             .contact-grid { grid-template-columns: 1fr; }
             .cart-panel { width: 100%; }
+            .sales-grid { grid-template-columns: 1fr; }
+            .promo-fields { grid-template-columns: 1fr; }
+            .inv-row { grid-template-columns: 50px 1fr 100px; }
+            .inv-row > *:nth-child(4), .inv-row > *:nth-child(5) { display: none; }
+            .promo-row-head, .promo-row-data { grid-template-columns: 1fr 80px 80px; }
+            .promo-row-head > *:nth-child(3), .promo-row-data > *:nth-child(3),
+            .promo-row-head > *:nth-child(4), .promo-row-data > *:nth-child(4) { display: none; }
+            .stats-row { grid-template-columns: 1fr 1fr; }
         }
 
         .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            background: var(--white);
-            padding: 1.5rem;
-            z-index: 2500;
-            flex-direction: column;
-            gap: 0.5rem;
+            display: none; position: fixed; top: 0; left: 0; right: 0;
+            background: var(--white); padding: 1.5rem; z-index: 2500;
+            flex-direction: column; gap: 0.5rem;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             transform: translateY(-120%);
             transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
@@ -915,33 +798,8 @@
         }
 
         .mobile-nav.open { transform: translateY(0); display: flex; }
-
-        .mobile-nav a {
-            padding: 0.8rem 1rem;
-            border-radius: 10px;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
+        .mobile-nav a { padding: 0.8rem 1rem; border-radius: 10px; text-decoration: none; color: var(--text); font-weight: 500; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
         .mobile-nav a:hover { background: var(--honey-pale); color: var(--honey); }
-
-        /* Page header */
-        .page-header {
-            margin-bottom: 2rem;
-        }
-
-        .page-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--dark);
-            margin-bottom: 0.3rem;
-        }
-
-        .page-header p { color: var(--muted); font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -949,9 +807,7 @@
 <!-- ── HEADER ── -->
 <header>
     <nav>
-        <div class="logo" onclick="showPage('home')">
-            <span>🐝</span> BeeBloom
-        </div>
+        <div class="logo" onclick="showPage('home')"><span>🐝</span> BeeBloom</div>
 
         <ul class="nav-links">
             <li><a onclick="showPage('home')" data-page="home">Головна</a></li>
@@ -1004,18 +860,9 @@
                 <button class="btn-outline" onclick="showPage('about')">Дізнатись більше</button>
             </div>
             <div class="hero-stats">
-                <div>
-                    <div class="stat-num">8+</div>
-                    <div class="stat-label">Видів меду</div>
-                </div>
-                <div>
-                    <div class="stat-num">100%</div>
-                    <div class="stat-label">Натуральний</div>
-                </div>
-                <div>
-                    <div class="stat-num">500+</div>
-                    <div class="stat-label">Задоволених клієнтів</div>
-                </div>
+                <div><div class="stat-num">8+</div><div class="stat-label">Видів меду</div></div>
+                <div><div class="stat-num">100%</div><div class="stat-label">Натуральний</div></div>
+                <div><div class="stat-num">500+</div><div class="stat-label">Задоволених клієнтів</div></div>
             </div>
         </div>
 
@@ -1023,7 +870,6 @@
             <h2 class="section-title">Популярні товари</h2>
             <a class="section-link" onclick="showPage('products')">Всі товари →</a>
         </div>
-
         <div class="products-grid" id="featuredGrid"></div>
     </div>
 
@@ -1033,11 +879,7 @@
             <h2>Наші товари</h2>
             <p>Натуральні продукти бджільництва та трав'яні чаї</p>
         </div>
-
-        <div class="filter-bar" id="filterBar">
-            <span class="filter-label">Фільтр:</span>
-        </div>
-
+        <div class="filter-bar" id="filterBar"><span class="filter-label">Фільтр:</span></div>
         <div class="products-grid" id="productsGrid"></div>
     </div>
 
@@ -1063,40 +905,14 @@
             <h2>Про магазин BeeBloom</h2>
             <p>BeeBloom — молодий і динамічний магазин натуральних продуктів бджільництва. Ми співпрацюємо напряму з найкращими пасічниками України, що дозволяє нам пропонувати справжній мед за справедливою ціною.</p>
         </div>
-        <div class="section-header">
-            <h2 class="section-title">Наші принципи</h2>
-        </div>
+        <div class="section-header"><h2 class="section-title">Наші принципи</h2></div>
         <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon">🌿</div>
-                <div class="value-title">Натуральність</div>
-                <div class="value-text">Тільки справжні продукти без додатків та консервантів</div>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">✅</div>
-                <div class="value-title">Якість</div>
-                <div class="value-text">Строгий відбір постачальників та контроль якості</div>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">🚚</div>
-                <div class="value-title">Швидка доставка</div>
-                <div class="value-text">Прямо з пасік — максимум свіжості для вас</div>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">💰</div>
-                <div class="value-title">Доступні ціни</div>
-                <div class="value-text">Справедливі ціни за рахунок прямої роботи з пасічниками</div>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">🤝</div>
-                <div class="value-title">Сервіс</div>
-                <div class="value-text">Індивідуальний підхід до кожного клієнта</div>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">🌱</div>
-                <div class="value-title">Екологічність</div>
-                <div class="value-text">Мед з екологічно чистих районів України</div>
-            </div>
+            <div class="value-card"><div class="value-icon">🌿</div><div class="value-title">Натуральність</div><div class="value-text">Тільки справжні продукти без додатків та консервантів</div></div>
+            <div class="value-card"><div class="value-icon">✅</div><div class="value-title">Якість</div><div class="value-text">Строгий відбір постачальників та контроль якості</div></div>
+            <div class="value-card"><div class="value-icon">🚚</div><div class="value-title">Швидка доставка</div><div class="value-text">Прямо з пасік — максимум свіжості для вас</div></div>
+            <div class="value-card"><div class="value-icon">💰</div><div class="value-title">Доступні ціни</div><div class="value-text">Справедливі ціни за рахунок прямої роботи з пасічниками</div></div>
+            <div class="value-card"><div class="value-icon">🤝</div><div class="value-title">Сервіс</div><div class="value-text">Індивідуальний підхід до кожного клієнта</div></div>
+            <div class="value-card"><div class="value-icon">🌱</div><div class="value-title">Екологічність</div><div class="value-text">Мед з екологічно чистих районів України</div></div>
         </div>
     </div>
 
@@ -1105,54 +921,20 @@
         <div class="contact-grid">
             <div class="contact-info-card">
                 <h2>Зв'яжіться з нами</h2>
-                <div class="contact-item">
-                    <div class="contact-icon">📞</div>
-                    <div>
-                        <div class="contact-label">Телефон</div>
-                        <div class="contact-val"><a href="tel:+380952175674">+38 (095) 217-56-74</a></div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <div>
-                        <div class="contact-label">Email</div>
-                        <div class="contact-val"><a href="mailto:falieievrostik@gmail.com">falieievrostik@gmail.com</a></div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div>
-                        <div class="contact-label">Адреса</div>
-                        <div class="contact-val">с. Михайлівка, Полтавський район</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div>
-                        <div class="contact-label">Соціальні мережі</div>
-                        <div class="contact-val">
-                            <a href="https://instagram.com/beebloom.ua" target="_blank">📸 @beebloom.ua</a><br>
-                            <a href="https://tiktok.com/@beebloom.ua" target="_blank">🎵 @beebloom.ua</a><br>
-                            <a href="https://t.me/beebloom" target="_blank">✈️ @beebloom</a>
-                        </div>
-                    </div>
-                </div>
+                <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">Телефон</div><div class="contact-val"><a href="tel:+380952175674">+38 (095) 217-56-74</a></div></div></div>
+                <div class="contact-item"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:falieievrostik@gmail.com">falieievrostik@gmail.com</a></div></div></div>
+                <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-label">Адреса</div><div class="contact-val">с. Михайлівка, Полтавський район</div></div></div>
+                <div class="contact-item"><div class="contact-icon">📱</div><div><div class="contact-label">Соціальні мережі</div><div class="contact-val">
+                    <a href="https://instagram.com/beebloom.ua" target="_blank">📸 @beebloom.ua</a><br>
+                    <a href="https://tiktok.com/@beebloom.ua" target="_blank">🎵 @beebloom.ua</a><br>
+                    <a href="https://t.me/beebloom" target="_blank">✈️ @beebloom</a>
+                </div></div></div>
             </div>
-
             <div class="contact-form-card">
                 <h2>Написати нам</h2>
-                <div class="form-group">
-                    <label class="form-label">Ваше ім'я</label>
-                    <input type="text" class="form-input" id="cfName" placeholder="Іван Іваненко">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Телефон або Email</label>
-                    <input type="text" class="form-input" id="cfContact" placeholder="+380...">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Повідомлення</label>
-                    <textarea class="form-textarea" id="cfMsg" placeholder="Ваше питання або замовлення..."></textarea>
-                </div>
+                <div class="form-group"><label class="form-label">Ваше ім'я</label><input type="text" class="form-input" id="cfName" placeholder="Іван Іваненко"></div>
+                <div class="form-group"><label class="form-label">Телефон або Email</label><input type="text" class="form-input" id="cfContact" placeholder="+380..."></div>
+                <div class="form-group"><label class="form-label">Повідомлення</label><textarea class="form-textarea" id="cfMsg" placeholder="Ваше питання або замовлення..."></textarea></div>
                 <button class="btn-primary" style="width:100%" onclick="submitContact()">Надіслати повідомлення</button>
             </div>
         </div>
@@ -1171,81 +953,288 @@
     <div class="cart-footer" id="cartFooter"></div>
 </div>
 
+<!-- ── ADMIN ENTRY BUTTON ── -->
+<button class="admin-entry-btn" onclick="openAdminLogin()" title="Панель адміністратора">⚙️</button>
+
+<!-- ── ADMIN LOGIN MODAL ── -->
+<div class="admin-modal-overlay" id="adminLoginOverlay">
+    <div class="admin-login-box">
+        <h3>🔐 Вхід для власника</h3>
+        <p>Введіть пароль для доступу до панелі управління</p>
+        <div class="form-group">
+            <label class="form-label">Пароль</label>
+            <input type="password" class="form-input" id="adminPasswordInput" placeholder="Введіть пароль..." onkeydown="if(event.key==='Enter') adminLogin()">
+        </div>
+        <div style="display:flex;gap:0.8rem;margin-top:0.5rem">
+            <button class="btn-primary" style="flex:1" onclick="adminLogin()">Увійти</button>
+            <button class="btn-outline" style="color:var(--text);border-color:#E0D0B0;flex:1" onclick="closeAdminLogin()">Скасувати</button>
+        </div>
+        <p style="font-size:0.78rem;color:var(--muted);margin-top:1rem;text-align:center">Пароль за замовчуванням: <strong>admin123</strong></p>
+    </div>
+</div>
+
+<!-- ── ADMIN PANEL ── -->
+<div class="admin-panel" id="adminPanel">
+    <div class="admin-topbar">
+        <h2>🐝 BeeBloom — Панель управління</h2>
+        <div class="admin-topbar-right">
+            <span style="color:rgba(255,255,255,0.5);font-size:0.85rem">Власник</span>
+            <button class="admin-close-btn" onclick="closeAdminPanel()">← Повернутись до магазину</button>
+        </div>
+    </div>
+    <div class="admin-tabs">
+        <div class="admin-tab active" onclick="switchAdminTab('inventory')">📦 Наявність та ціни</div>
+        <div class="admin-tab" onclick="switchAdminTab('sales')">🏷️ Акції</div>
+        <div class="admin-tab" onclick="switchAdminTab('promos')">🎟️ Промокоди</div>
+        <div class="admin-tab" onclick="switchAdminTab('stats')">📊 Огляд</div>
+    </div>
+    <div class="admin-content">
+
+        <!-- TAB: INVENTORY -->
+        <div class="admin-tab-content active" id="tab-inventory">
+            <div class="admin-section-title">📦 Управління наявністю та цінами</div>
+            <div class="inventory-table" id="inventoryTable"></div>
+        </div>
+
+        <!-- TAB: SALES -->
+        <div class="admin-tab-content" id="tab-sales">
+            <div class="admin-section-title">🏷️ Акції та знижки</div>
+
+            <div class="new-sale-form">
+                <h4>➕ Нова акція</h4>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+                    <div>
+                        <label class="admin-label">Назва акції</label>
+                        <input type="text" class="admin-input" id="newSaleName" placeholder="Наприклад: Весняний розпродаж">
+                    </div>
+                    <div>
+                        <label class="admin-label">Товар</label>
+                        <select class="admin-select" id="newSaleProduct">
+                            <option value="all">Всі товари</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="admin-label">Тип знижки</label>
+                        <select class="admin-select" id="newSaleType">
+                            <option value="percent">Відсоток (%)</option>
+                            <option value="fixed">Фіксована сума (грн)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="admin-label">Розмір знижки</label>
+                        <input type="number" class="admin-input" id="newSaleValue" placeholder="10" min="1">
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+                    <button class="add-sale-btn" onclick="addSale()">➕ Додати акцію</button>
+                </div>
+            </div>
+
+            <div class="sales-grid" id="salesGrid"></div>
+        </div>
+
+        <!-- TAB: PROMOS -->
+        <div class="admin-tab-content" id="tab-promos">
+            <div class="admin-section-title">🎟️ Промокоди</div>
+
+            <div class="new-promo-form" style="margin-bottom:2rem">
+                <h4>➕ Новий промокод</h4>
+                <div class="promo-fields">
+                    <div>
+                        <label class="admin-label">Код (великі літери)</label>
+                        <input type="text" class="admin-input" id="newPromoCode" placeholder="HONEY20" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+                    </div>
+                    <div>
+                        <label class="admin-label">Тип знижки</label>
+                        <select class="admin-select" id="newPromoType">
+                            <option value="percent">Відсоток (%)</option>
+                            <option value="fixed">Фіксована (грн)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="admin-label">Розмір знижки</label>
+                        <input type="number" class="admin-input" id="newPromoValue" placeholder="20" min="1">
+                    </div>
+                    <div>
+                        <label class="admin-label">Мінімальна сума (грн)</label>
+                        <input type="number" class="admin-input" id="newPromoMin" placeholder="0" min="0">
+                    </div>
+                    <div>
+                        <label class="admin-label">Опис (необов'язково)</label>
+                        <input type="text" class="admin-input" id="newPromoDesc" placeholder="Для нових клієнтів">
+                    </div>
+                    <div>
+                        <label class="admin-label">Ліміт використань (0 = безліміт)</label>
+                        <input type="number" class="admin-input" id="newPromoLimit" placeholder="0" min="0">
+                    </div>
+                </div>
+                <button class="add-sale-btn" onclick="addPromo()">➕ Створити промокод</button>
+            </div>
+
+            <div class="promo-table">
+                <div class="promo-row-head">
+                    <div>Код</div>
+                    <div>Знижка</div>
+                    <div>Опис / Мін. сума</div>
+                    <div>Статус</div>
+                    <div>Дії</div>
+                </div>
+                <div id="promoTableBody"></div>
+            </div>
+        </div>
+
+        <!-- TAB: STATS -->
+        <div class="admin-tab-content" id="tab-stats">
+            <div class="admin-section-title">📊 Загальний огляд</div>
+            <div class="stats-row" id="statsRow"></div>
+            <div style="background:white;border-radius:16px;border:1.5px solid #EDE0C4;padding:1.5rem">
+                <h4 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1rem;color:var(--dark)">Статус товарів</h4>
+                <div id="statsProductList"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <!-- ── TOAST ── -->
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────
+// ══════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════
 const products = [
     {
         id: 1, name: 'Квітковий мед', category: 'Мед',
-        price: 450, unit: 'кг',
+        basePrice: 450, unit: 'кг',
         image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80',
         description: 'Ароматний мед із різнотрав\'я з ніжним медово-квітковим смаком. Зібраний у Полтавській області в екологічно чистих районах. Містить природні ферменти, вітаміни та мікроелементи.',
         rating: 4.8, reviews: 24,
-        props: [['🌸', 'Збір', 'Різнотрав\'я'], ['📍', 'Регіон', 'Полтавщина'], ['💛', 'Консистенція', 'Рідкий']]
+        props: [['🌸','Збір','Різнотрав\'я'],['📍','Регіон','Полтавщина'],['💛','Консистенція','Рідкий']]
     },
     {
         id: 2, name: 'Липовий мед', category: 'Мед',
-        price: 520, unit: 'кг',
+        basePrice: 520, unit: 'кг',
         image: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&q=80',
         description: 'Цілющий мед з неповторним ароматом липи. Має легкий ментоловий відтінок, чудово допомагає при застуді та підвищує імунітет.',
         rating: 4.9, reviews: 36,
-        props: [['🌼', 'Збір', 'Липа'], ['📍', 'Регіон', 'Полтавщина'], ['🌿', 'Властивості', 'Антисептик']]
+        props: [['🌼','Збір','Липа'],['📍','Регіон','Полтавщина'],['🌿','Властивості','Антисептик']]
     },
     {
         id: 3, name: 'Акацієвий мед', category: 'Мед',
-        price: 580, unit: 'кг',
+        basePrice: 580, unit: 'кг',
         image: 'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=600&q=80',
         description: 'Прозорий мед з делікатним ніжним смаком. Практично безбарвний, довго залишається рідким. Ідеальний для дітей та людей, які не люблять сильного смаку меду.',
         rating: 4.7, reviews: 19,
-        props: [['🤍', 'Колір', 'Прозорий'], ['🌺', 'Збір', 'Акація'], ['⏳', 'Кристалізація', 'Повільна']]
+        props: [['🤍','Колір','Прозорий'],['🌺','Збір','Акація'],['⏳','Кристалізація','Повільна']]
     },
     {
         id: 4, name: 'Прополіс', category: 'Продукти бджільництва',
-        price: 320, unit: 'г',
+        basePrice: 320, unit: 'г',
         image: 'https://images.unsplash.com/photo-1590137838862-e7a3a56b1bf3?w=600&q=80',
         description: 'Натуральний прополіс для зміцнення імунітету. Потужний природний антибіотик. Ефективний при застудних захворюваннях, запаленнях та для загального зміцнення організму.',
         rating: 4.6, reviews: 12,
-        props: [['💪', 'Дія', 'Антибактеріальна'], ['🍯', 'Форма', 'Сирий'], ['💊', 'Застосування', 'Внутрішнє/зовнішнє']]
+        props: [['💪','Дія','Антибактеріальна'],['🍯','Форма','Сирий'],['💊','Застосування','Внутрішнє/зовнішнє']]
     },
     {
         id: 5, name: 'Бджолиний пилок', category: 'Продукти бджільництва',
-        price: 280, unit: 'г',
+        basePrice: 280, unit: 'г',
         image: 'https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=80',
         description: 'Багатий на вітаміни бджолиний пилок. Природний суперфуд, що містить всі 22 амінокислоти, вітаміни A, B, C, D, E та мінерали. Підвищує енергію та імунітет.',
         rating: 4.5, reviews: 8,
-        props: [['🌈', 'Колір', 'Яскравий мікс'], ['💊', 'Вітаміни', 'A, B, C, D, E'], ['⚡', 'Ефект', 'Енергія']]
+        props: [['🌈','Колір','Яскравий мікс'],['💊','Вітаміни','A, B, C, D, E'],['⚡','Ефект','Енергія']]
     },
     {
         id: 6, name: 'Трав\'яний чай "Польові трави"', category: 'Чаї',
-        price: 95, unit: 'уп',
+        basePrice: 95, unit: 'уп',
         image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80',
         description: 'Ароматний чай із лікарських трав. Збір польових трав з Полтавщини: звіробій, деревій, чебрець, материнка. Покращує травлення та заспокоює нервову систему.',
         rating: 4.7, reviews: 15,
-        props: [['🌿', 'Склад', 'Польові трави'], ['☕', 'Тип', 'Трав\'яний'], ['🧘', 'Дія', 'Заспокійлива']]
+        props: [['🌿','Склад','Польові трави'],['☕','Тип','Трав\'яний'],['🧘','Дія','Заспокійлива']]
     },
     {
         id: 7, name: 'Чай "Меліса і м\'ята"', category: 'Чаї',
-        price: 85, unit: 'уп',
+        basePrice: 85, unit: 'уп',
         image: 'https://images.unsplash.com/photo-1563911892437-1feda0179e1b?w=600&q=80',
         description: 'Заспокійливий чай для гарного сну. Поєднання меліси та м\'яти допомагає зняти стрес, покращує сон та знімає головний біль. Ідеальний перед сном.',
         rating: 4.8, reviews: 22,
-        props: [['🌱', 'Склад', 'Меліса, М\'ята'], ['🌙', 'Найкраще', 'Перед сном'], ['😴', 'Дія', 'Снодійна']]
+        props: [['🌱','Склад','Меліса, М\'ята'],['🌙','Найкраще','Перед сном'],['😴','Дія','Снодійна']]
     },
     {
         id: 8, name: 'Чай "Ромашковий"', category: 'Чаї',
-        price: 75, unit: 'уп',
+        basePrice: 75, unit: 'уп',
         image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80',
         description: 'Ніжний ромашковий чай з цілющими властивостями. Натуральна ромашка знімає запалення, заспокоює шлунок, допомагає при алергії та покращує настрій.',
         rating: 4.6, reviews: 17,
-        props: [['🌼', 'Збір', 'Ромашка'], ['💆', 'Дія', 'Протизапальна'], ['🌸', 'Аромат', 'Ніжний квітковий']]
+        props: [['🌼','Збір','Ромашка'],['💆','Дія','Протизапальна'],['🌸','Аромат','Ніжний квітковий']]
     }
 ];
 
 const categories = ['Всі', ...new Set(products.map(p => p.category))];
 
-// ── STATE ──────────────────────────────────────────────
+// ══════════════════════════════════════════════
+// ADMIN STATE (persisted via localStorage-like object)
+// ══════════════════════════════════════════════
+const ADMIN_PASSWORD = 'admin123';
+
+// Stock: { productId: { inStock: bool, customPrice: number|null } }
+let stockData = {};
+products.forEach(p => { stockData[p.id] = { inStock: true, customPrice: null }; });
+
+// Sales: [{ id, name, productId ('all' or number), type ('percent'|'fixed'), value, active }]
+let sales = [
+    { id: 1, name: 'Весняна знижка', productId: 'all', type: 'percent', value: 10, active: false },
+    { id: 2, name: 'Знижка на чаї', productId: 'cat:Чаї', type: 'percent', value: 15, active: true }
+];
+
+// PromoCodes: [{ id, code, type, value, minOrder, desc, limit, used, active }]
+let promoCodes = [
+    { id: 1, code: 'HONEY10', type: 'percent', value: 10, minOrder: 0, desc: 'Для нових клієнтів', limit: 0, used: 3, active: true },
+    { id: 2, code: 'SPRING50', type: 'fixed', value: 50, minOrder: 300, desc: 'При замовленні від 300 грн', limit: 50, used: 12, active: true }
+];
+
+let appliedPromo = null;
+
+// ══════════════════════════════════════════════
+// PRICE CALCULATION
+// ══════════════════════════════════════════════
+function getProductPrice(productId) {
+    const p = products.find(x => x.id === productId);
+    if (!p) return 0;
+    let price = stockData[p.id].customPrice !== null ? stockData[p.id].customPrice : p.basePrice;
+    // Apply active sales
+    const activeSales = sales.filter(s => s.active);
+    for (const sale of activeSales) {
+        if (sale.productId === 'all' ||
+            sale.productId === productId ||
+            (typeof sale.productId === 'string' && sale.productId.startsWith('cat:') && sale.productId.slice(4) === p.category)) {
+            if (sale.type === 'percent') price = price * (1 - sale.value / 100);
+            else price = Math.max(0, price - sale.value);
+        }
+    }
+    return Math.round(price);
+}
+
+function getOriginalPrice(productId) {
+    const p = products.find(x => x.id === productId);
+    if (!p) return 0;
+    return stockData[p.id].customPrice !== null ? stockData[p.id].customPrice : p.basePrice;
+}
+
+function hasDiscount(productId) {
+    return getProductPrice(productId) < getOriginalPrice(productId);
+}
+
+function discountLabel(productId) {
+    const orig = getOriginalPrice(productId);
+    const cur = getProductPrice(productId);
+    const pct = Math.round((orig - cur) / orig * 100);
+    return `-${pct}%`;
+}
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
 let cart = [];
 let wishlist = [];
 let currentPage = 'home';
@@ -1254,7 +1243,6 @@ let activeCategory = 'Всі';
 let currentProductId = null;
 let detailQty = 1;
 
-// Per-product reviews stored in memory
 const productReviews = {};
 products.forEach(p => {
     productReviews[p.id] = [
@@ -1263,7 +1251,9 @@ products.forEach(p => {
     ];
 });
 
-// ── NAVIGATION ────────────────────────────────────────
+// ══════════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════════
 function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-links a').forEach(a => {
@@ -1286,7 +1276,9 @@ function toggleMobileNav() {
     document.getElementById('mobileNav').classList.toggle('open');
 }
 
-// ── RENDER PRODUCTS ────────────────────────────────────
+// ══════════════════════════════════════════════
+// RENDER PRODUCTS
+// ══════════════════════════════════════════════
 function renderFeatured() {
     const grid = document.getElementById('featuredGrid');
     grid.innerHTML = products.slice(0, 3).map(p => productCardHTML(p)).join('');
@@ -1312,24 +1304,27 @@ function renderFilters() {
         ).join('');
 }
 
-function setFilter(cat) {
-    activeCategory = cat;
-    renderProducts();
-}
+function setFilter(cat) { activeCategory = cat; renderProducts(); }
 
 function productCardHTML(p) {
     const inWish = wishlist.includes(p.id);
-    const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '');
+    const inStock = stockData[p.id].inStock;
+    const price = getProductPrice(p.id);
+    const origPrice = getOriginalPrice(p.id);
+    const onSale = price < origPrice;
+
     return `
-    <div class="product-card">
-        <div class="card-img-wrap" onclick="showDetail(${p.id})">
+    <div class="product-card${!inStock ? ' out-of-stock' : ''}">
+        <div class="card-img-wrap" onclick="${inStock ? 'showDetail(' + p.id + ')' : ''}">
             <img src="${p.image}" alt="${p.name}" loading="lazy">
             <span class="card-category">${p.category}</span>
+            ${onSale ? `<span class="sale-badge">${discountLabel(p.id)}</span>` : ''}
+            ${!inStock ? `<div class="out-of-stock-badge"><span>Немає в наявності</span></div>` : ''}
         </div>
         <button class="wishlist-btn ${inWish ? 'active' : ''}" onclick="toggleWish(${p.id})" title="${inWish ? 'Видалити з обраного' : 'Додати в обране'}">
             ${inWish ? '❤️' : '🤍'}
         </button>
-        <div class="card-body" onclick="showDetail(${p.id})">
+        <div class="card-body" onclick="${inStock ? 'showDetail(' + p.id + ')' : ''}">
             <div class="card-name">${p.name}</div>
             <div class="card-desc">${p.description.substring(0, 70)}...</div>
             <div class="card-rating">
@@ -1339,14 +1334,21 @@ function productCardHTML(p) {
         </div>
         <div class="card-body" style="padding-top:0">
             <div class="card-footer">
-                <div class="card-price">${p.price} грн <small>/${p.unit}</small></div>
-                <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id}, 1)">+ Кошик</button>
+                <div class="card-price">
+                    ${onSale ? `<span class="old-price">${origPrice} грн</span>` : ''}
+                    ${price} грн <small>/${p.unit}</small>
+                </div>
+                <button class="add-btn" ${!inStock ? 'disabled' : `onclick="event.stopPropagation(); addToCart(${p.id}, 1)"`}>
+                    ${inStock ? '+ Кошик' : '✕ Нема'}
+                </button>
             </div>
         </div>
     </div>`;
 }
 
-// ── PRODUCT DETAIL ─────────────────────────────────────
+// ══════════════════════════════════════════════
+// PRODUCT DETAIL
+// ══════════════════════════════════════════════
 function showDetail(id) {
     const p = products.find(x => x.id === id);
     if (!p) return;
@@ -1355,11 +1357,16 @@ function showDetail(id) {
     previousPage = currentPage;
     currentPage = 'detail';
 
-    const stars5 = [1,2,3,4,5].map(s => `<span style="color:${s <= Math.round(p.rating) ? 'var(--honey)' : '#ddd'}"  >★</span>`).join('');
+    const price = getProductPrice(p.id);
+    const origPrice = getOriginalPrice(p.id);
+    const onSale = price < origPrice;
+    const inStock = stockData[p.id].inStock;
 
     document.getElementById('detailWrap').innerHTML = `
         <div class="detail-img">
             <img src="${p.image}" alt="${p.name}">
+            ${onSale ? `<div style="position:absolute;top:14px;left:14px;background:var(--danger);color:white;padding:.3rem .8rem;border-radius:20px;font-size:.85rem;font-weight:700">${discountLabel(p.id)} Акція</div>` : ''}
+            ${!inStock ? `<div class="out-of-stock-badge"><span>Немає в наявності</span></div>` : ''}
         </div>
         <div class="detail-info">
             <span class="detail-category">${p.category}</span>
@@ -1369,7 +1376,10 @@ function showDetail(id) {
                 <span style="font-weight:600;color:var(--dark)">${p.rating}</span>
                 <span style="color:var(--muted);font-size:.85rem">(${p.reviews} відгуків)</span>
             </div>
-            <div class="detail-price">${p.price} грн <small>/${p.unit}</small></div>
+            <div class="detail-price">
+                ${onSale ? `<div style="font-size:1rem;color:var(--muted);text-decoration:line-through;font-family:'DM Sans',sans-serif;font-weight:400">${origPrice} грн</div>` : ''}
+                ${price} грн <small>/${p.unit}</small>
+            </div>
             <p class="detail-desc">${p.description}</p>
             <div class="detail-props">
                 ${p.props.map(([icon, label, val]) => `
@@ -1380,6 +1390,7 @@ function showDetail(id) {
                     </div>`).join('')}
             </div>
             <div class="detail-actions">
+                ${inStock ? `
                 <div style="display:flex;align-items:center;gap:1rem;">
                     <div class="qty-selector">
                         <button class="qty-btn" onclick="changeQty(-1)">−</button>
@@ -1389,6 +1400,7 @@ function showDetail(id) {
                     <span style="font-size:.85rem;color:var(--muted)">шт.</span>
                 </div>
                 <button class="btn-primary" style="width:100%" onclick="addToCart(${p.id}, detailQty)">Додати до кошика</button>
+                ` : `<div style="background:rgba(217,79,61,0.08);color:var(--danger);border-radius:10px;padding:1rem;text-align:center;font-weight:600">⚠️ Цього товару зараз немає в наявності</div>`}
                 <button class="btn-outline" style="color:var(--text);border-color:#E0D0B0;width:100%" onclick="toggleWish(${p.id}); refreshDetailWish()">
                     <span id="detailWishBtn">${wishlist.includes(p.id) ? '❤️ В обраному' : '🤍 Додати в обране'}</span>
                 </button>
@@ -1411,7 +1423,9 @@ function refreshDetailWish() {
     if (el) el.textContent = wishlist.includes(currentProductId) ? '❤️ В обраному' : '🤍 Додати в обране';
 }
 
-// ── REVIEWS ────────────────────────────────────────────
+// ══════════════════════════════════════════════
+// REVIEWS
+// ══════════════════════════════════════════════
 let selectedStars = 5;
 
 function renderReviews(p) {
@@ -1422,7 +1436,7 @@ function renderReviews(p) {
             <div class="review-form">
                 <h4>Залишити відгук</h4>
                 <div class="star-select" id="starSelect">
-                    ${[1,2,3,4,5].map(s => `<span onclick="setReviewStars(${s})" data-s="${s}">${s <= 5 ? '★' : '☆'}</span>`).join('')}
+                    ${[1,2,3,4,5].map(s => `<span onclick="setReviewStars(${s})" data-s="${s}">★</span>`).join('')}
                 </div>
                 <input type="text" class="review-name-input" id="revName" placeholder="Ваше ім'я">
                 <textarea class="review-textarea" id="revText" placeholder="Напишіть ваш відгук..."></textarea>
@@ -1444,10 +1458,7 @@ function renderReviews(p) {
     updateStarUI();
 }
 
-function setReviewStars(n) {
-    selectedStars = n;
-    updateStarUI();
-}
+function setReviewStars(n) { selectedStars = n; updateStarUI(); }
 
 function updateStarUI() {
     document.querySelectorAll('#starSelect span').forEach(el => {
@@ -1472,7 +1483,9 @@ function submitReview(pid) {
     toast('✅ Відгук опубліковано!');
 }
 
-// ── WISHLIST ───────────────────────────────────────────
+// ══════════════════════════════════════════════
+// WISHLIST
+// ══════════════════════════════════════════════
 function toggleWish(id) {
     if (wishlist.includes(id)) {
         wishlist = wishlist.filter(x => x !== id);
@@ -1507,10 +1520,12 @@ function renderWishlist() {
     el.innerHTML = `<div class="products-grid">${wishProducts.map(p => productCardHTML(p)).join('')}</div>`;
 }
 
-// ── CART ───────────────────────────────────────────────
+// ══════════════════════════════════════════════
+// CART
+// ══════════════════════════════════════════════
 function addToCart(productId, qty = 1) {
     const p = products.find(x => x.id === productId);
-    if (!p) return;
+    if (!p || !stockData[p.id].inStock) return;
     const existing = cart.find(x => x.id === productId);
     if (existing) existing.qty += qty;
     else cart.push({ id: productId, qty });
@@ -1523,16 +1538,8 @@ function updateCartBadge() {
     document.getElementById('cartBadge').textContent = total;
 }
 
-function openCart() {
-    renderCart();
-    document.getElementById('cartOverlay').classList.add('open');
-    document.getElementById('cartPanel').classList.add('open');
-}
-
-function closeCart() {
-    document.getElementById('cartOverlay').classList.remove('open');
-    document.getElementById('cartPanel').classList.remove('open');
-}
+function openCart() { renderCart(); document.getElementById('cartOverlay').classList.add('open'); document.getElementById('cartPanel').classList.add('open'); }
+function closeCart() { document.getElementById('cartOverlay').classList.remove('open'); document.getElementById('cartPanel').classList.remove('open'); }
 
 function renderCart() {
     const itemsEl = document.getElementById('cartItemsEl');
@@ -1540,18 +1547,20 @@ function renderCart() {
     if (!cart.length) {
         itemsEl.innerHTML = `<div class="cart-empty"><div class="empty-icon">🛒</div><p>Кошик порожній</p></div>`;
         footerEl.innerHTML = '';
+        appliedPromo = null;
         return;
     }
-    let total = 0;
+    let subtotal = 0;
     itemsEl.innerHTML = cart.map((item, i) => {
         const p = products.find(x => x.id === item.id);
-        total += p.price * item.qty;
+        const price = getProductPrice(p.id);
+        subtotal += price * item.qty;
         return `
         <div class="cart-item">
             <img src="${p.image}" alt="${p.name}">
             <div class="ci-info">
                 <div class="ci-name">${p.name}</div>
-                <div class="ci-price">${p.price} грн/${p.unit}</div>
+                <div class="ci-price">${price} грн/${p.unit}</div>
             </div>
             <div class="ci-controls">
                 <button class="ci-qty-btn" onclick="cartQty(${i},-1)">−</button>
@@ -1561,43 +1570,94 @@ function renderCart() {
             </div>
         </div>`;
     }).join('');
+
+    // Promo discount
+    let discount = 0;
+    let promoResultHTML = '';
+    if (appliedPromo) {
+        if (appliedPromo.type === 'percent') discount = Math.round(subtotal * appliedPromo.value / 100);
+        else discount = Math.min(appliedPromo.value, subtotal);
+        promoResultHTML = `<div class="promo-result ok">🎟️ Промокод <strong>${appliedPromo.code}</strong> — знижка ${discount} грн
+            <button onclick="removePromo()" style="background:none;border:none;cursor:pointer;color:var(--danger);margin-left:.5rem;font-size:.85rem">✕ Прибрати</button>
+        </div>`;
+    }
+
+    const total = subtotal - discount;
+
     footerEl.innerHTML = `
+        <div class="promo-row">
+            <input type="text" class="promo-input" id="promoInputCart" placeholder="Промокод..." style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+            <button class="promo-apply-btn" onclick="applyPromo()">Застосувати</button>
+        </div>
+        ${promoResultHTML}
         <div class="cart-total-row">
             <span class="cart-total-label">Загальна сума:</span>
             <span class="cart-total-val">${total} грн</span>
         </div>
+        ${discount > 0 ? `<div style="font-size:.82rem;color:var(--muted);text-align:right;margin-top:-.8rem;margin-bottom:.6rem">Підсума: ${subtotal} грн − ${discount} грн знижки</div>` : ''}
         <button class="btn-primary" style="width:100%;margin-bottom:.6rem" onclick="checkout()">Оформити замовлення</button>
         <button class="btn-outline" style="width:100%;color:var(--danger);border-color:var(--danger)" onclick="clearCart()">Очистити кошик</button>`;
 }
 
-function cartQty(i, delta) {
-    cart[i].qty = Math.max(1, cart[i].qty + delta);
-    updateCartBadge(); renderCart();
+function cartQty(i, delta) { cart[i].qty = Math.max(1, cart[i].qty + delta); updateCartBadge(); renderCart(); }
+function cartRemove(i) { cart.splice(i, 1); updateCartBadge(); renderCart(); }
+function clearCart() { if (confirm('Очистити весь кошик?')) { cart = []; appliedPromo = null; updateCartBadge(); renderCart(); } }
+
+// ── PROMO CODE APPLY ──
+function applyPromo() {
+    const code = (document.getElementById('promoInputCart')?.value || '').trim().toUpperCase();
+    if (!code) return;
+    const promo = promoCodes.find(p => p.code === code && p.active);
+    if (!promo) { showPromoResult('err', '❌ Промокод не знайдено або недійсний'); return; }
+    // Check limit
+    if (promo.limit > 0 && promo.used >= promo.limit) { showPromoResult('err', '❌ Ліміт використань вичерпано'); return; }
+    // Check min order
+    const subtotal = cart.reduce((s, x) => s + getProductPrice(x.id) * x.qty, 0);
+    if (promo.minOrder > 0 && subtotal < promo.minOrder) {
+        showPromoResult('err', `❌ Мінімальна сума замовлення: ${promo.minOrder} грн`); return;
+    }
+    appliedPromo = promo;
+    promo.used++;
+    renderCart();
+    toast('🎟️ Промокод застосовано!');
 }
 
-function cartRemove(i) {
-    cart.splice(i, 1);
-    updateCartBadge(); renderCart();
+function showPromoResult(type, msg) {
+    const existing = document.querySelector('.promo-result');
+    if (existing) existing.remove();
+    const el = document.createElement('div');
+    el.className = `promo-result ${type}`;
+    el.innerHTML = msg;
+    const row = document.querySelector('.promo-row');
+    if (row) row.after(el);
 }
 
-function clearCart() {
-    if (confirm('Очистити весь кошик?')) { cart = []; updateCartBadge(); renderCart(); }
-}
+function removePromo() { appliedPromo = null; renderCart(); }
 
 function checkout() {
     if (!cart.length) return;
-    const total = cart.reduce((s, x) => s + products.find(p => p.id === x.id).price * x.qty, 0);
+    let subtotal = cart.reduce((s, x) => s + getProductPrice(x.id) * x.qty, 0);
+    let discount = 0;
+    if (appliedPromo) {
+        if (appliedPromo.type === 'percent') discount = Math.round(subtotal * appliedPromo.value / 100);
+        else discount = Math.min(appliedPromo.value, subtotal);
+    }
+    const total = subtotal - discount;
     let text = 'Замовлення BeeBloom:\n\n';
     cart.forEach(item => {
         const p = products.find(x => x.id === item.id);
-        text += `${p.name} — ${item.qty} ${p.unit} × ${p.price} = ${p.price * item.qty} грн\n`;
+        const price = getProductPrice(p.id);
+        text += `${p.name} — ${item.qty} ${p.unit} × ${price} = ${price * item.qty} грн\n`;
     });
+    if (discount > 0) text += `\nПромокод ${appliedPromo.code}: -${discount} грн`;
     text += `\nСума: ${total} грн\n\nВкажіть ПІБ, місто та номер відділення Нової Пошти.`;
     const url = `https://t.me/beebloom?text=${encodeURIComponent(text)}`;
     if (confirm('Відправити замовлення в Telegram?\n\n' + text)) window.open(url, '_blank');
 }
 
-// ── SEARCH ─────────────────────────────────────────────
+// ══════════════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════════════
 function onSearchInput(q) {
     const dd = document.getElementById('searchDropdown');
     if (!q.trim()) { dd.style.display = 'none'; return; }
@@ -1607,14 +1667,16 @@ function onSearchInput(q) {
         p.category.toLowerCase().includes(q.toLowerCase())
     ).slice(0, 5);
     if (!res.length) { dd.innerHTML = '<div style="padding:1rem;color:var(--muted);text-align:center">Нічого не знайдено</div>'; dd.style.display = 'block'; return; }
-    dd.innerHTML = res.map(p => `
-        <div class="search-dropdown-item" onclick="showDetail(${p.id}); document.getElementById('searchDropdown').style.display='none'; document.getElementById('searchInput').value=''">
+    dd.innerHTML = res.map(p => {
+        const price = getProductPrice(p.id);
+        return `<div class="search-dropdown-item" onclick="showDetail(${p.id}); document.getElementById('searchDropdown').style.display='none'; document.getElementById('searchInput').value=''">
             <img src="${p.image}" alt="${p.name}">
             <div>
                 <div class="sdi-name">${p.name}</div>
-                <div class="sdi-price">${p.price} грн/${p.unit}</div>
+                <div class="sdi-price">${price} грн/${p.unit}</div>
             </div>
-        </div>`).join('');
+        </div>`;
+    }).join('');
     dd.style.display = 'block';
 }
 
@@ -1632,16 +1694,9 @@ function doSearch() {
     renderProducts(res);
 }
 
-// close dropdown on outside click
-document.addEventListener('click', e => {
-    if (!e.target.closest('.search-wrap')) document.getElementById('searchDropdown').style.display = 'none';
-    if (e.target === document.getElementById('cartOverlay')) closeCart();
-    if (!e.target.closest('#mobileNav') && !e.target.closest('.mobile-menu-btn')) {
-        document.getElementById('mobileNav').classList.remove('open');
-    }
-});
-
-// ── CONTACT FORM ───────────────────────────────────────
+// ══════════════════════════════════════════════
+// CONTACT FORM
+// ══════════════════════════════════════════════
 function submitContact() {
     const name = document.getElementById('cfName').value.trim();
     const contact = document.getElementById('cfContact').value.trim();
@@ -1653,7 +1708,308 @@ function submitContact() {
     document.getElementById('cfMsg').value = '';
 }
 
-// ── TOAST ──────────────────────────────────────────────
+// ══════════════════════════════════════════════
+// ADMIN: LOGIN
+// ══════════════════════════════════════════════
+function openAdminLogin() {
+    document.getElementById('adminLoginOverlay').classList.add('open');
+    setTimeout(() => document.getElementById('adminPasswordInput').focus(), 200);
+}
+
+function closeAdminLogin() {
+    document.getElementById('adminLoginOverlay').classList.remove('open');
+    document.getElementById('adminPasswordInput').value = '';
+}
+
+function adminLogin() {
+    const pw = document.getElementById('adminPasswordInput').value;
+    if (pw === ADMIN_PASSWORD) {
+        closeAdminLogin();
+        openAdminPanel();
+    } else {
+        document.getElementById('adminPasswordInput').style.borderColor = 'var(--danger)';
+        setTimeout(() => document.getElementById('adminPasswordInput').style.borderColor = '', 1500);
+        toast('❌ Невірний пароль');
+    }
+}
+
+function openAdminPanel() {
+    document.getElementById('adminPanel').classList.add('open');
+    renderInventoryTable();
+    renderSalesGrid();
+    renderPromoTable();
+    renderStats();
+    populateSaleProductSelect();
+}
+
+function closeAdminPanel() {
+    document.getElementById('adminPanel').classList.remove('open');
+    // Re-render shop with updated data
+    if (currentPage === 'home') renderFeatured();
+    if (currentPage === 'products') renderProducts();
+}
+
+function switchAdminTab(tab) {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+}
+
+// ══════════════════════════════════════════════
+// ADMIN: INVENTORY TAB
+// ══════════════════════════════════════════════
+function renderInventoryTable() {
+    const table = document.getElementById('inventoryTable');
+    let html = `<div class="inv-row header">
+        <div></div>
+        <div>Товар</div>
+        <div>Наявність</div>
+        <div>Ціна (грн)</div>
+        <div>Зберегти</div>
+    </div>`;
+    products.forEach(p => {
+        const sd = stockData[p.id];
+        const displayPrice = sd.customPrice !== null ? sd.customPrice : p.basePrice;
+        html += `
+        <div class="inv-row">
+            <img class="inv-img" src="${p.image}" alt="${p.name}">
+            <div>
+                <div class="inv-name">${p.name}</div>
+                <div class="inv-category">${p.category}</div>
+            </div>
+            <div class="stock-toggle">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="stock_${p.id}" ${sd.inStock ? 'checked' : ''} onchange="updateStockToggle(${p.id})">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label ${sd.inStock ? 'in' : 'out'}" id="stockLabel_${p.id}">${sd.inStock ? 'В наявності' : 'Немає'}</span>
+            </div>
+            <div>
+                <input type="number" class="inv-price-input" id="price_${p.id}" value="${displayPrice}" min="1" placeholder="${p.basePrice}">
+                <div style="font-size:0.72rem;color:var(--muted);margin-top:2px">Базова: ${p.basePrice} грн</div>
+            </div>
+            <button class="inv-save-btn" onclick="saveInventoryRow(${p.id})">Зберегти</button>
+        </div>`;
+    });
+    table.innerHTML = html;
+}
+
+function updateStockToggle(id) {
+    const checked = document.getElementById(`stock_${id}`).checked;
+    stockData[id].inStock = checked;
+    const label = document.getElementById(`stockLabel_${id}`);
+    label.textContent = checked ? 'В наявності' : 'Немає';
+    label.className = `toggle-label ${checked ? 'in' : 'out'}`;
+}
+
+function saveInventoryRow(id) {
+    const checked = document.getElementById(`stock_${id}`).checked;
+    const priceVal = parseFloat(document.getElementById(`price_${id}`).value);
+    stockData[id].inStock = checked;
+    stockData[id].customPrice = isNaN(priceVal) || priceVal <= 0 ? null : priceVal;
+    toast('✅ Збережено!');
+    renderStats();
+}
+
+// ══════════════════════════════════════════════
+// ADMIN: SALES TAB
+// ══════════════════════════════════════════════
+function populateSaleProductSelect() {
+    const sel = document.getElementById('newSaleProduct');
+    if (!sel) return;
+    sel.innerHTML = '<option value="all">Всі товари</option>';
+    // Add categories
+    const cats = [...new Set(products.map(p => p.category))];
+    cats.forEach(c => { sel.innerHTML += `<option value="cat:${c}">Категорія: ${c}</option>`; });
+    // Add individual products
+    products.forEach(p => { sel.innerHTML += `<option value="${p.id}">${p.name}</option>`; });
+}
+
+function renderSalesGrid() {
+    const grid = document.getElementById('salesGrid');
+    if (!sales.length) {
+        grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;grid-column:1/-1">Акцій ще немає. Додайте першу!</p>';
+        return;
+    }
+    grid.innerHTML = sales.map(s => {
+        const productLabel = s.productId === 'all' ? 'Всі товари' :
+            (typeof s.productId === 'string' && s.productId.startsWith('cat:') ? 'Категорія: ' + s.productId.slice(4) :
+            products.find(p => p.id === s.productId)?.name || 'Невідомо');
+        return `
+        <div class="sale-card ${s.active ? 'active-sale' : ''}">
+            <button class="delete-sale-btn" onclick="deleteSale(${s.id})">✕</button>
+            <div class="sale-card-top">
+                <div class="sale-card-name">${s.name}</div>
+                <span class="${s.active ? 'sale-active-tag' : 'sale-inactive-tag'}">${s.active ? 'Активна' : 'Неактивна'}</span>
+            </div>
+            <div style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem">
+                ${productLabel} · Знижка: ${s.type === 'percent' ? s.value + '%' : s.value + ' грн'}
+            </div>
+            <div class="sale-toggle-row">
+                <label class="toggle-switch">
+                    <input type="checkbox" ${s.active ? 'checked' : ''} onchange="toggleSale(${s.id}, this.checked)">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="sale-toggle-label">${s.active ? '✅ Увімкнена' : '⏸️ Вимкнена'}</span>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function toggleSale(id, checked) {
+    const sale = sales.find(s => s.id === id);
+    if (sale) { sale.active = checked; renderSalesGrid(); toast(checked ? '✅ Акцію активовано!' : '⏸️ Акцію вимкнено'); }
+}
+
+function deleteSale(id) {
+    if (confirm('Видалити цю акцію?')) {
+        sales = sales.filter(s => s.id !== id);
+        renderSalesGrid();
+        toast('🗑️ Акцію видалено');
+    }
+}
+
+function addSale() {
+    const name = document.getElementById('newSaleName').value.trim();
+    const productId = document.getElementById('newSaleProduct').value;
+    const type = document.getElementById('newSaleType').value;
+    const value = parseFloat(document.getElementById('newSaleValue').value);
+
+    if (!name) { toast('Введіть назву акції'); return; }
+    if (!value || value <= 0) { toast('Введіть розмір знижки'); return; }
+    if (type === 'percent' && value > 100) { toast('Відсоток не може бути більше 100'); return; }
+
+    const pid = isNaN(parseInt(productId)) ? productId : parseInt(productId);
+
+    const newId = Math.max(0, ...sales.map(s => s.id)) + 1;
+    sales.push({ id: newId, name, productId: pid, type, value, active: true });
+    renderSalesGrid();
+    document.getElementById('newSaleName').value = '';
+    document.getElementById('newSaleValue').value = '';
+    toast('🏷️ Акцію створено та активовано!');
+}
+
+// ══════════════════════════════════════════════
+// ADMIN: PROMO CODES TAB
+// ══════════════════════════════════════════════
+function renderPromoTable() {
+    const body = document.getElementById('promoTableBody');
+    if (!promoCodes.length) {
+        body.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--muted)">Промокодів ще немає</div>';
+        return;
+    }
+    body.innerHTML = promoCodes.map(p => `
+        <div class="promo-row-data">
+            <div><span class="promo-code-tag">${p.code}</span></div>
+            <div class="promo-discount">${p.type === 'percent' ? p.value + '%' : p.value + ' грн'}</div>
+            <div class="promo-applies">
+                ${p.desc || '—'}
+                ${p.minOrder > 0 ? `<br>Від ${p.minOrder} грн` : ''}
+                ${p.limit > 0 ? `<br>Ліміт: ${p.used}/${p.limit}` : '<br>Безліміт'}
+            </div>
+            <div>
+                <label class="toggle-switch">
+                    <input type="checkbox" ${p.active ? 'checked' : ''} onchange="togglePromo(${p.id}, this.checked)">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div>
+                <button class="promo-del-btn" onclick="deletePromo(${p.id})">🗑️</button>
+            </div>
+        </div>`).join('');
+}
+
+function togglePromo(id, checked) {
+    const promo = promoCodes.find(p => p.id === id);
+    if (promo) { promo.active = checked; renderPromoTable(); toast(checked ? '✅ Промокод активовано' : '⏸️ Промокод вимкнено'); }
+}
+
+function deletePromo(id) {
+    if (confirm('Видалити цей промокод?')) {
+        promoCodes = promoCodes.filter(p => p.id !== id);
+        renderPromoTable();
+        toast('🗑️ Промокод видалено');
+    }
+}
+
+function addPromo() {
+    const code = document.getElementById('newPromoCode').value.trim().toUpperCase();
+    const type = document.getElementById('newPromoType').value;
+    const value = parseFloat(document.getElementById('newPromoValue').value);
+    const minOrder = parseFloat(document.getElementById('newPromoMin').value) || 0;
+    const desc = document.getElementById('newPromoDesc').value.trim();
+    const limit = parseInt(document.getElementById('newPromoLimit').value) || 0;
+
+    if (!code) { toast('Введіть код'); return; }
+    if (promoCodes.find(p => p.code === code)) { toast('Такий код вже існує'); return; }
+    if (!value || value <= 0) { toast('Введіть розмір знижки'); return; }
+    if (type === 'percent' && value > 100) { toast('Відсоток не може бути більше 100'); return; }
+
+    const newId = Math.max(0, ...promoCodes.map(p => p.id)) + 1;
+    promoCodes.push({ id: newId, code, type, value, minOrder, desc, limit, used: 0, active: true });
+    renderPromoTable();
+    document.getElementById('newPromoCode').value = '';
+    document.getElementById('newPromoValue').value = '';
+    document.getElementById('newPromoMin').value = '';
+    document.getElementById('newPromoDesc').value = '';
+    document.getElementById('newPromoLimit').value = '';
+    toast('🎟️ Промокод створено!');
+}
+
+// ══════════════════════════════════════════════
+// ADMIN: STATS TAB
+// ══════════════════════════════════════════════
+function renderStats() {
+    const inStockCount = products.filter(p => stockData[p.id].inStock).length;
+    const outOfStockCount = products.length - inStockCount;
+    const activeSalesCount = sales.filter(s => s.active).length;
+    const activePromosCount = promoCodes.filter(p => p.active).length;
+
+    document.getElementById('statsRow').innerHTML = `
+        <div class="stat-card"><div class="stat-card-icon">📦</div><div class="stat-card-num">${inStockCount}</div><div class="stat-card-label">Товарів в наявності</div></div>
+        <div class="stat-card"><div class="stat-card-icon">🏷️</div><div class="stat-card-num">${activeSalesCount}</div><div class="stat-card-label">Активних акцій</div></div>
+        <div class="stat-card"><div class="stat-card-icon">🎟️</div><div class="stat-card-num">${activePromosCount}</div><div class="stat-card-label">Активних промокодів</div></div>
+        <div class="stat-card"><div class="stat-card-icon">⚠️</div><div class="stat-card-num" style="color:var(--danger)">${outOfStockCount}</div><div class="stat-card-label">Немає в наявності</div></div>
+        <div class="stat-card"><div class="stat-card-icon">🎫</div><div class="stat-card-num">${promoCodes.reduce((s,p)=>s+p.used,0)}</div><div class="stat-card-label">Промокодів використано</div></div>
+        <div class="stat-card"><div class="stat-card-icon">🛒</div><div class="stat-card-num">${products.length}</div><div class="stat-card-label">Всього товарів</div></div>`;
+
+    const listEl = document.getElementById('statsProductList');
+    listEl.innerHTML = products.map(p => {
+        const sd = stockData[p.id];
+        const price = getProductPrice(p.id);
+        const origPrice = getOriginalPrice(p.id);
+        return `
+        <div style="display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid #F5EDD8">
+            <img src="${p.image}" style="width:44px;height:44px;border-radius:8px;object-fit:cover" alt="">
+            <div style="flex:1">
+                <div style="font-weight:600;font-size:.9rem">${p.name}</div>
+                <div style="font-size:.78rem;color:var(--muted)">${p.category}</div>
+            </div>
+            <div style="font-size:.88rem;font-weight:600;color:var(--honey)">${price} грн</div>
+            ${price < origPrice ? `<div style="font-size:.75rem;color:var(--muted);text-decoration:line-through">${origPrice} грн</div>` : ''}
+            <span style="font-size:.78rem;font-weight:700;padding:.25rem .7rem;border-radius:12px;background:${sd.inStock ? 'rgba(74,140,92,0.12)' : 'rgba(217,79,61,0.12)'};color:${sd.inStock ? 'var(--success)' : 'var(--danger)'}">
+                ${sd.inStock ? '✓ В наявності' : '✕ Немає'}
+            </span>
+        </div>`;
+    }).join('');
+}
+
+// ══════════════════════════════════════════════
+// GLOBAL EVENTS
+// ══════════════════════════════════════════════
+document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrap')) document.getElementById('searchDropdown').style.display = 'none';
+    if (e.target === document.getElementById('cartOverlay')) closeCart();
+    if (e.target === document.getElementById('adminLoginOverlay')) closeAdminLogin();
+    if (!e.target.closest('#mobileNav') && !e.target.closest('.mobile-menu-btn')) {
+        document.getElementById('mobileNav').classList.remove('open');
+    }
+});
+
+// ══════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════
 function toast(msg) {
     const wrap = document.getElementById('toastWrap');
     const el = document.createElement('div');
@@ -1663,7 +2019,9 @@ function toast(msg) {
     setTimeout(() => el.remove(), 2800);
 }
 
-// ── INIT ───────────────────────────────────────────────
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
 renderFeatured();
 renderFilters();
 </script>

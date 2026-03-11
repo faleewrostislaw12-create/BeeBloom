@@ -1,1554 +1,1671 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeeBloom - Натуральний мед та бджолині продукти</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* Основные стили для всего сайта */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --honey: #C8862A;
+            --honey-light: #F0C060;
+            --honey-pale: #FDF6E3;
+            --dark: #1A1208;
+            --text: #3D2B10;
+            --muted: #8A7560;
+            --white: #FFFEF9;
+            --card-bg: #FFFDF5;
+            --danger: #D94F3D;
+            --success: #4A8C5C;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--honey-pale);
+            color: var(--text);
             min-height: 100vh;
         }
 
-        /* Стили для шапки сайта */
+        /* ── HEADER ── */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+            border-bottom: 2px solid var(--honey-light);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(200,134,42,0.12);
         }
 
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 2rem;
-            position: relative;
-            flex-wrap: wrap;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            height: 70px;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #d4a574;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--honey);
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        .logo img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            white-space: nowrap;
             cursor: pointer;
         }
 
-        .nav-menu a:hover {
-            color: #d4a574;
+        .logo span { font-size: 1.6rem; }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.2rem;
+            flex: 1;
         }
 
-        /* Стили для номера телефона в шапке */
-        .header-contact {
-            font-size: 0.9rem;
-            color: #666;
-            margin-right: 1rem;
-            order: 1;
-        }
-
-        .header-contact a {
-            color: #d4a574;
+        .nav-links a {
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+            display: block;
         }
 
-        .header-contact a:hover {
-            color: #c19952;
-            text-decoration: underline;
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--honey);
+            background: rgba(200,134,42,0.08);
         }
 
-        /* Поиск */
-        .search-container {
-            position: relative;
+        .nav-right {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
+            margin-left: auto;
         }
 
-        .search-box {
+        .search-wrap {
             position: relative;
-            display: flex;
-            align-items: center;
         }
 
         .search-input {
-            padding: 0.6rem 2.5rem 0.6rem 1rem;
-            border: 2px solid #ddd;
+            padding: 0.55rem 2.8rem 0.55rem 1.1rem;
+            border: 1.5px solid #E0D0B0;
             border-radius: 25px;
             font-size: 0.9rem;
-            width: 250px;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.9);
+            width: 220px;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--honey-pale);
+            color: var(--text);
+            transition: all 0.25s;
         }
 
         .search-input:focus {
             outline: none;
-            border-color: #d4a574;
-            box-shadow: 0 0 10px rgba(212, 165, 116, 0.2);
-            width: 300px;
+            border-color: var(--honey);
+            width: 270px;
+            background: var(--white);
         }
 
         .search-btn {
             position: absolute;
-            right: 5px;
-            background: #d4a574;
-            color: white;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
             border: none;
-            padding: 0.5rem;
-            border-radius: 50%;
             cursor: pointer;
             font-size: 1rem;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: var(--honey);
         }
 
-        .search-btn:hover {
-            background: #c19952;
-            transform: scale(1.1);
-        }
-
-        .search-results {
+        .search-dropdown {
             position: absolute;
-            top: 100%;
-            left: 0;
+            top: calc(100% + 6px);
             right: 0;
-            background: white;
-            border: 2px solid #d4a574;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            z-index: 1001;
-            max-height: 300px;
-            overflow-y: auto;
+            width: 300px;
+            background: var(--white);
+            border: 1.5px solid var(--honey-light);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            z-index: 2000;
             display: none;
+            overflow: hidden;
         }
 
-        .search-result-item {
-            padding: 0.8rem 1rem;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-            transition: background 0.2s;
+        .search-dropdown-item {
             display: flex;
             align-items: center;
             gap: 0.8rem;
-        }
-
-        .search-result-item:hover {
-            background: #f8f8f8;
-        }
-
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-
-        .search-no-results {
-            padding: 1.5rem;
-            text-align: center;
-            color: #666;
-        }
-
-        .cart-icon {
-            position: relative;
-            background: #d4a574;
-            color: white;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 50%;
+            padding: 0.7rem 1rem;
             cursor: pointer;
+            transition: background 0.15s;
+            border-bottom: 1px solid #F5EDD8;
+        }
+
+        .search-dropdown-item:last-child { border-bottom: none; }
+        .search-dropdown-item:hover { background: var(--honey-pale); }
+
+        .search-dropdown-item img {
+            width: 40px; height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .search-dropdown-item .sdi-name { font-weight: 500; font-size: 0.9rem; }
+        .search-dropdown-item .sdi-price { font-size: 0.82rem; color: var(--honey); font-weight: 600; }
+
+        .icon-btn {
+            background: none;
+            border: 1.5px solid #E0D0B0;
+            border-radius: 50%;
+            width: 42px; height: 42px;
+            display: flex; align-items: center; justify-content: center;
             font-size: 1.2rem;
-            transition: transform 0.3s;
-            order: 3;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            color: var(--text);
         }
 
-        .cart-icon:hover {
-            transform: scale(1.1);
-        }
+        .icon-btn:hover { border-color: var(--honey); color: var(--honey); background: rgba(200,134,42,0.06); }
 
-        .cart-count {
+        .badge {
             position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ff6b6b;
+            top: -5px; right: -5px;
+            background: var(--danger);
             color: white;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 18px; height: 18px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        /* Мобильное меню */
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: #d4a574;
             cursor: pointer;
-            order: 2;
+            color: var(--honey);
         }
 
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .mobile-menu ul {
-            list-style: none;
-            padding: 1rem 0;
-        }
-
-        .mobile-menu li {
-            padding: 0.8rem 2rem;
-        }
-
-        .mobile-menu a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 1.1rem;
-            display: block;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        .mobile-menu a:hover {
-            color: #d4a574;
-        }
-
-        /* Основной контент */
+        /* ── MAIN ── */
         main {
-            margin-top: 120px;
-            padding: 2rem;
+            margin-top: 70px;
+            padding: 2.5rem 2rem;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .page { display: none; animation: fadeUp 0.4s ease; }
+        .page.active { display: block; }
 
-        /* Секция героя (главная) */
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            color: #d4a574;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Секции сайта */
-        .section {
-            display: none;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        .section h2 {
-            color: #d4a574;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 2.5rem;
-        }
-
-        /* Сетка товаров */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        /* Карточка товара */
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid transparent;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            border-color: #d4a574;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 200px;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-card h3 {
-            color: #d4a574;
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-
-        .product-card p {
-            color: #666;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #d4a574;
-            margin-bottom: 1rem;
-        }
-
-        .btn {
-            background: #d4a574;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        .btn:hover {
-            background: #c19952;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-danger {
-            background: #ff6b6b;
-        }
-
-        .btn-danger:hover {
-            background: #ff5252;
-        }
-
-        /* Детали товара */
-        .product-details {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .product-details .product-image {
-            height: 300px;
-        }
-
-        .product-details h3 {
-            color: #d4a574;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .product-details p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .product-details .product-price {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .back-btn {
-            background: #666;
-            margin-top: 1rem;
-        }
-
-        .back-btn:hover {
-            background: #555;
-        }
-
-        /* Корзина */
-        .cart-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-        }
-
-        .cart-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-total {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #d4a574;
-            text-align: center;
-            margin: 1rem 0;
-        }
-
-        /* Админ панель */
-        .admin-panel {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-        }
-
-        .admin-form {
-            display: grid;
-            gap: 1rem;
-            max-width: 600px;
-        }
-
-        .admin-form input, .admin-form textarea {
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .admin-form input:focus, .admin-form textarea:focus {
-            border-color: #d4a574;
-            outline: none;
-        }
-
-        /* Контакты и О нас */
-        .contact-info, .about-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .contact-item {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .contact-item h3 {
-            color: #d4a574;
-            margin-bottom: 1rem;
-        }
-
-        .about-content ul {
-            list-style: none;
-            padding-left: 1rem;
-        }
-
-        .about-content li {
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        .about-content li:before {
-            content: "🐝";
-            position: absolute;
-            left: -1.5rem;
-        }
-
-        /* Успешное уведомление */
-        .success-message {
-            background: #4CAF50;
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            text-align: center;
-            display: none;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            nav {
-                flex-wrap: wrap;
-            }
-
-            .header-contact {
-                font-size: 0.8rem;
-                margin: 0.5rem 0;
-                width: 100%;
-                text-align: center;
-                order: 3;
-            }
-
-            .search-container {
-                order: 4;
-                width: 100%;
-                margin-top: 0.5rem;
-                justify-content: center;
-            }
-
-            .search-input {
-                width: 250px;
-            }
-
-            .search-input:focus {
-                width: 280px;
-            }
-
-            .cart-icon {
-                order: 2;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-                padding: 0 1rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cart-content {
-                width: 95%;
-                max-width: none;
-                padding: 1.5rem;
-            }
-
-            main {
-                padding: 1rem;
-            }
-
-            .section {
-                padding: 1.5rem;
-            }
-
-            .section h2 {
-                font-size: 2rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .product-details .product-image {
-                height: 200px;
-            }
-
-            .product-details h3 {
-                font-size: 1.5rem;
-            }
-
-            .product-details .product-price {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Скрытые элементы */
-        .hidden {
-            display: none !important;
-        }
-
-        /* Анимация появления */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .section.active {
-            animation: fadeIn 0.5s ease-in-out;
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, #3D2000 100%);
+            border-radius: 24px;
+            padding: 5rem 4rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        /* Демо индикатор для показа мобильной версии */
-        .demo-indicator {
-            position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(212, 165, 116, 0.9);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            z-index: 10000;
+        .hero::before {
+            content: '🍯';
+            position: absolute;
+            right: 4rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12rem;
+            opacity: 0.12;
         }
+
+        .hero-tag {
+            background: var(--honey);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            max-width: 560px;
+        }
+
+        .hero h1 em { color: var(--honey-light); font-style: normal; }
+
+        .hero p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .btn-primary {
+            background: var(--honey);
+            color: white;
+            padding: 0.85rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary:hover { background: #B5761F; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(200,134,42,0.4); }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            padding: 0.85rem 2rem;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--honey-light);
+        }
+
+        .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+
+        /* ── FEATURED ── */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+
+        .section-link {
+            color: var(--honey);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            border-bottom: 1px solid var(--honey);
+            padding-bottom: 1px;
+            transition: opacity 0.2s;
+        }
+
+        .section-link:hover { opacity: 0.7; }
+
+        /* ── CATEGORY FILTERS ── */
+        .filter-bar {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+
+        .filter-label { font-size: 0.85rem; color: var(--muted); font-weight: 500; margin-right: 0.4rem; }
+
+        .filter-btn {
+            padding: 0.45rem 1.1rem;
+            border: 1.5px solid #E0D0B0;
+            border-radius: 25px;
+            background: white;
+            color: var(--muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .filter-btn:hover { border-color: var(--honey); color: var(--honey); }
+        .filter-btn.active { background: var(--honey); color: white; border-color: var(--honey); }
+
+        /* ── PRODUCT GRID ── */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        /* ── PRODUCT CARD ── */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1.5px solid #EDE0C4;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(200,134,42,0.18);
+            border-color: var(--honey-light);
+        }
+
+        .card-img-wrap {
+            position: relative;
+            height: 210px;
+            overflow: hidden;
+        }
+
+        .card-img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .product-card:hover .card-img-wrap img { transform: scale(1.06); }
+
+        .card-category {
+            position: absolute;
+            top: 12px; left: 12px;
+            background: rgba(26,18,8,0.75);
+            color: var(--honey-light);
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(6px);
+            letter-spacing: 0.04em;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: rgba(255,255,255,0.85);
+            border: none;
+            border-radius: 50%;
+            width: 34px; height: 34px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .wishlist-btn:hover { transform: scale(1.15); background: white; }
+        .wishlist-btn.active { color: var(--danger); }
+
+        .card-body { padding: 1.2rem; }
+
+        .card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-bottom: 0.9rem;
+        }
+
+        .card-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .stars { color: var(--honey); font-size: 0.85rem; letter-spacing: 1px; }
+        .rating-count { font-size: 0.78rem; color: var(--muted); }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--honey);
+        }
+
+        .card-price small { font-size: 0.7rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+
+        .add-btn {
+            background: var(--honey);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0.55rem 1.1rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+
+        .add-btn:hover { background: #B5761F; transform: scale(1.04); }
+
+        /* ── PRODUCT DETAIL ── */
+        .detail-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1.5px solid #EDE0C4;
+        }
+
+        .detail-img {
+            border-radius: 14px;
+            overflow: hidden;
+            height: 380px;
+        }
+
+        .detail-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        .detail-info { display: flex; flex-direction: column; gap: 1rem; }
+
+        .detail-category {
+            display: inline-block;
+            background: rgba(200,134,42,0.12);
+            color: var(--honey);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .detail-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+
+        .detail-rating { display: flex; align-items: center; gap: 0.6rem; }
+        .detail-rating .stars { font-size: 1rem; }
+        .detail-price { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--honey); font-weight: 700; }
+        .detail-price small { font-size: 1rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+
+        .detail-desc { color: var(--muted); line-height: 1.8; font-size: 0.95rem; }
+
+        .detail-props { display: flex; flex-direction: column; gap: 0.6rem; }
+        .prop-row { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; }
+        .prop-icon { font-size: 1.1rem; }
+        .prop-label { color: var(--muted); }
+        .prop-value { font-weight: 600; color: var(--dark); }
+
+        .detail-actions { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; }
+
+        .qty-selector {
+            display: flex;
+            align-items: center;
+            gap: 0; border: 1.5px solid #E0D0B0; border-radius: 10px;
+            width: fit-content; overflow: hidden;
+        }
+
+        .qty-btn {
+            background: none; border: none;
+            padding: 0.6rem 1rem; font-size: 1.1rem;
+            cursor: pointer; color: var(--honey);
+            transition: background 0.2s;
+        }
+
+        .qty-btn:hover { background: rgba(200,134,42,0.08); }
+        .qty-num { padding: 0 1rem; font-weight: 600; color: var(--dark); min-width: 40px; text-align: center; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--muted); font-size: 0.9rem; cursor: pointer;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: var(--honey); }
+
+        /* ── REVIEWS ── */
+        .reviews-section { margin-top: 3rem; }
+        .reviews-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; margin-bottom: 1.5rem;
+        }
+
+        .review-form {
+            background: white;
+            border-radius: 14px;
+            padding: 1.5rem;
+            border: 1.5px solid #EDE0C4;
+            margin-bottom: 2rem;
+        }
+
+        .review-form h4 { margin-bottom: 1rem; font-size: 1rem; color: var(--dark); }
+
+        .star-select { display: flex; gap: 0.3rem; margin-bottom: 1rem; font-size: 1.4rem; cursor: pointer; }
+        .star-select span { transition: transform 0.15s; }
+        .star-select span:hover { transform: scale(1.2); }
+
+        .review-textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1.5px solid #E0D0B0;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+            transition: border-color 0.2s;
+        }
+
+        .review-textarea:focus { outline: none; border-color: var(--honey); }
+
+        .review-name-input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1.5px solid #E0D0B0;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .review-name-input:focus { outline: none; border-color: var(--honey); }
+
+        .reviews-list { display: flex; flex-direction: column; gap: 1rem; }
+
+        .review-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem 1.4rem;
+            border: 1.5px solid #EDE0C4;
+        }
+
+        .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; }
+        .reviewer-name { font-weight: 600; font-size: 0.95rem; }
+        .review-date { font-size: 0.78rem; color: var(--muted); }
+        .review-stars { color: var(--honey); font-size: 0.85rem; margin-bottom: 0.4rem; }
+        .review-text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+        /* ── WISHLIST ── */
+        .wishlist-empty {
+            text-align: center;
+            padding: 5rem 2rem;
+            color: var(--muted);
+        }
+
+        .wishlist-empty .empty-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .wishlist-empty h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--dark); }
+
+        /* ── CART MODAL ── */
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(26,18,8,0.5);
+            z-index: 3000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.open { display: flex; align-items: center; justify-content: center; }
+
+        .cart-panel {
+            position: fixed;
+            right: 0; top: 0; bottom: 0;
+            width: 420px;
+            background: var(--white);
+            z-index: 3001;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+        }
+
+        .cart-panel.open { transform: translateX(0); }
+
+        .cart-header {
+            padding: 1.5rem 1.8rem;
+            border-bottom: 1.5px solid #EDE0C4;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+
+        .cart-header h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+
+        .close-btn {
+            background: none; border: none; font-size: 1.4rem;
+            cursor: pointer; color: var(--muted); padding: 0.2rem;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover { color: var(--dark); }
+
+        .cart-items { flex: 1; overflow-y: auto; padding: 1.2rem 1.8rem; }
+
+        .cart-item {
+            display: flex; gap: 1rem; align-items: center;
+            padding: 1rem 0; border-bottom: 1px solid #F5EDD8;
+        }
+
+        .cart-item:last-child { border-bottom: none; }
+
+        .cart-item img {
+            width: 60px; height: 60px;
+            border-radius: 10px; object-fit: cover;
+        }
+
+        .ci-info { flex: 1; }
+        .ci-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+        .ci-price { font-size: 0.82rem; color: var(--muted); }
+
+        .ci-controls { display: flex; align-items: center; gap: 0.5rem; }
+
+        .ci-qty-btn {
+            background: var(--honey-pale); border: 1.5px solid #E0D0B0;
+            border-radius: 6px; width: 26px; height: 26px;
+            cursor: pointer; font-size: 0.9rem; color: var(--honey);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.15s;
+        }
+
+        .ci-qty-btn:hover { background: var(--honey); color: white; border-color: var(--honey); }
+
+        .ci-qty { font-weight: 600; font-size: 0.9rem; min-width: 20px; text-align: center; }
+
+        .ci-remove {
+            background: none; border: none;
+            color: var(--muted); cursor: pointer; font-size: 1.1rem;
+            margin-left: 0.3rem; transition: color 0.2s;
+        }
+
+        .ci-remove:hover { color: var(--danger); }
+
+        .cart-footer {
+            padding: 1.5rem 1.8rem;
+            border-top: 1.5px solid #EDE0C4;
+        }
+
+        .cart-total-row {
+            display: flex; justify-content: space-between;
+            align-items: baseline; margin-bottom: 1.2rem;
+        }
+
+        .cart-total-label { font-size: 0.9rem; color: var(--muted); }
+        .cart-total-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem; color: var(--honey); font-weight: 700;
+        }
+
+        .cart-empty {
+            text-align: center; padding: 3rem 1rem; color: var(--muted);
+        }
+
+        .cart-empty .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+
+        /* ── CONTACT FORM ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info-card {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: white;
+            display: flex; flex-direction: column; gap: 2rem;
+        }
+
+        .contact-info-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--honey-light);
+        }
+
+        .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .contact-icon { font-size: 1.4rem; margin-top: 2px; }
+        .contact-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 0.2rem; }
+        .contact-val { font-size: 1rem; }
+        .contact-val a { color: var(--honey-light); text-decoration: none; }
+
+        .contact-form-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1.5px solid #EDE0C4;
+        }
+
+        .contact-form-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--dark);
+        }
+
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--text); }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1.5px solid #E0D0B0;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text);
+            background: white;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--honey); }
+
+        .form-textarea { resize: vertical; min-height: 120px; }
+
+        /* ── ABOUT ── */
+        .about-hero {
+            background: linear-gradient(135deg, #3D2000, var(--dark));
+            border-radius: 20px;
+            padding: 4rem;
+            color: white;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .about-hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--honey-light);
+            margin-bottom: 1rem;
+        }
+
+        .about-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; line-height: 1.8; }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: var(--card-bg);
+            border: 1.5px solid #EDE0C4;
+            border-radius: 16px;
+            padding: 1.8rem;
+            text-align: center;
+        }
+
+        .value-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .value-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--dark); }
+        .value-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+        /* ── TOAST ── */
+        .toast-wrap {
+            position: fixed;
+            bottom: 2rem; left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex; flex-direction: column; gap: 0.6rem;
+            align-items: center;
+        }
+
+        .toast {
+            background: var(--dark);
+            color: white;
+            padding: 0.7rem 1.4rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            animation: toastIn 0.35s ease, toastOut 0.3s ease 2.4s forwards;
+            white-space: nowrap;
+        }
+
+        @keyframes toastIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes toastOut { to { opacity:0; transform:translateY(20px); } }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+            nav { flex-wrap: wrap; height: auto; padding: 0.8rem 1.2rem; gap: 0.8rem; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .search-input { width: 150px; }
+            .search-input:focus { width: 180px; }
+            main { padding: 1.5rem 1rem; margin-top: 100px; }
+            .hero { padding: 2.5rem 1.8rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero::before { display: none; }
+            .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+            .detail-wrap { grid-template-columns: 1fr; gap: 1.5rem; }
+            .detail-img { height: 260px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .cart-panel { width: 100%; }
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--white);
+            padding: 1.5rem;
+            z-index: 2500;
+            flex-direction: column;
+            gap: 0.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transform: translateY(-120%);
+            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+            padding-top: 90px;
+        }
+
+        .mobile-nav.open { transform: translateY(0); display: flex; }
+
+        .mobile-nav a {
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .mobile-nav a:hover { background: var(--honey-pale); color: var(--honey); }
+
+        /* Page header */
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .page-header p { color: var(--muted); font-size: 0.95rem; }
     </style>
 </head>
 <body>
-    <!-- Шапка сайта с навигацией -->
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="https://placehold.co/50x50?text=Мед" alt="Логотип BeeBloom">
-                BeeBloom
-            </div>
-            <div class="header-contact">
-                Для швидкого замовлення: <a href="tel:+380952175674">+38 (095) 217-56-74</a>
-            </div>
-            <ul class="nav-menu">
-                <li><a onclick="showSection('home')">Главная</a></li>
-                <li><a onclick="showSection('products')">Товары</a></li>
-                <li><a onclick="showSection('about')">О нас</a></li>
-                <li><a onclick="showSection('contacts')">Контакты</a></li>
-            </ul>
 
-            <!-- Поиск -->
-            <div class="search-container">
-                <div class="search-box">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Поиск товаров..." onkeyup="handleSearchInput(event)">
-                    <button class="search-btn" onclick="performSearch()">🔍</button>
-                    <div class="search-results" id="searchResults"></div>
-                </div>
+<!-- ── HEADER ── -->
+<header>
+    <nav>
+        <div class="logo" onclick="showPage('home')">
+            <span>🐝</span> BeeBloom
+        </div>
+
+        <ul class="nav-links">
+            <li><a onclick="showPage('home')" data-page="home">Головна</a></li>
+            <li><a onclick="showPage('products')" data-page="products">Товари</a></li>
+            <li><a onclick="showPage('about')" data-page="about">Про нас</a></li>
+            <li><a onclick="showPage('contacts')" data-page="contacts">Контакти</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="search-wrap">
+                <input type="text" class="search-input" id="searchInput" placeholder="Пошук..." oninput="onSearchInput(this.value)" onkeydown="if(event.key==='Enter') doSearch()">
+                <button class="search-btn" onclick="doSearch()">🔍</button>
+                <div class="search-dropdown" id="searchDropdown"></div>
             </div>
 
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-            <button class="cart-icon" onclick="toggleCart()">
-                🛒
-                <span class="cart-count" id="cartCount">0</span>
+            <button class="icon-btn" onclick="showPage('wishlist')" title="Обране">
+                ❤️
+                <span class="badge" id="wishCount" style="display:none">0</span>
             </button>
 
-            <!-- Мобильное меню -->
-            <div class="mobile-menu" id="mobileMenu">
-                <ul>
-                    <li><a onclick="showSection('home'); closeMobileMenu()">Главная</a></li>
-                    <li><a onclick="showSection('products'); closeMobileMenu()">Товары</a></li>
-                    <li><a onclick="showSection('about'); closeMobileMenu()">О нас</a></li>
-                    <li><a onclick="showSection('contacts'); closeMobileMenu()">Контакты</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+            <button class="icon-btn" onclick="openCart()" title="Кошик">
+                🛒
+                <span class="badge" id="cartBadge">0</span>
+            </button>
 
-    <main>
-        <div class="container">
-            <!-- Главная секция -->
-            <section id="home" class="section active">
-                <div class="hero">
-                    <h1>BeeBloom - Світ натуральних продуктів</h1>
-                    <p>Ласкаво просимо до BeeBloom! Ми пропонуємо тільки якісні продукти бджільництва та натуральні трав'яні чаї. Наш мед зібрано в екологічно чистих районах і він зберігає всі корисні властивості природи.</p>
-                </div>
-
-                <div class="products-grid">
-                    <div class="product-card" onclick="showProductDetails(1)">
-                        <div class="product-image">
-                            <img src="https://placehold.co/300x200?text=Квітковий+мед" alt="Квітковий мед">
-                        </div>
-                        <h3>Квітковий мед</h3>
-                        <p>Ароматний мед із різнотрав'я з ніжним смаком</p>
-                        <div class="product-price">450 грн/кг</div>
-                    </div>
-
-                    <div class="product-card" onclick="showProductDetails(2)">
-                        <div class="product-image">
-                            <img src="https://placehold.co/300x200?text=Липовий+мед" alt="Липовий мед">
-                        </div>
-                        <h3>Липовий мед</h3>
-                        <p>Цілющий мед з неповторним ароматом липи</p>
-                        <div class="product-price">520 грн/кг</div>
-                    </div>
-
-                    <div class="product-card" onclick="showProductDetails(3)">
-                        <div class="product-image">
-                            <img src="https://placehold.co/300x200?text=Акацієвий+мед" alt="Акацієвий мед">
-                        </div>
-                        <h3>Акацієвий мед</h3>
-                        <p>Прозорий мед з делікатним смаком</p>
-                        <div class="product-price">580 грн/кг</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Секция товаров -->
-            <section id="products" class="section">
-                <h2>Наші товари</h2>
-                <div class="products-grid" id="productsContainer">
-                    <!-- Товары будут добавляться динамически -->
-                </div>
-            </section>
-
-            <!-- Детали товара -->
-            <section id="product-details" class="section">
-                <div class="product-details" id="productDetailsContainer">
-                    <!-- Содержимое будет добавляться динамически -->
-                </div>
-            </section>
-
-            <!-- О нас -->
-            <section id="about" class="section">
-                <h2>Про магазин BeeBloom</h2>
-                <div class="about-content">
-                    <p>BeeBloom - це молодий і динамічний магазин натуральних продуктів бджільництва. Ми працюємо напряму з найкращими пасічниками України, які знаходяться в екологічно чистих районах.</p>
-                    <br>
-                    <p>Наші принципи:</p>
-                    <ul>
-                        <li>Натуральність - тільки справжні продукти без додатків</li>
-                        <li>Якість - строгий відбір постачальників і контроль якості</li>
-                        <li>Свіжість - швидка доставка прямо з пасік</li>
-                        <li>Доступність - справедливі ціни на якісні продукти</li>
-                        <li>Сервіс - індивідуальний підхід до кожного клієнта</li>
-                    </ul>
-                    <br>
-                    <p>У BeeBloom ви знайдете не тільки традиційний мед, але й рідкісні сорти, бджолині продукти для здоров'я, а також натуральні трав'яні чаї від найкращих травників.</p>
-                </div>
-            </section>
-
-            <!-- Контакты -->
-            <section id="contacts" class="section">
-                <h2>Контакти</h2>
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        <h3>📞 Телефон</h3>
-                        <p>+38 (095) 217-56-74</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>📧 Email</h3>
-                        <p>falieievrostik@gmail.com</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>📍 Адреса</h3>
-                        <p>с. Михайлівка<br>Полтавський район</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>📱 Соціальні мережі</h3>
-                        <p><a href="https://instagram.com/beebloom.ua" target="_blank" style="color: #d4a574;">📸 Instagram: @beebloom.ua</a></p>
-                        <p><a href="https://tiktok.com/@beebloom.ua" target="_blank" style="color: #d4a574;">🎵 TikTok: @beebloom.ua</a></p>
-                        <p><a href="https://t.me/beebloom" target="_blank" style="color: #d4a574;">📞 Telegram: @beebloom</a></p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Админ панель -->
-            <section id="admin" class="section">
-                <div class="admin-panel">
-                    <h3>Додати новий товар</h3>
-                    <div class="success-message" id="successMessage">Товар успішно додано!</div>
-                    <form class="admin-form" onsubmit="addProduct(event)">
-                        <input type="text" id="productName" placeholder="Назва товару" required>
-                        <input type="number" id="productPrice" placeholder="Ціна (грн)" required>
-                        <input type="text" id="productImage" placeholder="URL зображення (або залиште порожнім для заглушки)">
-                        <textarea id="productDescription" placeholder="Опис товару" rows="3" required></textarea>
-                        <button type="submit" class="btn">Додати товар</button>
-                    </form>
-                </div>
-
-                <div class="admin-panel">
-                    <h3>Існуючі товари</h3>
-                    <div id="adminProductsList">
-                        <!-- Список товарів для адміністратора -->
-                    </div>
-                </div>
-            </section>
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()">☰</button>
         </div>
-    </main>
+    </nav>
+</header>
 
-    <!-- Модальное окно корзины -->
-    <div id="cartModal" class="cart-modal">
-        <div class="cart-content">
-            <h3>Кошик покупок</h3>
-            <div id="cartItems"></div>
-            <div class="cart-total" id="cartTotal">Разом: 0 грн</div>
-            <button class="btn" onclick="checkout()">Оформити замовлення</button>
-            <button class="btn" onclick="clearCart()" style="background: #ff6b6b; margin-top: 0.5rem;">Очистити кошик</button>
-            <button class="btn" onclick="toggleCart()" style="background: #666; margin-top: 0.5rem;">Закрити</button>
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+    <a onclick="showPage('home'); toggleMobileNav()">🏠 Головна</a>
+    <a onclick="showPage('products'); toggleMobileNav()">🛍️ Товари</a>
+    <a onclick="showPage('about'); toggleMobileNav()">🌿 Про нас</a>
+    <a onclick="showPage('contacts'); toggleMobileNav()">📞 Контакти</a>
+    <a onclick="showPage('wishlist'); toggleMobileNav()">❤️ Обране</a>
+</div>
+
+<main style="margin-top:90px">
+
+    <!-- ══ HOME PAGE ══ -->
+    <div id="page-home" class="page active">
+        <div class="hero">
+            <div class="hero-tag">🐝 Натуральні продукти з пасіки</div>
+            <h1>Смак справжньої <em>природи</em> у кожній краплі</h1>
+            <p>Ми працюємо напряму з найкращими пасічниками України. Тільки натуральний мед, без добавок та консервантів.</p>
+            <div class="hero-btns">
+                <button class="btn-primary" onclick="showPage('products')">Переглянути товари</button>
+                <button class="btn-outline" onclick="showPage('about')">Дізнатись більше</button>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-num">8+</div>
+                    <div class="stat-label">Видів меду</div>
+                </div>
+                <div>
+                    <div class="stat-num">100%</div>
+                    <div class="stat-label">Натуральний</div>
+                </div>
+                <div>
+                    <div class="stat-num">500+</div>
+                    <div class="stat-label">Задоволених клієнтів</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">Популярні товари</h2>
+            <a class="section-link" onclick="showPage('products')">Всі товари →</a>
+        </div>
+
+        <div class="products-grid" id="featuredGrid"></div>
+    </div>
+
+    <!-- ══ PRODUCTS PAGE ══ -->
+    <div id="page-products" class="page">
+        <div class="page-header">
+            <h2>Наші товари</h2>
+            <p>Натуральні продукти бджільництва та трав'яні чаї</p>
+        </div>
+
+        <div class="filter-bar" id="filterBar">
+            <span class="filter-label">Фільтр:</span>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <!-- ══ PRODUCT DETAIL PAGE ══ -->
+    <div id="page-detail" class="page">
+        <div class="back-link" onclick="goBack()">← Назад</div>
+        <div class="detail-wrap" id="detailWrap"></div>
+        <div class="reviews-section" id="reviewsSection"></div>
+    </div>
+
+    <!-- ══ WISHLIST PAGE ══ -->
+    <div id="page-wishlist" class="page">
+        <div class="page-header">
+            <h2>❤️ Обране</h2>
+            <p>Товари, які ви зберегли</p>
+        </div>
+        <div id="wishlistContent"></div>
+    </div>
+
+    <!-- ══ ABOUT PAGE ══ -->
+    <div id="page-about" class="page">
+        <div class="about-hero">
+            <h2>Про магазин BeeBloom</h2>
+            <p>BeeBloom — молодий і динамічний магазин натуральних продуктів бджільництва. Ми співпрацюємо напряму з найкращими пасічниками України, що дозволяє нам пропонувати справжній мед за справедливою ціною.</p>
+        </div>
+        <div class="section-header">
+            <h2 class="section-title">Наші принципи</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🌿</div>
+                <div class="value-title">Натуральність</div>
+                <div class="value-text">Тільки справжні продукти без додатків та консервантів</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">✅</div>
+                <div class="value-title">Якість</div>
+                <div class="value-text">Строгий відбір постачальників та контроль якості</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🚚</div>
+                <div class="value-title">Швидка доставка</div>
+                <div class="value-text">Прямо з пасік — максимум свіжості для вас</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💰</div>
+                <div class="value-title">Доступні ціни</div>
+                <div class="value-text">Справедливі ціни за рахунок прямої роботи з пасічниками</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <div class="value-title">Сервіс</div>
+                <div class="value-text">Індивідуальний підхід до кожного клієнта</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🌱</div>
+                <div class="value-title">Екологічність</div>
+                <div class="value-text">Мед з екологічно чистих районів України</div>
+            </div>
         </div>
     </div>
 
-    <script>
-        // Глобальные переменные для хранения данных
-        let products = [
-            {
-                id: 1,
-                name: 'Квітковий мед',
-                price: 450,
-                image: 'https://placehold.co/300x200?text=Квітковий+мед',
-                description: 'Ароматний мед із різнотрав\'я з ніжним смаком'
-            },
-            {
-                id: 2,
-                name: 'Липовий мед',
-                price: 520,
-                image: 'https://placehold.co/300x200?text=Липовий+мед',
-                description: 'Цілющий мед з неповторним ароматом липи'
-            },
-            {
-                id: 3,
-                name: 'Акацієвий мед',
-                price: 580,
-                image: 'https://placehold.co/300x200?text=Акацієвий+мед',
-                description: 'Прозорий мед з делікатним смаком'
-            },
-            {
-                id: 4,
-                name: 'Прополіс',
-                price: 320,
-                image: 'https://placehold.co/300x200?text=Прополіс',
-                description: 'Натуральний прополіс для зміцнення імунітету'
-            },
-            {
-                id: 5,
-                name: 'Бджолиний пилок',
-                price: 280,
-                image: 'https://placehold.co/300x200?text=Бджолиний+пилок',
-                description: 'Багатий на вітаміни пилок бджіл'
-            },
-            {
-                id: 6,
-                name: 'Трав\'яний чай "Польові трави"',
-                price: 95,
-                image: 'https://placehold.co/300x200?text=Трав\'яний+чай+Польові+трави',
-                description: 'Ароматний чай із лікарських трав'
-            },
-            {
-                id: 7,
-                name: 'Чай "Меліса і м\'ята"',
-                price: 85,
-                image: 'https://placehold.co/300x200?text=Чай+Меліса+і+м\'ята',
-                description: 'Заспокійливий чай для гарного сну'
-            },
-            {
-                id: 8,
-                name: 'Чай "Ромашковий"',
-                price: 75,
-                image: 'https://placehold.co/300x200?text=Чай+Ромашковий',
-                description: 'Ніжний ромашковий чай з цілючими властивостями'
-            }
-        ];
-
-        let cart = []; // Корзина покупок
-        let nextProductId = 9; // Для генерации ID новых товаров
-
-        // Функции для мобильного меню
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (!mobileMenu) {
-                console.error('Мобильное меню не найдено!');
-                return;
-            }
-            mobileMenu.classList.toggle('active');
-        }
-
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (!mobileMenu) {
-                console.error('Мобильное меню не найдено!');
-                return;
-            }
-            mobileMenu.classList.remove('active');
-        }
-
-        // Функция для переключения между секциями
-        function showSection(sectionName) {
-            // Скрываем все секции
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.remove('active'));
-
-            // Показываем выбранную секцию
-            const section = document.getElementById(sectionName);
-            if (!section) {
-                console.error(`Секция "${sectionName}" не найдена!`);
-                return;
-            }
-            section.classList.add('active');
-
-            // Если открываем секцию товаров, обновляем их список
-            if (sectionName === 'products') {
-                displayProducts();
-            }
-
-            // Если открываем админ панель, обновляем список товаров для админа
-            if (sectionName === 'admin') {
-                displayAdminProducts();
-            }
-        }
-
-        // Функция для отображения всех товаров
-        function showAllProducts() {
-            showSection('products');
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.value = ''; // Очищаем поле поиска
-            }
-            displayProducts();
-        }
-
-        // Функция для отображения деталей товара
-        function showProductDetails(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) {
-                alert('Товар не знайдено!');
-                console.error(`Товар с ID ${productId} не найден!`);
-                return;
-            }
-
-            const container = document.getElementById('productDetailsContainer');
-            if (!container) {
-                console.error('Контейнер для деталей товара не найден!');
-                return;
-            }
-
-            container.innerHTML = `
-                <div class="product-image">
-                    <img src="${product.image || 'https://placehold.co/300x200?text=Товар'}" alt="${product.name || 'Без названия'}">
-                </div>
-                <h3>${product.name || 'Без названия'}</h3>
-                <p>${product.description || 'Без описания'}</p>
-                <div class="product-price">${product.price || 0} грн${product.name && product.name.includes('мед') ? '/кг' : ''}</div>
-                <button class="btn add-to-cart-btn">Додати до кошика</button>
-                <button class="btn back-btn" onclick="showSection('products')">Назад до товарів</button>
-            `;
-            showSection('product-details');
-
-            // Привязываем событие клика для кнопки "Додати до кошика"
-            const addToCartButton = container.querySelector('.add-to-cart-btn');
-            if (addToCartButton) {
-                addToCartButton.addEventListener('click', () => {
-                    console.log('Клик по кнопке "Додати до кошика" для товара:', product);
-                    addToCart(product.name, product.price, product.image);
-                });
-            } else {
-                console.error('Кнопка "Додати до кошика" не найдена в DOM!');
-            }
-        }
-
-        // Функция поиска товаров
-        function searchProducts(query) {
-            if (!query || typeof query !== 'string') {
-                console.log('Пустой запрос поиска, возвращаем все товары');
-                return products;
-            }
-
-            const searchTerm = query.toLowerCase().trim();
-            return products.filter(product =>
-                (product.name && product.name.toLowerCase().includes(searchTerm)) ||
-                (product.description && product.description.toLowerCase().includes(searchTerm))
-            );
-        }
-
-        // Обработка ввода в поле поиска
-        function handleSearchInput(event) {
-            const query = event.target.value;
-
-            if (event.key === 'Enter') {
-                performSearch();
-                return;
-            }
-
-            if (query.length >= 1) {
-                showSearchResults(query);
-            } else {
-                hideSearchResults();
-            }
-        }
-
-        // Выполнение поиска
-        function performSearch() {
-            const searchInput = document.getElementById('searchInput');
-            if (!searchInput) {
-                console.error('Поле поиска не найдено!');
-                return;
-            }
-            const query = searchInput.value.trim();
-
-            if (!query) {
-                alert('Введіть запит для пошуку');
-                return;
-            }
-
-            // Переключаемся на секцию товаров
-            showSection('products');
-
-            // Фильтруем и отображаем результаты
-            const searchResults = searchProducts(query);
-            displaySearchResults(searchResults, query);
-
-            // Скрываем выпадающий список
-            hideSearchResults();
-        }
-
-        // Показ выпадающего списка результатов поиска
-        function showSearchResults(query) {
-            const searchResults = searchProducts(query);
-            const resultsContainer = document.getElementById('searchResults');
-            if (!resultsContainer) {
-                console.error('Контейнер для результатов поиска не найден!');
-                return;
-            }
-
-            resultsContainer.innerHTML = '';
-
-            if (searchResults.length === 0) {
-                resultsContainer.innerHTML = '<div class="search-no-results">Товари не знайдено</div>';
-            } else {
-                searchResults.slice(0, 5).forEach(product => { // Показываем только первые 5 результатов
-                    const resultItem = document.createElement('div');
-                    resultItem.className = 'search-result-item';
-                    resultItem.innerHTML = `
-                        <img src="${product.image || 'https://placehold.co/40x40?text=Товар'}" alt="${product.name || 'Товар'}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px;">
-                        <div>
-                            <div><strong>${product.name || 'Без названия'}</strong></div>
-                            <div style="font-size: 0.9rem; color: #666;">${product.price || 0} грн</div>
-                        </div>
-                    `;
-                    resultItem.onclick = () => selectSearchResult(product);
-                    resultsContainer.appendChild(resultItem);
-                });
-
-                if (searchResults.length > 5) {
-                    const moreResults = document.createElement('div');
-                    moreResults.className = 'search-result-item';
-                    moreResults.style.color = '#d4a574';
-                    moreResults.style.fontWeight = 'bold';
-                    moreResults.innerHTML = `Ще ${searchResults.length - 5} товарів... Натисніть Enter для перегляду всіх`;
-                    resultsContainer.appendChild(moreResults);
-                }
-            }
-
-            resultsContainer.style.display = 'block';
-        }
-
-        // Скрытие результатов поиска
-        function hideSearchResults() {
-            const resultsContainer = document.getElementById('searchResults');
-            if (resultsContainer) {
-                resultsContainer.style.display = 'none';
-            }
-        }
-
-        // Выбор товара из результатов поиска
-        function selectSearchResult(product) {
-            if (product && product.id) {
-                showProductDetails(product.id);
-                hideSearchResults();
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput) {
-                    searchInput.value = '';
-                }
-            }
-        }
-
-        // Отображение результатов поиска на странице товаров
-        function displaySearchResults(searchResults, query) {
-            const container = document.getElementById('productsContainer');
-            const sectionTitle = document.querySelector('#products h2');
-
-            if (!container || !sectionTitle) {
-                console.error('Контейнер или заголовок для товаров не найден!');
-                return;
-            }
-
-            if (searchResults.length === 0) {
-                sectionTitle.textContent = `Результати пошуку: "${query}" (не знайдено)`;
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 3rem; color: #666;">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">😔</div>
-                        <h3>Товари не знайдено</h3>
-                        <p>Спробуйте змінити запит пошуку або перегляньте всі товари</p>
-                        <button class="btn" onclick="showAllProducts()" style="margin-top: 1rem;">Показати всі товари</button>
-                    </div>
-                `;
-                return;
-            }
-
-            sectionTitle.textContent = `Результати пошуку: "${query}" (${searchResults.length} товарів)`;
-            container.innerHTML = '';
-
-            searchResults.forEach(product => {
-                const productCard = `
-                    <div class="product-card" onclick="showProductDetails(${product.id})">
-                        <div class="product-image">
-                            <img src="${product.image || 'https://placehold.co/300x200?text=Товар'}" alt="${product.name || 'Товар'}">
-                        </div>
-                        <h3>${product.name || 'Без названия'}</h3>
-                        <p>${product.description || 'Без описания'}</p>
-                        <div class="product-price">${product.price || 0} грн${product.name && product.name.includes('мед') ? '/кг' : ''}</div>
-                    </div>
-                `;
-                container.innerHTML += productCard;
-            });
-
-            // Добавляем кнопку "Показать все товары" в конце
-            container.innerHTML += `
-                <div class="product-card" style="display: flex; align-items: center; justify-content: center; min-height: 200px; background: linear-gradient(45deg, #f8f9fa, #e9ecef);">
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 1rem;">🛍️</div>
-                        <h3 style="margin-bottom: 1rem; color: #666;">Переглянути всі товари</h3>
-                        <button class="btn" onclick="showAllProducts()">Показати всі</button>
+    <!-- ══ CONTACTS PAGE ══ -->
+    <div id="page-contacts" class="page">
+        <div class="contact-grid">
+            <div class="contact-info-card">
+                <h2>Зв'яжіться з нами</h2>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <div class="contact-label">Телефон</div>
+                        <div class="contact-val"><a href="tel:+380952175674">+38 (095) 217-56-74</a></div>
                     </div>
                 </div>
-            `;
-        }
-
-        // Функция для отображения всех товаров
-        function displayProducts() {
-            const container = document.getElementById('productsContainer');
-            const sectionTitle = document.querySelector('#products h2');
-            if (!container || !sectionTitle) {
-                console.error('Контейнер или заголовок для товаров не найден!');
-                return;
-            }
-
-            container.innerHTML = '';
-            sectionTitle.textContent = 'Наші товари';
-
-            products.forEach(product => {
-                const productCard = `
-                    <div class="product-card" onclick="showProductDetails(${product.id})">
-                        <div class="product-image">
-                            <img src="${product.image || 'https://placehold.co/300x200?text=Товар'}" alt="${product.name || 'Товар'}">
-                        </div>
-                        <h3>${product.name || 'Без названия'}</h3>
-                        <p>${product.description || 'Без описания'}</p>
-                        <div class="product-price">${product.price || 0} грн${product.name && product.name.includes('мед') ? '/кг' : ''}</div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-val"><a href="mailto:falieievrostik@gmail.com">falieievrostik@gmail.com</a></div>
                     </div>
-                `;
-                container.innerHTML += productCard;
-            });
-        }
-
-        // Функция для отображения товаров в админ панели
-        function displayAdminProducts() {
-            const container = document.getElementById('adminProductsList');
-            if (!container) {
-                console.error('Контейнер для админ-панели не найден!');
-                return;
-            }
-
-            container.innerHTML = '';
-
-            if (products.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #666;">Товарів поки немає</p>';
-                return;
-            }
-
-            products.forEach(product => {
-                const productItem = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; margin: 0.5rem 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <img src="${product.image || 'https://placehold.co/40x40?text=Товар'}" alt="${product.name || 'Товар'}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px;">
-                            <div>
-                                <strong>${product.name || 'Без названия'}</strong><br>
-                                <small style="color: #666;">${product.description || 'Без описания'}</small><br>
-                                <span style="color: #d4a574; font-weight: bold;">${product.price || 0} грн</span>
-                            </div>
-                        </div>
-                        <button onclick="removeProduct(${product.id})" class="btn btn-danger" style="width: auto; padding: 0.5rem 1rem;">Видалити</button>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <div class="contact-label">Адреса</div>
+                        <div class="contact-val">с. Михайлівка, Полтавський район</div>
                     </div>
-                `;
-                container.innerHTML += productItem;
-            });
-        }
-
-        // Функция добавления товара в корзину
-        function addToCart(name, price, image) {
-            console.log('Вызов addToCart с параметрами:', { name, price, image });
-            if (!name || typeof name !== 'string' || name.trim() === '' || isNaN(price) || price <= 0) {
-                console.error('Некорректные параметры для addToCart:', { name, price, image });
-                alert('Ошибка: товар не может быть добавлен в корзину!');
-                return;
-            }
-
-            // Проверяем, есть ли уже такой товар в корзине
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1; // Увеличиваем количество
-                console.log(`Увеличено количество товара "${name}" в корзине:`, existingItem.quantity);
-            } else {
-                const newItem = {
-                    name: name,
-                    price: price,
-                    image: image || 'https://placehold.co/40x40?text=Товар',
-                    quantity: 1
-                };
-                cart.push(newItem);
-                console.log(`Добавлен новый товар в корзину:`, newItem);
-            }
-
-            updateCartDisplay();
-
-            // Показываем уведомление
-            alert(`${name} додано до кошика!`);
-        }
-
-        // Функция обновления отображения корзины
-        function updateCartDisplay() {
-            const cartCount = document.getElementById('cartCount');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-
-            if (!cartCount || !cartItems || !cartTotal) {
-                console.error('Элементы корзины не найдены!');
-                return;
-            }
-
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-
-            cartItems.innerHTML = '';
-            let total = 0;
-
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Кошик порожній</p>';
-                cartTotal.textContent = 'Разом: 0 грн';
-                return;
-            }
-
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-
-                cartItems.innerHTML += `
-                    <div class="cart-item">
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <img src="${item.image}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px;">
-                            <div>
-                                <strong>${item.name}</strong><br>
-                                <small>${item.price} грн x ${item.quantity} шт.</small>
-                            </div>
-                        </div>
-                        <div style="text-align: right;">
-                            <div><strong>${itemTotal} грн</strong></div>
-                            <div style="margin-top: 0.5rem;">
-                                <button onclick="decreaseQuantity(${index})" style="background: #666; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer; margin-right: 0.3rem;">-</button>
-                                <button onclick="increaseQuantity(${index})" style="background: #d4a574; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer; margin-right: 0.3rem;">+</button>
-                                <button onclick="removeFromCart(${index})" style="background: #ff6b6b; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer;">×</button>
-                            </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <div class="contact-label">Соціальні мережі</div>
+                        <div class="contact-val">
+                            <a href="https://instagram.com/beebloom.ua" target="_blank">📸 @beebloom.ua</a><br>
+                            <a href="https://tiktok.com/@beebloom.ua" target="_blank">🎵 @beebloom.ua</a><br>
+                            <a href="https://t.me/beebloom" target="_blank">✈️ @beebloom</a>
                         </div>
                     </div>
-                `;
-            });
+                </div>
+            </div>
 
-            cartTotal.textContent = `Разом: ${total} грн`;
-        }
+            <div class="contact-form-card">
+                <h2>Написати нам</h2>
+                <div class="form-group">
+                    <label class="form-label">Ваше ім'я</label>
+                    <input type="text" class="form-input" id="cfName" placeholder="Іван Іваненко">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Телефон або Email</label>
+                    <input type="text" class="form-input" id="cfContact" placeholder="+380...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Повідомлення</label>
+                    <textarea class="form-textarea" id="cfMsg" placeholder="Ваше питання або замовлення..."></textarea>
+                </div>
+                <button class="btn-primary" style="width:100%" onclick="submitContact()">Надіслати повідомлення</button>
+            </div>
+        </div>
+    </div>
 
-        // Функция удаления товара из корзины
-        function removeFromCart(index) {
-            console.log(`Удаление товара из корзины по индексу ${index}`);
-            cart.splice(index, 1);
-            updateCartDisplay();
-        }
+</main>
 
-        // Функция увеличения количества товара
-        function increaseQuantity(index) {
-            console.log(`Увеличение количества товара по индексу ${index}`);
-            cart[index].quantity += 1;
-            updateCartDisplay();
-        }
+<!-- ── CART PANEL ── -->
+<div class="modal-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+        <h3>🛒 Кошик</h3>
+        <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItemsEl"></div>
+    <div class="cart-footer" id="cartFooter"></div>
+</div>
 
-        // Функция уменьшения количества товара
-        function decreaseQuantity(index) {
-            console.log(`Уменьшение количества товара по индексу ${index}`);
-            if (cart[index].quantity > 1) {
-                cart[index].quantity -= 1;
-            } else {
-                cart.splice(index, 1); // Удаляем товар если количество стало 0
-            }
-            updateCartDisplay();
-        }
+<!-- ── TOAST ── -->
+<div class="toast-wrap" id="toastWrap"></div>
 
-        // Функция переключения видимости корзины
-        function toggleCart() {
-            const cartModal = document.getElementById('cartModal');
-            if (!cartModal) {
-                console.error('Модальное окно корзины не найдено!');
-                return;
-            }
+<script>
+// ── DATA ──────────────────────────────────────────────
+const products = [
+    {
+        id: 1, name: 'Квітковий мед', category: 'Мед',
+        price: 450, unit: 'кг',
+        image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80',
+        description: 'Ароматний мед із різнотрав\'я з ніжним медово-квітковим смаком. Зібраний у Полтавській області в екологічно чистих районах. Містить природні ферменти, вітаміни та мікроелементи.',
+        rating: 4.8, reviews: 24,
+        props: [['🌸', 'Збір', 'Різнотрав\'я'], ['📍', 'Регіон', 'Полтавщина'], ['💛', 'Консистенція', 'Рідкий']]
+    },
+    {
+        id: 2, name: 'Липовий мед', category: 'Мед',
+        price: 520, unit: 'кг',
+        image: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&q=80',
+        description: 'Цілющий мед з неповторним ароматом липи. Має легкий ментоловий відтінок, чудово допомагає при застуді та підвищує імунітет.',
+        rating: 4.9, reviews: 36,
+        props: [['🌼', 'Збір', 'Липа'], ['📍', 'Регіон', 'Полтавщина'], ['🌿', 'Властивості', 'Антисептик']]
+    },
+    {
+        id: 3, name: 'Акацієвий мед', category: 'Мед',
+        price: 580, unit: 'кг',
+        image: 'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=600&q=80',
+        description: 'Прозорий мед з делікатним ніжним смаком. Практично безбарвний, довго залишається рідким. Ідеальний для дітей та людей, які не люблять сильного смаку меду.',
+        rating: 4.7, reviews: 19,
+        props: [['🤍', 'Колір', 'Прозорий'], ['🌺', 'Збір', 'Акація'], ['⏳', 'Кристалізація', 'Повільна']]
+    },
+    {
+        id: 4, name: 'Прополіс', category: 'Продукти бджільництва',
+        price: 320, unit: 'г',
+        image: 'https://images.unsplash.com/photo-1590137838862-e7a3a56b1bf3?w=600&q=80',
+        description: 'Натуральний прополіс для зміцнення імунітету. Потужний природний антибіотик. Ефективний при застудних захворюваннях, запаленнях та для загального зміцнення організму.',
+        rating: 4.6, reviews: 12,
+        props: [['💪', 'Дія', 'Антибактеріальна'], ['🍯', 'Форма', 'Сирий'], ['💊', 'Застосування', 'Внутрішнє/зовнішнє']]
+    },
+    {
+        id: 5, name: 'Бджолиний пилок', category: 'Продукти бджільництва',
+        price: 280, unit: 'г',
+        image: 'https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=80',
+        description: 'Багатий на вітаміни бджолиний пилок. Природний суперфуд, що містить всі 22 амінокислоти, вітаміни A, B, C, D, E та мінерали. Підвищує енергію та імунітет.',
+        rating: 4.5, reviews: 8,
+        props: [['🌈', 'Колір', 'Яскравий мікс'], ['💊', 'Вітаміни', 'A, B, C, D, E'], ['⚡', 'Ефект', 'Енергія']]
+    },
+    {
+        id: 6, name: 'Трав\'яний чай "Польові трави"', category: 'Чаї',
+        price: 95, unit: 'уп',
+        image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80',
+        description: 'Ароматний чай із лікарських трав. Збір польових трав з Полтавщини: звіробій, деревій, чебрець, материнка. Покращує травлення та заспокоює нервову систему.',
+        rating: 4.7, reviews: 15,
+        props: [['🌿', 'Склад', 'Польові трави'], ['☕', 'Тип', 'Трав\'яний'], ['🧘', 'Дія', 'Заспокійлива']]
+    },
+    {
+        id: 7, name: 'Чай "Меліса і м\'ята"', category: 'Чаї',
+        price: 85, unit: 'уп',
+        image: 'https://images.unsplash.com/photo-1563911892437-1feda0179e1b?w=600&q=80',
+        description: 'Заспокійливий чай для гарного сну. Поєднання меліси та м\'яти допомагає зняти стрес, покращує сон та знімає головний біль. Ідеальний перед сном.',
+        rating: 4.8, reviews: 22,
+        props: [['🌱', 'Склад', 'Меліса, М\'ята'], ['🌙', 'Найкраще', 'Перед сном'], ['😴', 'Дія', 'Снодійна']]
+    },
+    {
+        id: 8, name: 'Чай "Ромашковий"', category: 'Чаї',
+        price: 75, unit: 'уп',
+        image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80',
+        description: 'Ніжний ромашковий чай з цілющими властивостями. Натуральна ромашка знімає запалення, заспокоює шлунок, допомагає при алергії та покращує настрій.',
+        rating: 4.6, reviews: 17,
+        props: [['🌼', 'Збір', 'Ромашка'], ['💆', 'Дія', 'Протизапальна'], ['🌸', 'Аромат', 'Ніжний квітковий']]
+    }
+];
 
-            if (cartModal.style.display === 'block') {
-                cartModal.style.display = 'none';
-            } else {
-                cartModal.style.display = 'block';
-                updateCartDisplay();
-            }
-        }
+const categories = ['Всі', ...new Set(products.map(p => p.category))];
 
-        // Функция очистки корзины
-        function clearCart() {
-            if (cart.length === 0) {
-                alert('Кошик вже порожній!');
-                return;
-            }
+// ── STATE ──────────────────────────────────────────────
+let cart = [];
+let wishlist = [];
+let currentPage = 'home';
+let previousPage = 'home';
+let activeCategory = 'Всі';
+let currentProductId = null;
+let detailQty = 1;
 
-            if (confirm('Ви впевнені, що хочете очистити кошик?')) {
-                console.log('Очистка корзины');
-                cart = [];
-                updateCartDisplay();
-                alert('Кошик очищено!');
-            }
-        }
+// Per-product reviews stored in memory
+const productReviews = {};
+products.forEach(p => {
+    productReviews[p.id] = [
+        { name: 'Олена К.', rating: 5, text: 'Чудовий продукт, дуже задоволена якістю!', date: '10 берез. 2026' },
+        { name: 'Михайло Т.', rating: 4, text: 'Замовляю вже вдруге, все відмінно.', date: '5 берез. 2026' }
+    ];
+});
 
-        // Функция оформления заказа
-        function checkout() {
-            if (cart.length === 0) {
-                alert('Кошик порожній! Додайте товари для оформлення замовлення.');
-                return;
-            }
+// ── NAVIGATION ────────────────────────────────────────
+function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === name);
+    });
+    previousPage = currentPage;
+    currentPage = name;
+    document.getElementById('page-' + name).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (name === 'home') renderFeatured();
+    if (name === 'products') renderProducts();
+    if (name === 'wishlist') renderWishlist();
+}
 
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            let orderText = 'Ваше замовлення:\n\n';
+function goBack() {
+    showPage(previousPage === 'detail' ? 'products' : (previousPage || 'products'));
+}
 
-            cart.forEach(item => {
-                orderText += `${item.name} - ${item.quantity} шт. x ${item.price} грн = ${item.price * item.quantity} грн\n`;
-            });
+function toggleMobileNav() {
+    document.getElementById('mobileNav').classList.toggle('open');
+}
 
-            orderText += `\nЗагальна сума: ${total} грн\n\n`;
-            orderText += 'Для замовлення вкажіть ПІБ, місто, номер відділення або адреса, телефон:\n';
+// ── RENDER PRODUCTS ────────────────────────────────────
+function renderFeatured() {
+    const grid = document.getElementById('featuredGrid');
+    grid.innerHTML = products.slice(0, 3).map(p => productCardHTML(p)).join('');
+}
 
-            alert(orderText);
+function renderProducts(filtered = null) {
+    const list = filtered || (activeCategory === 'Всі' ? products : products.filter(p => p.category === activeCategory));
+    document.getElementById('productsGrid').innerHTML = list.length
+        ? list.map(p => productCardHTML(p)).join('')
+        : `<div style="text-align:center;padding:4rem;color:var(--muted);grid-column:1/-1">
+            <div style="font-size:3rem;margin-bottom:1rem">😔</div>
+            <h3 style="font-family:'Playfair Display',serif;margin-bottom:.5rem">Нічого не знайдено</h3>
+            <button class="btn-primary" onclick="setFilter('Всі')">Показати всі</button>
+          </div>`;
+    renderFilters();
+}
 
-            // Предлагаем отправить заказ в Telegram
-            const telegramUrl = `https://t.me/beebloom?text=${encodeURIComponent(orderText)}`;
-            if (confirm('Хочете відправити замовлення через Telegram?')) {
-                window.open(telegramUrl, '_blank');
-            }
-        }
+function renderFilters() {
+    const bar = document.getElementById('filterBar');
+    bar.innerHTML = '<span class="filter-label">Фільтр:</span>' +
+        categories.map(c =>
+            `<button class="filter-btn ${c === activeCategory ? 'active' : ''}" onclick="setFilter('${c}')">${c}</button>`
+        ).join('');
+}
 
-        // Функция добавления нового товара (админ панель)
-        function addProduct(event) {
-            event.preventDefault();
+function setFilter(cat) {
+    activeCategory = cat;
+    renderProducts();
+}
 
-            const name = document.getElementById('productName').value;
-            const price = parseInt(document.getElementById('productPrice').value);
-            const image = document.getElementById('productImage').value || `https://placehold.co/300x200?text=${encodeURIComponent(name)}`;
-            const description = document.getElementById('productDescription').value;
+function productCardHTML(p) {
+    const inWish = wishlist.includes(p.id);
+    const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '');
+    return `
+    <div class="product-card">
+        <div class="card-img-wrap" onclick="showDetail(${p.id})">
+            <img src="${p.image}" alt="${p.name}" loading="lazy">
+            <span class="card-category">${p.category}</span>
+        </div>
+        <button class="wishlist-btn ${inWish ? 'active' : ''}" onclick="toggleWish(${p.id})" title="${inWish ? 'Видалити з обраного' : 'Додати в обране'}">
+            ${inWish ? '❤️' : '🤍'}
+        </button>
+        <div class="card-body" onclick="showDetail(${p.id})">
+            <div class="card-name">${p.name}</div>
+            <div class="card-desc">${p.description.substring(0, 70)}...</div>
+            <div class="card-rating">
+                <span class="stars">${'★'.repeat(Math.floor(p.rating))}</span>
+                <span class="rating-count">${p.rating} (${p.reviews} відгуків)</span>
+            </div>
+        </div>
+        <div class="card-body" style="padding-top:0">
+            <div class="card-footer">
+                <div class="card-price">${p.price} грн <small>/${p.unit}</small></div>
+                <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id}, 1)">+ Кошик</button>
+            </div>
+        </div>
+    </div>`;
+}
 
-            // Проверяем, не существует ли уже товар с таким названием
-            if (products.find(p => p.name === name)) {
-                alert('Товар з такою назвою вже існує!');
-                return;
-            }
+// ── PRODUCT DETAIL ─────────────────────────────────────
+function showDetail(id) {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+    currentProductId = id;
+    detailQty = 1;
+    previousPage = currentPage;
+    currentPage = 'detail';
 
-            const newProduct = {
-                id: nextProductId++,
-                name: name,
-                price: price,
-                image: image,
-                description: description
-            };
+    const stars5 = [1,2,3,4,5].map(s => `<span style="color:${s <= Math.round(p.rating) ? 'var(--honey)' : '#ddd'}"  >★</span>`).join('');
 
-            products.push(newProduct);
-            console.log('Добавлен новый товар:', newProduct);
+    document.getElementById('detailWrap').innerHTML = `
+        <div class="detail-img">
+            <img src="${p.image}" alt="${p.name}">
+        </div>
+        <div class="detail-info">
+            <span class="detail-category">${p.category}</span>
+            <h2 class="detail-name">${p.name}</h2>
+            <div class="detail-rating">
+                <span class="stars" style="font-size:1.1rem">${'★'.repeat(Math.floor(p.rating))}</span>
+                <span style="font-weight:600;color:var(--dark)">${p.rating}</span>
+                <span style="color:var(--muted);font-size:.85rem">(${p.reviews} відгуків)</span>
+            </div>
+            <div class="detail-price">${p.price} грн <small>/${p.unit}</small></div>
+            <p class="detail-desc">${p.description}</p>
+            <div class="detail-props">
+                ${p.props.map(([icon, label, val]) => `
+                    <div class="prop-row">
+                        <span class="prop-icon">${icon}</span>
+                        <span class="prop-label">${label}:</span>
+                        <span class="prop-value">${val}</span>
+                    </div>`).join('')}
+            </div>
+            <div class="detail-actions">
+                <div style="display:flex;align-items:center;gap:1rem;">
+                    <div class="qty-selector">
+                        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                        <span class="qty-num" id="detailQtyEl">1</span>
+                        <button class="qty-btn" onclick="changeQty(1)">+</button>
+                    </div>
+                    <span style="font-size:.85rem;color:var(--muted)">шт.</span>
+                </div>
+                <button class="btn-primary" style="width:100%" onclick="addToCart(${p.id}, detailQty)">Додати до кошика</button>
+                <button class="btn-outline" style="color:var(--text);border-color:#E0D0B0;width:100%" onclick="toggleWish(${p.id}); refreshDetailWish()">
+                    <span id="detailWishBtn">${wishlist.includes(p.id) ? '❤️ В обраному' : '🤍 Додати в обране'}</span>
+                </button>
+            </div>
+        </div>`;
 
-            // Очищаем форму
-            document.getElementById('productName').value = '';
-            document.getElementById('productPrice').value = '';
-            document.getElementById('productImage').value = '';
-            document.getElementById('productDescription').value = '';
+    renderReviews(p);
+    document.querySelectorAll('.page').forEach(p2 => p2.classList.remove('active'));
+    document.getElementById('page-detail').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-            // Показываем сообщение об успехе
-            const successMessage = document.getElementById('successMessage');
-            if (successMessage) {
-                successMessage.classList.add('show');
-                setTimeout(() => {
-                    successMessage.classList.remove('show');
-                }, 3000);
-            }
+function changeQty(delta) {
+    detailQty = Math.max(1, detailQty + delta);
+    document.getElementById('detailQtyEl').textContent = detailQty;
+}
 
-            // Обновляем списки товаров
-            displayAdminProducts();
-            if (document.getElementById('products').classList.contains('active')) {
-                displayProducts();
-            }
-        }
+function refreshDetailWish() {
+    const el = document.getElementById('detailWishBtn');
+    if (el) el.textContent = wishlist.includes(currentProductId) ? '❤️ В обраному' : '🤍 Додати в обране';
+}
 
-        // Функция удаления товара (админ панель)
-        function removeProduct(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) {
-                alert('Товар не знайдено!');
-                console.error(`Товар с ID ${productId} не найден для удаления!`);
-                return;
-            }
+// ── REVIEWS ────────────────────────────────────────────
+let selectedStars = 5;
 
-            if (confirm(`Ви впевнені, що хочете видалити "${product.name}"?`)) {
-                products = products.filter(p => p.id !== productId);
+function renderReviews(p) {
+    const revs = productReviews[p.id] || [];
+    document.getElementById('reviewsSection').innerHTML = `
+        <div class="reviews-section">
+            <h3>Відгуки (${revs.length})</h3>
+            <div class="review-form">
+                <h4>Залишити відгук</h4>
+                <div class="star-select" id="starSelect">
+                    ${[1,2,3,4,5].map(s => `<span onclick="setReviewStars(${s})" data-s="${s}">${s <= 5 ? '★' : '☆'}</span>`).join('')}
+                </div>
+                <input type="text" class="review-name-input" id="revName" placeholder="Ваше ім'я">
+                <textarea class="review-textarea" id="revText" placeholder="Напишіть ваш відгук..."></textarea>
+                <button class="btn-primary" onclick="submitReview(${p.id})">Опублікувати відгук</button>
+            </div>
+            <div class="reviews-list">
+                ${revs.map(r => `
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer-name">${r.name}</span>
+                            <span class="review-date">${r.date}</span>
+                        </div>
+                        <div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+                        <div class="review-text">${r.text}</div>
+                    </div>`).join('')}
+            </div>
+        </div>`;
+    selectedStars = 5;
+    updateStarUI();
+}
 
-                // Удаляем товар из корзины, если он там есть
-                cart = cart.filter(item => item.name !== product.name);
-                updateCartDisplay();
+function setReviewStars(n) {
+    selectedStars = n;
+    updateStarUI();
+}
 
-                // Обновляем списки товаров
-                displayAdminProducts();
-                if (document.getElementById('products').classList.contains('active')) {
-                    displayProducts();
-                }
+function updateStarUI() {
+    document.querySelectorAll('#starSelect span').forEach(el => {
+        const s = parseInt(el.dataset.s);
+        el.textContent = s <= selectedStars ? '★' : '☆';
+        el.style.color = s <= selectedStars ? 'var(--honey)' : '#ccc';
+    });
+}
 
-                // Если мы находимся в секции деталей товара, возвращаемся к товарам
-                if (document.getElementById('product-details').classList.contains('active')) {
-                    showSection('products');
-                }
+function submitReview(pid) {
+    const name = document.getElementById('revName').value.trim();
+    const text = document.getElementById('revText').value.trim();
+    if (!name || !text) { toast('Заповніть ім\'я та текст відгуку'); return; }
+    if (!productReviews[pid]) productReviews[pid] = [];
+    const now = new Date();
+    productReviews[pid].unshift({
+        name, rating: selectedStars, text,
+        date: now.toLocaleDateString('uk-UA', { day: 'numeric', month: 'short', year: 'numeric' })
+    });
+    const p = products.find(x => x.id === pid);
+    renderReviews(p);
+    toast('✅ Відгук опубліковано!');
+}
 
-                alert(`Товар "${product.name}" видалено!`);
-            }
-        }
+// ── WISHLIST ───────────────────────────────────────────
+function toggleWish(id) {
+    if (wishlist.includes(id)) {
+        wishlist = wishlist.filter(x => x !== id);
+        toast('Видалено з обраного');
+    } else {
+        wishlist.push(id);
+        toast('❤️ Додано в обране!');
+    }
+    updateWishBadge();
+    renderFeatured();
+    if (currentPage === 'products') renderProducts();
+}
 
-        // Закрытие результатов поиска при клике вне области поиска
-        document.addEventListener('click', function(event) {
-            const cartModal = document.getElementById('cartModal');
-            const cartContent = document.querySelector('.cart-content');
-            const searchBox = document.querySelector('.search-box');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+function updateWishBadge() {
+    const el = document.getElementById('wishCount');
+    el.textContent = wishlist.length;
+    el.style.display = wishlist.length ? 'flex' : 'none';
+}
 
-            // Закрытие корзины
-            if (cartModal && event.target === cartModal && !cartContent.contains(event.target)) {
-                cartModal.style.display = 'none';
-            }
+function renderWishlist() {
+    const el = document.getElementById('wishlistContent');
+    if (!wishlist.length) {
+        el.innerHTML = `<div class="wishlist-empty">
+            <div class="empty-icon">🤍</div>
+            <h3>Список обраного порожній</h3>
+            <p style="margin-bottom:1.5rem">Додайте товари, натиснувши на серце</p>
+            <button class="btn-primary" onclick="showPage('products')">Переглянути товари</button>
+        </div>`;
+        return;
+    }
+    const wishProducts = products.filter(p => wishlist.includes(p.id));
+    el.innerHTML = `<div class="products-grid">${wishProducts.map(p => productCardHTML(p)).join('')}</div>`;
+}
 
-            // Закрытие мобильного меню
-            if (mobileMenu && !mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-                mobileMenu.classList.remove('active');
-            }
+// ── CART ───────────────────────────────────────────────
+function addToCart(productId, qty = 1) {
+    const p = products.find(x => x.id === productId);
+    if (!p) return;
+    const existing = cart.find(x => x.id === productId);
+    if (existing) existing.qty += qty;
+    else cart.push({ id: productId, qty });
+    updateCartBadge();
+    toast(`🛒 ${p.name} додано до кошика!`);
+}
 
-            // Закрытие результатов поиска
-            if (searchBox && !searchBox.contains(event.target)) {
-                hideSearchResults();
-            }
-        });
+function updateCartBadge() {
+    const total = cart.reduce((s, x) => s + x.qty, 0);
+    document.getElementById('cartBadge').textContent = total;
+}
 
-        // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCartDisplay();
+function openCart() {
+    renderCart();
+    document.getElementById('cartOverlay').classList.add('open');
+    document.getElementById('cartPanel').classList.add('open');
+}
 
-            // Показываем главную страницу по умолчанию
-            showSection('home');
+function closeCart() {
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.getElementById('cartPanel').classList.remove('open');
+}
 
-            // Добавляем обработчик для клавиши Escape
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape') {
-                    const cartModal = document.getElementById('cartModal');
-                    if (cartModal && cartModal.style.display === 'block') {
-                        cartModal.style.display = 'none';
-                    }
-                    closeMobileMenu();
-                    hideSearchResults();
-                    if (document.getElementById('product-details').classList.contains('active')) {
-                        showSection('products');
-                    }
-                }
-            });
+function renderCart() {
+    const itemsEl = document.getElementById('cartItemsEl');
+    const footerEl = document.getElementById('cartFooter');
+    if (!cart.length) {
+        itemsEl.innerHTML = `<div class="cart-empty"><div class="empty-icon">🛒</div><p>Кошик порожній</p></div>`;
+        footerEl.innerHTML = '';
+        return;
+    }
+    let total = 0;
+    itemsEl.innerHTML = cart.map((item, i) => {
+        const p = products.find(x => x.id === item.id);
+        total += p.price * item.qty;
+        return `
+        <div class="cart-item">
+            <img src="${p.image}" alt="${p.name}">
+            <div class="ci-info">
+                <div class="ci-name">${p.name}</div>
+                <div class="ci-price">${p.price} грн/${p.unit}</div>
+            </div>
+            <div class="ci-controls">
+                <button class="ci-qty-btn" onclick="cartQty(${i},-1)">−</button>
+                <span class="ci-qty">${item.qty}</span>
+                <button class="ci-qty-btn" onclick="cartQty(${i},1)">+</button>
+                <button class="ci-remove" onclick="cartRemove(${i})">✕</button>
+            </div>
+        </div>`;
+    }).join('');
+    footerEl.innerHTML = `
+        <div class="cart-total-row">
+            <span class="cart-total-label">Загальна сума:</span>
+            <span class="cart-total-val">${total} грн</span>
+        </div>
+        <button class="btn-primary" style="width:100%;margin-bottom:.6rem" onclick="checkout()">Оформити замовлення</button>
+        <button class="btn-outline" style="width:100%;color:var(--danger);border-color:var(--danger)" onclick="clearCart()">Очистити кошик</button>`;
+}
 
-            console.log('Страница BeeBloom загружена успешно! 🍯');
-        });
-    </script>
+function cartQty(i, delta) {
+    cart[i].qty = Math.max(1, cart[i].qty + delta);
+    updateCartBadge(); renderCart();
+}
+
+function cartRemove(i) {
+    cart.splice(i, 1);
+    updateCartBadge(); renderCart();
+}
+
+function clearCart() {
+    if (confirm('Очистити весь кошик?')) { cart = []; updateCartBadge(); renderCart(); }
+}
+
+function checkout() {
+    if (!cart.length) return;
+    const total = cart.reduce((s, x) => s + products.find(p => p.id === x.id).price * x.qty, 0);
+    let text = 'Замовлення BeeBloom:\n\n';
+    cart.forEach(item => {
+        const p = products.find(x => x.id === item.id);
+        text += `${p.name} — ${item.qty} ${p.unit} × ${p.price} = ${p.price * item.qty} грн\n`;
+    });
+    text += `\nСума: ${total} грн\n\nВкажіть ПІБ, місто та номер відділення Нової Пошти.`;
+    const url = `https://t.me/beebloom?text=${encodeURIComponent(text)}`;
+    if (confirm('Відправити замовлення в Telegram?\n\n' + text)) window.open(url, '_blank');
+}
+
+// ── SEARCH ─────────────────────────────────────────────
+function onSearchInput(q) {
+    const dd = document.getElementById('searchDropdown');
+    if (!q.trim()) { dd.style.display = 'none'; return; }
+    const res = products.filter(p =>
+        p.name.toLowerCase().includes(q.toLowerCase()) ||
+        p.description.toLowerCase().includes(q.toLowerCase()) ||
+        p.category.toLowerCase().includes(q.toLowerCase())
+    ).slice(0, 5);
+    if (!res.length) { dd.innerHTML = '<div style="padding:1rem;color:var(--muted);text-align:center">Нічого не знайдено</div>'; dd.style.display = 'block'; return; }
+    dd.innerHTML = res.map(p => `
+        <div class="search-dropdown-item" onclick="showDetail(${p.id}); document.getElementById('searchDropdown').style.display='none'; document.getElementById('searchInput').value=''">
+            <img src="${p.image}" alt="${p.name}">
+            <div>
+                <div class="sdi-name">${p.name}</div>
+                <div class="sdi-price">${p.price} грн/${p.unit}</div>
+            </div>
+        </div>`).join('');
+    dd.style.display = 'block';
+}
+
+function doSearch() {
+    const q = document.getElementById('searchInput').value.trim();
+    document.getElementById('searchDropdown').style.display = 'none';
+    if (!q) return;
+    const res = products.filter(p =>
+        p.name.toLowerCase().includes(q.toLowerCase()) ||
+        p.description.toLowerCase().includes(q.toLowerCase()) ||
+        p.category.toLowerCase().includes(q.toLowerCase())
+    );
+    activeCategory = 'Всі';
+    showPage('products');
+    renderProducts(res);
+}
+
+// close dropdown on outside click
+document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrap')) document.getElementById('searchDropdown').style.display = 'none';
+    if (e.target === document.getElementById('cartOverlay')) closeCart();
+    if (!e.target.closest('#mobileNav') && !e.target.closest('.mobile-menu-btn')) {
+        document.getElementById('mobileNav').classList.remove('open');
+    }
+});
+
+// ── CONTACT FORM ───────────────────────────────────────
+function submitContact() {
+    const name = document.getElementById('cfName').value.trim();
+    const contact = document.getElementById('cfContact').value.trim();
+    const msg = document.getElementById('cfMsg').value.trim();
+    if (!name || !contact || !msg) { toast('Заповніть всі поля'); return; }
+    toast('✅ Повідомлення надіслано! Ми зв\'яжемося з вами.');
+    document.getElementById('cfName').value = '';
+    document.getElementById('cfContact').value = '';
+    document.getElementById('cfMsg').value = '';
+}
+
+// ── TOAST ──────────────────────────────────────────────
+function toast(msg) {
+    const wrap = document.getElementById('toastWrap');
+    const el = document.createElement('div');
+    el.className = 'toast';
+    el.textContent = msg;
+    wrap.appendChild(el);
+    setTimeout(() => el.remove(), 2800);
+}
+
+// ── INIT ───────────────────────────────────────────────
+renderFeatured();
+renderFilters();
+</script>
 </body>
 </html>

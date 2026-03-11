@@ -70,7 +70,7 @@
 
         /* HERO */
         .hero { background: linear-gradient(135deg, var(--dark) 0%, #3D2000 100%); border-radius: 24px; padding: 5rem 4rem; margin-bottom: 3rem; position: relative; overflow: hidden; color: white; display: flex; flex-direction: column; align-items: flex-start; }
-        .hero::before { content: \'🍯\'; position: absolute; right: 4rem; top: 50%; transform: translateY(-50%); font-size: 12rem; opacity: 0.12; }
+        .hero::before { content: '🍯'; position: absolute; right: 4rem; top: 50%; transform: translateY(-50%); font-size: 12rem; opacity: 0.12; }
         .hero-tag { background: var(--honey); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 1.5rem; text-transform: uppercase; }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; line-height: 1.15; margin-bottom: 1.2rem; max-width: 560px; }
         .hero h1 em { color: var(--honey-light); font-style: normal; }
@@ -240,7 +240,7 @@
         .auth-submit-btn:hover { background: #B5761F; transform: translateY(-1px); }
         .auth-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); z-index: 1; }
         .auth-divider { text-align: center; color: var(--muted); font-size: 0.82rem; margin: 1rem 0; position: relative; }
-        .auth-divider::before, .auth-divider::after { content: \'\'; position: absolute; top: 50%; width: 40%; height: 1px; background: #E0D0B0; }
+        .auth-divider::before, .auth-divider::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: #E0D0B0; }
         .auth-divider::before { left: 0; }
         .auth-divider::after { right: 0; }
 
@@ -272,7 +272,7 @@
         .toggle-switch { position: relative; width: 46px; height: 24px; cursor: pointer; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
         .toggle-slider { position: absolute; inset: 0; background: rgba(255,255,255,0.2); border-radius: 24px; transition: background 0.25s; }
-        .toggle-slider::after { content: \'\'; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform 0.25s; }
+        .toggle-slider::after { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform 0.25s; }
         .toggle-switch input:checked + .toggle-slider { background: var(--honey); }
         .toggle-switch input:checked + .toggle-slider::after { transform: translateX(22px); }
 
@@ -870,13 +870,13 @@
 // PRODUCTS DATA
 // ═══════════════════════════════════════════════
 const products = [
-    { id:1, name:'Квітковий мед', category:'Мед', basePrice:450, unit:'кг', image:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80', description:'Ароматний мед із різнотрав'я з ніжним медово-квітковим смаком. Зібраний у Полтавській області в екологічно чистих районах. Містить природні ферменти, вітаміни та мікроелементи.', rating:4.8, reviews:24, props:[['🌸','Збір','Різнотрав'я'],['📍','Регіон','Полтавщина'],['💛','Консистенція','Рідкий']] },
+    { id:1, name:'Квітковий мед', category:'Мед', basePrice:450, unit:'кг', image:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80', description:'Ароматний мед із різнотрав\'я з ніжним медово-квітковим смаком. Зібраний у Полтавській області в екологічно чистих районах. Містить природні ферменти, вітаміни та мікроелементи.', rating:4.8, reviews:24, props:[['🌸','Збір','Різнотрав\'я'],['📍','Регіон','Полтавщина'],['💛','Консистенція','Рідкий']] },
     { id:2, name:'Липовий мед', category:'Мед', basePrice:520, unit:'кг', image:'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&q=80', description:'Цілющий мед з неповторним ароматом липи. Має легкий ментоловий відтінок, чудово допомагає при застуді та підвищує імунітет.', rating:4.9, reviews:36, props:[['🌼','Збір','Липа'],['📍','Регіон','Полтавщина'],['🌿','Властивості','Антисептик']] },
     { id:3, name:'Акацієвий мед', category:'Мед', basePrice:580, unit:'кг', image:'https://images.unsplash.com/photo-1471943311424-646960669fbc?w=600&q=80', description:'Прозорий мед з делікатним ніжним смаком. Практично безбарвний, довго залишається рідким. Ідеальний для дітей.', rating:4.7, reviews:19, props:[['🤍','Колір','Прозорий'],['🌺','Збір','Акація'],['⏳','Кристалізація','Повільна']] },
     { id:4, name:'Прополіс', category:'Продукти бджільництва', basePrice:320, unit:'г', image:'https://images.unsplash.com/photo-1590137838862-e7a3a56b1bf3?w=600&q=80', description:'Натуральний прополіс для зміцнення імунітету. Потужний природний антибіотик. Ефективний при застудних захворюваннях.', rating:4.6, reviews:12, props:[['💪','Дія','Антибактеріальна'],['🍯','Форма','Сирий'],['💊','Застосування','Внутрішнє/зовнішнє']] },
     { id:5, name:'Бджолиний пилок', category:'Продукти бджільництва', basePrice:280, unit:'г', image:'https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=80', description:'Багатий на вітаміни бджолиний пилок. Природний суперфуд, що містить всі 22 амінокислоти, вітаміни A, B, C, D, E та мінерали.', rating:4.5, reviews:8, props:[['🌈','Колір','Яскравий мікс'],['💊','Вітаміни','A, B, C, D, E'],['⚡','Ефект','Енергія']] },
-    { id:6, name:'Трав'яний чай "Польові трави"', category:'Чаї', basePrice:95, unit:'уп', image:'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80', description:'Ароматний чай із лікарських трав. Збір польових трав з Полтавщини: звіробій, деревій, чебрець, материнка.', rating:4.7, reviews:15, props:[['🌿','Склад','Польові трави'],['☕','Тип','Трав'яний'],['🧘','Дія','Заспокійлива']] },
-    { id:7, name:'Чай "Меліса і м'ята"', category:'Чаї', basePrice:85, unit:'уп', image:'https://images.unsplash.com/photo-1563911892437-1feda0179e1b?w=600&q=80', description:'Заспокійливий чай для гарного сну. Поєднання меліси та м'яти допомагає зняти стрес, покращує сон.', rating:4.8, reviews:22, props:[['🌱','Склад','Меліса, М'ята'],['🌙','Найкраще','Перед сном'],['😴','Дія','Снодійна']] },
+    { id:6, name:'Трав\'яний чай "Польові трави"', category:'Чаї', basePrice:95, unit:'уп', image:'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80', description:'Ароматний чай із лікарських трав. Збір польових трав з Полтавщини: звіробій, деревій, чебрець, материнка.', rating:4.7, reviews:15, props:[['🌿','Склад','Польові трави'],['☕','Тип','Трав\'яний'],['🧘','Дія','Заспокійлива']] },
+    { id:7, name:'Чай "Меліса і м\'ята"', category:'Чаї', basePrice:85, unit:'уп', image:'https://images.unsplash.com/photo-1563911892437-1feda0179e1b?w=600&q=80', description:'Заспокійливий чай для гарного сну. Поєднання меліси та м\'яти допомагає зняти стрес, покращує сон.', rating:4.8, reviews:22, props:[['🌱','Склад','Меліса, М\'ята'],['🌙','Найкраще','Перед сном'],['😴','Дія','Снодійна']] },
     { id:8, name:'Чай "Ромашковий"', category:'Чаї', basePrice:75, unit:'уп', image:'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80', description:'Ніжний ромашковий чай з цілющими властивостями. Натуральна ромашка знімає запалення, заспокоює шлунок.', rating:4.6, reviews:17, props:[['🌼','Збір','Ромашка'],['💆','Дія','Протизапальна'],['🌸','Аромат','Ніжний квітковий']] }
 ];
 const categories = ['Всі', ...new Set(products.map(p => p.category))];
@@ -1036,23 +1036,23 @@ function renderAuthNav() {
     const mobileLink = document.getElementById('mobileAuthLink');
     if (currentUser) {
         const initials = getUserInitials(currentUser);
-        area.innerHTML = \`
+        area.innerHTML = `
         <div class="user-dropdown-wrap">
             <button class="auth-nav-btn logged" onclick="toggleUserDropdown(event)">
-                <span style="width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.25);display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700">\${initials}</span>
-                \${currentUser.firstName}
+                <span style="width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.25);display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700">${initials}</span>
+                ${currentUser.firstName}
             </button>
             <div class="user-dropdown" id="userDropdown">
                 <div class="user-dropdown-header">
-                    <div class="user-dropdown-name">\${currentUser.firstName} \${currentUser.lastName}</div>
-                    <div class="user-dropdown-email">\${currentUser.email}</div>
+                    <div class="user-dropdown-name">${currentUser.firstName} ${currentUser.lastName}</div>
+                    <div class="user-dropdown-email">${currentUser.email}</div>
                 </div>
                 <div class="user-dropdown-item" onclick="goToAccount('profile')">👤 Мій профіль</div>
                 <div class="user-dropdown-item" onclick="goToAccount('saved')">❤️ Збережені товари</div>
                 <div class="user-dropdown-item" onclick="goToAccount('subscriptions')">🔔 Підписки</div>
                 <div class="user-dropdown-item danger" onclick="logoutUser()">🚪 Вийти</div>
             </div>
-        </div>\`;
+        </div>`;
         if (mobileLink) { mobileLink.textContent = '👤 ' + currentUser.firstName; mobileLink.onclick = () => { goToAccount('profile'); toggleMobileNav(); }; }
         // Fill profile fields
         document.getElementById('profFirstName').value = currentUser.firstName || '';
@@ -1071,7 +1071,7 @@ function renderAuthNav() {
             document.getElementById('newsSubStatus').className = 'sub-status ' + (currentUser.subscribedNews ? 'on' : 'off');
         }
     } else {
-        area.innerHTML = \`<button class="auth-nav-btn" onclick="openAuthModal()">👤 Увійти</button>\`;
+        area.innerHTML = `<button class="auth-nav-btn" onclick="openAuthModal()">👤 Увійти</button>`;
         if (mobileLink) { mobileLink.textContent = '👤 Увійти'; mobileLink.onclick = () => { openAuthModal(); toggleMobileNav(); }; }
     }
 }
@@ -1109,11 +1109,11 @@ function saveProfile() {
 function renderAccSaved() {
     const el = document.getElementById('accSavedGrid');
     if (!wishlist.length) {
-        el.innerHTML = \`<div class="wishlist-empty"><div class="empty-icon">🤍</div><h3>Нічого збережено</h3><p style="margin-bottom:1.5rem">Натисніть серце на товарі, щоб зберегти</p><button class="btn-primary" onclick="showPage('products')">Переглянути товари</button></div>\`;
+        el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🤍</div><h3>Нічого збережено</h3><p style="margin-bottom:1.5rem">Натисніть серце на товарі, щоб зберегти</p><button class="btn-primary" onclick="showPage('products')">Переглянути товари</button></div>`;
         return;
     }
     const wishProducts = products.filter(p => wishlist.includes(p.id));
-    el.innerHTML = \`<div class="products-grid">\${wishProducts.map(p => productCardHTML(p)).join('')}</div>\`;
+    el.innerHTML = `<div class="products-grid">${wishProducts.map(p => productCardHTML(p)).join('')}</div>`;
 }
 
 function toggleNewsSub(checked) {
@@ -1156,7 +1156,7 @@ function getProductPrice(productId) {
 }
 function getOriginalPrice(pid) { const p = products.find(x => x.id === pid); if (!p) return 0; return stockData[p.id].customPrice !== null ? stockData[p.id].customPrice : p.basePrice; }
 function hasDiscount(pid) { return getProductPrice(pid) < getOriginalPrice(pid); }
-function discountLabel(pid) { const orig = getOriginalPrice(pid); const cur = getProductPrice(pid); return \`-\${Math.round((orig-cur)/orig*100)}%\`; }
+function discountLabel(pid) { const orig = getOriginalPrice(pid); const cur = getProductPrice(pid); return `-${Math.round((orig-cur)/orig*100)}%`; }
 
 // ═══════════════════════════════════════════════
 // NAVIGATION
@@ -1191,13 +1191,13 @@ function renderProducts(filtered = null) {
     const list = filtered || (activeCategory === 'Всі' ? products : products.filter(p => p.category === activeCategory));
     document.getElementById('productsGrid').innerHTML = list.length
         ? list.map(p => productCardHTML(p)).join('')
-        : \`<div style="text-align:center;padding:4rem;color:var(--muted);grid-column:1/-1"><div style="font-size:3rem;margin-bottom:1rem">😔</div><h3 style="font-family:'Playfair Display',serif;margin-bottom:.5rem">Нічого не знайдено</h3><button class="btn-primary" onclick="setFilter('Всі')">Показати всі</button></div>\`;
+        : `<div style="text-align:center;padding:4rem;color:var(--muted);grid-column:1/-1"><div style="font-size:3rem;margin-bottom:1rem">😔</div><h3 style="font-family:'Playfair Display',serif;margin-bottom:.5rem">Нічого не знайдено</h3><button class="btn-primary" onclick="setFilter('Всі')">Показати всі</button></div>`;
     renderFilters();
 }
 
 function renderFilters() {
     document.getElementById('filterBar').innerHTML = '<span class="filter-label">Фільтр:</span>' +
-        categories.map(c => \`<button class="filter-btn \${c === activeCategory ? 'active' : ''}" onclick="setFilter('\${c}')">\${c}</button>\`).join('');
+        categories.map(c => `<button class="filter-btn ${c === activeCategory ? 'active' : ''}" onclick="setFilter('${c}')">${c}</button>`).join('');
 }
 
 function setFilter(cat) { activeCategory = cat; renderProducts(); }
@@ -1208,32 +1208,32 @@ function productCardHTML(p) {
     const price = getProductPrice(p.id);
     const origPrice = getOriginalPrice(p.id);
     const onSale = price < origPrice;
-    return \`
-    <div class="product-card\${!inStock ? ' out-of-stock' : ''}">
-        <div class="card-img-wrap" onclick="\${inStock ? 'showDetail(' + p.id + ')' : ''}">
-            <img src="\${p.image}" alt="\${p.name}" loading="lazy">
-            <span class="card-category">\${p.category}</span>
-            \${onSale ? \`<span class="sale-badge">\${discountLabel(p.id)}</span>\` : ''}
-            \${!inStock ? '<div class="out-of-stock-badge"><span>Немає в наявності</span></div>' : ''}
+    return `
+    <div class="product-card${!inStock ? ' out-of-stock' : ''}">
+        <div class="card-img-wrap" onclick="${inStock ? 'showDetail(' + p.id + ')' : ''}">
+            <img src="${p.image}" alt="${p.name}" loading="lazy">
+            <span class="card-category">${p.category}</span>
+            ${onSale ? `<span class="sale-badge">${discountLabel(p.id)}</span>` : ''}
+            ${!inStock ? '<div class="out-of-stock-badge"><span>Немає в наявності</span></div>' : ''}
         </div>
-        <button class="wishlist-btn \${inWish ? 'active' : ''}" onclick="toggleWish(\${p.id})">\${inWish ? '❤️' : '🤍'}</button>
-        <div class="card-body" onclick="\${inStock ? 'showDetail(' + p.id + ')' : ''}">
-            <div class="card-name">\${p.name}</div>
-            <div class="card-desc">\${p.description.substring(0,70)}...</div>
-            <div class="card-rating"><span class="stars">\${'★'.repeat(Math.floor(p.rating))}</span><span class="rating-count">\${p.rating} (\${p.reviews} відгуків)</span></div>
+        <button class="wishlist-btn ${inWish ? 'active' : ''}" onclick="toggleWish(${p.id})">${inWish ? '❤️' : '🤍'}</button>
+        <div class="card-body" onclick="${inStock ? 'showDetail(' + p.id + ')' : ''}">
+            <div class="card-name">${p.name}</div>
+            <div class="card-desc">${p.description.substring(0,70)}...</div>
+            <div class="card-rating"><span class="stars">${'★'.repeat(Math.floor(p.rating))}</span><span class="rating-count">${p.rating} (${p.reviews} відгуків)</span></div>
         </div>
         <div class="card-body" style="padding-top:0">
             <div class="card-footer">
                 <div class="card-price">
-                    \${onSale ? \`<span class="old-price">\${origPrice} грн</span>\` : ''}
-                    \${price} грн <small>/\${p.unit}</small>
+                    ${onSale ? `<span class="old-price">${origPrice} грн</span>` : ''}
+                    ${price} грн <small>/${p.unit}</small>
                 </div>
-                <button class="add-btn" \${!inStock ? 'disabled' : \`onclick="event.stopPropagation(); addToCart(\${p.id},1)"\`}>
-                    \${inStock ? '+ Кошик' : '✕ Нема'}
+                <button class="add-btn" ${!inStock ? 'disabled' : `onclick="event.stopPropagation(); addToCart(${p.id},1)"`}>
+                    ${inStock ? '+ Кошик' : '✕ Нема'}
                 </button>
             </div>
         </div>
-    </div>\`;
+    </div>`;
 }
 
 // ═══════════════════════════════════════════════
@@ -1251,27 +1251,27 @@ function showDetail(id) {
     previousPage = currentPage; currentPage = 'detail';
     const price = getProductPrice(p.id), origPrice = getOriginalPrice(p.id), onSale = price < origPrice;
     const inStock = stockData[p.id].inStock;
-    document.getElementById('detailWrap').innerHTML = \`
+    document.getElementById('detailWrap').innerHTML = `
         <div class="detail-img">
-            <img src="\${p.image}" alt="\${p.name}">
-            \${onSale ? \`<div style="position:absolute;top:14px;left:14px;background:var(--danger);color:white;padding:.3rem .8rem;border-radius:20px;font-size:.85rem;font-weight:700">\${discountLabel(p.id)} Акція</div>\` : ''}
-            \${!inStock ? '<div class="out-of-stock-badge"><span>Немає в наявності</span></div>' : ''}
+            <img src="${p.image}" alt="${p.name}">
+            ${onSale ? `<div style="position:absolute;top:14px;left:14px;background:var(--danger);color:white;padding:.3rem .8rem;border-radius:20px;font-size:.85rem;font-weight:700">${discountLabel(p.id)} Акція</div>` : ''}
+            ${!inStock ? '<div class="out-of-stock-badge"><span>Немає в наявності</span></div>' : ''}
         </div>
         <div class="detail-info">
-            <span class="detail-category">\${p.category}</span>
-            <h2 class="detail-name">\${p.name}</h2>
-            <div class="detail-rating"><span class="stars" style="font-size:1.1rem">\${'★'.repeat(Math.floor(p.rating))}</span><span style="font-weight:600;color:var(--dark)">\${p.rating}</span><span style="color:var(--muted);font-size:.85rem">(\${p.reviews} відгуків)</span></div>
+            <span class="detail-category">${p.category}</span>
+            <h2 class="detail-name">${p.name}</h2>
+            <div class="detail-rating"><span class="stars" style="font-size:1.1rem">${'★'.repeat(Math.floor(p.rating))}</span><span style="font-weight:600;color:var(--dark)">${p.rating}</span><span style="color:var(--muted);font-size:.85rem">(${p.reviews} відгуків)</span></div>
             <div class="detail-price">
-                \${onSale ? \`<div style="font-size:1rem;color:var(--muted);text-decoration:line-through;font-weight:400">\${origPrice} грн</div>\` : ''}
-                \${price} грн <small>/\${p.unit}</small>
+                ${onSale ? `<div style="font-size:1rem;color:var(--muted);text-decoration:line-through;font-weight:400">${origPrice} грн</div>` : ''}
+                ${price} грн <small>/${p.unit}</small>
             </div>
-            <p class="detail-desc">\${p.description}</p>
-            <div class="detail-props">\${p.props.map(([icon,label,val]) => \`<div class="prop-row"><span class="prop-icon">\${icon}</span><span class="prop-label">\${label}:</span><span class="prop-value">\${val}</span></div>\`).join('')}</div>
+            <p class="detail-desc">${p.description}</p>
+            <div class="detail-props">${p.props.map(([icon,label,val]) => `<div class="prop-row"><span class="prop-icon">${icon}</span><span class="prop-label">${label}:</span><span class="prop-value">${val}</span></div>`).join('')}</div>
             <div class="detail-actions">
-                \${inStock ? \`<div style="display:flex;align-items:center;gap:1rem"><div class="qty-selector"><button class="qty-btn" onclick="changeQty(-1)">−</button><span class="qty-num" id="detailQtyEl">1</span><button class="qty-btn" onclick="changeQty(1)">+</button></div><span style="font-size:.85rem;color:var(--muted)">шт.</span></div><button class="btn-primary" style="width:100%" onclick="addToCart(\${p.id},detailQty)">Додати до кошика</button>\` : \`<div style="background:rgba(217,79,61,0.08);color:var(--danger);border-radius:10px;padding:1rem;text-align:center;font-weight:600">⚠️ Цього товару зараз немає в наявності</div>\`}
-                <button class="btn-outline" style="color:var(--text);border-color:#E0D0B0;width:100%" onclick="toggleWish(\${p.id}); refreshDetailWish()"><span id="detailWishBtn">\${wishlist.includes(p.id) ? '❤️ В обраному' : '🤍 Додати в обране'}</span></button>
+                ${inStock ? `<div style="display:flex;align-items:center;gap:1rem"><div class="qty-selector"><button class="qty-btn" onclick="changeQty(-1)">−</button><span class="qty-num" id="detailQtyEl">1</span><button class="qty-btn" onclick="changeQty(1)">+</button></div><span style="font-size:.85rem;color:var(--muted)">шт.</span></div><button class="btn-primary" style="width:100%" onclick="addToCart(${p.id},detailQty)">Додати до кошика</button>` : `<div style="background:rgba(217,79,61,0.08);color:var(--danger);border-radius:10px;padding:1rem;text-align:center;font-weight:600">⚠️ Цього товару зараз немає в наявності</div>`}
+                <button class="btn-outline" style="color:var(--text);border-color:#E0D0B0;width:100%" onclick="toggleWish(${p.id}); refreshDetailWish()"><span id="detailWishBtn">${wishlist.includes(p.id) ? '❤️ В обраному' : '🤍 Додати в обране'}</span></button>
             </div>
-        </div>\`;
+        </div>`;
     renderReviews(p);
     document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active'));
     document.getElementById('page-detail').classList.add('active');
@@ -1287,7 +1287,7 @@ function refreshDetailWish() { const el = document.getElementById('detailWishBtn
 let selectedStars = 5;
 function renderReviews(p) {
     const revs = productReviews[p.id] || [];
-    document.getElementById('reviewsSection').innerHTML = \`<div class="reviews-section"><h3>Відгуки (\${revs.length})</h3><div class="review-form"><h4>Залишити відгук</h4><div class="star-select" id="starSelect">\${[1,2,3,4,5].map(s => \`<span onclick="setReviewStars(\${s})" data-s="\${s}">★</span>\`).join('')}</div><input type="text" class="review-name-input" id="revName" placeholder="Ваше ім'я" value="\${currentUser ? currentUser.firstName + ' ' + currentUser.lastName[0] + '.' : ''}"><textarea class="review-textarea" id="revText" placeholder="Напишіть ваш відгук..."></textarea><button class="btn-primary" onclick="submitReview(\${p.id})">Опублікувати відгук</button></div><div class="reviews-list">\${revs.map(r => \`<div class="review-item"><div class="review-header"><span class="reviewer-name">\${r.name}</span><span class="review-date">\${r.date}</span></div><div class="review-stars">\${'★'.repeat(r.rating)}\${'☆'.repeat(5-r.rating)}</div><div class="review-text">\${r.text}</div></div>\`).join('')}</div></div>\`;
+    document.getElementById('reviewsSection').innerHTML = `<div class="reviews-section"><h3>Відгуки (${revs.length})</h3><div class="review-form"><h4>Залишити відгук</h4><div class="star-select" id="starSelect">${[1,2,3,4,5].map(s => `<span onclick="setReviewStars(${s})" data-s="${s}">★</span>`).join('')}</div><input type="text" class="review-name-input" id="revName" placeholder="Ваше ім\'я" value="${currentUser ? currentUser.firstName + ' ' + currentUser.lastName[0] + '.' : ''}"><textarea class="review-textarea" id="revText" placeholder="Напишіть ваш відгук..."></textarea><button class="btn-primary" onclick="submitReview(${p.id})">Опублікувати відгук</button></div><div class="reviews-list">${revs.map(r => `<div class="review-item"><div class="review-header"><span class="reviewer-name">${r.name}</span><span class="review-date">${r.date}</span></div><div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><div class="review-text">${r.text}</div></div>`).join('')}</div></div>`;
     selectedStars = 5; updateStarUI();
 }
 function setReviewStars(n) { selectedStars = n; updateStarUI(); }
@@ -1295,7 +1295,7 @@ function updateStarUI() { document.querySelectorAll('#starSelect span').forEach(
 function submitReview(pid) {
     const name = document.getElementById('revName').value.trim();
     const text = document.getElementById('revText').value.trim();
-    if (!name || !text) { toast('Заповніть ім'я та текст відгуку'); return; }
+    if (!name || !text) { toast('Заповніть ім\'я та текст відгуку'); return; }
     if (!productReviews[pid]) productReviews[pid] = [];
     productReviews[pid].unshift({ name, rating: selectedStars, text, date: new Date().toLocaleDateString('uk-UA', {day:'numeric',month:'short',year:'numeric'}) });
     renderReviews(products.find(x => x.id === pid));
@@ -1320,9 +1320,9 @@ function toggleWish(id) {
 function updateWishBadge() { const el = document.getElementById('wishCount'); el.textContent = wishlist.length; el.style.display = wishlist.length ? 'flex' : 'none'; }
 function renderWishlist() {
     const el = document.getElementById('wishlistContent');
-    if (!currentUser) { el.innerHTML = \`<div class="wishlist-empty"><div class="empty-icon">🔐</div><h3>Увійдіть для перегляду</h3><p style="margin-bottom:1.5rem">Збережені товари доступні після авторизації</p><button class="btn-primary" onclick="openAuthModal()">Увійти / Зареєструватись</button></div>\`; return; }
-    if (!wishlist.length) { el.innerHTML = \`<div class="wishlist-empty"><div class="empty-icon">🤍</div><h3>Список обраного порожній</h3><p style="margin-bottom:1.5rem">Додайте товари, натиснувши на серце</p><button class="btn-primary" onclick="showPage('products')">Переглянути товари</button></div>\`; return; }
-    el.innerHTML = \`<div class="products-grid">\${products.filter(p => wishlist.includes(p.id)).map(p => productCardHTML(p)).join('')}</div>\`;
+    if (!currentUser) { el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🔐</div><h3>Увійдіть для перегляду</h3><p style="margin-bottom:1.5rem">Збережені товари доступні після авторизації</p><button class="btn-primary" onclick="openAuthModal()">Увійти / Зареєструватись</button></div>`; return; }
+    if (!wishlist.length) { el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🤍</div><h3>Список обраного порожній</h3><p style="margin-bottom:1.5rem">Додайте товари, натиснувши на серце</p><button class="btn-primary" onclick="showPage('products')">Переглянути товари</button></div>`; return; }
+    el.innerHTML = `<div class="products-grid">${products.filter(p => wishlist.includes(p.id)).map(p => productCardHTML(p)).join('')}</div>`;
 }
 
 // ═══════════════════════════════════════════════
@@ -1336,7 +1336,7 @@ function addToCart(productId, qty = 1) {
     if (existing) existing.qty += qty;
     else cart.push({ id: productId, qty });
     updateCartBadge();
-    toast(\`🛒 \${p.name} додано до кошика!\`);
+    toast(`🛒 ${p.name} додано до кошика!`);
 }
 function updateCartBadge() { document.getElementById('cartBadge').textContent = cart.reduce((s,x) => s+x.qty, 0); }
 function openCart() { renderCart(); document.getElementById('cartOverlay').classList.add('open'); document.getElementById('cartPanel').classList.add('open'); }
@@ -1345,21 +1345,21 @@ function closeCart() { document.getElementById('cartOverlay').classList.remove('
 function renderCart() {
     const itemsEl = document.getElementById('cartItemsEl');
     const footerEl = document.getElementById('cartFooter');
-    if (!cart.length) { itemsEl.innerHTML = \`<div class="cart-empty"><div class="empty-icon">🛒</div><p>Кошик порожній</p></div>\`; footerEl.innerHTML = ''; appliedPromo = null; return; }
+    if (!cart.length) { itemsEl.innerHTML = `<div class="cart-empty"><div class="empty-icon">🛒</div><p>Кошик порожній</p></div>`; footerEl.innerHTML = ''; appliedPromo = null; return; }
     let subtotal = 0;
     itemsEl.innerHTML = cart.map((item, i) => {
         const p = products.find(x => x.id === item.id);
         const price = getProductPrice(p.id); subtotal += price * item.qty;
-        return \`<div class="cart-item"><img src="\${p.image}" alt="\${p.name}"><div class="ci-info"><div class="ci-name">\${p.name}</div><div class="ci-price">\${price} грн/\${p.unit}</div></div><div class="ci-controls"><button class="ci-qty-btn" onclick="cartQty(\${i},-1)">−</button><span class="ci-qty">\${item.qty}</span><button class="ci-qty-btn" onclick="cartQty(\${i},1)">+</button><button class="ci-remove" onclick="cartRemove(\${i})">✕</button></div></div>\`;
+        return `<div class="cart-item"><img src="${p.image}" alt="${p.name}"><div class="ci-info"><div class="ci-name">${p.name}</div><div class="ci-price">${price} грн/${p.unit}</div></div><div class="ci-controls"><button class="ci-qty-btn" onclick="cartQty(${i},-1)">−</button><span class="ci-qty">${item.qty}</span><button class="ci-qty-btn" onclick="cartQty(${i},1)">+</button><button class="ci-remove" onclick="cartRemove(${i})">✕</button></div></div>`;
     }).join('');
     let discount = 0, promoHTML = '';
     if (appliedPromo) {
         discount = appliedPromo.type === 'percent' ? Math.round(subtotal * appliedPromo.value / 100) : Math.min(appliedPromo.value, subtotal);
-        promoHTML = \`<div class="promo-result ok">🎟️ <strong>\${appliedPromo.code}</strong> — знижка \${discount} грн <button onclick="removePromo()" style="background:none;border:none;cursor:pointer;color:var(--danger);margin-left:.5rem;font-size:.85rem">✕</button></div>\`;
+        promoHTML = `<div class="promo-result ok">🎟️ <strong>${appliedPromo.code}</strong> — знижка ${discount} грн <button onclick="removePromo()" style="background:none;border:none;cursor:pointer;color:var(--danger);margin-left:.5rem;font-size:.85rem">✕</button></div>`;
     }
     const total = subtotal - discount;
-    const userName = currentUser ? \`\${currentUser.firstName} \${currentUser.lastName}\n\${currentUser.phone || ''}\n\${currentUser.address || ''}\` : '';
-    footerEl.innerHTML = \`<div class="promo-row"><input type="text" class="promo-input" id="promoInputCart" placeholder="Промокод..." style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"><button class="promo-apply-btn" onclick="applyPromo()">Застосувати</button></div>\${promoHTML}<div class="cart-total-row"><span class="cart-total-label">Загальна сума:</span><span class="cart-total-val">\${total} грн</span></div>\${discount > 0 ? \`<div style="font-size:.82rem;color:var(--muted);text-align:right;margin-top:-.8rem;margin-bottom:.6rem">Підсума: \${subtotal} грн − \${discount} грн знижки</div>\` : ''}<button class="btn-primary" style="width:100%;margin-bottom:.6rem" onclick="checkout()">Оформити замовлення</button><button class="btn-outline" style="width:100%;color:var(--danger);border-color:var(--danger)" onclick="clearCart()">Очистити кошик</button>\`;
+    const userName = currentUser ? `${currentUser.firstName} ${currentUser.lastName}\n${currentUser.phone || ''}\n${currentUser.address || ''}` : '';
+    footerEl.innerHTML = `<div class="promo-row"><input type="text" class="promo-input" id="promoInputCart" placeholder="Промокод..." style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"><button class="promo-apply-btn" onclick="applyPromo()">Застосувати</button></div>${promoHTML}<div class="cart-total-row"><span class="cart-total-label">Загальна сума:</span><span class="cart-total-val">${total} грн</span></div>${discount > 0 ? `<div style="font-size:.82rem;color:var(--muted);text-align:right;margin-top:-.8rem;margin-bottom:.6rem">Підсума: ${subtotal} грн − ${discount} грн знижки</div>` : ''}<button class="btn-primary" style="width:100%;margin-bottom:.6rem" onclick="checkout()">Оформити замовлення</button><button class="btn-outline" style="width:100%;color:var(--danger);border-color:var(--danger)" onclick="clearCart()">Очистити кошик</button>`;
 }
 
 function cartQty(i, delta) { cart[i].qty = Math.max(1, cart[i].qty + delta); updateCartBadge(); renderCart(); }
@@ -1373,11 +1373,11 @@ function applyPromo() {
     if (!promo) { showPromoResult('err', '❌ Промокод не знайдено або недійсний'); return; }
     if (promo.limit > 0 && promo.used >= promo.limit) { showPromoResult('err', '❌ Ліміт використань вичерпано'); return; }
     const subtotal = cart.reduce((s,x) => s + getProductPrice(x.id) * x.qty, 0);
-    if (promo.minOrder > 0 && subtotal < promo.minOrder) { showPromoResult('err', \`❌ Мінімальна сума замовлення: \${promo.minOrder} грн\`); return; }
+    if (promo.minOrder > 0 && subtotal < promo.minOrder) { showPromoResult('err', `❌ Мінімальна сума замовлення: ${promo.minOrder} грн`); return; }
     appliedPromo = promo; promo.used++;
     renderCart(); toast('🎟️ Промокод застосовано!');
 }
-function showPromoResult(type, msg) { const existing = document.querySelector('.promo-result'); if (existing) existing.remove(); const el = document.createElement('div'); el.className = \`promo-result \${type}\`; el.innerHTML = msg; const row = document.querySelector('.promo-row'); if (row) row.after(el); }
+function showPromoResult(type, msg) { const existing = document.querySelector('.promo-result'); if (existing) existing.remove(); const el = document.createElement('div'); el.className = `promo-result ${type}`; el.innerHTML = msg; const row = document.querySelector('.promo-row'); if (row) row.after(el); }
 function removePromo() { appliedPromo = null; renderCart(); }
 
 function checkout() {
@@ -1387,12 +1387,12 @@ function checkout() {
     if (appliedPromo) { discount = appliedPromo.type === 'percent' ? Math.round(subtotal * appliedPromo.value / 100) : Math.min(appliedPromo.value, subtotal); }
     const total = subtotal - discount;
     let text = 'Замовлення BeeBloom:\n\n';
-    if (currentUser) text += \`Клієнт: \${currentUser.firstName} \${currentUser.lastName}\nTel: \${currentUser.phone || 'не вказано'}\nАдреса: \${currentUser.address || 'не вказано'}\n\n\`;
-    cart.forEach(item => { const p = products.find(x => x.id === item.id); const price = getProductPrice(p.id); text += \`\${p.name} — \${item.qty} \${p.unit} × \${price} = \${price * item.qty} грн\n\`; });
-    if (discount > 0) text += \`\nПромокод \${appliedPromo.code}: -\${discount} грн\`;
-    text += \`\nСума: \${total} грн\`;
-    if (!currentUser) text += \`\n\nВкажіть ПІБ, місто та номер відділення Нової Пошти.\`;
-    const url = \`https://t.me/beebloom?text=\${encodeURIComponent(text)}\`;
+    if (currentUser) text += `Клієнт: ${currentUser.firstName} ${currentUser.lastName}\nTel: ${currentUser.phone || 'не вказано'}\nАдреса: ${currentUser.address || 'не вказано'}\n\n`;
+    cart.forEach(item => { const p = products.find(x => x.id === item.id); const price = getProductPrice(p.id); text += `${p.name} — ${item.qty} ${p.unit} × ${price} = ${price * item.qty} грн\n`; });
+    if (discount > 0) text += `\nПромокод ${appliedPromo.code}: -${discount} грн`;
+    text += `\nСума: ${total} грн`;
+    if (!currentUser) text += `\n\nВкажіть ПІБ, місто та номер відділення Нової Пошти.`;
+    const url = `https://t.me/beebloom?text=${encodeURIComponent(text)}`;
     if (confirm('Відправити замовлення в Telegram?\n\n' + text)) window.open(url, '_blank');
 }
 
@@ -1402,20 +1402,20 @@ function checkout() {
 function renderNewsPage() {
     const grid = document.getElementById('newsGrid');
     if (!newsItems.length) {
-        grid.innerHTML = \`<div class="news-empty"><div class="empty-icon">📰</div><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.5rem">Новин поки немає</h3><p>Підпишіться на розсилку, щоб отримувати новини першими</p>\${!currentUser ? \`<button class="btn-primary" style="margin-top:1.5rem" onclick="openAuthModal('register')">Зареєструватись та підписатись</button>\` : ''}</div>\`;
+        grid.innerHTML = `<div class="news-empty"><div class="empty-icon">📰</div><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.5rem">Новин поки немає</h3><p>Підпишіться на розсилку, щоб отримувати новини першими</p>${!currentUser ? `<button class="btn-primary" style="margin-top:1.5rem" onclick="openAuthModal('register')">Зареєструватись та підписатись</button>` : ''}</div>`;
         return;
     }
-    grid.innerHTML = newsItems.map(n => \`
+    grid.innerHTML = newsItems.map(n => `
     <div class="news-card">
         <div class="news-card-top">
-            <div class="news-icon">\${n.tag.split(' ')[0]}</div>
+            <div class="news-icon">${n.tag.split(' ')[0]}</div>
             <div class="news-meta">
-                <div class="news-date">\${n.date}<span class="news-tag">\${n.tag}</span></div>
+                <div class="news-date">${n.date}<span class="news-tag">${n.tag}</span></div>
             </div>
         </div>
-        <div class="news-title">\${n.title}</div>
-        <div class="news-body">\${n.body}</div>
-    </div>\`).join('');
+        <div class="news-title">${n.title}</div>
+        <div class="news-body">${n.body}</div>
+    </div>`).join('');
 }
 
 // ═══════════════════════════════════════════════
@@ -1426,7 +1426,7 @@ function onSearchInput(q) {
     if (!q.trim()) { dd.style.display = 'none'; return; }
     const res = products.filter(p => p.name.toLowerCase().includes(q.toLowerCase()) || p.category.toLowerCase().includes(q.toLowerCase())).slice(0, 5);
     if (!res.length) { dd.innerHTML = '<div style="padding:1rem;color:var(--muted);text-align:center">Нічого не знайдено</div>'; dd.style.display = 'block'; return; }
-    dd.innerHTML = res.map(p => \`<div class="search-dropdown-item" onclick="showDetail(\${p.id}); document.getElementById('searchDropdown').style.display='none'; document.getElementById('searchInput').value=''"><img src="\${p.image}" alt="\${p.name}"><div><div class="sdi-name">\${p.name}</div><div class="sdi-price">\${getProductPrice(p.id)} грн/\${p.unit}</div></div></div>\`).join('');
+    dd.innerHTML = res.map(p => `<div class="search-dropdown-item" onclick="showDetail(${p.id}); document.getElementById('searchDropdown').style.display='none'; document.getElementById('searchInput').value=''"><img src="${p.image}" alt="${p.name}"><div><div class="sdi-name">${p.name}</div><div class="sdi-price">${getProductPrice(p.id)} грн/${p.unit}</div></div></div>`).join('');
     dd.style.display = 'block';
 }
 function doSearch() {
@@ -1474,29 +1474,29 @@ function switchAdminTab(tab) {
 
 // INVENTORY
 function renderInventoryTable() {
-    let html = \`<div class="inv-row header"><div></div><div>Товар</div><div>Наявність</div><div>Ціна (грн)</div><div>Зберегти</div></div>\`;
+    let html = `<div class="inv-row header"><div></div><div>Товар</div><div>Наявність</div><div>Ціна (грн)</div><div>Зберегти</div></div>`;
     products.forEach(p => {
         const sd = stockData[p.id]; const dp = sd.customPrice !== null ? sd.customPrice : p.basePrice;
-        html += \`<div class="inv-row"><img class="inv-img" src="\${p.image}" alt=""><div><div class="inv-name">\${p.name}</div><div class="inv-category">\${p.category}</div></div><div class="stock-toggle"><label class="toggle-switch"><input type="checkbox" id="stock_\${p.id}" \${sd.inStock ? 'checked' : ''} onchange="updateStockToggle(\${p.id})"><span class="toggle-slider"></span></label><span class="toggle-label \${sd.inStock ? 'in' : 'out'}" id="stockLabel_\${p.id}">\${sd.inStock ? 'В наявності' : 'Немає'}</span></div><div><input type="number" class="inv-price-input" id="price_\${p.id}" value="\${dp}" min="1"><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Базова: \${p.basePrice} грн</div></div><button class="inv-save-btn" onclick="saveInventoryRow(\${p.id})">Зберегти</button></div>\`;
+        html += `<div class="inv-row"><img class="inv-img" src="${p.image}" alt=""><div><div class="inv-name">${p.name}</div><div class="inv-category">${p.category}</div></div><div class="stock-toggle"><label class="toggle-switch"><input type="checkbox" id="stock_${p.id}" ${sd.inStock ? 'checked' : ''} onchange="updateStockToggle(${p.id})"><span class="toggle-slider"></span></label><span class="toggle-label ${sd.inStock ? 'in' : 'out'}" id="stockLabel_${p.id}">${sd.inStock ? 'В наявності' : 'Немає'}</span></div><div><input type="number" class="inv-price-input" id="price_${p.id}" value="${dp}" min="1"><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Базова: ${p.basePrice} грн</div></div><button class="inv-save-btn" onclick="saveInventoryRow(${p.id})">Зберегти</button></div>`;
     });
     document.getElementById('inventoryTable').innerHTML = html;
 }
-function updateStockToggle(id) { const checked = document.getElementById(\`stock_\${id}\`).checked; stockData[id].inStock = checked; const label = document.getElementById(\`stockLabel_\${id}\`); label.textContent = checked ? 'В наявності' : 'Немає'; label.className = \`toggle-label \${checked ? 'in' : 'out'}\`; }
-function saveInventoryRow(id) { const checked = document.getElementById(\`stock_\${id}\`).checked; const pv = parseFloat(document.getElementById(\`price_\${id}\`).value); stockData[id].inStock = checked; stockData[id].customPrice = isNaN(pv) || pv <= 0 ? null : pv; toast('✅ Збережено!'); renderStats(); }
+function updateStockToggle(id) { const checked = document.getElementById(`stock_${id}`).checked; stockData[id].inStock = checked; const label = document.getElementById(`stockLabel_${id}`); label.textContent = checked ? 'В наявності' : 'Немає'; label.className = `toggle-label ${checked ? 'in' : 'out'}`; }
+function saveInventoryRow(id) { const checked = document.getElementById(`stock_${id}`).checked; const pv = parseFloat(document.getElementById(`price_${id}`).value); stockData[id].inStock = checked; stockData[id].customPrice = isNaN(pv) || pv <= 0 ? null : pv; toast('✅ Збережено!'); renderStats(); }
 
 // SALES
 function populateSaleProductSelect() {
     const sel = document.getElementById('newSaleProduct'); if (!sel) return;
     sel.innerHTML = '<option value="all">Всі товари</option>';
-    [...new Set(products.map(p => p.category))].forEach(c => { sel.innerHTML += \`<option value="cat:\${c}">Категорія: \${c}</option>\`; });
-    products.forEach(p => { sel.innerHTML += \`<option value="\${p.id}">\${p.name}</option>\`; });
+    [...new Set(products.map(p => p.category))].forEach(c => { sel.innerHTML += `<option value="cat:${c}">Категорія: ${c}</option>`; });
+    products.forEach(p => { sel.innerHTML += `<option value="${p.id}">${p.name}</option>`; });
 }
 function renderSalesGrid() {
     const grid = document.getElementById('salesGrid');
     if (!sales.length) { grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;grid-column:1/-1">Акцій ще немає</p>'; return; }
     grid.innerHTML = sales.map(s => {
         const pl = s.productId === 'all' ? 'Всі товари' : (typeof s.productId === 'string' && s.productId.startsWith('cat:') ? 'Категорія: ' + s.productId.slice(4) : products.find(p => p.id === s.productId)?.name || 'Невідомо');
-        return \`<div class="sale-card \${s.active ? 'active-sale' : ''}"><button class="delete-sale-btn" onclick="deleteSale(\${s.id})">✕</button><div class="sale-card-top"><div class="sale-card-name">\${s.name}</div><span class="\${s.active ? 'sale-active-tag' : 'sale-inactive-tag'}">\${s.active ? 'Активна' : 'Неактивна'}</span></div><div style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem">\${pl} · Знижка: \${s.type === 'percent' ? s.value + '%' : s.value + ' грн'}</div><div class="sale-toggle-row"><label class="toggle-switch"><input type="checkbox" \${s.active ? 'checked' : ''} onchange="toggleSale(\${s.id},this.checked)"><span class="toggle-slider"></span></label><span>\${s.active ? '✅ Увімкнена' : '⏸️ Вимкнена'}</span></div></div>\`;
+        return `<div class="sale-card ${s.active ? 'active-sale' : ''}"><button class="delete-sale-btn" onclick="deleteSale(${s.id})">✕</button><div class="sale-card-top"><div class="sale-card-name">${s.name}</div><span class="${s.active ? 'sale-active-tag' : 'sale-inactive-tag'}">${s.active ? 'Активна' : 'Неактивна'}</span></div><div style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem">${pl} · Знижка: ${s.type === 'percent' ? s.value + '%' : s.value + ' грн'}</div><div class="sale-toggle-row"><label class="toggle-switch"><input type="checkbox" ${s.active ? 'checked' : ''} onchange="toggleSale(${s.id},this.checked)"><span class="toggle-slider"></span></label><span>${s.active ? '✅ Увімкнена' : '⏸️ Вимкнена'}</span></div></div>`;
     }).join('');
 }
 function toggleSale(id, checked) { const s = sales.find(x => x.id === id); if (s) { s.active = checked; renderSalesGrid(); toast(checked ? '✅ Акцію активовано!' : '⏸️ Акцію вимкнено'); } }
@@ -1518,7 +1518,7 @@ function addSale() {
 function renderPromoTable() {
     const body = document.getElementById('promoTableBody');
     if (!promoCodes.length) { body.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--muted)">Промокодів ще немає</div>'; return; }
-    body.innerHTML = promoCodes.map(p => \`<div class="promo-row-data"><div><span class="promo-code-tag">\${p.code}</span></div><div style="font-weight:600">\${p.type === 'percent' ? p.value + '%' : p.value + ' грн'}</div><div style="font-size:.82rem;color:var(--muted)">\${p.desc || '—'}\${p.minOrder > 0 ? '<br>Від ' + p.minOrder + ' грн' : ''}\${p.limit > 0 ? '<br>Ліміт: ' + p.used + '/' + p.limit : '<br>Безліміт'}</div><div><label class="toggle-switch"><input type="checkbox" \${p.active ? 'checked' : ''} onchange="togglePromo(\${p.id},this.checked)"><span class="toggle-slider"></span></label></div><div><button class="promo-del-btn" onclick="deletePromo(\${p.id})">🗑️</button></div></div>\`).join('');
+    body.innerHTML = promoCodes.map(p => `<div class="promo-row-data"><div><span class="promo-code-tag">${p.code}</span></div><div style="font-weight:600">${p.type === 'percent' ? p.value + '%' : p.value + ' грн'}</div><div style="font-size:.82rem;color:var(--muted)">${p.desc || '—'}${p.minOrder > 0 ? '<br>Від ' + p.minOrder + ' грн' : ''}${p.limit > 0 ? '<br>Ліміт: ' + p.used + '/' + p.limit : '<br>Безліміт'}</div><div><label class="toggle-switch"><input type="checkbox" ${p.active ? 'checked' : ''} onchange="togglePromo(${p.id},this.checked)"><span class="toggle-slider"></span></label></div><div><button class="promo-del-btn" onclick="deletePromo(${p.id})">🗑️</button></div></div>`).join('');
 }
 function togglePromo(id, checked) { const p = promoCodes.find(x => x.id === id); if (p) { p.active = checked; renderPromoTable(); toast(checked ? '✅ Активовано' : '⏸️ Вимкнено'); } }
 function deletePromo(id) { if (confirm('Видалити промокод?')) { promoCodes = promoCodes.filter(p => p.id !== id); renderPromoTable(); toast('🗑️ Видалено'); } }
@@ -1543,9 +1543,9 @@ function renderNewsAdminList() {
     const list = document.getElementById('newsAdminList');
     const info = document.getElementById('newsSubInfo');
     const subCount = usersDB.filter(u => u.subscribedNews).length;
-    if (info) info.textContent = \`Підписників: \${subCount}\`;
+    if (info) info.textContent = `Підписників: ${subCount}`;
     if (!newsItems.length) { list.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem">Публікацій ще немає</p>'; return; }
-    list.innerHTML = newsItems.map(n => \`<div class="news-admin-item"><div><div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">\${n.title} <span style="font-size:.72rem;background:var(--honey-pale);color:var(--honey);padding:.15rem .5rem;border-radius:8px">\${n.tag}</span></div><div style="font-size:.82rem;color:var(--muted)">\${n.body.substring(0,100)}...</div><div style="font-size:.75rem;color:var(--muted);margin-top:.3rem">\${n.date}</div></div><button class="news-delete-btn" onclick="deleteNews('\${n.id}')">🗑️</button></div>\`).join('');
+    list.innerHTML = newsItems.map(n => `<div class="news-admin-item"><div><div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">${n.title} <span style="font-size:.72rem;background:var(--honey-pale);color:var(--honey);padding:.15rem .5rem;border-radius:8px">${n.tag}</span></div><div style="font-size:.82rem;color:var(--muted)">${n.body.substring(0,100)}...</div><div style="font-size:.75rem;color:var(--muted);margin-top:.3rem">${n.date}</div></div><button class="news-delete-btn" onclick="deleteNews('${n.id}')">🗑️</button></div>`).join('');
 }
 
 function publishNews() {
@@ -1558,7 +1558,7 @@ function publishNews() {
     document.getElementById('newNewsTitle').value = ''; document.getElementById('newNewsBody').value = '';
     renderNewsAdminList(); updateSubCountBadge();
     const subCount = usersDB.filter(u => u.subscribedNews).length;
-    toast(\`📢 Опубліковано! Буде надіслано \${subCount} підписникам\`);
+    toast(`📢 Опубліковано! Буде надіслано ${subCount} підписникам`);
 }
 
 function deleteNews(id) {
@@ -1578,7 +1578,7 @@ function renderSubscribersList() {
     updateSubCountBadge();
     const body = document.getElementById('subscribersBody');
     if (!subscribers.length) { body.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--muted)">Підписників ще немає</div>'; return; }
-    body.innerHTML = subscribers.map(u => \`<div class="subscriber-row"><div style="font-weight:500">\${u.firstName} \${u.lastName}</div><div style="color:var(--muted);font-size:.85rem">\${u.email}</div><div style="font-size:.78rem;color:var(--muted)">\${u.registeredAt}</div></div>\`).join('');
+    body.innerHTML = subscribers.map(u => `<div class="subscriber-row"><div style="font-weight:500">${u.firstName} ${u.lastName}</div><div style="color:var(--muted);font-size:.85rem">${u.email}</div><div style="font-size:.78rem;color:var(--muted)">${u.registeredAt}</div></div>`).join('');
 }
 
 // STATS
@@ -1589,16 +1589,16 @@ function renderStats() {
     const activePromos = promoCodes.filter(p => p.active).length;
     const totalUsers = usersDB.length;
     const subscribers = usersDB.filter(u => u.subscribedNews).length;
-    document.getElementById('statsRow').innerHTML = \`
-        <div class="stat-card"><div class="stat-card-icon">👥</div><div class="stat-card-num">\${totalUsers}</div><div class="stat-card-label">Зареєстрованих клієнтів</div></div>
-        <div class="stat-card"><div class="stat-card-icon">📰</div><div class="stat-card-num">\${subscribers}</div><div class="stat-card-label">Підписників на новини</div></div>
-        <div class="stat-card"><div class="stat-card-icon">📦</div><div class="stat-card-num">\${inStock}</div><div class="stat-card-label">Товарів в наявності</div></div>
-        <div class="stat-card"><div class="stat-card-icon">🏷️</div><div class="stat-card-num">\${activeSalesCount}</div><div class="stat-card-label">Активних акцій</div></div>
-        <div class="stat-card"><div class="stat-card-icon">🎟️</div><div class="stat-card-num">\${activePromos}</div><div class="stat-card-label">Активних промокодів</div></div>
-        <div class="stat-card"><div class="stat-card-icon">⚠️</div><div class="stat-card-num" style="color:var(--danger)">\${outStock}</div><div class="stat-card-label">Немає в наявності</div></div>\`;
+    document.getElementById('statsRow').innerHTML = `
+        <div class="stat-card"><div class="stat-card-icon">👥</div><div class="stat-card-num">${totalUsers}</div><div class="stat-card-label">Зареєстрованих клієнтів</div></div>
+        <div class="stat-card"><div class="stat-card-icon">📰</div><div class="stat-card-num">${subscribers}</div><div class="stat-card-label">Підписників на новини</div></div>
+        <div class="stat-card"><div class="stat-card-icon">📦</div><div class="stat-card-num">${inStock}</div><div class="stat-card-label">Товарів в наявності</div></div>
+        <div class="stat-card"><div class="stat-card-icon">🏷️</div><div class="stat-card-num">${activeSalesCount}</div><div class="stat-card-label">Активних акцій</div></div>
+        <div class="stat-card"><div class="stat-card-icon">🎟️</div><div class="stat-card-num">${activePromos}</div><div class="stat-card-label">Активних промокодів</div></div>
+        <div class="stat-card"><div class="stat-card-icon">⚠️</div><div class="stat-card-num" style="color:var(--danger)">${outStock}</div><div class="stat-card-label">Немає в наявності</div></div>`;
     document.getElementById('statsProductList').innerHTML = products.map(p => {
         const sd = stockData[p.id]; const price = getProductPrice(p.id); const orig = getOriginalPrice(p.id);
-        return \`<div style="display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid #F5EDD8"><img src="\${p.image}" style="width:44px;height:44px;border-radius:8px;object-fit:cover"><div style="flex:1"><div style="font-weight:600;font-size:.9rem">\${p.name}</div><div style="font-size:.78rem;color:var(--muted)">\${p.category}</div></div><div style="font-size:.88rem;font-weight:600;color:var(--honey)">\${price} грн</div>\${price < orig ? \`<div style="font-size:.75rem;color:var(--muted);text-decoration:line-through">\${orig} грн</div>\` : ''}<span style="font-size:.78rem;font-weight:700;padding:.25rem .7rem;border-radius:12px;background:\${sd.inStock ? 'rgba(74,140,92,0.12)' : 'rgba(217,79,61,0.12)'};color:\${sd.inStock ? 'var(--success)' : 'var(--danger)'}">\${sd.inStock ? '✓ В наявності' : '✕ Немає'}</span></div>\`;
+        return `<div style="display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid #F5EDD8"><img src="${p.image}" style="width:44px;height:44px;border-radius:8px;object-fit:cover"><div style="flex:1"><div style="font-weight:600;font-size:.9rem">${p.name}</div><div style="font-size:.78rem;color:var(--muted)">${p.category}</div></div><div style="font-size:.88rem;font-weight:600;color:var(--honey)">${price} грн</div>${price < orig ? `<div style="font-size:.75rem;color:var(--muted);text-decoration:line-through">${orig} грн</div>` : ''}<span style="font-size:.78rem;font-weight:700;padding:.25rem .7rem;border-radius:12px;background:${sd.inStock ? 'rgba(74,140,92,0.12)' : 'rgba(217,79,61,0.12)'};color:${sd.inStock ? 'var(--success)' : 'var(--danger)'}">${sd.inStock ? '✓ В наявності' : '✕ Немає'}</span></div>`;
     }).join('');
 }
 

@@ -20,6 +20,8 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'DM Sans', sans-serif; background: var(--honey-pale); color: var(--text); min-height: 100vh; }
+        /* Prevent scroll when modal open */
+        body.modal-open { overflow: hidden; }
 
         /* HEADER */
         header { background: var(--white); border-bottom: 2px solid var(--honey-light); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(200,134,42,0.12); }
@@ -215,10 +217,33 @@
         .promo-result.ok { background: rgba(74,140,92,0.1); color: var(--success); }
         .promo-result.err { background: rgba(217,79,61,0.1); color: var(--danger); }
 
-        /* AUTH MODAL */
-        .auth-overlay { display: none; position: fixed; inset: 0; background: rgba(26,18,8,0.65); z-index: 5000; backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+        /* AUTH MODAL — FIXED FOR MOBILE */
+        .auth-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(26,18,8,0.65);
+            z-index: 5000;
+            backdrop-filter: blur(8px);
+            align-items: flex-start;
+            justify-content: center;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
         .auth-overlay.open { display: flex; }
-        .auth-box { background: var(--white); border-radius: 24px; width: 480px; max-width: 95vw; border: 2px solid var(--honey-light); box-shadow: 0 24px 80px rgba(0,0,0,0.25); overflow: hidden; }
+        .auth-box {
+            background: var(--white);
+            border-radius: 24px;
+            width: 480px;
+            max-width: 95vw;
+            border: 2px solid var(--honey-light);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+            overflow: hidden;
+            margin: auto;
+            position: relative;
+            /* ensure it doesn't go off screen */
+            flex-shrink: 0;
+        }
         .auth-tabs-header { display: flex; background: var(--honey-pale); border-bottom: 2px solid var(--honey-light); }
         .auth-tab-btn { flex: 1; padding: 1rem; border: none; background: none; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.2s; }
         .auth-tab-btn.active { color: var(--honey); border-bottom: 3px solid var(--honey); background: white; margin-bottom: -2px; }
@@ -445,6 +470,10 @@
             .account-grid { grid-template-columns: 1fr; }
             .auth-row { grid-template-columns: 1fr; }
             .profile-form-row { grid-template-columns: 1fr; }
+            /* Auth modal mobile fix */
+            .auth-overlay { align-items: flex-start; padding: 1rem 0.5rem; }
+            .auth-box { margin: 0 auto; border-radius: 16px; }
+            .auth-body { padding: 1.5rem 1.2rem; }
         }
 
         .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; background: var(--white); padding: 1.5rem; z-index: 2500; flex-direction: column; gap: 0.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1); transform: translateY(-120%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); padding-top: 90px; }
@@ -473,7 +502,6 @@
             </div>
             <button class="icon-btn" onclick="handleWishlistClick()" title="Обране">❤️<span class="badge" id="wishCount" style="display:none">0</span></button>
             <button class="icon-btn" onclick="openCart()" title="Кошик">🛒<span class="badge" id="cartBadge">0</span></button>
-            <!-- AUTH BUTTON / USER MENU -->
             <div id="authNavArea"></div>
             <button class="mobile-menu-btn" onclick="toggleMobileNav()">☰</button>
         </div>
@@ -558,7 +586,6 @@
             </div>
         </div>
         <div class="account-main">
-            <!-- Profile -->
             <div class="account-section active" id="acc-profile">
                 <div class="account-section-title">Мій профіль</div>
                 <div class="profile-form-row">
@@ -573,12 +600,10 @@
                 <div class="profile-field" style="margin-bottom:1.5rem"><label class="profile-label">Місто / Нова Пошта відділення</label><input class="profile-input" id="profAddress" placeholder="Харків, відділення №5"></div>
                 <button class="btn-primary" onclick="saveProfile()">Зберегти зміни</button>
             </div>
-            <!-- Saved -->
             <div class="account-section" id="acc-saved">
                 <div class="account-section-title">Збережені товари</div>
                 <div id="accSavedGrid"></div>
             </div>
-            <!-- Orders -->
             <div class="account-section" id="acc-orders">
                 <div class="account-section-title">Мої замовлення</div>
                 <div id="accOrdersList" style="color:var(--muted);font-size:.9rem">
@@ -588,28 +613,21 @@
                     </div>
                 </div>
             </div>
-            <!-- Subscriptions -->
             <div class="account-section" id="acc-subscriptions">
                 <div class="account-section-title">Підписки та сповіщення</div>
                 <div class="subscription-card">
                     <h4>📰 Розсилка новин BeeBloom</h4>
-                    <p>Отримуйте сповіщення про нові акції, сезонний мед та корисні поради про бджільництво прямо на вашу електронну пошту.</p>
+                    <p>Отримуйте сповіщення про нові акції, сезонний мед та корисні поради.</p>
                     <div class="sub-toggle-row">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="newsSubToggle" onchange="toggleNewsSub(this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
+                        <label class="toggle-switch"><input type="checkbox" id="newsSubToggle" onchange="toggleNewsSub(this.checked)"><span class="toggle-slider"></span></label>
                         <span class="sub-status" id="newsSubStatus">Не підписані</span>
                     </div>
                 </div>
                 <div class="subscription-card" style="background:linear-gradient(135deg,#2A4A2A,#1A3020)">
                     <h4>🍯 Сповіщення про наявність</h4>
-                    <p>Дізнавайтесь першими, коли ваші улюблені товари знову з'являться в наявності.</p>
+                    <p>Дізнавайтесь першими, коли ваші улюблені товари знову з'являться.</p>
                     <div class="sub-toggle-row">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="stockSubToggle" onchange="toggleStockSub(this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
+                        <label class="toggle-switch"><input type="checkbox" id="stockSubToggle" onchange="toggleStockSub(this.checked)"><span class="toggle-slider"></span></label>
                         <span class="sub-status" id="stockSubStatus">Не підписані</span>
                     </div>
                 </div>
@@ -671,7 +689,7 @@
 
 <!-- AUTH MODAL -->
 <div class="auth-overlay" id="authOverlay">
-    <div class="auth-box" style="position:relative">
+    <div class="auth-box">
         <button class="auth-close" onclick="closeAuthModal()">✕</button>
         <div class="auth-tabs-header">
             <button class="auth-tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">Увійти</button>
@@ -776,12 +794,10 @@
         <div class="admin-tab" onclick="switchAdminTab('stats')">📊 Огляд</div>
     </div>
     <div class="admin-content">
-        <!-- INVENTORY -->
         <div class="admin-tab-content active" id="tab-inventory">
             <div class="admin-section-title">📦 Управління наявністю та цінами</div>
             <div class="inventory-table" id="inventoryTable"></div>
         </div>
-        <!-- SALES -->
         <div class="admin-tab-content" id="tab-sales">
             <div class="admin-section-title">🏷️ Акції та знижки</div>
             <div class="new-sale-form">
@@ -796,7 +812,6 @@
             </div>
             <div class="sales-grid" id="salesGrid"></div>
         </div>
-        <!-- PROMOS -->
         <div class="admin-tab-content" id="tab-promos">
             <div class="admin-section-title">🎟️ Промокоди</div>
             <div class="new-promo-form" style="margin-bottom:2rem">
@@ -816,7 +831,6 @@
                 <div id="promoTableBody"></div>
             </div>
         </div>
-        <!-- NEWS ADMIN -->
         <div class="admin-tab-content" id="tab-newsadmin">
             <div class="admin-section-title">📰 Публікація новин</div>
             <div class="news-post-form">
@@ -840,7 +854,6 @@
             </div>
             <div class="news-admin-list" id="newsAdminList"></div>
         </div>
-        <!-- SUBSCRIBERS -->
         <div class="admin-tab-content" id="tab-subscribers">
             <div class="admin-section-title">👥 Підписники на новини</div>
             <div style="margin-bottom:1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
@@ -851,7 +864,6 @@
                 <div id="subscribersBody"><div style="padding:2rem;text-align:center;color:var(--muted)">Підписників ще немає</div></div>
             </div>
         </div>
-        <!-- STATS -->
         <div class="admin-tab-content" id="tab-stats">
             <div class="admin-section-title">📊 Загальний огляд</div>
             <div class="stats-row" id="statsRow"></div>
@@ -866,6 +878,21 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
+// ═══════════════════════════════════════════════
+// LOCALSTORAGE HELPERS
+// ═══════════════════════════════════════════════
+const LS = {
+    get(key, def = null) {
+        try { const v = localStorage.getItem('bb_' + key); return v ? JSON.parse(v) : def; } catch { return def; }
+    },
+    set(key, val) {
+        try { localStorage.setItem('bb_' + key, JSON.stringify(val)); } catch {}
+    },
+    remove(key) {
+        try { localStorage.removeItem('bb_' + key); } catch {}
+    }
+};
+
 // ═══════════════════════════════════════════════
 // PRODUCTS DATA
 // ═══════════════════════════════════════════════
@@ -882,30 +909,86 @@ const products = [
 const categories = ['Всі', ...new Set(products.map(p => p.category))];
 
 // ═══════════════════════════════════════════════
-// ADMIN STATE
+// ADMIN STATE (persisted)
 // ═══════════════════════════════════════════════
 const ADMIN_PASSWORD = 'admin123';
-let stockData = {};
-products.forEach(p => { stockData[p.id] = { inStock: true, customPrice: null }; });
-let sales = [
+
+let stockData = LS.get('stockData', null);
+if (!stockData) {
+    stockData = {};
+    products.forEach(p => { stockData[p.id] = { inStock: true, customPrice: null }; });
+}
+
+let sales = LS.get('sales', [
     { id:1, name:'Весняна знижка', productId:'all', type:'percent', value:10, active:false },
     { id:2, name:'Знижка на чаї', productId:'cat:Чаї', type:'percent', value:15, active:true }
-];
-let promoCodes = [
+]);
+
+let promoCodes = LS.get('promoCodes', [
     { id:1, code:'HONEY10', type:'percent', value:10, minOrder:0, desc:'Для нових клієнтів', limit:0, used:3, active:true },
     { id:2, code:'SPRING50', type:'fixed', value:50, minOrder:300, desc:'При замовленні від 300 грн', limit:50, used:12, active:true }
-];
-let newsItems = [];
+]);
+
+let newsItems = LS.get('newsItems', []);
 let appliedPromo = null;
 
+function saveAdminData() {
+    LS.set('stockData', stockData);
+    LS.set('sales', sales);
+    LS.set('promoCodes', promoCodes);
+    LS.set('newsItems', newsItems);
+}
+
 // ═══════════════════════════════════════════════
-// USER AUTH STATE (in-memory "DB")
+// USER AUTH STATE (persisted via localStorage)
 // ═══════════════════════════════════════════════
-let usersDB = []; // [{id, firstName, lastName, patronymic, email, password, phone, address, subscribedNews, subscribedStock, wishlist, cart, registeredAt}]
+let usersDB = LS.get('usersDB', []);
 let currentUser = null;
 
+// Restore session
+const savedSession = LS.get('currentSession', null);
+if (savedSession) {
+    const u = usersDB.find(x => x.id === savedSession.id && x.email === savedSession.email);
+    if (u) currentUser = u;
+}
+
+function saveUsersDB() { LS.set('usersDB', usersDB); }
+function saveSession() {
+    if (currentUser) LS.set('currentSession', { id: currentUser.id, email: currentUser.email });
+    else LS.remove('currentSession');
+}
+
 function getUserInitials(user) {
-    return (user.firstName[0] + (user.lastName[0] || '')).toUpperCase();
+    return (user.firstName[0] + (user.lastName ? user.lastName[0] : '')).toUpperCase();
+}
+
+// ═══════════════════════════════════════════════
+// CART & WISHLIST (persisted per user)
+// ═══════════════════════════════════════════════
+let cart = [];
+let wishlist = [];
+
+function loadUserData() {
+    if (currentUser) {
+        cart = LS.get('cart_' + currentUser.id, []);
+        wishlist = currentUser.wishlist || [];
+    } else {
+        // Guest cart persists by IP-like session
+        cart = LS.get('cart_guest', []);
+        wishlist = [];
+    }
+}
+
+function saveCart() {
+    if (currentUser) LS.set('cart_' + currentUser.id, cart);
+    else LS.set('cart_guest', cart);
+}
+
+function saveWishlist() {
+    if (currentUser) {
+        currentUser.wishlist = [...wishlist];
+        saveUsersDB();
+    }
 }
 
 // ═══════════════════════════════════════════════
@@ -913,12 +996,14 @@ function getUserInitials(user) {
 // ═══════════════════════════════════════════════
 function openAuthModal(tab) {
     document.getElementById('authOverlay').classList.add('open');
+    document.body.classList.add('modal-open');
     if (tab === 'register') switchAuthTab('register');
     else switchAuthTab('login');
 }
 
 function closeAuthModal() {
     document.getElementById('authOverlay').classList.remove('open');
+    document.body.classList.remove('modal-open');
     clearAuthErrors();
 }
 
@@ -962,32 +1047,15 @@ function doRegister() {
     const terms = document.getElementById('regTerms').checked;
 
     let valid = true;
-    if (!firstName || !lastName) {
-        document.getElementById('regFirstName').classList.add('err');
-        valid = false;
-    }
-    if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
-        document.getElementById('regEmail').classList.add('err');
-        valid = false;
-    }
+    if (!firstName || !lastName) { document.getElementById('regFirstName').classList.add('err'); valid = false; }
+    if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) { document.getElementById('regEmail').classList.add('err'); valid = false; }
     if (usersDB.find(u => u.email === email)) {
         document.getElementById('regEmailError').classList.add('show');
-        document.getElementById('regEmail').classList.add('err');
-        valid = false;
+        document.getElementById('regEmail').classList.add('err'); valid = false;
     }
-    if (!pw || pw.length < 6) {
-        document.getElementById('regPassword').classList.add('err');
-        valid = false;
-    }
-    if (pw !== pw2) {
-        document.getElementById('regPassError').classList.add('show');
-        document.getElementById('regPassword2').classList.add('err');
-        valid = false;
-    }
-    if (!terms) {
-        document.getElementById('regTermsError').classList.add('show');
-        valid = false;
-    }
+    if (!pw || pw.length < 6) { document.getElementById('regPassword').classList.add('err'); valid = false; }
+    if (pw !== pw2) { document.getElementById('regPassError').classList.add('show'); document.getElementById('regPassword2').classList.add('err'); valid = false; }
+    if (!terms) { document.getElementById('regTermsError').classList.add('show'); valid = false; }
     if (!valid) return;
 
     const newUser = {
@@ -1001,6 +1069,7 @@ function doRegister() {
         registeredAt: new Date().toLocaleDateString('uk-UA', { day:'numeric', month:'short', year:'numeric' })
     };
     usersDB.push(newUser);
+    saveUsersDB();
     loginUser(newUser);
     closeAuthModal();
     toast('🎉 Акаунт створено! Ласкаво просимо, ' + firstName + '!');
@@ -1009,21 +1078,20 @@ function doRegister() {
 
 function loginUser(user) {
     currentUser = user;
-    cart = [];
-    wishlist = [...(user.wishlist || [])];
+    loadUserData();
     updateCartBadge();
     updateWishBadge();
+    saveSession();
     renderAuthNav();
 }
 
 function logoutUser() {
     if (!confirm('Вийти з акаунту?')) return;
-    if (currentUser) {
-        currentUser.wishlist = [...wishlist];
-    }
+    if (currentUser) saveWishlist();
     currentUser = null;
     cart = [];
     wishlist = [];
+    saveSession();
     updateCartBadge();
     updateWishBadge();
     renderAuthNav();
@@ -1054,7 +1122,6 @@ function renderAuthNav() {
             </div>
         </div>`;
         if (mobileLink) { mobileLink.textContent = '👤 ' + currentUser.firstName; mobileLink.onclick = () => { goToAccount('profile'); toggleMobileNav(); }; }
-        // Fill profile fields
         document.getElementById('profFirstName').value = currentUser.firstName || '';
         document.getElementById('profLastName').value = currentUser.lastName || '';
         document.getElementById('profPatronymic').value = currentUser.patronymic || '';
@@ -1064,7 +1131,6 @@ function renderAuthNav() {
         document.getElementById('accountSidebarName').textContent = currentUser.firstName + ' ' + currentUser.lastName;
         document.getElementById('accountSidebarEmail').textContent = currentUser.email;
         document.getElementById('accountAvatar').textContent = getUserInitials(currentUser);
-        // Update subscription toggles
         if (document.getElementById('newsSubToggle')) {
             document.getElementById('newsSubToggle').checked = currentUser.subscribedNews;
             document.getElementById('newsSubStatus').textContent = currentUser.subscribedNews ? 'Підписані ✓' : 'Не підписані';
@@ -1102,6 +1168,7 @@ function saveProfile() {
     currentUser.patronymic = document.getElementById('profPatronymic').value.trim();
     currentUser.phone = document.getElementById('profPhone').value.trim();
     currentUser.address = document.getElementById('profAddress').value.trim();
+    saveUsersDB();
     renderAuthNav();
     toast('✅ Профіль збережено!');
 }
@@ -1112,13 +1179,13 @@ function renderAccSaved() {
         el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🤍</div><h3>Нічого збережено</h3><p style="margin-bottom:1.5rem">Натисніть серце на товарі, щоб зберегти</p><button class="btn-primary" onclick="showPage('products')">Переглянути товари</button></div>`;
         return;
     }
-    const wishProducts = products.filter(p => wishlist.includes(p.id));
-    el.innerHTML = `<div class="products-grid">${wishProducts.map(p => productCardHTML(p)).join('')}</div>`;
+    el.innerHTML = `<div class="products-grid">${products.filter(p => wishlist.includes(p.id)).map(p => productCardHTML(p)).join('')}</div>`;
 }
 
 function toggleNewsSub(checked) {
     if (!currentUser) return;
     currentUser.subscribedNews = checked;
+    saveUsersDB();
     document.getElementById('newsSubStatus').textContent = checked ? 'Підписані ✓' : 'Не підписані';
     document.getElementById('newsSubStatus').className = 'sub-status ' + (checked ? 'on' : 'off');
     toast(checked ? '📰 Підписано на новини!' : 'Відписано від новин');
@@ -1127,6 +1194,7 @@ function toggleNewsSub(checked) {
 function toggleStockSub(checked) {
     if (!currentUser) return;
     currentUser.subscribedStock = checked;
+    saveUsersDB();
     document.getElementById('stockSubStatus').textContent = checked ? 'Підписані ✓' : 'Не підписані';
     document.getElementById('stockSubStatus').className = 'sub-status ' + (checked ? 'on' : 'off');
     toast(checked ? '📦 Підписано на сповіщення!' : 'Відписано');
@@ -1239,11 +1307,14 @@ function productCardHTML(p) {
 // ═══════════════════════════════════════════════
 // PRODUCT DETAIL
 // ═══════════════════════════════════════════════
-const productReviews = {};
-products.forEach(p => { productReviews[p.id] = [
-    { name:'Олена К.', rating:5, text:'Чудовий продукт, дуже задоволена якістю!', date:'10 берез. 2026' },
-    { name:'Михайло Т.', rating:4, text:'Замовляю вже вдруге, все відмінно.', date:'5 берез. 2026' }
-]; });
+let productReviews = LS.get('productReviews', null);
+if (!productReviews) {
+    productReviews = {};
+    products.forEach(p => { productReviews[p.id] = [
+        { name:'Олена К.', rating:5, text:'Чудовий продукт, дуже задоволена якістю!', date:'10 берез. 2026' },
+        { name:'Михайло Т.', rating:4, text:'Замовляю вже вдруге, все відмінно.', date:'5 берез. 2026' }
+    ]; });
+}
 
 function showDetail(id) {
     const p = products.find(x => x.id === id); if (!p) return;
@@ -1298,6 +1369,7 @@ function submitReview(pid) {
     if (!name || !text) { toast('Заповніть ім\'я та текст відгуку'); return; }
     if (!productReviews[pid]) productReviews[pid] = [];
     productReviews[pid].unshift({ name, rating: selectedStars, text, date: new Date().toLocaleDateString('uk-UA', {day:'numeric',month:'short',year:'numeric'}) });
+    LS.set('productReviews', productReviews);
     renderReviews(products.find(x => x.id === pid));
     toast('✅ Відгук опубліковано!');
 }
@@ -1305,12 +1377,11 @@ function submitReview(pid) {
 // ═══════════════════════════════════════════════
 // WISHLIST
 // ═══════════════════════════════════════════════
-let wishlist = [];
 function toggleWish(id) {
     if (!currentUser) { openAuthModal(); toast('💡 Увійдіть, щоб зберігати товари'); return; }
     if (wishlist.includes(id)) { wishlist = wishlist.filter(x => x !== id); toast('Видалено з обраного'); }
     else { wishlist.push(id); toast('❤️ Додано в обране!'); }
-    currentUser.wishlist = [...wishlist];
+    saveWishlist();
     updateWishBadge();
     if (currentPage === 'home') renderFeatured();
     if (currentPage === 'products') renderProducts();
@@ -1328,13 +1399,13 @@ function renderWishlist() {
 // ═══════════════════════════════════════════════
 // CART
 // ═══════════════════════════════════════════════
-let cart = [];
 function addToCart(productId, qty = 1) {
     const p = products.find(x => x.id === productId);
     if (!p || !stockData[p.id].inStock) return;
     const existing = cart.find(x => x.id === productId);
     if (existing) existing.qty += qty;
     else cart.push({ id: productId, qty });
+    saveCart();
     updateCartBadge();
     toast(`🛒 ${p.name} додано до кошика!`);
 }
@@ -1358,13 +1429,12 @@ function renderCart() {
         promoHTML = `<div class="promo-result ok">🎟️ <strong>${appliedPromo.code}</strong> — знижка ${discount} грн <button onclick="removePromo()" style="background:none;border:none;cursor:pointer;color:var(--danger);margin-left:.5rem;font-size:.85rem">✕</button></div>`;
     }
     const total = subtotal - discount;
-    const userName = currentUser ? `${currentUser.firstName} ${currentUser.lastName}\n${currentUser.phone || ''}\n${currentUser.address || ''}` : '';
     footerEl.innerHTML = `<div class="promo-row"><input type="text" class="promo-input" id="promoInputCart" placeholder="Промокод..." style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"><button class="promo-apply-btn" onclick="applyPromo()">Застосувати</button></div>${promoHTML}<div class="cart-total-row"><span class="cart-total-label">Загальна сума:</span><span class="cart-total-val">${total} грн</span></div>${discount > 0 ? `<div style="font-size:.82rem;color:var(--muted);text-align:right;margin-top:-.8rem;margin-bottom:.6rem">Підсума: ${subtotal} грн − ${discount} грн знижки</div>` : ''}<button class="btn-primary" style="width:100%;margin-bottom:.6rem" onclick="checkout()">Оформити замовлення</button><button class="btn-outline" style="width:100%;color:var(--danger);border-color:var(--danger)" onclick="clearCart()">Очистити кошик</button>`;
 }
 
-function cartQty(i, delta) { cart[i].qty = Math.max(1, cart[i].qty + delta); updateCartBadge(); renderCart(); }
-function cartRemove(i) { cart.splice(i, 1); updateCartBadge(); renderCart(); }
-function clearCart() { if (confirm('Очистити весь кошик?')) { cart = []; appliedPromo = null; updateCartBadge(); renderCart(); } }
+function cartQty(i, delta) { cart[i].qty = Math.max(1, cart[i].qty + delta); saveCart(); updateCartBadge(); renderCart(); }
+function cartRemove(i) { cart.splice(i, 1); saveCart(); updateCartBadge(); renderCart(); }
+function clearCart() { if (confirm('Очистити весь кошик?')) { cart = []; appliedPromo = null; saveCart(); updateCartBadge(); renderCart(); } }
 
 function applyPromo() {
     const code = (document.getElementById('promoInputCart')?.value || '').trim().toUpperCase();
@@ -1375,6 +1445,7 @@ function applyPromo() {
     const subtotal = cart.reduce((s,x) => s + getProductPrice(x.id) * x.qty, 0);
     if (promo.minOrder > 0 && subtotal < promo.minOrder) { showPromoResult('err', `❌ Мінімальна сума замовлення: ${promo.minOrder} грн`); return; }
     appliedPromo = promo; promo.used++;
+    saveAdminData();
     renderCart(); toast('🎟️ Промокод застосовано!');
 }
 function showPromoResult(type, msg) { const existing = document.querySelector('.promo-result'); if (existing) existing.remove(); const el = document.createElement('div'); el.className = `promo-result ${type}`; el.innerHTML = msg; const row = document.querySelector('.promo-row'); if (row) row.after(el); }
@@ -1482,7 +1553,12 @@ function renderInventoryTable() {
     document.getElementById('inventoryTable').innerHTML = html;
 }
 function updateStockToggle(id) { const checked = document.getElementById(`stock_${id}`).checked; stockData[id].inStock = checked; const label = document.getElementById(`stockLabel_${id}`); label.textContent = checked ? 'В наявності' : 'Немає'; label.className = `toggle-label ${checked ? 'in' : 'out'}`; }
-function saveInventoryRow(id) { const checked = document.getElementById(`stock_${id}`).checked; const pv = parseFloat(document.getElementById(`price_${id}`).value); stockData[id].inStock = checked; stockData[id].customPrice = isNaN(pv) || pv <= 0 ? null : pv; toast('✅ Збережено!'); renderStats(); }
+function saveInventoryRow(id) {
+    const checked = document.getElementById(`stock_${id}`).checked;
+    const pv = parseFloat(document.getElementById(`price_${id}`).value);
+    stockData[id].inStock = checked; stockData[id].customPrice = isNaN(pv) || pv <= 0 ? null : pv;
+    saveAdminData(); toast('✅ Збережено!'); renderStats();
+}
 
 // SALES
 function populateSaleProductSelect() {
@@ -1499,8 +1575,8 @@ function renderSalesGrid() {
         return `<div class="sale-card ${s.active ? 'active-sale' : ''}"><button class="delete-sale-btn" onclick="deleteSale(${s.id})">✕</button><div class="sale-card-top"><div class="sale-card-name">${s.name}</div><span class="${s.active ? 'sale-active-tag' : 'sale-inactive-tag'}">${s.active ? 'Активна' : 'Неактивна'}</span></div><div style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem">${pl} · Знижка: ${s.type === 'percent' ? s.value + '%' : s.value + ' грн'}</div><div class="sale-toggle-row"><label class="toggle-switch"><input type="checkbox" ${s.active ? 'checked' : ''} onchange="toggleSale(${s.id},this.checked)"><span class="toggle-slider"></span></label><span>${s.active ? '✅ Увімкнена' : '⏸️ Вимкнена'}</span></div></div>`;
     }).join('');
 }
-function toggleSale(id, checked) { const s = sales.find(x => x.id === id); if (s) { s.active = checked; renderSalesGrid(); toast(checked ? '✅ Акцію активовано!' : '⏸️ Акцію вимкнено'); } }
-function deleteSale(id) { if (confirm('Видалити акцію?')) { sales = sales.filter(s => s.id !== id); renderSalesGrid(); toast('🗑️ Видалено'); } }
+function toggleSale(id, checked) { const s = sales.find(x => x.id === id); if (s) { s.active = checked; saveAdminData(); renderSalesGrid(); toast(checked ? '✅ Акцію активовано!' : '⏸️ Акцію вимкнено'); } }
+function deleteSale(id) { if (confirm('Видалити акцію?')) { sales = sales.filter(s => s.id !== id); saveAdminData(); renderSalesGrid(); toast('🗑️ Видалено'); } }
 function addSale() {
     const name = document.getElementById('newSaleName').value.trim();
     const productId = document.getElementById('newSaleProduct').value;
@@ -1510,7 +1586,8 @@ function addSale() {
     if (!value || value <= 0) { toast('Введіть розмір знижки'); return; }
     const pid = isNaN(parseInt(productId)) ? productId : parseInt(productId);
     sales.push({ id: Date.now(), name, productId: pid, type, value, active: true });
-    renderSalesGrid(); document.getElementById('newSaleName').value = ''; document.getElementById('newSaleValue').value = '';
+    saveAdminData(); renderSalesGrid();
+    document.getElementById('newSaleName').value = ''; document.getElementById('newSaleValue').value = '';
     toast('🏷️ Акцію створено!');
 }
 
@@ -1520,8 +1597,8 @@ function renderPromoTable() {
     if (!promoCodes.length) { body.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--muted)">Промокодів ще немає</div>'; return; }
     body.innerHTML = promoCodes.map(p => `<div class="promo-row-data"><div><span class="promo-code-tag">${p.code}</span></div><div style="font-weight:600">${p.type === 'percent' ? p.value + '%' : p.value + ' грн'}</div><div style="font-size:.82rem;color:var(--muted)">${p.desc || '—'}${p.minOrder > 0 ? '<br>Від ' + p.minOrder + ' грн' : ''}${p.limit > 0 ? '<br>Ліміт: ' + p.used + '/' + p.limit : '<br>Безліміт'}</div><div><label class="toggle-switch"><input type="checkbox" ${p.active ? 'checked' : ''} onchange="togglePromo(${p.id},this.checked)"><span class="toggle-slider"></span></label></div><div><button class="promo-del-btn" onclick="deletePromo(${p.id})">🗑️</button></div></div>`).join('');
 }
-function togglePromo(id, checked) { const p = promoCodes.find(x => x.id === id); if (p) { p.active = checked; renderPromoTable(); toast(checked ? '✅ Активовано' : '⏸️ Вимкнено'); } }
-function deletePromo(id) { if (confirm('Видалити промокод?')) { promoCodes = promoCodes.filter(p => p.id !== id); renderPromoTable(); toast('🗑️ Видалено'); } }
+function togglePromo(id, checked) { const p = promoCodes.find(x => x.id === id); if (p) { p.active = checked; saveAdminData(); renderPromoTable(); toast(checked ? '✅ Активовано' : '⏸️ Вимкнено'); } }
+function deletePromo(id) { if (confirm('Видалити промокод?')) { promoCodes = promoCodes.filter(p => p.id !== id); saveAdminData(); renderPromoTable(); toast('🗑️ Видалено'); } }
 function addPromo() {
     const code = document.getElementById('newPromoCode').value.trim().toUpperCase();
     const type = document.getElementById('newPromoType').value;
@@ -1533,7 +1610,7 @@ function addPromo() {
     if (promoCodes.find(p => p.code === code)) { toast('Такий код вже існує'); return; }
     if (!value || value <= 0) { toast('Введіть розмір знижки'); return; }
     promoCodes.push({ id: Date.now(), code, type, value, minOrder, desc, limit, used: 0, active: true });
-    renderPromoTable();
+    saveAdminData(); renderPromoTable();
     ['newPromoCode','newPromoValue','newPromoMin','newPromoDesc','newPromoLimit'].forEach(id => document.getElementById(id).value = '');
     toast('🎟️ Промокод створено!');
 }
@@ -1555,6 +1632,7 @@ function publishNews() {
     if (!title || !body) { toast('Введіть заголовок та текст'); return; }
     const newItem = { id: Date.now().toString(), title, tag, body, date: new Date().toLocaleDateString('uk-UA', {day:'numeric',month:'long',year:'numeric'}) };
     newsItems.unshift(newItem);
+    saveAdminData();
     document.getElementById('newNewsTitle').value = ''; document.getElementById('newNewsBody').value = '';
     renderNewsAdminList(); updateSubCountBadge();
     const subCount = usersDB.filter(u => u.subscribedNews).length;
@@ -1562,7 +1640,7 @@ function publishNews() {
 }
 
 function deleteNews(id) {
-    if (confirm('Видалити новину?')) { newsItems = newsItems.filter(n => n.id !== id); renderNewsAdminList(); toast('🗑️ Новину видалено'); }
+    if (confirm('Видалити новину?')) { newsItems = newsItems.filter(n => n.id !== id); saveAdminData(); renderNewsAdminList(); toast('🗑️ Новину видалено'); }
 }
 
 function updateSubCountBadge() {
@@ -1628,9 +1706,12 @@ function toast(msg) {
 // ═══════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════
+loadUserData();
 renderAuthNav();
 renderFeatured();
 renderFilters();
+updateCartBadge();
+updateWishBadge();
 </script>
 </body>
 </html>

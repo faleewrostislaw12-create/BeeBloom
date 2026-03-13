@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>BeeBloom - Натуральний мед та бджолині продукти</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -18,206 +18,207 @@
             --danger: #D94F3D;
             --success: #4A8C5C;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'DM Sans', sans-serif; background: var(--honey-pale); color: var(--text); min-height: 100vh; }
-        /* Prevent scroll when modal open */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--honey-pale); color: var(--text); min-height: 100vh; overflow-x: hidden; width: 100%; }
         body.modal-open { overflow: hidden; }
+        img { max-width: 100%; height: auto; display: block; }
 
         /* HEADER */
         header { background: var(--white); border-bottom: 2px solid var(--honey-light); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(200,134,42,0.12); }
-        nav { max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 2rem; height: 70px; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: var(--honey); display: flex; align-items: center; gap: 0.5rem; text-decoration: none; white-space: nowrap; cursor: pointer; }
-        .nav-links { display: flex; list-style: none; gap: 0.2rem; flex: 1; }
-        .nav-links a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; cursor: pointer; display: block; }
+        nav { max-width: 1280px; margin: 0 auto; padding: 0 1rem; display: flex; align-items: center; gap: 1rem; height: 60px; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--honey); display: flex; align-items: center; gap: 0.4rem; text-decoration: none; white-space: nowrap; cursor: pointer; flex-shrink: 0; }
+        .nav-links { display: flex; list-style: none; gap: 0.1rem; flex: 1; }
+        .nav-links a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 0.9rem; padding: 0.45rem 0.8rem; border-radius: 8px; transition: all 0.2s; cursor: pointer; display: block; }
         .nav-links a:hover, .nav-links a.active { color: var(--honey); background: rgba(200,134,42,0.08); }
-        .nav-right { display: flex; align-items: center; gap: 0.8rem; margin-left: auto; }
+        .nav-right { display: flex; align-items: center; gap: 0.5rem; margin-left: auto; flex-shrink: 0; }
         .search-wrap { position: relative; }
-        .search-input { padding: 0.55rem 2.8rem 0.55rem 1.1rem; border: 1.5px solid #E0D0B0; border-radius: 25px; font-size: 0.9rem; width: 200px; font-family: 'DM Sans', sans-serif; background: var(--honey-pale); color: var(--text); transition: all 0.25s; }
-        .search-input:focus { outline: none; border-color: var(--honey); width: 250px; background: var(--white); }
-        .search-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1rem; color: var(--honey); }
-        .search-dropdown { position: absolute; top: calc(100% + 6px); right: 0; width: 300px; background: var(--white); border: 1.5px solid var(--honey-light); border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 2000; display: none; overflow: hidden; }
+        .search-input { padding: 0.5rem 2.4rem 0.5rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 25px; font-size: 0.88rem; width: 170px; font-family: 'DM Sans', sans-serif; background: var(--honey-pale); color: var(--text); transition: all 0.25s; }
+        .search-input:focus { outline: none; border-color: var(--honey); width: 210px; background: var(--white); }
+        .search-btn { position: absolute; right: 7px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 0.95rem; color: var(--honey); }
+        .search-dropdown { position: absolute; top: calc(100% + 6px); right: 0; width: 290px; background: var(--white); border: 1.5px solid var(--honey-light); border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 2000; display: none; overflow: hidden; }
         .search-dropdown-item { display: flex; align-items: center; gap: 0.8rem; padding: 0.7rem 1rem; cursor: pointer; transition: background 0.15s; border-bottom: 1px solid #F5EDD8; }
         .search-dropdown-item:last-child { border-bottom: none; }
         .search-dropdown-item:hover { background: var(--honey-pale); }
-        .search-dropdown-item img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
-        .search-dropdown-item .sdi-name { font-weight: 500; font-size: 0.9rem; }
-        .search-dropdown-item .sdi-price { font-size: 0.82rem; color: var(--honey); font-weight: 600; }
-        .icon-btn { background: none; border: 1.5px solid #E0D0B0; border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: all 0.2s; position: relative; color: var(--text); }
+        .search-dropdown-item img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+        .search-dropdown-item .sdi-name { font-weight: 500; font-size: 0.88rem; }
+        .search-dropdown-item .sdi-price { font-size: 0.8rem; color: var(--honey); font-weight: 600; }
+        .icon-btn { background: none; border: 1.5px solid #E0D0B0; border-radius: 50%; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: pointer; transition: all 0.2s; position: relative; color: var(--text); flex-shrink: 0; }
         .icon-btn:hover { border-color: var(--honey); color: var(--honey); background: rgba(200,134,42,0.06); }
-        .badge { position: absolute; top: -5px; right: -5px; background: var(--danger); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--honey); }
+        .badge { position: absolute; top: -5px; right: -5px; background: var(--danger); color: white; border-radius: 50%; width: 17px; height: 17px; font-size: 0.65rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--honey); flex-shrink: 0; padding: 0.3rem; }
 
         /* AUTH BUTTON IN NAV */
-        .auth-nav-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.1rem; border: 1.5px solid var(--honey); border-radius: 25px; background: none; color: var(--honey); font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; white-space: nowrap; }
+        .auth-nav-btn { display: flex; align-items: center; gap: 0.4rem; padding: 0.45rem 0.9rem; border: 1.5px solid var(--honey); border-radius: 25px; background: none; color: var(--honey); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; white-space: nowrap; flex-shrink: 0; }
         .auth-nav-btn:hover { background: var(--honey); color: white; }
         .auth-nav-btn.logged { background: var(--honey); color: white; }
 
         /* USER DROPDOWN */
         .user-dropdown-wrap { position: relative; }
-        .user-dropdown { position: absolute; top: calc(100% + 8px); right: 0; width: 220px; background: var(--white); border: 1.5px solid var(--honey-light); border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 2000; display: none; overflow: hidden; }
+        .user-dropdown { position: absolute; top: calc(100% + 8px); right: 0; width: 210px; background: var(--white); border: 1.5px solid var(--honey-light); border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 2000; display: none; overflow: hidden; }
         .user-dropdown.open { display: block; }
-        .user-dropdown-header { padding: 1rem; background: var(--honey-pale); border-bottom: 1px solid #EDE0C4; }
-        .user-dropdown-name { font-weight: 700; font-size: 0.95rem; color: var(--dark); }
-        .user-dropdown-email { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
-        .user-dropdown-item { display: flex; align-items: center; gap: 0.7rem; padding: 0.75rem 1rem; cursor: pointer; font-size: 0.9rem; color: var(--text); transition: background 0.15s; border-bottom: 1px solid #F5EDD8; }
+        .user-dropdown-header { padding: 0.9rem 1rem; background: var(--honey-pale); border-bottom: 1px solid #EDE0C4; }
+        .user-dropdown-name { font-weight: 700; font-size: 0.92rem; color: var(--dark); }
+        .user-dropdown-email { font-size: 0.75rem; color: var(--muted); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .user-dropdown-item { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 1rem; cursor: pointer; font-size: 0.88rem; color: var(--text); transition: background 0.15s; border-bottom: 1px solid #F5EDD8; }
         .user-dropdown-item:last-child { border-bottom: none; }
         .user-dropdown-item:hover { background: var(--honey-pale); color: var(--honey); }
         .user-dropdown-item.danger:hover { color: var(--danger); }
 
         /* MAIN */
-        main { margin-top: 70px; padding: 2.5rem 2rem; max-width: 1280px; margin-left: auto; margin-right: auto; }
+        main { margin-top: 60px; padding: 1.5rem 1rem; max-width: 1280px; margin-left: auto; margin-right: auto; }
         .page { display: none; animation: fadeUp 0.4s ease; }
         .page.active { display: block; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
         /* HERO */
-        .hero { background: linear-gradient(135deg, var(--dark) 0%, #3D2000 100%); border-radius: 24px; padding: 5rem 4rem; margin-bottom: 3rem; position: relative; overflow: hidden; color: white; display: flex; flex-direction: column; align-items: flex-start; }
-        .hero::before { content: '🍯'; position: absolute; right: 4rem; top: 50%; transform: translateY(-50%); font-size: 12rem; opacity: 0.12; }
-        .hero-tag { background: var(--honey); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 1.5rem; text-transform: uppercase; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; line-height: 1.15; margin-bottom: 1.2rem; max-width: 560px; }
+        .hero { background: linear-gradient(135deg, var(--dark) 0%, #3D2000 100%); border-radius: 20px; padding: 3rem 2rem; margin-bottom: 2.5rem; position: relative; overflow: hidden; color: white; display: flex; flex-direction: column; align-items: flex-start; }
+        .hero::before { content: '🍯'; position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); font-size: 9rem; opacity: 0.1; pointer-events: none; }
+        .hero-tag { background: var(--honey); color: white; padding: 0.28rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 1.2rem; text-transform: uppercase; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.15; margin-bottom: 1rem; max-width: 500px; }
         .hero h1 em { color: var(--honey-light); font-style: normal; }
-        .hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 500px; margin-bottom: 2rem; line-height: 1.7; }
-        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn-primary { background: var(--honey); color: white; padding: 0.85rem 2rem; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif; }
+        .hero p { color: rgba(255,255,255,0.7); font-size: 0.95rem; max-width: 480px; margin-bottom: 1.8rem; line-height: 1.7; }
+        .hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+        .btn-primary { background: var(--honey); color: white; padding: 0.8rem 1.6rem; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif; }
         .btn-primary:hover { background: #B5761F; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(200,134,42,0.4); }
-        .btn-outline { background: transparent; color: white; padding: 0.85rem 2rem; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 12px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif; }
+        .btn-outline { background: transparent; color: white; padding: 0.8rem 1.6rem; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 10px; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif; }
         .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
-        .hero-stats { display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.12); }
-        .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--honey-light); }
-        .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+        .hero-stats { display: flex; gap: 2rem; margin-top: 2.5rem; padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--honey-light); }
+        .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
 
         /* SECTION */
-        .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.8rem; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--dark); }
-        .section-link { color: var(--honey); font-size: 0.9rem; font-weight: 600; cursor: pointer; text-decoration: none; border-bottom: 1px solid var(--honey); padding-bottom: 1px; transition: opacity 0.2s; }
+        .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.5rem; gap: 1rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--dark); }
+        .section-link { color: var(--honey); font-size: 0.88rem; font-weight: 600; cursor: pointer; text-decoration: none; border-bottom: 1px solid var(--honey); padding-bottom: 1px; transition: opacity 0.2s; white-space: nowrap; flex-shrink: 0; }
         .section-link:hover { opacity: 0.7; }
 
         /* FILTER */
-        .filter-bar { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
-        .filter-label { font-size: 0.85rem; color: var(--muted); font-weight: 500; margin-right: 0.4rem; }
-        .filter-btn { padding: 0.45rem 1.1rem; border: 1.5px solid #E0D0B0; border-radius: 25px; background: white; color: var(--muted); font-size: 0.88rem; font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+        .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; align-items: center; }
+        .filter-label { font-size: 0.82rem; color: var(--muted); font-weight: 500; margin-right: 0.3rem; }
+        .filter-btn { padding: 0.4rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 25px; background: white; color: var(--muted); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; white-space: nowrap; }
         .filter-btn:hover { border-color: var(--honey); color: var(--honey); }
         .filter-btn.active { background: var(--honey); color: white; border-color: var(--honey); }
 
         /* PRODUCT GRID */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.4rem; }
 
         /* PRODUCT CARD */
-        .product-card { background: var(--card-bg); border-radius: 18px; overflow: hidden; border: 1.5px solid #EDE0C4; transition: all 0.3s; cursor: pointer; position: relative; }
-        .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(200,134,42,0.18); border-color: var(--honey-light); }
+        .product-card { background: var(--card-bg); border-radius: 16px; overflow: hidden; border: 1.5px solid #EDE0C4; transition: all 0.3s; cursor: pointer; position: relative; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(200,134,42,0.15); border-color: var(--honey-light); }
         .product-card.out-of-stock { opacity: 0.7; }
         .product-card.out-of-stock:hover { transform: none; box-shadow: none; }
-        .card-img-wrap { position: relative; height: 210px; overflow: hidden; }
+        .card-img-wrap { position: relative; height: 190px; overflow: hidden; }
         .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-        .product-card:hover .card-img-wrap img { transform: scale(1.06); }
-        .card-category { position: absolute; top: 12px; left: 12px; background: rgba(26,18,8,0.75); color: var(--honey-light); padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; backdrop-filter: blur(6px); letter-spacing: 0.04em; }
+        .product-card:hover .card-img-wrap img { transform: scale(1.05); }
+        .card-category { position: absolute; top: 10px; left: 10px; background: rgba(26,18,8,0.75); color: var(--honey-light); padding: 0.22rem 0.65rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; backdrop-filter: blur(6px); letter-spacing: 0.04em; }
         .out-of-stock-badge { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(26,18,8,0.55); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(2px); }
-        .out-of-stock-badge span { background: #D94F3D; color: white; padding: 0.4rem 1.2rem; border-radius: 25px; font-size: 0.9rem; font-weight: 700; }
-        .sale-badge { position: absolute; top: 12px; right: 50px; background: var(--danger); color: white; padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; animation: pulseSale 1.8s ease-in-out infinite; }
+        .out-of-stock-badge span { background: #D94F3D; color: white; padding: 0.35rem 1rem; border-radius: 25px; font-size: 0.85rem; font-weight: 700; }
+        .sale-badge { position: absolute; top: 10px; right: 46px; background: var(--danger); color: white; padding: 0.22rem 0.55rem; border-radius: 20px; font-size: 0.72rem; font-weight: 700; animation: pulseSale 1.8s ease-in-out infinite; }
         @keyframes pulseSale { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
-        .wishlist-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.85); border: none; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; backdrop-filter: blur(4px); }
+        .wishlist-btn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.85); border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; backdrop-filter: blur(4px); }
         .wishlist-btn:hover { transform: scale(1.15); background: white; }
         .wishlist-btn.active { color: var(--danger); }
-        .card-body { padding: 1.2rem; }
-        .card-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 0.4rem; }
-        .card-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.9rem; }
-        .card-rating { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.9rem; }
-        .stars { color: var(--honey); font-size: 0.85rem; letter-spacing: 1px; }
-        .rating-count { font-size: 0.78rem; color: var(--muted); }
-        .card-footer { display: flex; align-items: center; justify-content: space-between; }
-        .card-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--honey); }
-        .card-price small { font-size: 0.7rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
-        .card-price .old-price { font-size: 0.85rem; color: var(--muted); text-decoration: line-through; font-family: 'DM Sans', sans-serif; font-weight: 400; display: block; }
-        .add-btn { background: var(--honey); color: white; border: none; border-radius: 10px; padding: 0.55rem 1.1rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 0.4rem; }
+        .card-body { padding: 1rem; }
+        .card-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.35rem; }
+        .card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.8rem; }
+        .card-rating { display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.8rem; }
+        .stars { color: var(--honey); font-size: 0.82rem; letter-spacing: 1px; }
+        .rating-count { font-size: 0.75rem; color: var(--muted); }
+        .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+        .card-price { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--honey); }
+        .card-price small { font-size: 0.68rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+        .card-price .old-price { font-size: 0.82rem; color: var(--muted); text-decoration: line-through; font-family: 'DM Sans', sans-serif; font-weight: 400; display: block; }
+        .add-btn { background: var(--honey); color: white; border: none; border-radius: 8px; padding: 0.5rem 0.9rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 0.35rem; white-space: nowrap; flex-shrink: 0; }
         .add-btn:hover { background: #B5761F; transform: scale(1.04); }
         .add-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
 
         /* DETAIL */
-        .detail-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; background: var(--card-bg); border-radius: 20px; padding: 2.5rem; border: 1.5px solid #EDE0C4; }
-        .detail-img { border-radius: 14px; overflow: hidden; height: 380px; position: relative; }
+        .detail-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; background: var(--card-bg); border-radius: 18px; padding: 2rem; border: 1.5px solid #EDE0C4; }
+        .detail-img { border-radius: 12px; overflow: hidden; height: 360px; position: relative; }
         .detail-img img { width: 100%; height: 100%; object-fit: cover; }
-        .detail-info { display: flex; flex-direction: column; gap: 1rem; }
-        .detail-category { display: inline-block; background: rgba(200,134,42,0.12); color: var(--honey); padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-        .detail-name { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--dark); line-height: 1.2; }
-        .detail-rating { display: flex; align-items: center; gap: 0.6rem; }
-        .detail-price { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--honey); font-weight: 700; }
-        .detail-price small { font-size: 1rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
-        .detail-desc { color: var(--muted); line-height: 1.8; font-size: 0.95rem; }
-        .detail-props { display: flex; flex-direction: column; gap: 0.6rem; }
-        .prop-row { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; }
-        .prop-icon { font-size: 1.1rem; }
+        .detail-info { display: flex; flex-direction: column; gap: 0.9rem; }
+        .detail-category { display: inline-block; background: rgba(200,134,42,0.12); color: var(--honey); padding: 0.28rem 0.85rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+        .detail-name { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); line-height: 1.2; }
+        .detail-rating { display: flex; align-items: center; gap: 0.5rem; }
+        .detail-price { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--honey); font-weight: 700; }
+        .detail-price small { font-size: 0.9rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+        .detail-desc { color: var(--muted); line-height: 1.8; font-size: 0.92rem; }
+        .detail-props { display: flex; flex-direction: column; gap: 0.5rem; }
+        .prop-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; }
+        .prop-icon { font-size: 1rem; }
         .prop-label { color: var(--muted); }
         .prop-value { font-weight: 600; color: var(--dark); }
-        .detail-actions { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; }
+        .detail-actions { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.4rem; }
         .qty-selector { display: flex; align-items: center; border: 1.5px solid #E0D0B0; border-radius: 10px; width: fit-content; overflow: hidden; }
-        .qty-btn { background: none; border: none; padding: 0.6rem 1rem; font-size: 1.1rem; cursor: pointer; color: var(--honey); transition: background 0.2s; }
+        .qty-btn { background: none; border: none; padding: 0.55rem 0.9rem; font-size: 1.1rem; cursor: pointer; color: var(--honey); transition: background 0.2s; }
         .qty-btn:hover { background: rgba(200,134,42,0.08); }
-        .qty-num { padding: 0 1rem; font-weight: 600; color: var(--dark); min-width: 40px; text-align: center; }
-        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); font-size: 0.9rem; cursor: pointer; margin-bottom: 1.5rem; transition: color 0.2s; }
+        .qty-num { padding: 0 0.9rem; font-weight: 600; color: var(--dark); min-width: 36px; text-align: center; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); font-size: 0.88rem; cursor: pointer; margin-bottom: 1.2rem; transition: color 0.2s; }
         .back-link:hover { color: var(--honey); }
 
         /* REVIEWS */
-        .reviews-section { margin-top: 3rem; }
-        .reviews-section h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; }
-        .review-form { background: white; border-radius: 14px; padding: 1.5rem; border: 1.5px solid #EDE0C4; margin-bottom: 2rem; }
-        .review-form h4 { margin-bottom: 1rem; font-size: 1rem; color: var(--dark); }
-        .star-select { display: flex; gap: 0.3rem; margin-bottom: 1rem; font-size: 1.4rem; cursor: pointer; }
+        .reviews-section { margin-top: 2.5rem; }
+        .reviews-section h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1.3rem; }
+        .review-form { background: white; border-radius: 12px; padding: 1.3rem; border: 1.5px solid #EDE0C4; margin-bottom: 1.8rem; }
+        .review-form h4 { margin-bottom: 0.9rem; font-size: 0.98rem; color: var(--dark); }
+        .star-select { display: flex; gap: 0.3rem; margin-bottom: 0.9rem; font-size: 1.4rem; cursor: pointer; }
         .star-select span:hover { transform: scale(1.2); }
-        .review-textarea { width: 100%; padding: 0.8rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; resize: vertical; min-height: 80px; margin-bottom: 0.8rem; color: var(--text); }
+        .review-textarea { width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; resize: vertical; min-height: 75px; margin-bottom: 0.7rem; color: var(--text); }
         .review-textarea:focus { outline: none; border-color: var(--honey); }
-        .review-name-input { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; margin-bottom: 0.8rem; color: var(--text); }
+        .review-name-input { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; margin-bottom: 0.7rem; color: var(--text); }
         .review-name-input:focus { outline: none; border-color: var(--honey); }
-        .reviews-list { display: flex; flex-direction: column; gap: 1rem; }
-        .review-item { background: white; border-radius: 12px; padding: 1.2rem 1.4rem; border: 1.5px solid #EDE0C4; }
-        .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; }
-        .reviewer-name { font-weight: 600; font-size: 0.95rem; }
-        .review-date { font-size: 0.78rem; color: var(--muted); }
-        .review-stars { color: var(--honey); font-size: 0.85rem; margin-bottom: 0.4rem; }
-        .review-text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+        .reviews-list { display: flex; flex-direction: column; gap: 0.9rem; }
+        .review-item { background: white; border-radius: 10px; padding: 1.1rem 1.2rem; border: 1.5px solid #EDE0C4; }
+        .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; gap: 0.5rem; }
+        .reviewer-name { font-weight: 600; font-size: 0.92rem; }
+        .review-date { font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+        .review-stars { color: var(--honey); font-size: 0.82rem; margin-bottom: 0.35rem; }
+        .review-text { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
 
         /* WISHLIST */
-        .wishlist-empty { text-align: center; padding: 5rem 2rem; color: var(--muted); }
-        .wishlist-empty .empty-icon { font-size: 4rem; margin-bottom: 1rem; }
-        .wishlist-empty h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--dark); }
+        .wishlist-empty { text-align: center; padding: 4rem 1.5rem; color: var(--muted); }
+        .wishlist-empty .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+        .wishlist-empty h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--dark); }
 
         /* CART PANEL */
         .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,18,8,0.5); z-index: 3000; backdrop-filter: blur(4px); }
-        .modal-overlay.open { display: flex; align-items: center; justify-content: center; }
-        .cart-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 420px; background: var(--white); z-index: 3001; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); box-shadow: -10px 0 40px rgba(0,0,0,0.15); }
+        .modal-overlay.open { display: block; }
+        .cart-panel { position: fixed; right: 0; top: 0; bottom: 0; width: min(420px, 100vw); background: var(--white); z-index: 3001; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); box-shadow: -10px 0 40px rgba(0,0,0,0.15); overflow: hidden; }
         .cart-panel.open { transform: translateX(0); }
-        .cart-header { padding: 1.5rem 1.8rem; border-bottom: 1.5px solid #EDE0C4; display: flex; align-items: center; justify-content: space-between; }
-        .cart-header h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
-        .close-btn { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); padding: 0.2rem; transition: color 0.2s; }
+        .cart-header { padding: 1.2rem 1.5rem; border-bottom: 1.5px solid #EDE0C4; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .cart-header h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+        .close-btn { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--muted); padding: 0.2rem; transition: color 0.2s; }
         .close-btn:hover { color: var(--dark); }
-        .cart-items { flex: 1; overflow-y: auto; padding: 1.2rem 1.8rem; }
-        .cart-item { display: flex; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid #F5EDD8; }
+        .cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; -webkit-overflow-scrolling: touch; }
+        .cart-item { display: flex; gap: 0.9rem; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid #F5EDD8; }
         .cart-item:last-child { border-bottom: none; }
-        .cart-item img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; }
-        .ci-info { flex: 1; }
-        .ci-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
-        .ci-price { font-size: 0.82rem; color: var(--muted); }
-        .ci-controls { display: flex; align-items: center; gap: 0.5rem; }
-        .ci-qty-btn { background: var(--honey-pale); border: 1.5px solid #E0D0B0; border-radius: 6px; width: 26px; height: 26px; cursor: pointer; font-size: 0.9rem; color: var(--honey); display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+        .cart-item img { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+        .ci-info { flex: 1; min-width: 0; }
+        .ci-name { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.2rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .ci-price { font-size: 0.8rem; color: var(--muted); }
+        .ci-controls { display: flex; align-items: center; gap: 0.4rem; flex-shrink: 0; }
+        .ci-qty-btn { background: var(--honey-pale); border: 1.5px solid #E0D0B0; border-radius: 6px; width: 26px; height: 26px; cursor: pointer; font-size: 0.88rem; color: var(--honey); display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
         .ci-qty-btn:hover { background: var(--honey); color: white; border-color: var(--honey); }
-        .ci-qty { font-weight: 600; font-size: 0.9rem; min-width: 20px; text-align: center; }
-        .ci-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; margin-left: 0.3rem; transition: color 0.2s; }
+        .ci-qty { font-weight: 600; font-size: 0.88rem; min-width: 18px; text-align: center; }
+        .ci-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; margin-left: 0.2rem; transition: color 0.2s; }
         .ci-remove:hover { color: var(--danger); }
-        .cart-footer { padding: 1.5rem 1.8rem; border-top: 1.5px solid #EDE0C4; }
-        .cart-total-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.2rem; }
-        .cart-total-label { font-size: 0.9rem; color: var(--muted); }
-        .cart-total-val { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--honey); font-weight: 700; }
-        .cart-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); }
-        .cart-empty .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
-        .promo-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-        .promo-input { flex: 1; padding: 0.6rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); }
+        .cart-footer { padding: 1.2rem 1.5rem; border-top: 1.5px solid #EDE0C4; flex-shrink: 0; }
+        .cart-total-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; }
+        .cart-total-label { font-size: 0.88rem; color: var(--muted); }
+        .cart-total-val { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--honey); font-weight: 700; }
+        .cart-empty { text-align: center; padding: 2.5rem 1rem; color: var(--muted); }
+        .cart-empty .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .promo-row { display: flex; gap: 0.5rem; margin-bottom: 0.9rem; }
+        .promo-input { flex: 1; min-width: 0; padding: 0.6rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--text); }
         .promo-input:focus { outline: none; border-color: var(--honey); }
-        .promo-apply-btn { padding: 0.6rem 1rem; background: var(--honey); color: white; border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+        .promo-apply-btn { padding: 0.6rem 0.9rem; background: var(--honey); color: white; border: none; border-radius: 10px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; flex-shrink: 0; }
         .promo-apply-btn:hover { background: #B5761F; }
-        .promo-result { font-size: 0.85rem; margin-bottom: 0.6rem; padding: 0.5rem 1rem; border-radius: 8px; }
+        .promo-result { font-size: 0.82rem; margin-bottom: 0.6rem; padding: 0.5rem 0.9rem; border-radius: 8px; }
         .promo-result.ok { background: rgba(74,140,92,0.1); color: var(--success); }
         .promo-result.err { background: rgba(217,79,61,0.1); color: var(--danger); }
 
-        /* AUTH MODAL — FIXED FOR MOBILE */
+        /* AUTH MODAL */
         .auth-overlay {
             display: none;
             position: fixed;
@@ -229,257 +230,504 @@
             justify-content: center;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            padding: 1rem;
         }
         .auth-overlay.open { display: flex; }
         .auth-box {
             background: var(--white);
-            border-radius: 24px;
-            width: 480px;
-            max-width: 95vw;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 460px;
             border: 2px solid var(--honey-light);
             box-shadow: 0 24px 80px rgba(0,0,0,0.25);
             overflow: hidden;
             margin: auto;
             position: relative;
-            /* ensure it doesn't go off screen */
             flex-shrink: 0;
         }
         .auth-tabs-header { display: flex; background: var(--honey-pale); border-bottom: 2px solid var(--honey-light); }
-        .auth-tab-btn { flex: 1; padding: 1rem; border: none; background: none; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.2s; }
+        .auth-tab-btn { flex: 1; padding: 0.9rem; border: none; background: none; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.2s; }
         .auth-tab-btn.active { color: var(--honey); border-bottom: 3px solid var(--honey); background: white; margin-bottom: -2px; }
-        .auth-body { padding: 2rem 2.2rem; }
-        .auth-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--dark); margin-bottom: 0.3rem; }
-        .auth-subtitle { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem; }
-        .auth-form-group { margin-bottom: 1rem; }
-        .auth-label { display: block; font-size: 0.83rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
-        .auth-input { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--text); background: var(--honey-pale); transition: border-color 0.2s; }
+        .auth-body { padding: 1.8rem 1.8rem; }
+        .auth-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark); margin-bottom: 0.3rem; }
+        .auth-subtitle { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.3rem; }
+        .auth-form-group { margin-bottom: 0.9rem; }
+        .auth-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+        .auth-input { width: 100%; padding: 0.7rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--text); background: var(--honey-pale); transition: border-color 0.2s; }
         .auth-input:focus { outline: none; border-color: var(--honey); background: white; }
         .auth-input.err { border-color: var(--danger); }
-        .auth-error { font-size: 0.8rem; color: var(--danger); margin-top: 0.3rem; display: none; }
+        .auth-error { font-size: 0.78rem; color: var(--danger); margin-top: 0.3rem; display: none; }
         .auth-error.show { display: block; }
         .auth-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-        .auth-checkbox-row { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1rem; }
+        .auth-checkbox-row { display: flex; align-items: flex-start; gap: 0.65rem; margin-bottom: 0.9rem; }
         .auth-checkbox { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--honey); cursor: pointer; flex-shrink: 0; }
-        .auth-checkbox-label { font-size: 0.85rem; color: var(--text); line-height: 1.4; }
-        .auth-submit-btn { width: 100%; padding: 0.9rem; background: var(--honey); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.25s; margin-top: 0.5rem; }
+        .auth-checkbox-label { font-size: 0.82rem; color: var(--text); line-height: 1.4; }
+        .auth-submit-btn { width: 100%; padding: 0.85rem; background: var(--honey); color: white; border: none; border-radius: 12px; font-size: 0.98rem; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.25s; margin-top: 0.4rem; }
         .auth-submit-btn:hover { background: #B5761F; transform: translateY(-1px); }
-        .auth-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); z-index: 1; }
-        .auth-divider { text-align: center; color: var(--muted); font-size: 0.82rem; margin: 1rem 0; position: relative; }
-        .auth-divider::before, .auth-divider::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: #E0D0B0; }
-        .auth-divider::before { left: 0; }
-        .auth-divider::after { right: 0; }
+        .auth-close { position: absolute; top: 0.8rem; right: 0.8rem; background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--muted); z-index: 1; }
 
         /* PERSONAL ACCOUNT PAGE */
-        .account-grid { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; }
-        .account-sidebar { background: var(--card-bg); border-radius: 20px; border: 1.5px solid #EDE0C4; padding: 1.8rem; height: fit-content; }
-        .account-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, var(--honey), var(--honey-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1rem; }
-        .account-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.2rem; }
-        .account-email { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.2rem; }
-        .account-menu-item { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 0.9rem; border-radius: 10px; cursor: pointer; font-size: 0.9rem; color: var(--text); transition: all 0.15s; margin-bottom: 0.2rem; }
+        .account-grid { display: grid; grid-template-columns: 260px 1fr; gap: 1.8rem; }
+        .account-sidebar { background: var(--card-bg); border-radius: 18px; border: 1.5px solid #EDE0C4; padding: 1.5rem; height: fit-content; }
+        .account-avatar { width: 70px; height: 70px; background: linear-gradient(135deg, var(--honey), var(--honey-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 0.9rem; }
+        .account-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.2rem; }
+        .account-email { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; overflow: hidden; text-overflow: ellipsis; }
+        .account-menu-item { display: flex; align-items: center; gap: 0.65rem; padding: 0.65rem 0.85rem; border-radius: 10px; cursor: pointer; font-size: 0.88rem; color: var(--text); transition: all 0.15s; margin-bottom: 0.2rem; }
         .account-menu-item:hover { background: var(--honey-pale); color: var(--honey); }
         .account-menu-item.active { background: rgba(200,134,42,0.12); color: var(--honey); font-weight: 600; }
-        .account-main { background: var(--card-bg); border-radius: 20px; border: 1.5px solid #EDE0C4; padding: 2rem; }
+        .account-main { background: var(--card-bg); border-radius: 18px; border: 1.5px solid #EDE0C4; padding: 1.8rem; min-width: 0; }
         .account-section { display: none; }
         .account-section.active { display: block; }
-        .account-section-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--dark); margin-bottom: 1.4rem; }
-        .profile-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-        .profile-field { display: flex; flex-direction: column; gap: 0.35rem; }
-        .profile-label { font-size: 0.82rem; font-weight: 600; color: var(--muted); }
-        .profile-input { padding: 0.75rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--text); }
+        .account-section-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--dark); margin-bottom: 1.2rem; }
+        .profile-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 0.9rem; }
+        .profile-field { display: flex; flex-direction: column; gap: 0.3rem; }
+        .profile-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+        .profile-input { padding: 0.7rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); width: 100%; }
         .profile-input:focus { outline: none; border-color: var(--honey); }
-        .subscription-card { background: linear-gradient(135deg, var(--dark), #3D2000); border-radius: 16px; padding: 1.8rem; color: white; margin-bottom: 1.5rem; }
-        .subscription-card h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--honey-light); margin-bottom: 0.5rem; }
-        .subscription-card p { color: rgba(255,255,255,0.6); font-size: 0.88rem; margin-bottom: 1.2rem; line-height: 1.6; }
-        .sub-toggle-row { display: flex; align-items: center; gap: 1rem; }
-        .sub-status { font-size: 0.88rem; font-weight: 600; }
+        .subscription-card { background: linear-gradient(135deg, var(--dark), #3D2000); border-radius: 14px; padding: 1.5rem; color: white; margin-bottom: 1.2rem; }
+        .subscription-card h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--honey-light); margin-bottom: 0.4rem; }
+        .subscription-card p { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.6; }
+        .sub-toggle-row { display: flex; align-items: center; gap: 0.9rem; }
+        .sub-status { font-size: 0.85rem; font-weight: 600; }
         .sub-status.on { color: var(--honey-light); }
         .sub-status.off { color: rgba(255,255,255,0.4); }
-        .toggle-switch { position: relative; width: 46px; height: 24px; cursor: pointer; }
+        .toggle-switch { position: relative; width: 44px; height: 23px; cursor: pointer; flex-shrink: 0; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .toggle-slider { position: absolute; inset: 0; background: rgba(255,255,255,0.2); border-radius: 24px; transition: background 0.25s; }
-        .toggle-slider::after { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform 0.25s; }
+        .toggle-slider { position: absolute; inset: 0; background: rgba(255,255,255,0.2); border-radius: 23px; transition: background 0.25s; }
+        .toggle-slider::after { content: ''; position: absolute; width: 17px; height: 17px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform 0.25s; }
         .toggle-switch input:checked + .toggle-slider { background: var(--honey); }
-        .toggle-switch input:checked + .toggle-slider::after { transform: translateX(22px); }
+        .toggle-switch input:checked + .toggle-slider::after { transform: translateX(21px); }
 
         /* NEWS PAGE */
-        .news-grid { display: flex; flex-direction: column; gap: 1.5rem; }
-        .news-card { background: var(--card-bg); border-radius: 18px; border: 1.5px solid #EDE0C4; padding: 1.8rem; transition: border-color 0.2s; }
+        .news-grid { display: flex; flex-direction: column; gap: 1.3rem; }
+        .news-card { background: var(--card-bg); border-radius: 16px; border: 1.5px solid #EDE0C4; padding: 1.5rem; transition: border-color 0.2s; }
         .news-card:hover { border-color: var(--honey-light); }
-        .news-card-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-        .news-icon { width: 48px; height: 48px; background: rgba(200,134,42,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
-        .news-meta { flex: 1; }
-        .news-date { font-size: 0.78rem; color: var(--muted); }
-        .news-tag { display: inline-block; background: var(--honey-pale); color: var(--honey); font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.6rem; border-radius: 10px; margin-left: 0.5rem; }
-        .news-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--dark); margin-bottom: 0.6rem; line-height: 1.3; }
-        .news-body { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
-        .news-empty { text-align: center; padding: 4rem 2rem; color: var(--muted); }
-        .news-empty .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+        .news-card-top { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.9rem; }
+        .news-icon { width: 44px; height: 44px; background: rgba(200,134,42,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+        .news-meta { flex: 1; min-width: 0; }
+        .news-date { font-size: 0.75rem; color: var(--muted); }
+        .news-tag { display: inline-block; background: var(--honey-pale); color: var(--honey); font-size: 0.7rem; font-weight: 700; padding: 0.12rem 0.55rem; border-radius: 10px; margin-left: 0.4rem; }
+        .news-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.5rem; line-height: 1.3; }
+        .news-body { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+        .news-empty { text-align: center; padding: 3.5rem 1.5rem; color: var(--muted); }
+        .news-empty .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
 
         /* CONTACT */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .contact-info-card { background: var(--dark); border-radius: 20px; padding: 2.5rem; color: white; display: flex; flex-direction: column; gap: 2rem; }
-        .contact-info-card h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--honey-light); }
-        .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
-        .contact-icon { font-size: 1.4rem; margin-top: 2px; }
-        .contact-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 0.2rem; }
-        .contact-val { font-size: 1rem; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        .contact-info-card { background: var(--dark); border-radius: 18px; padding: 2rem; color: white; display: flex; flex-direction: column; gap: 1.8rem; }
+        .contact-info-card h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--honey-light); }
+        .contact-item { display: flex; gap: 0.9rem; align-items: flex-start; }
+        .contact-icon { font-size: 1.3rem; margin-top: 2px; flex-shrink: 0; }
+        .contact-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-bottom: 0.2rem; }
+        .contact-val { font-size: 0.95rem; word-break: break-word; }
         .contact-val a { color: var(--honey-light); text-decoration: none; }
-        .contact-form-card { background: var(--card-bg); border-radius: 20px; padding: 2.5rem; border: 1.5px solid #EDE0C4; }
-        .contact-form-card h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--dark); }
-        .form-group { margin-bottom: 1rem; }
-        .form-label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--text); }
-        .form-input, .form-textarea { width: 100%; padding: 0.8rem 1rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); background: white; transition: border-color 0.2s; }
+        .contact-form-card { background: var(--card-bg); border-radius: 18px; padding: 2rem; border: 1.5px solid #EDE0C4; }
+        .contact-form-card h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 1.3rem; color: var(--dark); }
+        .form-group { margin-bottom: 0.9rem; }
+        .form-label { display: block; font-size: 0.82rem; font-weight: 500; margin-bottom: 0.35rem; color: var(--text); }
+        .form-input, .form-textarea { width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); background: white; transition: border-color 0.2s; }
         .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--honey); }
-        .form-textarea { resize: vertical; min-height: 120px; }
+        .form-textarea { resize: vertical; min-height: 110px; }
 
         /* ABOUT */
-        .about-hero { background: linear-gradient(135deg, #3D2000, var(--dark)); border-radius: 20px; padding: 4rem; color: white; margin-bottom: 2.5rem; text-align: center; }
-        .about-hero h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--honey-light); margin-bottom: 1rem; }
-        .about-hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; line-height: 1.8; }
-        .values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        .value-card { background: var(--card-bg); border: 1.5px solid #EDE0C4; border-radius: 16px; padding: 1.8rem; text-align: center; }
-        .value-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-        .value-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--dark); }
-        .value-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+        .about-hero { background: linear-gradient(135deg, #3D2000, var(--dark)); border-radius: 18px; padding: 3rem 2rem; color: white; margin-bottom: 2rem; text-align: center; }
+        .about-hero h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--honey-light); margin-bottom: 0.9rem; }
+        .about-hero p { color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto; line-height: 1.8; font-size: 0.95rem; }
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.2rem; margin-top: 1.8rem; }
+        .value-card { background: var(--card-bg); border: 1.5px solid #EDE0C4; border-radius: 14px; padding: 1.5rem; text-align: center; }
+        .value-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+        .value-title { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 0.4rem; color: var(--dark); }
+        .value-text { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
         /* TOAST */
-        .toast-wrap { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 0.6rem; align-items: center; pointer-events: none; }
-        .toast { background: var(--dark); color: white; padding: 0.7rem 1.4rem; border-radius: 25px; font-size: 0.9rem; font-weight: 500; box-shadow: 0 8px 30px rgba(0,0,0,0.3); animation: toastIn 0.35s ease, toastOut 0.3s ease 2.4s forwards; white-space: nowrap; }
+        .toast-wrap { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 0.5rem; align-items: center; pointer-events: none; width: calc(100% - 2rem); max-width: 380px; }
+        .toast { background: var(--dark); color: white; padding: 0.65rem 1.2rem; border-radius: 25px; font-size: 0.88rem; font-weight: 500; box-shadow: 0 8px 30px rgba(0,0,0,0.3); animation: toastIn 0.35s ease, toastOut 0.3s ease 2.4s forwards; text-align: center; width: 100%; }
         @keyframes toastIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
         @keyframes toastOut { to{opacity:0;transform:translateY(20px)} }
 
         /* PAGE HEADER */
-        .page-header { margin-bottom: 2rem; }
-        .page-header h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--dark); margin-bottom: 0.3rem; }
-        .page-header p { color: var(--muted); font-size: 0.95rem; }
+        .page-header { margin-bottom: 1.8rem; }
+        .page-header h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); margin-bottom: 0.3rem; }
+        .page-header p { color: var(--muted); font-size: 0.92rem; }
 
         /* ADMIN */
-        .admin-entry-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--dark); color: var(--honey-light); border: 2px solid var(--honey); border-radius: 50%; width: 52px; height: 52px; font-size: 1.3rem; cursor: pointer; z-index: 4000; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: all 0.2s; }
+        .admin-entry-btn { position: fixed; bottom: 1.2rem; right: 1.2rem; background: var(--dark); color: var(--honey-light); border: 2px solid var(--honey); border-radius: 50%; width: 48px; height: 48px; font-size: 1.2rem; cursor: pointer; z-index: 4000; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: all 0.2s; }
         .admin-entry-btn:hover { transform: scale(1.1); background: var(--honey); color: white; }
-        .admin-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,18,8,0.7); z-index: 5100; backdrop-filter: blur(6px); align-items: center; justify-content: center; }
+        .admin-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,18,8,0.7); z-index: 5100; backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 1rem; }
         .admin-modal-overlay.open { display: flex; }
-        .admin-login-box { background: var(--white); border-radius: 20px; padding: 2.5rem; width: 380px; border: 2px solid var(--honey-light); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-        .admin-login-box h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.3rem; color: var(--dark); }
-        .admin-login-box p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
-        .admin-panel { position: fixed; inset: 0; background: #F5EDD8; z-index: 5200; overflow-y: auto; display: none; }
+        .admin-login-box { background: var(--white); border-radius: 18px; padding: 2rem; width: 100%; max-width: 360px; border: 2px solid var(--honey-light); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .admin-login-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.3rem; color: var(--dark); }
+        .admin-login-box p { color: var(--muted); font-size: 0.82rem; margin-bottom: 1.3rem; }
+        .admin-panel { position: fixed; inset: 0; background: #F5EDD8; z-index: 5200; overflow-y: auto; overflow-x: hidden; display: none; -webkit-overflow-scrolling: touch; }
         .admin-panel.open { display: block; }
-        .admin-topbar { background: var(--dark); color: white; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
-        .admin-topbar h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--honey-light); }
-        .admin-close-btn { background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2); color: white; border-radius: 10px; padding: 0.5rem 1rem; cursor: pointer; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+        .admin-topbar { background: var(--dark); color: white; padding: 0.9rem 1.2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; gap: 1rem; }
+        .admin-topbar h2 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--honey-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .admin-close-btn { background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2); color: white; border-radius: 10px; padding: 0.45rem 0.8rem; cursor: pointer; font-size: 0.85rem; font-family: 'DM Sans', sans-serif; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
         .admin-close-btn:hover { background: rgba(255,255,255,0.2); }
-        .admin-tabs { display: flex; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.1); padding: 0 2rem; }
-        .admin-tab { padding: 0.8rem 1.5rem; cursor: pointer; color: rgba(255,255,255,0.5); font-size: 0.9rem; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s; }
+        .admin-tabs { display: flex; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.1); padding: 0 0.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .admin-tabs::-webkit-scrollbar { display: none; }
+        .admin-tab { padding: 0.75rem 1.1rem; cursor: pointer; color: rgba(255,255,255,0.5); font-size: 0.85rem; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
         .admin-tab:hover { color: rgba(255,255,255,0.8); }
         .admin-tab.active { color: var(--honey-light); border-bottom-color: var(--honey); }
-        .admin-content { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+        .admin-content { padding: 1.5rem 1rem; max-width: 1100px; margin: 0 auto; }
         .admin-tab-content { display: none; }
         .admin-tab-content.active { display: block; }
-        .admin-section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark); margin-bottom: 1.2rem; }
-        .inventory-table { background: white; border-radius: 16px; border: 1.5px solid #EDE0C4; overflow: hidden; }
-        .inv-row { display: grid; grid-template-columns: 60px 1fr 130px 130px 110px; align-items: center; gap: 1rem; padding: 1rem 1.4rem; border-bottom: 1px solid #F5EDD8; transition: background 0.15s; }
+        .admin-section-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--dark); margin-bottom: 1rem; }
+        .inventory-table { background: white; border-radius: 14px; border: 1.5px solid #EDE0C4; overflow: hidden; }
+        .inv-row { display: grid; grid-template-columns: 52px 1fr 120px 120px 100px; align-items: center; gap: 0.9rem; padding: 0.9rem 1.2rem; border-bottom: 1px solid #F5EDD8; transition: background 0.15s; }
         .inv-row:last-child { border-bottom: none; }
         .inv-row:hover { background: var(--honey-pale); }
-        .inv-row.header { background: var(--dark); color: rgba(255,255,255,0.7); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .inv-row.header { background: var(--dark); color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
         .inv-row.header:hover { background: var(--dark); }
-        .inv-img { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; }
-        .inv-name { font-weight: 600; font-size: 0.95rem; }
-        .inv-category { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
-        .stock-toggle { display: flex; align-items: center; gap: 0.5rem; }
-        .toggle-label { font-size: 0.82rem; font-weight: 500; }
+        .inv-img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+        .inv-name { font-weight: 600; font-size: 0.9rem; }
+        .inv-category { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+        .stock-toggle { display: flex; align-items: center; gap: 0.45rem; }
+        .toggle-label { font-size: 0.78rem; font-weight: 500; }
         .toggle-label.in { color: var(--success); }
         .toggle-label.out { color: var(--danger); }
-        .inv-price-input { width: 100%; padding: 0.5rem 0.7rem; border: 1.5px solid #E0D0B0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); }
+        .inv-price-input { width: 100%; padding: 0.45rem 0.65rem; border: 1.5px solid #E0D0B0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--text); }
         .inv-price-input:focus { outline: none; border-color: var(--honey); }
-        .inv-save-btn { background: var(--honey); color: white; border: none; border-radius: 8px; padding: 0.45rem 0.9rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+        .inv-save-btn { background: var(--honey); color: white; border: none; border-radius: 8px; padding: 0.42rem 0.8rem; font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
         .inv-save-btn:hover { background: #B5761F; }
-        .sales-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
-        .sale-card { background: white; border-radius: 16px; border: 1.5px solid #EDE0C4; padding: 1.4rem; position: relative; }
+        .sales-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin-bottom: 1.8rem; }
+        .sale-card { background: white; border-radius: 14px; border: 1.5px solid #EDE0C4; padding: 1.2rem; position: relative; }
         .sale-card.active-sale { border-color: var(--success); background: rgba(74,140,92,0.03); }
-        .sale-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-        .sale-card-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--dark); }
-        .sale-active-tag { background: var(--success); color: white; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; }
-        .sale-inactive-tag { background: #ccc; color: white; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; }
-        .sale-toggle-row { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.5rem; }
-        .add-sale-btn { background: var(--honey); color: white; border: none; border-radius: 12px; padding: 0.85rem 2rem; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 0.5rem; }
+        .sale-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.9rem; gap: 0.5rem; }
+        .sale-card-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--dark); }
+        .sale-active-tag { background: var(--success); color: white; font-size: 0.7rem; font-weight: 700; padding: 0.18rem 0.55rem; border-radius: 12px; white-space: nowrap; flex-shrink: 0; }
+        .sale-inactive-tag { background: #ccc; color: white; font-size: 0.7rem; font-weight: 700; padding: 0.18rem 0.55rem; border-radius: 12px; white-space: nowrap; flex-shrink: 0; }
+        .sale-toggle-row { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.4rem; }
+        .add-sale-btn { background: var(--honey); color: white; border: none; border-radius: 10px; padding: 0.75rem 1.5rem; font-size: 0.92rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 0.4rem; }
         .add-sale-btn:hover { background: #B5761F; }
-        .delete-sale-btn { position: absolute; top: 1rem; right: 1rem; background: none; border: none; cursor: pointer; color: var(--muted); font-size: 1rem; }
+        .delete-sale-btn { position: absolute; top: 0.9rem; right: 0.9rem; background: none; border: none; cursor: pointer; color: var(--muted); font-size: 0.95rem; }
         .delete-sale-btn:hover { color: var(--danger); }
-        .new-sale-form { background: white; border-radius: 16px; border: 2px dashed #E0D0B0; padding: 1.8rem; margin-bottom: 1.5rem; }
-        .new-sale-form h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--dark); margin-bottom: 1.2rem; }
-        .promo-table { background: white; border-radius: 16px; border: 1.5px solid #EDE0C4; overflow: hidden; margin-bottom: 2rem; }
-        .promo-row-head { display: grid; grid-template-columns: 1fr 100px 130px 80px 80px; gap: 1rem; padding: 0.8rem 1.4rem; background: var(--dark); color: rgba(255,255,255,0.7); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-        .promo-row-data { display: grid; grid-template-columns: 1fr 100px 130px 80px 80px; gap: 1rem; padding: 1rem 1.4rem; border-bottom: 1px solid #F5EDD8; align-items: center; }
+        .new-sale-form { background: white; border-radius: 14px; border: 2px dashed #E0D0B0; padding: 1.5rem; margin-bottom: 1.3rem; }
+        .new-sale-form h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--dark); margin-bottom: 1rem; }
+        .promo-table { background: white; border-radius: 14px; border: 1.5px solid #EDE0C4; overflow: hidden; margin-bottom: 1.8rem; overflow-x: auto; }
+        .promo-row-head { display: grid; grid-template-columns: 1fr 90px 120px 70px 70px; gap: 0.8rem; padding: 0.75rem 1.2rem; background: var(--dark); color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; min-width: 480px; }
+        .promo-row-data { display: grid; grid-template-columns: 1fr 90px 120px 70px 70px; gap: 0.8rem; padding: 0.9rem 1.2rem; border-bottom: 1px solid #F5EDD8; align-items: center; min-width: 480px; }
         .promo-row-data:last-child { border-bottom: none; }
         .promo-row-data:hover { background: var(--honey-pale); }
-        .promo-code-tag { font-family: monospace; font-size: 1rem; font-weight: 700; color: var(--honey); background: rgba(200,134,42,0.1); padding: 0.2rem 0.6rem; border-radius: 6px; }
-        .promo-del-btn { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 1rem; }
+        .promo-code-tag { font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--honey); background: rgba(200,134,42,0.1); padding: 0.18rem 0.55rem; border-radius: 6px; }
+        .promo-del-btn { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 0.95rem; }
         .promo-del-btn:hover { color: var(--danger); }
-        .new-promo-form { background: white; border-radius: 16px; border: 2px dashed #E0D0B0; padding: 1.8rem; }
-        .new-promo-form h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--dark); margin-bottom: 1.2rem; }
-        .promo-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-        .admin-input { width: 100%; padding: 0.7rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); }
+        .new-promo-form { background: white; border-radius: 14px; border: 2px dashed #E0D0B0; padding: 1.5rem; }
+        .new-promo-form h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--dark); margin-bottom: 1rem; }
+        .promo-fields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin-bottom: 0.9rem; }
+        .admin-input { width: 100%; padding: 0.65rem 0.85rem; border: 1.5px solid #E0D0B0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--text); }
         .admin-input:focus { outline: none; border-color: var(--honey); }
-        .admin-select { width: 100%; padding: 0.7rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); }
+        .admin-select { width: 100%; padding: 0.65rem 0.85rem; border: 1.5px solid #E0D0B0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--text); }
         .admin-select:focus { outline: none; border-color: var(--honey); }
-        .admin-label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-bottom: 0.3rem; }
-        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
-        .stat-card { background: white; border-radius: 14px; border: 1.5px solid #EDE0C4; padding: 1.4rem; }
-        .stat-card-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-        .stat-card-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--honey); font-weight: 700; }
-        .stat-card-label { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+        .admin-label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--muted); margin-bottom: 0.28rem; }
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.8rem; }
+        .stat-card { background: white; border-radius: 12px; border: 1.5px solid #EDE0C4; padding: 1.2rem; }
+        .stat-card-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+        .stat-card-num { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--honey); font-weight: 700; }
+        .stat-card-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
 
         /* ADMIN NEWS */
-        .news-post-form { background: white; border-radius: 16px; border: 2px dashed #E0D0B0; padding: 1.8rem; margin-bottom: 2rem; }
-        .news-post-form h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 1.2rem; }
-        .news-admin-list { display: flex; flex-direction: column; gap: 1rem; }
-        .news-admin-item { background: white; border-radius: 12px; border: 1.5px solid #EDE0C4; padding: 1.2rem 1.4rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+        .news-post-form { background: white; border-radius: 14px; border: 2px dashed #E0D0B0; padding: 1.5rem; margin-bottom: 1.8rem; }
+        .news-post-form h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--dark); margin-bottom: 1rem; }
+        .news-admin-list { display: flex; flex-direction: column; gap: 0.9rem; }
+        .news-admin-item { background: white; border-radius: 10px; border: 1.5px solid #EDE0C4; padding: 1.1rem 1.2rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 0.9rem; }
         .news-admin-item:hover { border-color: var(--honey-light); }
-        .news-delete-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; flex-shrink: 0; }
+        .news-delete-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.95rem; flex-shrink: 0; }
         .news-delete-btn:hover { color: var(--danger); }
-        .sub-count-badge { background: var(--honey); color: white; border-radius: 12px; padding: 0.25rem 0.7rem; font-size: 0.82rem; font-weight: 700; }
+        .sub-count-badge { background: var(--honey); color: white; border-radius: 12px; padding: 0.22rem 0.65rem; font-size: 0.78rem; font-weight: 700; }
 
         /* SUBSCRIBERS ADMIN */
-        .subscribers-list { background: white; border-radius: 16px; border: 1.5px solid #EDE0C4; overflow: hidden; }
-        .subscriber-row { display: grid; grid-template-columns: 1fr 200px 120px; gap: 1rem; padding: 0.9rem 1.4rem; border-bottom: 1px solid #F5EDD8; align-items: center; font-size: 0.9rem; }
+        .subscribers-list { background: white; border-radius: 14px; border: 1.5px solid #EDE0C4; overflow: hidden; overflow-x: auto; }
+        .subscriber-row { display: grid; grid-template-columns: 1fr 180px 110px; gap: 0.9rem; padding: 0.85rem 1.2rem; border-bottom: 1px solid #F5EDD8; align-items: center; font-size: 0.88rem; min-width: 380px; }
         .subscriber-row:last-child { border-bottom: none; }
-        .subscriber-row.head { background: var(--dark); color: rgba(255,255,255,0.7); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+        .subscriber-row.head { background: var(--dark); color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
         .subscriber-row.head:hover { background: var(--dark); }
         .subscriber-row:not(.head):hover { background: var(--honey-pale); }
 
-        /* MOBILE */
-        @media (max-width: 768px) {
-            nav { flex-wrap: wrap; height: auto; padding: 0.8rem 1.2rem; gap: 0.8rem; }
+        /* ════════════════════════════════════
+           MOBILE NAVIGATION
+        ════════════════════════════════════ */
+        .mobile-nav { 
+            display: none; 
+            position: fixed; 
+            top: 60px; 
+            left: 0; 
+            right: 0; 
+            background: var(--white); 
+            padding: 1rem; 
+            z-index: 2500; 
+            flex-direction: column; 
+            gap: 0.3rem; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1); 
+            border-bottom: 2px solid var(--honey-light);
+            transform: translateY(-110%);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+        .mobile-nav.open { transform: translateY(0); display: flex; }
+        .mobile-nav a { 
+            padding: 0.75rem 1rem; 
+            border-radius: 10px; 
+            text-decoration: none; 
+            color: var(--text); 
+            font-weight: 500; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            transition: background 0.2s;
+            display: block;
+        }
+        .mobile-nav a:hover { background: var(--honey-pale); color: var(--honey); }
+        .mobile-nav a:active { background: rgba(200,134,42,0.15); }
+
+        /* ════════════════════════════════════
+           RESPONSIVE BREAKPOINTS
+        ════════════════════════════════════ */
+
+        /* Tablet 1024px */
+        @media (max-width: 1024px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
-            .search-input { width: 120px; }
-            .search-input:focus { width: 160px; }
-            main { padding: 1.5rem 1rem; }
-            .hero { padding: 2.5rem 1.8rem; }
-            .hero h1 { font-size: 2rem; }
-            .hero::before { display: none; }
-            .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
-            .detail-wrap { grid-template-columns: 1fr; gap: 1.5rem; }
-            .detail-img { height: 260px; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .cart-panel { width: 100%; }
-            .sales-grid { grid-template-columns: 1fr; }
-            .promo-fields { grid-template-columns: 1fr; }
-            .inv-row { grid-template-columns: 50px 1fr 110px; }
-            .inv-row > *:nth-child(4), .inv-row > *:nth-child(5) { display: none; }
-            .stats-row { grid-template-columns: 1fr 1fr; }
+            .search-input { width: 150px; }
+            .search-input:focus { width: 190px; }
             .account-grid { grid-template-columns: 1fr; }
-            .auth-row { grid-template-columns: 1fr; }
-            .profile-form-row { grid-template-columns: 1fr; }
-            /* Auth modal mobile fix */
-            .auth-overlay { align-items: flex-start; padding: 1rem 0.5rem; }
-            .auth-box { margin: 0 auto; border-radius: 16px; }
-            .auth-body { padding: 1.5rem 1.2rem; }
         }
 
-        .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; background: var(--white); padding: 1.5rem; z-index: 2500; flex-direction: column; gap: 0.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1); transform: translateY(-120%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); padding-top: 90px; }
-        .mobile-nav.open { transform: translateY(0); display: flex; }
-        .mobile-nav a { padding: 0.8rem 1rem; border-radius: 10px; text-decoration: none; color: var(--text); font-weight: 500; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
-        .mobile-nav a:hover { background: var(--honey-pale); color: var(--honey); }
+        /* Medium 768px */
+        @media (max-width: 768px) {
+            nav { padding: 0 0.9rem; gap: 0.6rem; height: 56px; }
+            .logo { font-size: 1.3rem; }
+            main { margin-top: 56px; padding: 1.2rem 0.9rem; }
+            .mobile-nav { top: 56px; max-height: calc(100vh - 56px); }
+
+            .hero { padding: 2rem 1.4rem; border-radius: 16px; margin-bottom: 2rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero::before { display: none; }
+            .hero p { font-size: 0.9rem; }
+            .hero-stats { gap: 1.3rem; margin-top: 1.8rem; padding-top: 1.4rem; }
+            .stat-num { font-size: 1.5rem; }
+
+            .section-title { font-size: 1.4rem; }
+            .products-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .card-img-wrap { height: 165px; }
+
+            .detail-wrap { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.4rem; }
+            .detail-img { height: 240px; }
+            .detail-name { font-size: 1.6rem; }
+            .detail-price { font-size: 1.6rem; }
+
+            .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .about-hero { padding: 2.5rem 1.4rem; }
+            .about-hero h2 { font-size: 1.8rem; }
+
+            .auth-body { padding: 1.4rem 1.2rem; }
+            .auth-row { grid-template-columns: 1fr; gap: 0; }
+            .profile-form-row { grid-template-columns: 1fr; }
+
+            .account-main { padding: 1.4rem; }
+            .account-sidebar { padding: 1.2rem; }
+
+            .admin-content { padding: 1rem 0.75rem; }
+            .stats-row { grid-template-columns: 1fr 1fr; }
+            .sales-grid { grid-template-columns: 1fr; }
+            .promo-fields { grid-template-columns: 1fr 1fr; }
+            .inv-row { grid-template-columns: 44px 1fr 100px; }
+            .inv-row > *:nth-child(4), .inv-row > *:nth-child(5) { display: none; }
+            .inv-row.header > *:nth-child(4), .inv-row.header > *:nth-child(5) { display: none; }
+
+            /* Inventory mobile save — show inline */
+            .inv-mobile-save { display: flex !important; align-items: center; gap: 0.5rem; margin-top: 0.3rem; }
+        }
+
+        /* Small phones 480px */
+        @media (max-width: 480px) {
+            nav { padding: 0 0.75rem; gap: 0.4rem; }
+            .logo { font-size: 1.2rem; }
+            .icon-btn { width: 34px; height: 34px; font-size: 1rem; }
+            .search-wrap { display: none; } /* hide search on tiny screens, accessible via mobile nav */
+
+            main { padding: 1rem 0.75rem; }
+
+            .hero { padding: 1.6rem 1.2rem; border-radius: 14px; }
+            .hero h1 { font-size: 1.55rem; }
+            .hero-btns { flex-direction: column; }
+            .hero-btns .btn-primary, .hero-btns .btn-outline { width: 100%; text-align: center; }
+            .hero-stats { gap: 1rem; }
+            .stat-num { font-size: 1.3rem; }
+
+            .products-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .card-img-wrap { height: 200px; }
+
+            .page-header h2 { font-size: 1.7rem; }
+
+            .detail-wrap { padding: 1.1rem; gap: 1rem; }
+            .detail-img { height: 220px; }
+
+            .cart-panel { width: 100%; }
+
+            .auth-overlay { padding: 0.7rem; }
+            .auth-box { border-radius: 16px; }
+            .auth-body { padding: 1.2rem 1rem; }
+            .auth-title { font-size: 1.3rem; }
+
+            .about-hero { padding: 2rem 1.2rem; }
+            .about-hero h2 { font-size: 1.6rem; }
+
+            .values-grid { grid-template-columns: 1fr 1fr; }
+
+            .admin-content { padding: 0.75rem 0.5rem; }
+            .promo-fields { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+            .stat-card { padding: 0.9rem; }
+            .stat-card-num { font-size: 1.4rem; }
+            .new-sale-form { padding: 1.1rem; }
+            .new-promo-form { padding: 1.1rem; }
+            .news-post-form { padding: 1.1rem; }
+        }
+
+        /* Extra small 360px */
+        @media (max-width: 360px) {
+            .hero h1 { font-size: 1.4rem; }
+            .values-grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: 1fr; }
+            .auth-overlay { padding: 0.5rem; }
+        }
+
+        /* ════════════════════════════════════
+           PAYMENT MODAL
+        ════════════════════════════════════ */
+        .payment-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(26,18,8,0.7); z-index: 6000;
+            backdrop-filter: blur(8px);
+            align-items: flex-start; justify-content: center;
+            overflow-y: auto; padding: 1rem;
+        }
+        .payment-overlay.open { display: flex; }
+        .payment-box {
+            background: var(--white); border-radius: 22px;
+            width: 100%; max-width: 500px;
+            border: 2px solid var(--honey-light);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+            overflow: hidden; margin: auto; flex-shrink: 0;
+        }
+        .payment-header {
+            background: linear-gradient(135deg, var(--dark), #3D2000);
+            padding: 1.5rem 1.8rem; display: flex; align-items: center; justify-content: space-between;
+        }
+        .payment-header h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--honey-light); }
+        .payment-header .close-btn { color: rgba(255,255,255,0.6); }
+        .payment-header .close-btn:hover { color: white; }
+        .payment-summary { padding: 1.2rem 1.8rem; background: var(--honey-pale); border-bottom: 1.5px solid #EDE0C4; }
+        .payment-summary-title { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .payment-summary-amount { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--honey); font-weight: 700; }
+        .payment-methods { padding: 1.5rem 1.8rem; display: flex; flex-direction: column; gap: 0.8rem; }
+        .payment-method-btn {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1rem 1.2rem; border-radius: 14px;
+            border: 2px solid #EDE0C4; background: white;
+            cursor: pointer; transition: all 0.2s; text-align: left;
+            font-family: 'DM Sans', sans-serif; width: 100%;
+        }
+        .payment-method-btn:hover { border-color: var(--honey); background: var(--honey-pale); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,134,42,0.15); }
+        .payment-method-btn .pm-icon { font-size: 1.8rem; flex-shrink: 0; width: 44px; text-align: center; }
+        .payment-method-btn .pm-info { flex: 1; }
+        .payment-method-btn .pm-title { font-weight: 700; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.15rem; }
+        .payment-method-btn .pm-desc { font-size: 0.78rem; color: var(--muted); }
+        .payment-method-btn .pm-arrow { color: var(--honey); font-size: 1.1rem; flex-shrink: 0; }
+        .apple-pay-btn {
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            width: 100%; padding: 1rem; border-radius: 14px;
+            background: #000; color: white; border: none;
+            cursor: pointer; font-size: 1.1rem; font-weight: 600;
+            font-family: -apple-system, 'DM Sans', sans-serif;
+            transition: all 0.2s;
+        }
+        .apple-pay-btn:hover { background: #222; transform: translateY(-1px); }
+        .apple-pay-btn svg { width: 40px; height: 20px; }
+        .payment-card-details {
+            display: none; padding: 1.2rem 1.8rem;
+            border-top: 1.5px solid #EDE0C4; background: var(--honey-pale);
+        }
+        .payment-card-details.show { display: block; }
+        .card-number-display {
+            background: linear-gradient(135deg, var(--dark), #3D2000);
+            border-radius: 16px; padding: 1.5rem;
+            color: white; margin-bottom: 1rem; position: relative;
+        }
+        .card-number-display .cn-bank { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-bottom: 0.8rem; }
+        .card-number-display .cn-number {
+            font-family: 'Courier New', monospace; font-size: 1.3rem;
+            letter-spacing: 0.15em; font-weight: 700; color: var(--honey-light);
+            margin-bottom: 0.8rem;
+        }
+        .card-number-display .cn-name { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+        .copy-card-btn {
+            position: absolute; top: 1rem; right: 1rem;
+            background: rgba(255,255,255,0.15); border: none; border-radius: 8px;
+            color: white; padding: 0.35rem 0.7rem; cursor: pointer;
+            font-size: 0.75rem; font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+        }
+        .copy-card-btn:hover { background: rgba(255,255,255,0.25); }
+        .payment-note { font-size: 0.82rem; color: var(--muted); line-height: 1.6; padding: 0.8rem 1rem; background: white; border-radius: 10px; border: 1px solid #EDE0C4; }
+        .payment-footer-note { padding: 1rem 1.8rem; border-top: 1px solid #EDE0C4; font-size: 0.75rem; color: var(--muted); text-align: center; line-height: 1.6; }
+        .payment-footer-note a { color: var(--honey); text-decoration: underline; cursor: pointer; }
+
+        /* ════════════════════════════════════
+           LEGAL PAGES
+        ════════════════════════════════════ */
+        .legal-page { max-width: 820px; margin: 0 auto; }
+        .legal-hero { background: linear-gradient(135deg, var(--dark), #3D2000); border-radius: 18px; padding: 2.5rem 2rem; color: white; margin-bottom: 2rem; }
+        .legal-hero h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--honey-light); margin-bottom: 0.5rem; }
+        .legal-hero p { color: rgba(255,255,255,0.6); font-size: 0.88rem; }
+        .legal-body { background: var(--card-bg); border-radius: 18px; border: 1.5px solid #EDE0C4; padding: 2.5rem; }
+        .legal-body h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--dark); margin: 1.8rem 0 0.7rem; padding-top: 1.2rem; border-top: 1px solid #EDE0C4; }
+        .legal-body h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .legal-body p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; }
+        .legal-body ul { padding-left: 1.4rem; margin-bottom: 0.8rem; }
+        .legal-body ul li { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 0.3rem; }
+        .legal-body strong { color: var(--text); }
+        .legal-body a { color: var(--honey); }
+        .legal-toc { background: var(--honey-pale); border-radius: 12px; padding: 1.2rem 1.5rem; margin-bottom: 1.8rem; border: 1.5px solid #EDE0C4; }
+        .legal-toc h4 { font-size: 0.82rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.7rem; }
+        .legal-toc a { display: block; font-size: 0.85rem; color: var(--honey); padding: 0.2rem 0; text-decoration: none; }
+        .legal-toc a:hover { text-decoration: underline; }
+
+        /* ════════════════════════════════════
+           FOOTER
+        ════════════════════════════════════ */
+        .site-footer {
+            background: var(--dark); color: rgba(255,255,255,0.6);
+            padding: 3rem 1.5rem 2rem; margin-top: 3rem;
+        }
+        .footer-inner { max-width: 1280px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+        .footer-brand .logo { font-size: 1.4rem; margin-bottom: 0.8rem; }
+        .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
+        .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--honey-light); margin-bottom: 0.9rem; }
+        .footer-col a { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.55); cursor: pointer; padding: 0.2rem 0; transition: color 0.2s; text-decoration: none; }
+        .footer-col a:hover { color: var(--honey-light); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.78rem; }
+        .footer-bottom-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-bottom-links a { color: rgba(255,255,255,0.45); cursor: pointer; text-decoration: none; transition: color 0.2s; }
+        .footer-bottom-links a:hover { color: var(--honey-light); }
+        .footer-pay-icons { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+        .pay-icon { background: rgba(255,255,255,0.1); border-radius: 6px; padding: 0.3rem 0.6rem; font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.7); }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.8rem; }
+            .footer-brand { grid-column: 1 / -1; }
+            .legal-body { padding: 1.5rem 1.2rem; }
+            .legal-hero { padding: 2rem 1.4rem; }
+            .legal-hero h1 { font-size: 1.6rem; }
+            .payment-methods { padding: 1.2rem 1.2rem; }
+            .payment-summary { padding: 1rem 1.2rem; }
+            .payment-card-details { padding: 1rem 1.2rem; }
+            .payment-footer-note { padding: 0.8rem 1.2rem; }
+        }
+        @media (max-width: 480px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
+        }
     </style>
 </head>
 <body>
@@ -503,22 +751,29 @@
             <button class="icon-btn" onclick="handleWishlistClick()" title="Обране">❤️<span class="badge" id="wishCount" style="display:none">0</span></button>
             <button class="icon-btn" onclick="openCart()" title="Кошик">🛒<span class="badge" id="cartBadge">0</span></button>
             <div id="authNavArea"></div>
-            <button class="mobile-menu-btn" onclick="toggleMobileNav()">☰</button>
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Меню">☰</button>
         </div>
     </nav>
 </header>
 
 <div class="mobile-nav" id="mobileNav">
+    <!-- Mobile search -->
+    <div style="display:flex;gap:0.5rem;padding:0.3rem 0;margin-bottom:0.3rem">
+        <input type="text" id="mobileSearchInput" placeholder="🔍 Пошук товарів..." style="flex:1;padding:0.6rem 1rem;border:1.5px solid #E0D0B0;border-radius:25px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);background:var(--honey-pale);outline:none" oninput="document.getElementById('searchInput').value=this.value;onSearchInput(this.value)" onkeydown="if(event.key==='Enter'){doSearch();toggleMobileNav()}">
+        <button onclick="document.getElementById('searchInput').value=document.getElementById('mobileSearchInput').value;doSearch();toggleMobileNav()" style="padding:0.6rem 1rem;background:var(--honey);color:white;border:none;border-radius:25px;cursor:pointer;font-size:0.9rem">Знайти</button>
+    </div>
     <a onclick="showPage('home'); toggleMobileNav()">🏠 Головна</a>
     <a onclick="showPage('products'); toggleMobileNav()">🛍️ Товари</a>
     <a onclick="showPage('news'); toggleMobileNav()">📰 Новини</a>
     <a onclick="showPage('about'); toggleMobileNav()">🌿 Про нас</a>
     <a onclick="showPage('contacts'); toggleMobileNav()">📞 Контакти</a>
-    <a onclick="showPage('wishlist'); toggleMobileNav()">❤️ Обране</a>
+    <a onclick="handleWishlistClick(); toggleMobileNav()">❤️ Обране</a>
+    <a onclick="showPage('privacy'); toggleMobileNav()">🔒 Конфіденційність</a>
+    <a onclick="showPage('terms'); toggleMobileNav()">📋 Умови використання</a>
     <a id="mobileAuthLink" onclick="openAuthModal(); toggleMobileNav()">👤 Увійти</a>
 </div>
 
-<main style="margin-top:90px">
+<main>
 
 <!-- HOME -->
 <div id="page-home" class="page active">
@@ -577,12 +832,12 @@
             <div class="account-avatar" id="accountAvatar">🐝</div>
             <div class="account-name" id="accountSidebarName">—</div>
             <div class="account-email" id="accountSidebarEmail">—</div>
-            <div style="margin-top:1.2rem">
+            <div style="margin-top:1rem">
                 <div class="account-menu-item active" onclick="switchAccountTab('profile', this)">👤 Мій профіль</div>
                 <div class="account-menu-item" onclick="switchAccountTab('saved', this)">❤️ Збережені товари</div>
                 <div class="account-menu-item" onclick="switchAccountTab('orders', this)">📦 Мої замовлення</div>
                 <div class="account-menu-item" onclick="switchAccountTab('subscriptions', this)">🔔 Підписки</div>
-                <div class="account-menu-item" style="margin-top:1rem;color:var(--danger)" onclick="logoutUser()">🚪 Вийти</div>
+                <div class="account-menu-item" style="margin-top:0.8rem;color:var(--danger)" onclick="logoutUser()">🚪 Вийти</div>
             </div>
         </div>
         <div class="account-main">
@@ -596,8 +851,8 @@
                     <div class="profile-field"><label class="profile-label">По батькові</label><input class="profile-input" id="profPatronymic" placeholder="По батькові"></div>
                     <div class="profile-field"><label class="profile-label">Телефон</label><input class="profile-input" id="profPhone" placeholder="+380..."></div>
                 </div>
-                <div class="profile-field" style="margin-bottom:1rem"><label class="profile-label">Email</label><input class="profile-input" id="profEmail" placeholder="email@example.com" readonly style="background:#f5f0e8;color:var(--muted)"></div>
-                <div class="profile-field" style="margin-bottom:1.5rem"><label class="profile-label">Місто / Нова Пошта відділення</label><input class="profile-input" id="profAddress" placeholder="Харків, відділення №5"></div>
+                <div class="profile-field" style="margin-bottom:0.9rem"><label class="profile-label">Email</label><input class="profile-input" id="profEmail" placeholder="email@example.com" readonly style="background:#f5f0e8;color:var(--muted)"></div>
+                <div class="profile-field" style="margin-bottom:1.3rem"><label class="profile-label">Місто / Нова Пошта відділення</label><input class="profile-input" id="profAddress" placeholder="Харків, відділення №5"></div>
                 <button class="btn-primary" onclick="saveProfile()">Зберегти зміни</button>
             </div>
             <div class="account-section" id="acc-saved">
@@ -607,7 +862,7 @@
             <div class="account-section" id="acc-orders">
                 <div class="account-section-title">Мої замовлення</div>
                 <div id="accOrdersList" style="color:var(--muted);font-size:.9rem">
-                    <div style="text-align:center;padding:3rem;color:var(--muted)">
+                    <div style="text-align:center;padding:2.5rem;color:var(--muted)">
                         <div style="font-size:3rem;margin-bottom:1rem">📦</div>
                         <p>Ваша історія замовлень буде тут після першого замовлення через Telegram</p>
                     </div>
@@ -659,7 +914,7 @@
         <div class="contact-info-card">
             <h2>Зв'яжіться з нами</h2>
             <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">Телефон</div><div class="contact-val"><a href="tel:+380952175674">+38 (095) 217-56-74</a></div></div></div>
-            <div class="contact-item"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:falieievrostik@gmail.com">falieievrostik@gmail.com</a></div></div></div>
+            <div class="contact-item"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection#6d0b0c01040804081b1f021e1904062d0a000c0401430e0200"><span class="__cf_email__" data-cfemail="254344494c404c4053574a56514c4e654248444c490b464a48">[email&#160;protected]</span></a></div></div></div>
             <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-label">Адреса</div><div class="contact-val">с. Михайлівка, Полтавський район</div></div></div>
             <div class="contact-item"><div class="contact-icon">📱</div><div><div class="contact-label">Соціальні мережі</div><div class="contact-val">
                 <a href="https://instagram.com/beebloom.ua" target="_blank">📸 @beebloom.ua</a><br>
@@ -677,7 +932,313 @@
     </div>
 </div>
 
+<!-- PRIVACY POLICY -->
+<div id="page-privacy" class="page">
+<div class="legal-page">
+    <div class="legal-hero">
+        <h1>🔒 Політика конфіденційності</h1>
+        <p>Останнє оновлення: 13 березня 2026 р. · ФОП Фалєєв Ростислав Григорович</p>
+    </div>
+    <div class="legal-body">
+        <div class="legal-toc">
+            <h4>Зміст</h4>
+            <a href="#priv-1">1. Загальні положення</a>
+            <a href="#priv-2">2. Які дані ми збираємо</a>
+            <a href="#priv-3">3. Як ми використовуємо дані</a>
+            <a href="#priv-4">4. Зберігання та захист даних</a>
+            <a href="#priv-5">5. Передача даних третім особам</a>
+            <a href="#priv-6">6. Файли cookie</a>
+            <a href="#priv-7">7. Права користувача</a>
+            <a href="#priv-8">8. Контакти</a>
+        </div>
+        <h2 id="priv-1">1. Загальні положення</h2>
+        <p>Ця Політика конфіденційності описує, як <strong>ФОП Фалєєв Ростислав Григорович</strong> (далі — «BeeBloom», «ми», «нас») збирає, використовує та захищає персональні дані користувачів інтернет-магазину BeeBloom (далі — «Сайт»).</p>
+        <p>Реєструючись на Сайті, здійснюючи замовлення або надаючи нам свої дані будь-яким іншим способом, ви погоджуєтесь з умовами цієї Політики конфіденційності.</p>
+        <p>Ми дотримуємося вимог Закону України «Про захист персональних даних» від 01.06.2010 № 2297-VI та Регламенту ЄС про захист даних (GDPR) у відповідних випадках.</p>
+
+        <h2 id="priv-2">2. Які дані ми збираємо</h2>
+        <p>Ми можемо збирати наступні категорії персональних даних:</p>
+        <ul>
+            <li><strong>Ідентифікаційні дані:</strong> ім'я, прізвище, по батькові</li>
+            <li><strong>Контактні дані:</strong> номер телефону, адреса електронної пошти</li>
+            <li><strong>Адресні дані:</strong> місто, номер відділення Нової Пошти для доставки</li>
+            <li><strong>Дані замовлень:</strong> перелік придбаних товарів, дати та суми замовлень</li>
+            <li><strong>Технічні дані:</strong> IP-адреса, тип браузера, операційна система (у знеособленому вигляді)</li>
+            <li><strong>Дані про підписки:</strong> згода/відмова від отримання розсилки</li>
+        </ul>
+        <p>Ми <strong>не збираємо</strong> дані банківських карток — платежі обробляються безпосередньо через платіжні сервіси (ПриватБанк, Монобанк) без передачі даних карти через наш Сайт.</p>
+
+        <h2 id="priv-3">3. Як ми використовуємо дані</h2>
+        <p>Зібрані персональні дані використовуються виключно для:</p>
+        <ul>
+            <li>Оформлення та виконання замовлень, організації доставки</li>
+            <li>Зв'язку з вами щодо статусу замовлення</li>
+            <li>Надсилання новин, акцій та спеціальних пропозицій (тільки за вашою згодою)</li>
+            <li>Покращення якості сервісу та Сайту</li>
+            <li>Виконання вимог законодавства України</li>
+        </ul>
+        <p>Ми не використовуємо ваші дані для автоматизованого прийняття рішень або профілювання.</p>
+
+        <h2 id="priv-4">4. Зберігання та захист даних</h2>
+        <p>Ваші дані зберігаються на захищених серверах. Ми вживаємо технічних та організаційних заходів для захисту персональних даних від несанкціонованого доступу, зміни, розкриття або знищення.</p>
+        <p>Персональні дані зберігаються протягом строку, необхідного для виконання цілей збору, а також відповідно до вимог законодавства України — як правило, не більше <strong>3 (трьох) років</strong> з моменту останньої взаємодії з Сайтом.</p>
+        <p>Дані зберігаються у браузері користувача (localStorage) та на серверах наших партнерів-месенджерів (Telegram) виключно в обсязі, необхідному для обробки замовлення.</p>
+
+        <h2 id="priv-5">5. Передача даних третім особам</h2>
+        <p>Ми не продаємо, не обмінюємо та не передаємо ваші персональні дані третім особам без вашої згоди, за винятком:</p>
+        <ul>
+            <li><strong>Служби доставки</strong> (Нова Пошта) — для організації доставки замовлення</li>
+            <li><strong>Платіжні сервіси</strong> (ПриватБанк, Монобанк) — для обробки платежів</li>
+            <li><strong>Державні органи</strong> — у випадках, передбачених законодавством України</li>
+        </ul>
+
+        <h2 id="priv-6">6. Файли cookie</h2>
+        <p>Сайт використовує технологію localStorage браузера для зберігання даних кошика, списку обраного та налаштувань. Ці дані зберігаються виключно на вашому пристрої і не передаються на зовнішні сервери.</p>
+        <p>Ви можете очистити збережені дані через налаштування свого браузера в будь-який момент.</p>
+
+        <h2 id="priv-7">7. Права користувача</h2>
+        <p>Відповідно до чинного законодавства ви маєте право:</p>
+        <ul>
+            <li>Отримати інформацію про те, які ваші дані ми зберігаємо</li>
+            <li>Вимагати виправлення неточних або застарілих даних</li>
+            <li>Вимагати видалення своїх персональних даних («право на забуття»)</li>
+            <li>Відкликати згоду на обробку даних у будь-який момент</li>
+            <li>Відписатись від розсилки в особистому кабінеті або надіславши запит на email</li>
+        </ul>
+        <p>Для реалізації своїх прав зверніться до нас за контактами нижче.</p>
+
+        <h2 id="priv-8">8. Контакти</h2>
+        <p>З питань захисту персональних даних звертайтесь:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:falieievrostik@gmail.com">falieievrostik@gmail.com</a></li>
+            <li><strong>Телефон:</strong> <a href="tel:+380952175674">+38 (095) 217-56-74</a></li>
+            <li><strong>Telegram:</strong> <a href="https://t.me/beebloom" target="_blank">@beebloom</a></li>
+        </ul>
+        <p>Ми зобов'язуємось відповісти на ваш запит протягом <strong>30 днів</strong>.</p>
+        <p style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid #EDE0C4;font-size:0.8rem">Ця Політика конфіденційності може змінюватись. Актуальна версія завжди доступна на цій сторінці. Дата набрання чинності: 13.03.2026.</p>
+    </div>
+</div>
+</div>
+
+<!-- TERMS OF USE -->
+<div id="page-terms" class="page">
+<div class="legal-page">
+    <div class="legal-hero">
+        <h1>📋 Умови використання</h1>
+        <p>Останнє оновлення: 13 березня 2026 р. · ФОП Фалєєв Ростислав Григорович</p>
+    </div>
+    <div class="legal-body">
+        <div class="legal-toc">
+            <h4>Зміст</h4>
+            <a href="#terms-1">1. Загальні положення</a>
+            <a href="#terms-2">2. Реєстрація та акаунт</a>
+            <a href="#terms-3">3. Замовлення та оплата</a>
+            <a href="#terms-4">4. Доставка</a>
+            <a href="#terms-5">5. Повернення та обмін</a>
+            <a href="#terms-6">6. Ціни та акції</a>
+            <a href="#terms-7">7. Відповідальність сторін</a>
+            <a href="#terms-8">8. Інтелектуальна власність</a>
+            <a href="#terms-9">9. Вирішення спорів</a>
+            <a href="#terms-10">10. Контакти</a>
+        </div>
+
+        <h2 id="terms-1">1. Загальні положення</h2>
+        <p>Ці Умови використання (далі — «Умови») регулюють відносини між <strong>ФОП Фалєєв Ростислав Григорович</strong> (далі — «BeeBloom», «Продавець») та користувачами інтернет-магазину BeeBloom (далі — «Покупець», «ви»).</p>
+        <p>Використовуючи Сайт або здійснюючи замовлення, ви підтверджуєте, що ознайомились з цими Умовами та погоджуєтесь з ними. Якщо ви не погоджуєтесь з будь-яким положенням — припиніть використання Сайту.</p>
+        <p>BeeBloom залишає за собою право змінювати ці Умови. Актуальна версія завжди доступна на цій сторінці.</p>
+
+        <h2 id="terms-2">2. Реєстрація та акаунт</h2>
+        <p>Реєстрація на Сайті є добровільною. Для оформлення замовлення реєстрація не обов'язкова — ви можете оформити замовлення через Telegram.</p>
+        <ul>
+            <li>При реєстрації ви зобов'язані надавати достовірні та актуальні дані</li>
+            <li>Ви несете відповідальність за збереження конфіденційності свого пароля</li>
+            <li>Ви зобов'язуєтесь негайно повідомити нас про будь-який несанкціонований доступ до вашого акаунту</li>
+            <li>Реєстрація доступна для осіб, які досягли 14 років</li>
+            <li>BeeBloom має право заблокувати акаунт у разі порушення цих Умов</li>
+        </ul>
+
+        <h2 id="terms-3">3. Замовлення та оплата</h2>
+        <p>Оформлення замовлення відбувається через кошик Сайту з подальшим підтвердженням в Telegram або безпосередньо через Telegram.</p>
+        <p><strong>Способи оплати:</strong></p>
+        <ul>
+            <li>Переказ на банківську карту (ПриватБанк / Монобанк) — до відправки</li>
+            <li>Apple Pay через посилання на оплату</li>
+            <li>Готівка при отриманні на відділенні Нової Пошти</li>
+        </ul>
+        <p>Замовлення вважається підтвердженим після отримання підтвердження від менеджера BeeBloom у Telegram. Ціни вказані в гривнях (UAH) з урахуванням ПДВ.</p>
+        <p>BeeBloom залишає за собою право відмовити у виконанні замовлення у разі відсутності товару на складі, помилки в ціні або технічного збою. У такому випадку кошти повертаються покупцю в повному обсязі.</p>
+
+        <h2 id="terms-4">4. Доставка</h2>
+        <p>Доставка здійснюється по всій Україні службою <strong>Нова Пошта</strong>. Вартість та строки доставки залежать від населеного пункту та узгоджуються при оформленні замовлення.</p>
+        <ul>
+            <li>Відправка здійснюється протягом 1–2 робочих днів після підтвердження оплати</li>
+            <li>Середній строк доставки: 1–3 робочих дні</li>
+            <li>Трек-номер відправки надається в Telegram після відправки</li>
+            <li>При отриманні обов'язково перевіряйте цілісність упаковки</li>
+        </ul>
+
+        <h2 id="terms-5">5. Повернення та обмін</h2>
+        <p>Відповідно до Закону України «Про захист прав споживачів» ви маєте право повернути товар належної якості протягом <strong>14 (чотирнадцяти) днів</strong> з моменту отримання, якщо він не був у використанні та зберіг товарний вигляд.</p>
+        <p><strong>Важливо:</strong> продовольчі товари (мед, чаї, продукти бджільництва) належного збереження поверненню не підлягають відповідно до Постанови КМУ № 172 від 19.03.1994, за виключенням випадків виявлення прихованих дефектів або невідповідності товару опису.</p>
+        <p>У разі отримання неякісного або пошкодженого товару:</p>
+        <ul>
+            <li>Зафіксуйте пошкодження фото/відео при отриманні</li>
+            <li>Зверніться до нас протягом 24 годин після отримання</li>
+            <li>Ми замінимо товар або повернемо кошти протягом 7 робочих днів</li>
+        </ul>
+
+        <h2 id="terms-6">6. Ціни та акції</h2>
+        <p>Усі ціни вказані в українських гривнях (грн). BeeBloom залишає за собою право змінювати ціни без попереднього повідомлення. Ціна, що діяла на момент підтвердження замовлення, є фіксованою для цього замовлення.</p>
+        <p>Промокоди та знижки:</p>
+        <ul>
+            <li>Не підсумовуються між собою, якщо не зазначено інше</li>
+            <li>Мають обмежений строк дії та можуть бути відкликані</li>
+            <li>Не поширюються на вже оформлені замовлення</li>
+        </ul>
+
+        <h2 id="terms-7">7. Відповідальність сторін</h2>
+        <p>BeeBloom не несе відповідальності за:</p>
+        <ul>
+            <li>Затримки доставки, спричинені службою Нова Пошта або форс-мажорними обставинами</li>
+            <li>Технічні збої на Сайті, не залежні від BeeBloom</li>
+            <li>Неможливість використання Сайту через проблеми на стороні користувача</li>
+        </ul>
+        <p>Покупець несе відповідальність за достовірність наданих при замовленні даних.</p>
+
+        <h2 id="terms-8">8. Інтелектуальна власність</h2>
+        <p>Усі матеріали Сайту (тексти, зображення, логотип BeeBloom) є власністю ФОП Фалєєв Ростислав Григорович та захищені законодавством про авторське право. Копіювання без письмового дозволу забороняється.</p>
+
+        <h2 id="terms-9">9. Вирішення спорів</h2>
+        <p>У разі виникнення спорів сторони зобов'язуються вирішувати їх шляхом переговорів. Для звернення зі скаргою: <a href="mailto:falieievrostik@gmail.com">falieievrostik@gmail.com</a> або <a href="tel:+380952175674">+38 (095) 217-56-74</a>.</p>
+        <p>Якщо спір не вдалося вирішити в досудовому порядку протягом 30 днів, він підлягає розгляду у суді за місцезнаходженням Продавця відповідно до законодавства України.</p>
+
+        <h2 id="terms-10">10. Контакти</h2>
+        <ul>
+            <li><strong>ФОП:</strong> Фалєєв Ростислав Григорович</li>
+            <li><strong>Email:</strong> <a href="mailto:falieievrostik@gmail.com">falieievrostik@gmail.com</a></li>
+            <li><strong>Телефон:</strong> <a href="tel:+380952175674">+38 (095) 217-56-74</a></li>
+            <li><strong>Telegram:</strong> <a href="https://t.me/beebloom" target="_blank">@beebloom</a></li>
+            <li><strong>Адреса:</strong> с. Михайлівка, Полтавський район, Полтавська область</li>
+        </ul>
+        <p style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid #EDE0C4;font-size:0.8rem">Умови використання набирають чинності з 13.03.2026. Попередні версії втрачають силу.</p>
+    </div>
+</div>
+</div>
+
 </main>
+
+<!-- SITE FOOTER -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo" onclick="showPage('home')" style="cursor:pointer">🐝 BeeBloom</div>
+                <p>Натуральний мед та продукти бджільництва з Полтавщини. Прямо з пасіки — до вашого столу.</p>
+                <div class="footer-pay-icons" style="margin-top:1rem">
+                    <span class="pay-icon">Visa</span>
+                    <span class="pay-icon">MC</span>
+                    <span class="pay-icon" style="background:#000;color:white"> Apple Pay</span>
+                    <span class="pay-icon">Mono</span>
+                    <span class="pay-icon">Privat</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Магазин</h4>
+                <a onclick="showPage('products')">Всі товари</a>
+                <a onclick="showPage('products'); setFilter('Мед')">Мед</a>
+                <a onclick="showPage('products'); setFilter('Чаї')">Трав'яні чаї</a>
+                <a onclick="showPage('products'); setFilter('Продукти бджільництва')">Продукти бджільництва</a>
+                <a onclick="showPage('news')">Акції та новини</a>
+            </div>
+            <div class="footer-col">
+                <h4>Інформація</h4>
+                <a onclick="showPage('about')">Про нас</a>
+                <a onclick="showPage('contacts')">Контакти</a>
+                <a onclick="openPaymentModal()">Способи оплати</a>
+                <a onclick="showPage('terms')">Умови доставки</a>
+            </div>
+            <div class="footer-col">
+                <h4>Правові документи</h4>
+                <a onclick="showPage('privacy')">Політика конфіденційності</a>
+                <a onclick="showPage('terms')">Умови використання</a>
+                <a onclick="showPage('terms')">Повернення товару</a>
+                <h4 style="margin-top:1.2rem">Соцмережі</h4>
+                <a href="https://instagram.com/beebloom.ua" target="_blank">📸 Instagram</a>
+                <a href="https://tiktok.com/@beebloom.ua" target="_blank">🎵 TikTok</a>
+                <a href="https://t.me/beebloom" target="_blank">✈️ Telegram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 BeeBloom · ФОП Фалєєв Ростислав Григорович</div>
+            <div class="footer-bottom-links">
+                <a onclick="showPage('privacy')">Конфіденційність</a>
+                <a onclick="showPage('terms')">Умови використання</a>
+                <a href="mailto:falieievrostik@gmail.com">falieievrostik@gmail.com</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- PAYMENT MODAL -->
+<div class="payment-overlay" id="paymentOverlay">
+    <div class="payment-box">
+        <div class="payment-header">
+            <h3>💳 Оплата замовлення</h3>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+        <div class="payment-summary" id="paymentSummary">
+            <div class="payment-summary-title">До сплати</div>
+            <div class="payment-summary-amount" id="paymentAmount">0 грн</div>
+        </div>
+        <div class="payment-methods" id="paymentMethodsList">
+            <!-- Apple Pay — shown only on Safari/iOS -->
+            <div id="applePayWrapper" style="display:none">
+                <button class="apple-pay-btn" onclick="startApplePay()">
+                    <svg viewBox="0 0 165 41" xmlns="http://www.w3.org/2000/svg" fill="white">
+                        <path d="M32.4 8.3c-1.5 1.8-4 3.2-6.4 3-0.3-2.5 0.9-5.1 2.3-6.7 1.5-1.8 4.2-3.1 6.3-3.2 0.3 2.6-0.8 5.1-2.2 6.9zm2.2 3.4c-3.5-0.2-6.5 2-8.2 2-1.7 0-4.3-1.9-7.1-1.8-3.7 0-7.1 2.1-9 5.4-3.8 6.6-1 16.4 2.7 21.8 1.8 2.6 4 5.6 6.9 5.5 2.7-0.1 3.8-1.8 7.1-1.8 3.3 0 4.2 1.8 7.1 1.7 3-0.1 4.9-2.7 6.7-5.3 2.1-3 2.9-5.9 3-6.1-0.1 0-5.8-2.2-5.8-8.8-0.1-5.5 4.5-8.1 4.7-8.3-2.6-3.8-6.6-4.2-8.1-4.3zm20.9-7.5v37.4h5.8V30.1h8c7.3 0 12.5-5 12.5-12.2 0-7.2-5.1-12.2-12.2-12.2h-14.1zm5.8 5h6.6c5 0 7.9 2.7 7.9 7.3 0 4.6-2.9 7.3-7.9 7.3h-6.6V9.2zm28.5 27.4c3.6 0 6.9-1.8 8.4-4.7h0.1v4.4h5.4V22.1c0-5.4-4.3-8.9-10.9-8.9-6.1 0-10.7 3.5-10.9 8.4h5.3c0.4-2.3 2.5-3.8 5.4-3.8 3.5 0 5.5 1.6 5.5 4.6v2l-7.2 0.4c-6.7 0.4-10.3 3.1-10.3 7.9 0 4.8 3.7 7.9 9.2 7.9zm1.6-4.5c-3 0-5-1.5-5-3.7 0-2.3 1.9-3.6 5.5-3.8l6.4-0.4v2.1c0 3.4-2.9 5.8-6.9 5.8zm22.4 14.6c5.7 0 8.3-2.2 10.7-8.7l10.2-28.6h-5.9l-6.8 22h-0.1l-6.8-22h-6l9.8 27.1-0.5 1.7c-0.9 2.8-2.3 3.8-4.8 3.8-0.5 0-1.4-0.1-1.8-0.1v4.5c0.4 0.2 2 0.3 3 0.3z"/>
+                    </svg>
+                </button>
+                <div style="text-align:center;font-size:0.75rem;color:var(--muted);margin-top:0.5rem;margin-bottom:0.5rem">або оберіть інший спосіб</div>
+            </div>
+
+            <button class="payment-method-btn" onclick="showCardDetails()">
+                <span class="pm-icon">💳</span>
+                <div class="pm-info">
+                    <div class="pm-title">Карта ПриватБанк / Монобанк</div>
+                    <div class="pm-desc">Переказ на картку · Visa / Mastercard</div>
+                </div>
+                <span class="pm-arrow">›</span>
+            </button>
+
+            <button class="payment-method-btn" onclick="payWithTelegram('cash')">
+                <span class="pm-icon">💵</span>
+                <div class="pm-info">
+                    <div class="pm-title">Готівка при отриманні</div>
+                    <div class="pm-desc">Оплата на відділенні Нової Пошти</div>
+                </div>
+                <span class="pm-arrow">›</span>
+            </button>
+        </div>
+
+        <div class="payment-card-details" id="cardDetailsBlock">
+            <div class="card-number-display">
+                <div class="cn-bank">ПриватБанк / Монобанк</div>
+                <div class="cn-number" id="cardNumberDisplay">4441 1111 6307 9951</div>
+                <div class="cn-name">ФОП Фалєєв Р.Г.</div>
+                <button class="copy-card-btn" onclick="copyCardNumber()">📋 Копіювати</button>
+            </div>
+            <div class="payment-note">
+                📌 <strong>Як оплатити:</strong> скопіюйте номер картки, відкрийте додаток ПриватБанк або Монобанк, виберіть «Переказ на картку» та введіть номер. У коментарі до переказу вкажіть ваше ім'я.<br><br>
+                Після оплати <strong>надішліть скріншот</strong> підтвердження платежу в Telegram — <a href="https://t.me/beebloom" target="_blank">@beebloom</a>. Замовлення буде відправлено після підтвердження оплати.
+            </div>
+            <button class="btn-primary" style="width:100%;margin-top:0.9rem" onclick="payWithTelegram('card')">✅ Я оплатив — підтвердити в Telegram</button>
+        </div>
+
+        <div class="payment-footer-note">
+            Здійснюючи оплату, ви погоджуєтесь з <a onclick="closePaymentModal();showPage('terms')">Умовами використання</a> та <a onclick="closePaymentModal();showPage('privacy')">Політикою конфіденційності</a> BeeBloom.
+        </div>
+    </div>
+</div>
 
 <!-- CART -->
 <div class="modal-overlay" id="cartOverlay" onclick="closeCart()"></div>
@@ -695,33 +1256,31 @@
             <button class="auth-tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">Увійти</button>
             <button class="auth-tab-btn" id="registerTabBtn" onclick="switchAuthTab('register')">Реєстрація</button>
         </div>
-        <!-- LOGIN -->
         <div class="auth-body" id="authLoginBody">
             <div class="auth-title">З поверненням! 🐝</div>
             <div class="auth-subtitle">Увійдіть, щоб переглянути збережені товари та замовлення</div>
             <div class="auth-form-group">
                 <label class="auth-label">Електронна пошта</label>
-                <input type="email" class="auth-input" id="loginEmail" placeholder="your@email.com">
+                <input type="email" class="auth-input" id="loginEmail" placeholder="your@email.com" autocomplete="email">
             </div>
             <div class="auth-form-group">
                 <label class="auth-label">Пароль</label>
-                <input type="password" class="auth-input" id="loginPassword" placeholder="Ваш пароль" onkeydown="if(event.key==='Enter') doLogin()">
+                <input type="password" class="auth-input" id="loginPassword" placeholder="Ваш пароль" autocomplete="current-password" onkeydown="if(event.key==='Enter') doLogin()">
                 <div class="auth-error" id="loginError">Невірний email або пароль</div>
             </div>
             <button class="auth-submit-btn" onclick="doLogin()">Увійти до кабінету</button>
         </div>
-        <!-- REGISTER -->
         <div class="auth-body" id="authRegisterBody" style="display:none">
             <div class="auth-title">Приєднуйтесь! 🍯</div>
             <div class="auth-subtitle">Створіть акаунт та отримайте доступ до збережених товарів і акцій</div>
             <div class="auth-row">
                 <div class="auth-form-group">
                     <label class="auth-label">Ім'я *</label>
-                    <input type="text" class="auth-input" id="regFirstName" placeholder="Іван">
+                    <input type="text" class="auth-input" id="regFirstName" placeholder="Іван" autocomplete="given-name">
                 </div>
                 <div class="auth-form-group">
                     <label class="auth-label">Прізвище *</label>
-                    <input type="text" class="auth-input" id="regLastName" placeholder="Іваненко">
+                    <input type="text" class="auth-input" id="regLastName" placeholder="Іваненко" autocomplete="family-name">
                 </div>
             </div>
             <div class="auth-form-group">
@@ -730,17 +1289,17 @@
             </div>
             <div class="auth-form-group">
                 <label class="auth-label">Електронна пошта *</label>
-                <input type="email" class="auth-input" id="regEmail" placeholder="your@email.com">
+                <input type="email" class="auth-input" id="regEmail" placeholder="your@email.com" autocomplete="email">
                 <div class="auth-error" id="regEmailError">Цей email вже зареєстрований</div>
             </div>
             <div class="auth-row">
                 <div class="auth-form-group">
                     <label class="auth-label">Пароль *</label>
-                    <input type="password" class="auth-input" id="regPassword" placeholder="Мін. 6 символів">
+                    <input type="password" class="auth-input" id="regPassword" placeholder="Мін. 6 символів" autocomplete="new-password">
                 </div>
                 <div class="auth-form-group">
                     <label class="auth-label">Повторіть пароль *</label>
-                    <input type="password" class="auth-input" id="regPassword2" placeholder="Ще раз пароль">
+                    <input type="password" class="auth-input" id="regPassword2" placeholder="Ще раз пароль" autocomplete="new-password">
                     <div class="auth-error" id="regPassError">Паролі не збігаються</div>
                 </div>
             </div>
@@ -768,11 +1327,11 @@
             <label class="form-label">Пароль</label>
             <input type="password" class="form-input" id="adminPasswordInput" placeholder="Введіть пароль..." onkeydown="if(event.key==='Enter') adminLogin()">
         </div>
-        <div style="display:flex;gap:0.8rem;margin-top:0.5rem">
+        <div style="display:flex;gap:0.7rem;margin-top:0.5rem">
             <button class="btn-primary" style="flex:1" onclick="adminLogin()">Увійти</button>
             <button class="btn-outline" style="color:var(--text);border-color:#E0D0B0;flex:1" onclick="closeAdminLogin()">Скасувати</button>
         </div>
-        <p style="font-size:0.78rem;color:var(--muted);margin-top:1rem;text-align:center">Пароль за замовчуванням: <strong>admin123</strong></p>
+        <p style="font-size:0.75rem;color:var(--muted);margin-top:0.9rem;text-align:center">Пароль за замовчуванням: <strong>admin123</strong></p>
     </div>
 </div>
 
@@ -780,18 +1339,17 @@
 <div class="admin-panel" id="adminPanel">
     <div class="admin-topbar">
         <h2>🐝 BeeBloom — Панель управління</h2>
-        <div style="display:flex;gap:.8rem;align-items:center">
-            <span style="color:rgba(255,255,255,0.5);font-size:0.85rem">Власник</span>
-            <button class="admin-close-btn" onclick="closeAdminPanel()">← Повернутись до магазину</button>
+        <div style="display:flex;gap:.6rem;align-items:center;flex-shrink:0">
+            <button class="admin-close-btn" onclick="closeAdminPanel()">← Назад</button>
         </div>
     </div>
     <div class="admin-tabs">
-        <div class="admin-tab active" onclick="switchAdminTab('inventory')">📦 Наявність</div>
-        <div class="admin-tab" onclick="switchAdminTab('sales')">🏷️ Акції</div>
-        <div class="admin-tab" onclick="switchAdminTab('promos')">🎟️ Промокоди</div>
-        <div class="admin-tab" onclick="switchAdminTab('newsadmin')">📰 Новини <span class="sub-count-badge" id="subCountBadge">0</span></div>
-        <div class="admin-tab" onclick="switchAdminTab('subscribers')">👥 Підписники</div>
-        <div class="admin-tab" onclick="switchAdminTab('stats')">📊 Огляд</div>
+        <div class="admin-tab active" onclick="switchAdminTab('inventory',event)">📦 Наявність</div>
+        <div class="admin-tab" onclick="switchAdminTab('sales',event)">🏷️ Акції</div>
+        <div class="admin-tab" onclick="switchAdminTab('promos',event)">🎟️ Промокоди</div>
+        <div class="admin-tab" onclick="switchAdminTab('newsadmin',event)">📰 Новини <span class="sub-count-badge" id="subCountBadge">0</span></div>
+        <div class="admin-tab" onclick="switchAdminTab('subscribers',event)">👥 Підписники</div>
+        <div class="admin-tab" onclick="switchAdminTab('stats',event)">📊 Огляд</div>
     </div>
     <div class="admin-content">
         <div class="admin-tab-content active" id="tab-inventory">
@@ -802,7 +1360,7 @@
             <div class="admin-section-title">🏷️ Акції та знижки</div>
             <div class="new-sale-form">
                 <h4>➕ Нова акція</h4>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:0.9rem">
                     <div><label class="admin-label">Назва акції</label><input type="text" class="admin-input" id="newSaleName" placeholder="Весняний розпродаж"></div>
                     <div><label class="admin-label">Товар</label><select class="admin-select" id="newSaleProduct"><option value="all">Всі товари</option></select></div>
                     <div><label class="admin-label">Тип знижки</label><select class="admin-select" id="newSaleType"><option value="percent">Відсоток (%)</option><option value="fixed">Фіксована (грн)</option></select></div>
@@ -814,7 +1372,7 @@
         </div>
         <div class="admin-tab-content" id="tab-promos">
             <div class="admin-section-title">🎟️ Промокоди</div>
-            <div class="new-promo-form" style="margin-bottom:2rem">
+            <div class="new-promo-form" style="margin-bottom:1.8rem">
                 <h4>➕ Новий промокод</h4>
                 <div class="promo-fields">
                     <div><label class="admin-label">Код</label><input type="text" class="admin-input" id="newPromoCode" placeholder="HONEY20" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"></div>
@@ -835,7 +1393,7 @@
             <div class="admin-section-title">📰 Публікація новин</div>
             <div class="news-post-form">
                 <h4>✏️ Нова публікація</h4>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:0.9rem">
                     <div><label class="admin-label">Заголовок</label><input type="text" class="admin-input" id="newNewsTitle" placeholder="Новий урожай акацієвого меду!"></div>
                     <div><label class="admin-label">Тег / Тема</label><select class="admin-select" id="newNewsTag">
                         <option value="🍯 Новинка">🍯 Новинка</option>
@@ -846,18 +1404,18 @@
                         <option value="📰 Новини">📰 Новини</option>
                     </select></div>
                 </div>
-                <div style="margin-bottom:1rem"><label class="admin-label">Текст публікації</label><textarea class="admin-input" id="newNewsBody" rows="4" placeholder="Напишіть текст новини..."></textarea></div>
-                <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+                <div style="margin-bottom:0.9rem"><label class="admin-label">Текст публікації</label><textarea class="admin-input" id="newNewsBody" rows="4" placeholder="Напишіть текст новини..."></textarea></div>
+                <div style="display:flex;align-items:center;gap:0.9rem;flex-wrap:wrap">
                     <button class="add-sale-btn" onclick="publishNews()">📢 Опублікувати</button>
-                    <span style="font-size:.85rem;color:var(--muted)" id="newsSubInfo">Підписників: 0</span>
+                    <span style="font-size:.82rem;color:var(--muted)" id="newsSubInfo">Підписників: 0</span>
                 </div>
             </div>
             <div class="news-admin-list" id="newsAdminList"></div>
         </div>
         <div class="admin-tab-content" id="tab-subscribers">
             <div class="admin-section-title">👥 Підписники на новини</div>
-            <div style="margin-bottom:1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-                <span style="font-size:.9rem;color:var(--muted)">Всього підписників: <strong id="totalSubCount">0</strong></span>
+            <div style="margin-bottom:1rem;display:flex;align-items:center;gap:0.9rem;flex-wrap:wrap">
+                <span style="font-size:.88rem;color:var(--muted)">Всього підписників: <strong id="totalSubCount">0</strong></span>
             </div>
             <div class="subscribers-list" id="subscribersList">
                 <div class="subscriber-row head"><div>Ім'я</div><div>Email</div><div>Дата</div></div>
@@ -867,8 +1425,8 @@
         <div class="admin-tab-content" id="tab-stats">
             <div class="admin-section-title">📊 Загальний огляд</div>
             <div class="stats-row" id="statsRow"></div>
-            <div style="background:white;border-radius:16px;border:1.5px solid #EDE0C4;padding:1.5rem">
-                <h4 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1rem;color:var(--dark)">Статус товарів</h4>
+            <div style="background:white;border-radius:14px;border:1.5px solid #EDE0C4;padding:1.3rem;overflow-x:auto">
+                <h4 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:0.9rem;color:var(--dark)">Статус товарів</h4>
                 <div id="statsProductList"></div>
             </div>
         </div>
@@ -877,7 +1435,7 @@
 
 <div class="toast-wrap" id="toastWrap"></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════════════════════════════════════════
 // LOCALSTORAGE HELPERS
 // ═══════════════════════════════════════════════
@@ -940,12 +1498,11 @@ function saveAdminData() {
 }
 
 // ═══════════════════════════════════════════════
-// USER AUTH STATE (persisted via localStorage)
+// USER AUTH STATE
 // ═══════════════════════════════════════════════
 let usersDB = LS.get('usersDB', []);
 let currentUser = null;
 
-// Restore session
 const savedSession = LS.get('currentSession', null);
 if (savedSession) {
     const u = usersDB.find(x => x.id === savedSession.id && x.email === savedSession.email);
@@ -963,7 +1520,7 @@ function getUserInitials(user) {
 }
 
 // ═══════════════════════════════════════════════
-// CART & WISHLIST (persisted per user)
+// CART & WISHLIST
 // ═══════════════════════════════════════════════
 let cart = [];
 let wishlist = [];
@@ -973,7 +1530,6 @@ function loadUserData() {
         cart = LS.get('cart_' + currentUser.id, []);
         wishlist = currentUser.wishlist || [];
     } else {
-        // Guest cart persists by IP-like session
         cart = LS.get('cart_guest', []);
         wishlist = [];
     }
@@ -1107,8 +1663,8 @@ function renderAuthNav() {
         area.innerHTML = `
         <div class="user-dropdown-wrap">
             <button class="auth-nav-btn logged" onclick="toggleUserDropdown(event)">
-                <span style="width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.25);display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700">${initials}</span>
-                ${currentUser.firstName}
+                <span style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.25);display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0">${initials}</span>
+                <span style="overflow:hidden;text-overflow:ellipsis;max-width:80px">${currentUser.firstName}</span>
             </button>
             <div class="user-dropdown" id="userDropdown">
                 <div class="user-dropdown-header">
@@ -1176,7 +1732,7 @@ function saveProfile() {
 function renderAccSaved() {
     const el = document.getElementById('accSavedGrid');
     if (!wishlist.length) {
-        el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🤍</div><h3>Нічого збережено</h3><p style="margin-bottom:1.5rem">Натисніть серце на товарі, щоб зберегти</p><button class="btn-primary" onclick="showPage('products')">Переглянути товари</button></div>`;
+        el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🤍</div><h3>Нічого збережено</h3><p style="margin-bottom:1.3rem">Натисніть серце на товарі, щоб зберегти</p><button class="btn-primary" onclick="showPage('products')">Переглянути товари</button></div>`;
         return;
     }
     el.innerHTML = `<div class="products-grid">${products.filter(p => wishlist.includes(p.id)).map(p => productCardHTML(p)).join('')}</div>`;
@@ -1246,7 +1802,11 @@ function showPage(name) {
 }
 
 function goBack() { showPage(previousPage === 'detail' ? 'products' : (previousPage || 'products')); }
-function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('open'); }
+
+function toggleMobileNav() {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.toggle('open');
+}
 
 // ═══════════════════════════════════════════════
 // RENDER PRODUCTS
@@ -1259,7 +1819,7 @@ function renderProducts(filtered = null) {
     const list = filtered || (activeCategory === 'Всі' ? products : products.filter(p => p.category === activeCategory));
     document.getElementById('productsGrid').innerHTML = list.length
         ? list.map(p => productCardHTML(p)).join('')
-        : `<div style="text-align:center;padding:4rem;color:var(--muted);grid-column:1/-1"><div style="font-size:3rem;margin-bottom:1rem">😔</div><h3 style="font-family:'Playfair Display',serif;margin-bottom:.5rem">Нічого не знайдено</h3><button class="btn-primary" onclick="setFilter('Всі')">Показати всі</button></div>`;
+        : `<div style="text-align:center;padding:3rem;color:var(--muted);grid-column:1/-1"><div style="font-size:3rem;margin-bottom:1rem">😔</div><h3 style="font-family:'Playfair Display',serif;margin-bottom:.5rem">Нічого не знайдено</h3><button class="btn-primary" onclick="setFilter('Всі')">Показати всі</button></div>`;
     renderFilters();
 }
 
@@ -1288,7 +1848,7 @@ function productCardHTML(p) {
         <div class="card-body" onclick="${inStock ? 'showDetail(' + p.id + ')' : ''}">
             <div class="card-name">${p.name}</div>
             <div class="card-desc">${p.description.substring(0,70)}...</div>
-            <div class="card-rating"><span class="stars">${'★'.repeat(Math.floor(p.rating))}</span><span class="rating-count">${p.rating} (${p.reviews} відгуків)</span></div>
+            <div class="card-rating"><span class="stars">${'★'.repeat(Math.floor(p.rating))}</span><span class="rating-count">${p.rating} (${p.reviews})</span></div>
         </div>
         <div class="card-body" style="padding-top:0">
             <div class="card-footer">
@@ -1297,7 +1857,7 @@ function productCardHTML(p) {
                     ${price} грн <small>/${p.unit}</small>
                 </div>
                 <button class="add-btn" ${!inStock ? 'disabled' : `onclick="event.stopPropagation(); addToCart(${p.id},1)"`}>
-                    ${inStock ? '+ Кошик' : '✕ Нема'}
+                    ${inStock ? '+ Кошик' : '✕'}
                 </button>
             </div>
         </div>
@@ -1325,21 +1885,21 @@ function showDetail(id) {
     document.getElementById('detailWrap').innerHTML = `
         <div class="detail-img">
             <img src="${p.image}" alt="${p.name}">
-            ${onSale ? `<div style="position:absolute;top:14px;left:14px;background:var(--danger);color:white;padding:.3rem .8rem;border-radius:20px;font-size:.85rem;font-weight:700">${discountLabel(p.id)} Акція</div>` : ''}
+            ${onSale ? `<div style="position:absolute;top:12px;left:12px;background:var(--danger);color:white;padding:.28rem .75rem;border-radius:20px;font-size:.82rem;font-weight:700">${discountLabel(p.id)} Акція</div>` : ''}
             ${!inStock ? '<div class="out-of-stock-badge"><span>Немає в наявності</span></div>' : ''}
         </div>
         <div class="detail-info">
             <span class="detail-category">${p.category}</span>
             <h2 class="detail-name">${p.name}</h2>
-            <div class="detail-rating"><span class="stars" style="font-size:1.1rem">${'★'.repeat(Math.floor(p.rating))}</span><span style="font-weight:600;color:var(--dark)">${p.rating}</span><span style="color:var(--muted);font-size:.85rem">(${p.reviews} відгуків)</span></div>
+            <div class="detail-rating"><span class="stars" style="font-size:1.05rem">${'★'.repeat(Math.floor(p.rating))}</span><span style="font-weight:600;color:var(--dark)">${p.rating}</span><span style="color:var(--muted);font-size:.82rem">(${p.reviews} відгуків)</span></div>
             <div class="detail-price">
-                ${onSale ? `<div style="font-size:1rem;color:var(--muted);text-decoration:line-through;font-weight:400">${origPrice} грн</div>` : ''}
+                ${onSale ? `<div style="font-size:0.95rem;color:var(--muted);text-decoration:line-through;font-weight:400">${origPrice} грн</div>` : ''}
                 ${price} грн <small>/${p.unit}</small>
             </div>
             <p class="detail-desc">${p.description}</p>
             <div class="detail-props">${p.props.map(([icon,label,val]) => `<div class="prop-row"><span class="prop-icon">${icon}</span><span class="prop-label">${label}:</span><span class="prop-value">${val}</span></div>`).join('')}</div>
             <div class="detail-actions">
-                ${inStock ? `<div style="display:flex;align-items:center;gap:1rem"><div class="qty-selector"><button class="qty-btn" onclick="changeQty(-1)">−</button><span class="qty-num" id="detailQtyEl">1</span><button class="qty-btn" onclick="changeQty(1)">+</button></div><span style="font-size:.85rem;color:var(--muted)">шт.</span></div><button class="btn-primary" style="width:100%" onclick="addToCart(${p.id},detailQty)">Додати до кошика</button>` : `<div style="background:rgba(217,79,61,0.08);color:var(--danger);border-radius:10px;padding:1rem;text-align:center;font-weight:600">⚠️ Цього товару зараз немає в наявності</div>`}
+                ${inStock ? `<div style="display:flex;align-items:center;gap:1rem"><div class="qty-selector"><button class="qty-btn" onclick="changeQty(-1)">−</button><span class="qty-num" id="detailQtyEl">1</span><button class="qty-btn" onclick="changeQty(1)">+</button></div><span style="font-size:.82rem;color:var(--muted)">шт.</span></div><button class="btn-primary" style="width:100%" onclick="addToCart(${p.id},detailQty)">Додати до кошика</button>` : `<div style="background:rgba(217,79,61,0.08);color:var(--danger);border-radius:10px;padding:0.9rem;text-align:center;font-weight:600">⚠️ Цього товару зараз немає в наявності</div>`}
                 <button class="btn-outline" style="color:var(--text);border-color:#E0D0B0;width:100%" onclick="toggleWish(${p.id}); refreshDetailWish()"><span id="detailWishBtn">${wishlist.includes(p.id) ? '❤️ В обраному' : '🤍 Додати в обране'}</span></button>
             </div>
         </div>`;
@@ -1391,8 +1951,8 @@ function toggleWish(id) {
 function updateWishBadge() { const el = document.getElementById('wishCount'); el.textContent = wishlist.length; el.style.display = wishlist.length ? 'flex' : 'none'; }
 function renderWishlist() {
     const el = document.getElementById('wishlistContent');
-    if (!currentUser) { el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🔐</div><h3>Увійдіть для перегляду</h3><p style="margin-bottom:1.5rem">Збережені товари доступні після авторизації</p><button class="btn-primary" onclick="openAuthModal()">Увійти / Зареєструватись</button></div>`; return; }
-    if (!wishlist.length) { el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🤍</div><h3>Список обраного порожній</h3><p style="margin-bottom:1.5rem">Додайте товари, натиснувши на серце</p><button class="btn-primary" onclick="showPage('products')">Переглянути товари</button></div>`; return; }
+    if (!currentUser) { el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🔐</div><h3>Увійдіть для перегляду</h3><p style="margin-bottom:1.3rem">Збережені товари доступні після авторизації</p><button class="btn-primary" onclick="openAuthModal()">Увійти / Зареєструватись</button></div>`; return; }
+    if (!wishlist.length) { el.innerHTML = `<div class="wishlist-empty"><div class="empty-icon">🤍</div><h3>Список обраного порожній</h3><p style="margin-bottom:1.3rem">Додайте товари, натиснувши на серце</p><button class="btn-primary" onclick="showPage('products')">Переглянути товари</button></div>`; return; }
     el.innerHTML = `<div class="products-grid">${products.filter(p => wishlist.includes(p.id)).map(p => productCardHTML(p)).join('')}</div>`;
 }
 
@@ -1407,11 +1967,11 @@ function addToCart(productId, qty = 1) {
     else cart.push({ id: productId, qty });
     saveCart();
     updateCartBadge();
-    toast(`🛒 ${p.name} додано до кошика!`);
+    toast(`🛒 ${p.name} додано!`);
 }
 function updateCartBadge() { document.getElementById('cartBadge').textContent = cart.reduce((s,x) => s+x.qty, 0); }
-function openCart() { renderCart(); document.getElementById('cartOverlay').classList.add('open'); document.getElementById('cartPanel').classList.add('open'); }
-function closeCart() { document.getElementById('cartOverlay').classList.remove('open'); document.getElementById('cartPanel').classList.remove('open'); }
+function openCart() { renderCart(); document.getElementById('cartOverlay').classList.add('open'); document.getElementById('cartPanel').classList.add('open'); document.body.classList.add('modal-open'); }
+function closeCart() { document.getElementById('cartOverlay').classList.remove('open'); document.getElementById('cartPanel').classList.remove('open'); document.body.classList.remove('modal-open'); }
 
 function renderCart() {
     const itemsEl = document.getElementById('cartItemsEl');
@@ -1426,10 +1986,10 @@ function renderCart() {
     let discount = 0, promoHTML = '';
     if (appliedPromo) {
         discount = appliedPromo.type === 'percent' ? Math.round(subtotal * appliedPromo.value / 100) : Math.min(appliedPromo.value, subtotal);
-        promoHTML = `<div class="promo-result ok">🎟️ <strong>${appliedPromo.code}</strong> — знижка ${discount} грн <button onclick="removePromo()" style="background:none;border:none;cursor:pointer;color:var(--danger);margin-left:.5rem;font-size:.85rem">✕</button></div>`;
+        promoHTML = `<div class="promo-result ok">🎟️ <strong>${appliedPromo.code}</strong> — знижка ${discount} грн <button onclick="removePromo()" style="background:none;border:none;cursor:pointer;color:var(--danger);margin-left:.4rem;font-size:.82rem">✕</button></div>`;
     }
     const total = subtotal - discount;
-    footerEl.innerHTML = `<div class="promo-row"><input type="text" class="promo-input" id="promoInputCart" placeholder="Промокод..." style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"><button class="promo-apply-btn" onclick="applyPromo()">Застосувати</button></div>${promoHTML}<div class="cart-total-row"><span class="cart-total-label">Загальна сума:</span><span class="cart-total-val">${total} грн</span></div>${discount > 0 ? `<div style="font-size:.82rem;color:var(--muted);text-align:right;margin-top:-.8rem;margin-bottom:.6rem">Підсума: ${subtotal} грн − ${discount} грн знижки</div>` : ''}<button class="btn-primary" style="width:100%;margin-bottom:.6rem" onclick="checkout()">Оформити замовлення</button><button class="btn-outline" style="width:100%;color:var(--danger);border-color:var(--danger)" onclick="clearCart()">Очистити кошик</button>`;
+    footerEl.innerHTML = `<div class="promo-row"><input type="text" class="promo-input" id="promoInputCart" placeholder="Промокод..." style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"><button class="promo-apply-btn" onclick="applyPromo()">Застосувати</button></div>${promoHTML}<div class="cart-total-row"><span class="cart-total-label">Загальна сума:</span><span class="cart-total-val">${total} грн</span></div>${discount > 0 ? `<div style="font-size:.8rem;color:var(--muted);text-align:right;margin-top:-.7rem;margin-bottom:.5rem">Підсума: ${subtotal} − ${discount} грн знижки</div>` : ''}<button class="btn-primary" style="width:100%;margin-bottom:.5rem" onclick="checkout()">Оформити замовлення</button><button class="btn-outline" style="width:100%;color:var(--danger);border-color:var(--danger)" onclick="clearCart()">Очистити кошик</button>`;
 }
 
 function cartQty(i, delta) { cart[i].qty = Math.max(1, cart[i].qty + delta); saveCart(); updateCartBadge(); renderCart(); }
@@ -1443,7 +2003,7 @@ function applyPromo() {
     if (!promo) { showPromoResult('err', '❌ Промокод не знайдено або недійсний'); return; }
     if (promo.limit > 0 && promo.used >= promo.limit) { showPromoResult('err', '❌ Ліміт використань вичерпано'); return; }
     const subtotal = cart.reduce((s,x) => s + getProductPrice(x.id) * x.qty, 0);
-    if (promo.minOrder > 0 && subtotal < promo.minOrder) { showPromoResult('err', `❌ Мінімальна сума замовлення: ${promo.minOrder} грн`); return; }
+    if (promo.minOrder > 0 && subtotal < promo.minOrder) { showPromoResult('err', `❌ Мінімальна сума: ${promo.minOrder} грн`); return; }
     appliedPromo = promo; promo.used++;
     saveAdminData();
     renderCart(); toast('🎟️ Промокод застосовано!');
@@ -1453,18 +2013,105 @@ function removePromo() { appliedPromo = null; renderCart(); }
 
 function checkout() {
     if (!cart.length) return;
+    closeCart();
+    openPaymentModal();
+}
+
+// ═══════════════════════════════════════════════
+// PAYMENT MODAL
+// ═══════════════════════════════════════════════
+function openPaymentModal() {
+    if (!cart.length) { toast('Кошик порожній'); return; }
+    const total = getCartTotal();
+    document.getElementById('paymentAmount').textContent = total + ' грн';
+    document.getElementById('cardDetailsBlock').classList.remove('show');
+    // Show Apple Pay button only on supported devices
+    const appleWrapper = document.getElementById('applePayWrapper');
+    if (window.ApplePaySession && ApplePaySession.canMakePayments()) {
+        appleWrapper.style.display = 'block';
+    } else {
+        appleWrapper.style.display = 'none';
+    }
+    document.getElementById('paymentOverlay').classList.add('open');
+    document.body.classList.add('modal-open');
+}
+
+function closePaymentModal() {
+    document.getElementById('paymentOverlay').classList.remove('open');
+    document.body.classList.remove('modal-open');
+    document.getElementById('cardDetailsBlock').classList.remove('show');
+}
+
+function getCartTotal() {
     let subtotal = cart.reduce((s,x) => s + getProductPrice(x.id) * x.qty, 0);
     let discount = 0;
     if (appliedPromo) { discount = appliedPromo.type === 'percent' ? Math.round(subtotal * appliedPromo.value / 100) : Math.min(appliedPromo.value, subtotal); }
-    const total = subtotal - discount;
+    return subtotal - discount;
+}
+
+function showCardDetails() {
+    document.getElementById('cardDetailsBlock').classList.toggle('show');
+}
+
+function copyCardNumber() {
+    const num = '4441111163079951';
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(num).then(() => toast('📋 Номер картки скопійовано!'));
+    } else {
+        const ta = document.createElement('textarea');
+        ta.value = num; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        toast('📋 Номер картки скопійовано!');
+    }
+}
+
+function payWithTelegram(method) {
+    const total = getCartTotal();
     let text = 'Замовлення BeeBloom:\n\n';
     if (currentUser) text += `Клієнт: ${currentUser.firstName} ${currentUser.lastName}\nTel: ${currentUser.phone || 'не вказано'}\nАдреса: ${currentUser.address || 'не вказано'}\n\n`;
-    cart.forEach(item => { const p = products.find(x => x.id === item.id); const price = getProductPrice(p.id); text += `${p.name} — ${item.qty} ${p.unit} × ${price} = ${price * item.qty} грн\n`; });
-    if (discount > 0) text += `\nПромокод ${appliedPromo.code}: -${discount} грн`;
+    cart.forEach(item => {
+        const p = products.find(x => x.id === item.id);
+        const price = getProductPrice(p.id);
+        text += `${p.name} — ${item.qty} ${p.unit} × ${price} = ${price * item.qty} грн\n`;
+    });
+    if (appliedPromo) {
+        const sub = cart.reduce((s,x) => s + getProductPrice(x.id) * x.qty, 0);
+        const disc = appliedPromo.type === 'percent' ? Math.round(sub * appliedPromo.value / 100) : Math.min(appliedPromo.value, sub);
+        text += `Промокод ${appliedPromo.code}: -${disc} грн\n`;
+    }
     text += `\nСума: ${total} грн`;
+    if (method === 'cash') text += `\nСпосіб оплати: Готівка при отриманні`;
+    if (method === 'card') text += `\nСпосіб оплати: Переказ на картку (оплачено)`;
     if (!currentUser) text += `\n\nВкажіть ПІБ, місто та номер відділення Нової Пошти.`;
     const url = `https://t.me/beebloom?text=${encodeURIComponent(text)}`;
-    if (confirm('Відправити замовлення в Telegram?\n\n' + text)) window.open(url, '_blank');
+    closePaymentModal();
+    window.open(url, '_blank');
+}
+
+function startApplePay() {
+    const total = getCartTotal();
+    if (!window.ApplePaySession) { toast('Apple Pay недоступний на вашому пристрої'); return; }
+    const request = {
+        countryCode: 'UA',
+        currencyCode: 'UAH',
+        supportedNetworks: ['visa', 'masterCard'],
+        merchantCapabilities: ['supports3DS'],
+        total: { label: 'BeeBloom', amount: String(total) }
+    };
+    try {
+        const session = new ApplePaySession(3, request);
+        session.onvalidatemerchant = (e) => {
+            // In production you'd validate with your server
+            // For now we show instruction to use card transfer
+            session.abort();
+            showCardDetails();
+            toast('💳 Для оплати використайте переказ на картку');
+        };
+        session.begin();
+    } catch(e) {
+        showCardDetails();
+        toast('💳 Оберіть переказ на картку');
+    }
 }
 
 // ═══════════════════════════════════════════════
@@ -1473,7 +2120,7 @@ function checkout() {
 function renderNewsPage() {
     const grid = document.getElementById('newsGrid');
     if (!newsItems.length) {
-        grid.innerHTML = `<div class="news-empty"><div class="empty-icon">📰</div><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.5rem">Новин поки немає</h3><p>Підпишіться на розсилку, щоб отримувати новини першими</p>${!currentUser ? `<button class="btn-primary" style="margin-top:1.5rem" onclick="openAuthModal('register')">Зареєструватись та підписатись</button>` : ''}</div>`;
+        grid.innerHTML = `<div class="news-empty"><div class="empty-icon">📰</div><h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:.5rem">Новин поки немає</h3><p>Підпишіться на розсилку, щоб отримувати новини першими</p>${!currentUser ? `<button class="btn-primary" style="margin-top:1.3rem" onclick="openAuthModal('register')">Зареєструватись та підписатись</button>` : ''}</div>`;
         return;
     }
     grid.innerHTML = newsItems.map(n => `
@@ -1536,10 +2183,11 @@ function openAdminPanel() {
     populateSaleProductSelect(); updateSubCountBadge();
 }
 function closeAdminPanel() { document.getElementById('adminPanel').classList.remove('open'); if (currentPage === 'home') renderFeatured(); if (currentPage === 'products') renderProducts(); }
-function switchAdminTab(tab) {
+
+function switchAdminTab(tab, e) {
     document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    if (e && e.currentTarget) e.currentTarget.classList.add('active');
     document.getElementById('tab-' + tab).classList.add('active');
 }
 
@@ -1548,7 +2196,7 @@ function renderInventoryTable() {
     let html = `<div class="inv-row header"><div></div><div>Товар</div><div>Наявність</div><div>Ціна (грн)</div><div>Зберегти</div></div>`;
     products.forEach(p => {
         const sd = stockData[p.id]; const dp = sd.customPrice !== null ? sd.customPrice : p.basePrice;
-        html += `<div class="inv-row"><img class="inv-img" src="${p.image}" alt=""><div><div class="inv-name">${p.name}</div><div class="inv-category">${p.category}</div></div><div class="stock-toggle"><label class="toggle-switch"><input type="checkbox" id="stock_${p.id}" ${sd.inStock ? 'checked' : ''} onchange="updateStockToggle(${p.id})"><span class="toggle-slider"></span></label><span class="toggle-label ${sd.inStock ? 'in' : 'out'}" id="stockLabel_${p.id}">${sd.inStock ? 'В наявності' : 'Немає'}</span></div><div><input type="number" class="inv-price-input" id="price_${p.id}" value="${dp}" min="1"><div style="font-size:.72rem;color:var(--muted);margin-top:2px">Базова: ${p.basePrice} грн</div></div><button class="inv-save-btn" onclick="saveInventoryRow(${p.id})">Зберегти</button></div>`;
+        html += `<div class="inv-row"><img class="inv-img" src="${p.image}" alt=""><div><div class="inv-name">${p.name}</div><div class="inv-category">${p.category}</div></div><div class="stock-toggle"><label class="toggle-switch"><input type="checkbox" id="stock_${p.id}" ${sd.inStock ? 'checked' : ''} onchange="updateStockToggle(${p.id})"><span class="toggle-slider"></span></label><span class="toggle-label ${sd.inStock ? 'in' : 'out'}" id="stockLabel_${p.id}">${sd.inStock ? 'В наявності' : 'Немає'}</span></div><div><input type="number" class="inv-price-input" id="price_${p.id}" value="${dp}" min="1"><div style="font-size:.7rem;color:var(--muted);margin-top:2px">Базова: ${p.basePrice}</div></div><button class="inv-save-btn" onclick="saveInventoryRow(${p.id})">Зберегти</button></div>`;
     });
     document.getElementById('inventoryTable').innerHTML = html;
 }
@@ -1572,7 +2220,7 @@ function renderSalesGrid() {
     if (!sales.length) { grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;grid-column:1/-1">Акцій ще немає</p>'; return; }
     grid.innerHTML = sales.map(s => {
         const pl = s.productId === 'all' ? 'Всі товари' : (typeof s.productId === 'string' && s.productId.startsWith('cat:') ? 'Категорія: ' + s.productId.slice(4) : products.find(p => p.id === s.productId)?.name || 'Невідомо');
-        return `<div class="sale-card ${s.active ? 'active-sale' : ''}"><button class="delete-sale-btn" onclick="deleteSale(${s.id})">✕</button><div class="sale-card-top"><div class="sale-card-name">${s.name}</div><span class="${s.active ? 'sale-active-tag' : 'sale-inactive-tag'}">${s.active ? 'Активна' : 'Неактивна'}</span></div><div style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem">${pl} · Знижка: ${s.type === 'percent' ? s.value + '%' : s.value + ' грн'}</div><div class="sale-toggle-row"><label class="toggle-switch"><input type="checkbox" ${s.active ? 'checked' : ''} onchange="toggleSale(${s.id},this.checked)"><span class="toggle-slider"></span></label><span>${s.active ? '✅ Увімкнена' : '⏸️ Вимкнена'}</span></div></div>`;
+        return `<div class="sale-card ${s.active ? 'active-sale' : ''}"><button class="delete-sale-btn" onclick="deleteSale(${s.id})">✕</button><div class="sale-card-top"><div class="sale-card-name">${s.name}</div><span class="${s.active ? 'sale-active-tag' : 'sale-inactive-tag'}">${s.active ? 'Активна' : 'Неактивна'}</span></div><div style="font-size:.82rem;color:var(--muted);margin-bottom:.75rem">${pl} · Знижка: ${s.type === 'percent' ? s.value + '%' : s.value + ' грн'}</div><div class="sale-toggle-row"><label class="toggle-switch"><input type="checkbox" ${s.active ? 'checked' : ''} onchange="toggleSale(${s.id},this.checked)"><span class="toggle-slider"></span></label><span style="font-size:.85rem">${s.active ? '✅ Увімкнена' : '⏸️ Вимкнена'}</span></div></div>`;
     }).join('');
 }
 function toggleSale(id, checked) { const s = sales.find(x => x.id === id); if (s) { s.active = checked; saveAdminData(); renderSalesGrid(); toast(checked ? '✅ Акцію активовано!' : '⏸️ Акцію вимкнено'); } }
@@ -1595,7 +2243,7 @@ function addSale() {
 function renderPromoTable() {
     const body = document.getElementById('promoTableBody');
     if (!promoCodes.length) { body.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--muted)">Промокодів ще немає</div>'; return; }
-    body.innerHTML = promoCodes.map(p => `<div class="promo-row-data"><div><span class="promo-code-tag">${p.code}</span></div><div style="font-weight:600">${p.type === 'percent' ? p.value + '%' : p.value + ' грн'}</div><div style="font-size:.82rem;color:var(--muted)">${p.desc || '—'}${p.minOrder > 0 ? '<br>Від ' + p.minOrder + ' грн' : ''}${p.limit > 0 ? '<br>Ліміт: ' + p.used + '/' + p.limit : '<br>Безліміт'}</div><div><label class="toggle-switch"><input type="checkbox" ${p.active ? 'checked' : ''} onchange="togglePromo(${p.id},this.checked)"><span class="toggle-slider"></span></label></div><div><button class="promo-del-btn" onclick="deletePromo(${p.id})">🗑️</button></div></div>`).join('');
+    body.innerHTML = promoCodes.map(p => `<div class="promo-row-data"><div><span class="promo-code-tag">${p.code}</span></div><div style="font-weight:600">${p.type === 'percent' ? p.value + '%' : p.value + ' грн'}</div><div style="font-size:.8rem;color:var(--muted)">${p.desc || '—'}${p.minOrder > 0 ? '<br>Від ' + p.minOrder + ' грн' : ''}${p.limit > 0 ? '<br>Ліміт: ' + p.used + '/' + p.limit : '<br>Безліміт'}</div><div><label class="toggle-switch"><input type="checkbox" ${p.active ? 'checked' : ''} onchange="togglePromo(${p.id},this.checked)"><span class="toggle-slider"></span></label></div><div><button class="promo-del-btn" onclick="deletePromo(${p.id})">🗑️</button></div></div>`).join('');
 }
 function togglePromo(id, checked) { const p = promoCodes.find(x => x.id === id); if (p) { p.active = checked; saveAdminData(); renderPromoTable(); toast(checked ? '✅ Активовано' : '⏸️ Вимкнено'); } }
 function deletePromo(id) { if (confirm('Видалити промокод?')) { promoCodes = promoCodes.filter(p => p.id !== id); saveAdminData(); renderPromoTable(); toast('🗑️ Видалено'); } }
@@ -1622,7 +2270,7 @@ function renderNewsAdminList() {
     const subCount = usersDB.filter(u => u.subscribedNews).length;
     if (info) info.textContent = `Підписників: ${subCount}`;
     if (!newsItems.length) { list.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem">Публікацій ще немає</p>'; return; }
-    list.innerHTML = newsItems.map(n => `<div class="news-admin-item"><div><div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem">${n.title} <span style="font-size:.72rem;background:var(--honey-pale);color:var(--honey);padding:.15rem .5rem;border-radius:8px">${n.tag}</span></div><div style="font-size:.82rem;color:var(--muted)">${n.body.substring(0,100)}...</div><div style="font-size:.75rem;color:var(--muted);margin-top:.3rem">${n.date}</div></div><button class="news-delete-btn" onclick="deleteNews('${n.id}')">🗑️</button></div>`).join('');
+    list.innerHTML = newsItems.map(n => `<div class="news-admin-item"><div style="min-width:0"><div style="font-weight:600;font-size:.92rem;margin-bottom:.3rem">${n.title} <span style="font-size:.7rem;background:var(--honey-pale);color:var(--honey);padding:.12rem .5rem;border-radius:8px">${n.tag}</span></div><div style="font-size:.8rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${n.body.substring(0,90)}...</div><div style="font-size:.72rem;color:var(--muted);margin-top:.3rem">${n.date}</div></div><button class="news-delete-btn" onclick="deleteNews('${n.id}')">🗑️</button></div>`).join('');
 }
 
 function publishNews() {
@@ -1656,7 +2304,7 @@ function renderSubscribersList() {
     updateSubCountBadge();
     const body = document.getElementById('subscribersBody');
     if (!subscribers.length) { body.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--muted)">Підписників ще немає</div>'; return; }
-    body.innerHTML = subscribers.map(u => `<div class="subscriber-row"><div style="font-weight:500">${u.firstName} ${u.lastName}</div><div style="color:var(--muted);font-size:.85rem">${u.email}</div><div style="font-size:.78rem;color:var(--muted)">${u.registeredAt}</div></div>`).join('');
+    body.innerHTML = subscribers.map(u => `<div class="subscriber-row"><div style="font-weight:500">${u.firstName} ${u.lastName}</div><div style="color:var(--muted);font-size:.82rem;overflow:hidden;text-overflow:ellipsis">${u.email}</div><div style="font-size:.75rem;color:var(--muted)">${u.registeredAt}</div></div>`).join('');
 }
 
 // STATS
@@ -1668,15 +2316,15 @@ function renderStats() {
     const totalUsers = usersDB.length;
     const subscribers = usersDB.filter(u => u.subscribedNews).length;
     document.getElementById('statsRow').innerHTML = `
-        <div class="stat-card"><div class="stat-card-icon">👥</div><div class="stat-card-num">${totalUsers}</div><div class="stat-card-label">Зареєстрованих клієнтів</div></div>
-        <div class="stat-card"><div class="stat-card-icon">📰</div><div class="stat-card-num">${subscribers}</div><div class="stat-card-label">Підписників на новини</div></div>
-        <div class="stat-card"><div class="stat-card-icon">📦</div><div class="stat-card-num">${inStock}</div><div class="stat-card-label">Товарів в наявності</div></div>
-        <div class="stat-card"><div class="stat-card-icon">🏷️</div><div class="stat-card-num">${activeSalesCount}</div><div class="stat-card-label">Активних акцій</div></div>
-        <div class="stat-card"><div class="stat-card-icon">🎟️</div><div class="stat-card-num">${activePromos}</div><div class="stat-card-label">Активних промокодів</div></div>
-        <div class="stat-card"><div class="stat-card-icon">⚠️</div><div class="stat-card-num" style="color:var(--danger)">${outStock}</div><div class="stat-card-label">Немає в наявності</div></div>`;
+        <div class="stat-card"><div class="stat-card-icon">👥</div><div class="stat-card-num">${totalUsers}</div><div class="stat-card-label">Клієнтів</div></div>
+        <div class="stat-card"><div class="stat-card-icon">📰</div><div class="stat-card-num">${subscribers}</div><div class="stat-card-label">Підписників</div></div>
+        <div class="stat-card"><div class="stat-card-icon">📦</div><div class="stat-card-num">${inStock}</div><div class="stat-card-label">В наявності</div></div>
+        <div class="stat-card"><div class="stat-card-icon">🏷️</div><div class="stat-card-num">${activeSalesCount}</div><div class="stat-card-label">Акцій</div></div>
+        <div class="stat-card"><div class="stat-card-icon">🎟️</div><div class="stat-card-num">${activePromos}</div><div class="stat-card-label">Промокодів</div></div>
+        <div class="stat-card"><div class="stat-card-icon">⚠️</div><div class="stat-card-num" style="color:var(--danger)">${outStock}</div><div class="stat-card-label">Немає</div></div>`;
     document.getElementById('statsProductList').innerHTML = products.map(p => {
         const sd = stockData[p.id]; const price = getProductPrice(p.id); const orig = getOriginalPrice(p.id);
-        return `<div style="display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid #F5EDD8"><img src="${p.image}" style="width:44px;height:44px;border-radius:8px;object-fit:cover"><div style="flex:1"><div style="font-weight:600;font-size:.9rem">${p.name}</div><div style="font-size:.78rem;color:var(--muted)">${p.category}</div></div><div style="font-size:.88rem;font-weight:600;color:var(--honey)">${price} грн</div>${price < orig ? `<div style="font-size:.75rem;color:var(--muted);text-decoration:line-through">${orig} грн</div>` : ''}<span style="font-size:.78rem;font-weight:700;padding:.25rem .7rem;border-radius:12px;background:${sd.inStock ? 'rgba(74,140,92,0.12)' : 'rgba(217,79,61,0.12)'};color:${sd.inStock ? 'var(--success)' : 'var(--danger)'}">${sd.inStock ? '✓ В наявності' : '✕ Немає'}</span></div>`;
+        return `<div style="display:flex;align-items:center;gap:0.8rem;padding:.75rem 0;border-bottom:1px solid #F5EDD8;flex-wrap:wrap"><img src="${p.image}" style="width:42px;height:42px;border-radius:8px;object-fit:cover;flex-shrink:0"><div style="flex:1;min-width:120px"><div style="font-weight:600;font-size:.88rem">${p.name}</div><div style="font-size:.75rem;color:var(--muted)">${p.category}</div></div><div style="font-size:.85rem;font-weight:600;color:var(--honey)">${price} грн</div>${price < orig ? `<div style="font-size:.72rem;color:var(--muted);text-decoration:line-through">${orig} грн</div>` : ''}<span style="font-size:.75rem;font-weight:700;padding:.22rem .65rem;border-radius:12px;background:${sd.inStock ? 'rgba(74,140,92,0.12)' : 'rgba(217,79,61,0.12)'};color:${sd.inStock ? 'var(--success)' : 'var(--danger)'}">${sd.inStock ? '✓' : '✕'}</span></div>`;
     }).join('');
 }
 
@@ -1688,9 +2336,14 @@ document.addEventListener('click', e => {
     if (e.target === document.getElementById('cartOverlay')) closeCart();
     if (e.target === document.getElementById('authOverlay')) closeAuthModal();
     if (e.target === document.getElementById('adminLoginOverlay')) closeAdminLogin();
-    if (!e.target.closest('#mobileNav') && !e.target.closest('.mobile-menu-btn')) document.getElementById('mobileNav').classList.remove('open');
+    if (!e.target.closest('#mobileNav') && !e.target.closest('.mobile-menu-btn')) {
+        document.getElementById('mobileNav').classList.remove('open');
+    }
     if (!e.target.closest('.user-dropdown-wrap')) document.getElementById('userDropdown')?.classList.remove('open');
 });
+
+// Prevent body scroll when cart is open on iOS
+document.getElementById('cartPanel').addEventListener('touchmove', e => e.stopPropagation(), { passive: true });
 
 // ═══════════════════════════════════════════════
 // TOAST
@@ -1705,13 +2358,4 @@ function toast(msg) {
 
 // ═══════════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════════════
-loadUserData();
-renderAuthNav();
-renderFeatured();
-renderFilters();
-updateCartBadge();
-updateWishBadge();
-</script>
-</body>
-</html>
+// ═══════

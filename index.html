@@ -152,18 +152,42 @@
         .review-form { background: white; border-radius: 12px; padding: 1.3rem; border: 1.5px solid #EDE0C4; margin-bottom: 1.8rem; }
         .review-form h4 { margin-bottom: 0.9rem; font-size: 0.98rem; color: var(--dark); }
         .star-select { display: flex; gap: 0.3rem; margin-bottom: 0.9rem; font-size: 1.4rem; cursor: pointer; }
+        .star-select span { transition: transform 0.15s; display: inline-block; }
         .star-select span:hover { transform: scale(1.2); }
         .review-textarea { width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; resize: vertical; min-height: 75px; margin-bottom: 0.7rem; color: var(--text); }
         .review-textarea:focus { outline: none; border-color: var(--honey); }
         .review-name-input { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #E0D0B0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; margin-bottom: 0.7rem; color: var(--text); }
         .review-name-input:focus { outline: none; border-color: var(--honey); }
         .reviews-list { display: flex; flex-direction: column; gap: 0.9rem; }
-        .review-item { background: white; border-radius: 10px; padding: 1.1rem 1.2rem; border: 1.5px solid #EDE0C4; }
-        .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; gap: 0.5rem; }
+        .review-item { background: white; border-radius: 12px; padding: 1.1rem 1.2rem; border: 1.5px solid #EDE0C4; }
+        .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; gap: 0.5rem; flex-wrap: wrap; }
         .reviewer-name { font-weight: 600; font-size: 0.92rem; }
         .review-date { font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
         .review-stars { color: var(--honey); font-size: 0.82rem; margin-bottom: 0.35rem; }
         .review-text { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+        .review-actions { margin-top: 0.7rem; display: flex; gap: 0.5rem; align-items: center; }
+        .reply-toggle-btn { background: none; border: none; color: var(--honey); font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 0.2rem 0.5rem; border-radius: 6px; transition: background 0.15s; }
+        .reply-toggle-btn:hover { background: rgba(200,134,42,0.08); }
+        .review-replies { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid #F5EDD8; display: flex; flex-direction: column; gap: 0.6rem; }
+        .reply-item { background: var(--honey-pale); border-radius: 8px; padding: 0.75rem 0.9rem; border-left: 3px solid var(--honey); }
+        .reply-item.owner-reply { background: rgba(26,18,8,0.04); border-left-color: var(--dark); }
+        .reply-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.3rem; gap: 0.5rem; flex-wrap: wrap; }
+        .reply-author { font-weight: 700; font-size: 0.82rem; color: var(--dark); }
+        .reply-author.owner { color: var(--honey); }
+        .reply-owner-badge { background: var(--honey); color: white; font-size: 0.62rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 6px; margin-left: 0.3rem; }
+        .reply-date { font-size: 0.72rem; color: var(--muted); }
+        .reply-text { font-size: 0.84rem; color: var(--text); line-height: 1.55; }
+        .reply-form { margin-top: 0.7rem; display: none; flex-direction: column; gap: 0.5rem; }
+        .reply-form.open { display: flex; }
+        .reply-input { width: 100%; padding: 0.6rem 0.85rem; border: 1.5px solid #E0D0B0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--text); resize: none; min-height: 60px; }
+        .reply-input:focus { outline: none; border-color: var(--honey); }
+        .reply-submit-row { display: flex; gap: 0.5rem; justify-content: flex-end; }
+        .reply-submit-btn { background: var(--honey); color: white; border: none; border-radius: 8px; padding: 0.45rem 1rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+        .reply-submit-btn:hover { background: #B5761F; }
+        .reply-cancel-btn { background: none; border: 1.5px solid #E0D0B0; border-radius: 8px; padding: 0.45rem 0.85rem; font-size: 0.82rem; color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif; }
+        .reply-cancel-btn:hover { border-color: var(--muted); }
+        .reviews-empty { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.9rem; }
+        .reviews-empty .empty-icon { font-size: 2.5rem; margin-bottom: 0.7rem; }
 
         .wishlist-empty { text-align: center; padding: 4rem 1.5rem; color: var(--muted); }
         .wishlist-empty .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
@@ -307,8 +331,7 @@
         .page-header h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); margin-bottom: 0.3rem; }
         .page-header p { color: var(--muted); font-size: 0.92rem; }
 
-        .admin-entry-btn { position: fixed; bottom: 1.2rem; right: 1.2rem; background: var(--dark); color: var(--honey-light); border: 2px solid var(--honey); border-radius: 50%; width: 48px; height: 48px; font-size: 1.2rem; cursor: pointer; z-index: 4000; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: all 0.2s; }
-        .admin-entry-btn:hover { transform: scale(1.1); background: var(--honey); color: white; }
+        .admin-entry-btn { display: none !important; }
         .admin-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,18,8,0.7); z-index: 5100; backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 1rem; }
         .admin-modal-overlay.open { display: flex; }
         .admin-login-box { background: var(--white); border-radius: 18px; padding: 2rem; width: 100%; max-width: 360px; border: 2px solid var(--honey-light); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
@@ -708,7 +731,7 @@
         <div class="contact-info-card">
             <h2>Зв'яжіться з нами</h2>
             <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">Телефон</div><div class="contact-val"><a href="tel:+380952175674">+38 (095) 217-56-74</a></div></div></div>
-            <div class="contact-item"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:info@beebloom.ua">info@beebloom.ua</a></div></div></div>
+            <div class="contact-item"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection#bbd2d5ddd4fbd9deded9d7d4d4d695ceda"><span class="__cf_email__" data-cfemail="fd94939b92bd9f98989f91929290d3889c">[email&#160;protected]</span></a></div></div></div>
             <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-label">Адреса</div><div class="contact-val">с. Михайлівка, Полтавський район</div></div></div>
             <div class="contact-item"><div class="contact-icon">📱</div><div><div class="contact-label">Соціальні мережі</div><div class="contact-val">
                 <a href="https://instagram.com/beebloom.ua" target="_blank">📸 @beebloom.ua</a><br>
@@ -762,7 +785,7 @@
         <h2 id="priv-7">7. Права користувача</h2>
         <p>Ви маєте право отримати, виправити, видалити свої дані, відкликати згоду та відписатись від розсилки.</p>
         <h2 id="priv-8">8. Контакти</h2>
-        <p>Email: <a href="mailto:info@beebloom.ua">info@beebloom.ua</a> · Тел: <a href="tel:+380952175674">+38 (095) 217-56-74</a> · Telegram: <a href="https://t.me/beebloom" target="_blank">@beebloom</a></p>
+        <p>Email: <a href="/cdn-cgi/l/email-protection#d8b1b6beb798babdbdbab4b7b7b5f6adb9"><span class="__cf_email__" data-cfemail="a2cbccc4cde2c0c7c7c0cecdcdcf8cd7c3">[email&#160;protected]</span></a> · Тел: <a href="tel:+380952175674">+38 (095) 217-56-74</a> · Telegram: <a href="https://t.me/beebloom" target="_blank">@beebloom</a></p>
     </div>
 </div>
 </div>
@@ -798,7 +821,7 @@
         <h2 id="terms-6">6. Ціни та акції</h2>
         <p>Промокоди не підсумовуються, мають строк дії, не поширюються на оформлені замовлення.</p>
         <h2 id="terms-9">7. Вирішення спорів</h2>
-        <p>Звертайтесь: <a href="mailto:info@beebloom.ua">info@beebloom.ua</a> або <a href="tel:+380952175674">+38 (095) 217-56-74</a>.</p>
+        <p>Звертайтесь: <a href="/cdn-cgi/l/email-protection#0861666e67486a6d6d6a64676765267d69"><span class="__cf_email__" data-cfemail="264f48404966444343444a49494b085347">[email&#160;protected]</span></a> або <a href="tel:+380952175674">+38 (095) 217-56-74</a>.</p>
         <p style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid #EDE0C4;font-size:0.8rem">Умови набирають чинності з 13.03.2026.</p>
     </div>
 </div>
@@ -851,7 +874,7 @@
             <div class="footer-bottom-links">
                 <a onclick="showPage('privacy')">Конфіденційність</a>
                 <a onclick="showPage('terms')">Умови використання</a>
-                <a href="mailto:info@beebloom.ua">info@beebloom.ua</a>
+                <a href="/cdn-cgi/l/email-protection#1d74737b725d7f78787f7172727033687c"><span class="__cf_email__" data-cfemail="fc95929a93bc9e99999e90939391d2899d">[email&#160;protected]</span></a>
             </div>
         </div>
     </div>
@@ -871,7 +894,7 @@
         <div class="payment-methods" id="paymentMethodsList">
             <div id="applePayWrapper" style="display:none">
                 <button class="apple-pay-btn" onclick="startApplePay()" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;padding:1rem;border-radius:14px;background:#000;color:white;border:none;cursor:pointer;font-size:1rem;font-weight:600;font-family:-apple-system,'DM Sans',sans-serif;">
-                    🍎 Apple Pay
+                    <span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:1.1rem;font-weight:800;letter-spacing:-0.02em;font-family:-apple-system,BlinkMacSystemFont,sans-serif"> Pay</span>
                 </button>
                 <div style="text-align:center;font-size:0.75rem;color:var(--muted);margin-top:0.5rem;margin-bottom:0.5rem">або оберіть інший спосіб</div>
             </div>
@@ -988,8 +1011,7 @@
     </div>
 </div>
 
-<!-- ADMIN ENTRY -->
-<button class="admin-entry-btn" onclick="openAdminLogin()" title="Панель адміністратора">⚙️</button>
+<!-- ADMIN ENTRY (hidden - triggered by secret search code) -->
 <div class="admin-modal-overlay" id="adminLoginOverlay">
     <div class="admin-login-box">
         <h3>🔐 Вхід для власника</h3>
@@ -1104,7 +1126,7 @@
 
 <div class="toast-wrap" id="toastWrap"></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════════════════════════════════════════
 // LOCALSTORAGE HELPERS
 // ═══════════════════════════════════════════════
@@ -1543,13 +1565,162 @@ function productCardHTML(p) {
 // ═══════════════════════════════════════════════
 // PRODUCT DETAIL
 // ═══════════════════════════════════════════════
-let productReviews = LS.get('productReviews', null);
+// ═══════════════════════════════════════════════
+// REVIEWS — real, persistent, with replies
+// ═══════════════════════════════════════════════
+// Always start with empty reviews (no fakes)
+let productReviews = LS.get('productReviews_v2', null);
 if (!productReviews) {
     productReviews = {};
-    products.forEach(p => { productReviews[p.id] = [
-        { name:'Олена К.', rating:5, text:'Чудовий продукт, дуже задоволена якістю!', date:'10 берез. 2026' },
-        { name:'Михайло Т.', rating:4, text:'Замовляю вже вдруге, все відмінно.', date:'5 берез. 2026' }
-    ]; });
+    products.forEach(p => { productReviews[p.id] = []; });
+}
+// Ensure all products have an array
+products.forEach(p => { if (!productReviews[p.id]) productReviews[p.id] = []; });
+
+function saveReviews() { LS.set('productReviews_v2', productReviews); }
+
+let selectedStars = 5;
+
+function renderReviews(p) {
+    const revs = productReviews[p.id] || [];
+    const avgRating = revs.length ? (revs.reduce((s,r) => s + r.rating, 0) / revs.length).toFixed(1) : null;
+
+    const reviewsHTML = revs.length === 0
+        ? `<div class="reviews-empty"><div class="empty-icon">💬</div><p>Будьте першим, хто залишить відгук!</p></div>`
+        : revs.map((r, idx) => {
+            const repliesHTML = (r.replies || []).map((rp, ri) => `
+                <div class="reply-item ${rp.isOwner ? 'owner-reply' : ''}">
+                    <div class="reply-header">
+                        <span class="reply-author ${rp.isOwner ? 'owner'  : ''}">${escapeHtml(rp.author)}${rp.isOwner ? '<span class="reply-owner-badge">🐝 Власник</span>' : ''}</span>
+                        <span class="reply-date">${rp.date}</span>
+                    </div>
+                    <div class="reply-text">${escapeHtml(rp.text)}</div>
+                </div>`).join('');
+
+            return `
+            <div class="review-item" id="review-${p.id}-${idx}">
+                <div class="review-header">
+                    <span class="reviewer-name">${escapeHtml(r.name)}</span>
+                    <span class="review-date">${r.date}</span>
+                </div>
+                <div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+                <div class="review-text">${escapeHtml(r.text)}</div>
+                <div class="review-actions">
+                    <button class="reply-toggle-btn" onclick="toggleReplyForm(${p.id}, ${idx})">💬 Відповісти</button>
+                </div>
+                ${(r.replies && r.replies.length) ? `<div class="review-replies">${repliesHTML}</div>` : ''}
+                <div class="reply-form" id="replyForm-${p.id}-${idx}">
+                    <textarea class="reply-input" id="replyText-${p.id}-${idx}" placeholder="Напишіть відповідь..."></textarea>
+                    <div class="reply-submit-row">
+                        <button class="reply-cancel-btn" onclick="toggleReplyForm(${p.id}, ${idx})">Скасувати</button>
+                        <button class="reply-submit-btn" onclick="submitReply(${p.id}, ${idx})">Надіслати</button>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+
+    document.getElementById('reviewsSection').innerHTML = `
+    <div class="reviews-section">
+        <h3>Відгуки (${revs.length})${avgRating ? ` · <span style="color:var(--honey);font-size:1.1rem">★ ${avgRating}</span>` : ''}</h3>
+        <div class="review-form">
+            <h4>✍️ Залишити відгук</h4>
+            <div class="star-select" id="starSelect">${[1,2,3,4,5].map(s => `<span onclick="setReviewStars(${s})" data-s="${s}">★</span>`).join('')}</div>
+            <input type="text" class="review-name-input" id="revName" placeholder="Ваше ім'я" value="${currentUser ? escapeHtml(currentUser.firstName + ' ' + (currentUser.lastName ? currentUser.lastName[0] + '.' : '')) : ''}">
+            <textarea class="review-textarea" id="revText" placeholder="Напишіть ваш відгук..."></textarea>
+            <button class="btn-primary" onclick="submitReview(${p.id})">Опублікувати відгук</button>
+        </div>
+        <div class="reviews-list">${reviewsHTML}</div>
+    </div>`;
+
+    selectedStars = 5;
+    updateStarUI();
+}
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function setReviewStars(n) { selectedStars = n; updateStarUI(); }
+function updateStarUI() {
+    document.querySelectorAll('#starSelect span').forEach(el => {
+        const s = parseInt(el.dataset.s);
+        el.textContent = s <= selectedStars ? '★' : '☆';
+        el.style.color = s <= selectedStars ? 'var(--honey)' : '#ccc';
+    });
+}
+
+function submitReview(pid) {
+    const nameEl = document.getElementById('revName');
+    const textEl = document.getElementById('revText');
+    const name = nameEl.value.trim();
+    const text = textEl.value.trim();
+    if (!name) { toast('Введіть ваше ім\'я'); nameEl.focus(); return; }
+    if (!text) { toast('Напишіть текст відгуку'); textEl.focus(); return; }
+    if (text.length < 5) { toast('Відгук занадто короткий'); return; }
+    if (!productReviews[pid]) productReviews[pid] = [];
+    productReviews[pid].unshift({
+        id: Date.now(),
+        name,
+        rating: selectedStars,
+        text,
+        date: new Date().toLocaleDateString('uk-UA', {day:'numeric', month:'short', year:'numeric'}),
+        replies: []
+    });
+    saveReviews();
+    renderReviews(products.find(x => x.id === pid));
+    toast('✅ Відгук опубліковано! Дякуємо!');
+}
+
+function toggleReplyForm(pid, idx) {
+    const form = document.getElementById(`replyForm-${pid}-${idx}`);
+    if (!form) return;
+    form.classList.toggle('open');
+    if (form.classList.contains('open')) {
+        const ta = document.getElementById(`replyText-${pid}-${idx}`);
+        if (ta) setTimeout(() => ta.focus(), 100);
+    }
+}
+
+function submitReply(pid, idx) {
+    const ta = document.getElementById(`replyText-${pid}-${idx}`);
+    if (!ta) return;
+    const text = ta.value.trim();
+    if (!text) { toast('Введіть текст відповіді'); return; }
+
+    const isAdmin = (typeof adminPanelOpen !== 'undefined' && adminPanelOpen);
+    const isOwnerSession = LS.get('adminSession', false);
+
+    const review = productReviews[pid] && productReviews[pid][idx];
+    // Note: reviews are stored newest-first (unshift), so idx 0 = newest
+    // Need to find by position in rendered list
+    if (!review) { toast('Помилка: відгук не знайдено'); return; }
+
+    if (!review.replies) review.replies = [];
+
+    let author;
+    let isOwner = false;
+    if (isOwnerSession) {
+        author = 'BeeBloom';
+        isOwner = true;
+    } else if (currentUser) {
+        author = currentUser.firstName + (currentUser.lastName ? ' ' + currentUser.lastName[0] + '.' : '');
+    } else {
+        toast('💡 Увійдіть, щоб відповідати на відгуки');
+        openAuthModal();
+        return;
+    }
+
+    review.replies.push({
+        id: Date.now(),
+        author,
+        isOwner,
+        text,
+        date: new Date().toLocaleDateString('uk-UA', {day:'numeric', month:'short', year:'numeric'})
+    });
+    saveReviews();
+    renderReviews(products.find(x => x.id === pid));
+    toast(isOwner ? '🐝 Відповідь від BeeBloom опубліковано!' : '✅ Відповідь надіслано!');
 }
 
 function showDetail(id) {
@@ -1588,27 +1759,6 @@ function showDetail(id) {
 function changeQty(delta) { detailQty = Math.max(1, detailQty + delta); document.getElementById('detailQtyEl').textContent = detailQty; }
 function refreshDetailWish() { const el = document.getElementById('detailWishBtn'); if (el) el.textContent = wishlist.includes(currentProductId) ? '❤️ В обраному' : '🤍 Додати в обране'; }
 
-// ═══════════════════════════════════════════════
-// REVIEWS
-// ═══════════════════════════════════════════════
-let selectedStars = 5;
-function renderReviews(p) {
-    const revs = productReviews[p.id] || [];
-    document.getElementById('reviewsSection').innerHTML = `<div class="reviews-section"><h3>Відгуки (${revs.length})</h3><div class="review-form"><h4>Залишити відгук</h4><div class="star-select" id="starSelect">${[1,2,3,4,5].map(s => `<span onclick="setReviewStars(${s})" data-s="${s}">★</span>`).join('')}</div><input type="text" class="review-name-input" id="revName" placeholder="Ваше ім\'я" value="${currentUser ? currentUser.firstName + ' ' + (currentUser.lastName ? currentUser.lastName[0] + '.' : '') : ''}"><textarea class="review-textarea" id="revText" placeholder="Напишіть ваш відгук..."></textarea><button class="btn-primary" onclick="submitReview(${p.id})">Опублікувати відгук</button></div><div class="reviews-list">${revs.map(r => `<div class="review-item"><div class="review-header"><span class="reviewer-name">${r.name}</span><span class="review-date">${r.date}</span></div><div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><div class="review-text">${r.text}</div></div>`).join('')}</div></div>`;
-    selectedStars = 5; updateStarUI();
-}
-function setReviewStars(n) { selectedStars = n; updateStarUI(); }
-function updateStarUI() { document.querySelectorAll('#starSelect span').forEach(el => { const s = parseInt(el.dataset.s); el.textContent = s <= selectedStars ? '★' : '☆'; el.style.color = s <= selectedStars ? 'var(--honey)' : '#ccc'; }); }
-function submitReview(pid) {
-    const name = document.getElementById('revName').value.trim();
-    const text = document.getElementById('revText').value.trim();
-    if (!name || !text) { toast('Заповніть ім\'я та текст відгуку'); return; }
-    if (!productReviews[pid]) productReviews[pid] = [];
-    productReviews[pid].unshift({ name, rating: selectedStars, text, date: new Date().toLocaleDateString('uk-UA', {day:'numeric',month:'short',year:'numeric'}) });
-    LS.set('productReviews', productReviews);
-    renderReviews(products.find(x => x.id === pid));
-    toast('✅ Відгук опубліковано!');
-}
 
 // ═══════════════════════════════════════════════
 // WISHLIST
@@ -1697,6 +1847,26 @@ function removePromo() { appliedPromo = null; renderCart(); }
 
 function checkout() {
     if (!cart.length) return;
+    // Перевірка наявності товарів на момент оформлення
+    const outOfStockItems = cart.filter(item => {
+        const p = products.find(x => x.id === item.id);
+        return !p || !(stockData[p.id] && stockData[p.id].inStock);
+    });
+    if (outOfStockItems.length) {
+        outOfStockItems.forEach(item => {
+            const p = products.find(x => x.id === item.id);
+            toast('⚠️ "' + (p ? p.name : 'Товар') + '" більше немає в наявності');
+        });
+        // Видаляємо недоступні товари з кошика
+        cart = cart.filter(item => {
+            const p = products.find(x => x.id === item.id);
+            return p && stockData[p.id] && stockData[p.id].inStock;
+        });
+        saveCart();
+        updateCartBadge();
+        renderCart();
+        return;
+    }
     closeCart();
     openPaymentModal();
 }
@@ -1817,7 +1987,7 @@ function renderNewsPage() {
 // ═══════════════════════════════════════════════
 function onSearchInput(q) {
     const dd = document.getElementById('searchDropdown');
-    if (!q.trim()) { dd.style.display = 'none'; return; }
+    if (!q.trim() || q.trim() === '78789898') { dd.style.display = 'none'; return; }
     const res = products.filter(p => p.name.toLowerCase().includes(q.toLowerCase()) || p.category.toLowerCase().includes(q.toLowerCase())).slice(0, 5);
     if (!res.length) { dd.innerHTML = '<div style="padding:1rem;color:var(--muted);text-align:center">Нічого не знайдено</div>'; dd.style.display = 'block'; return; }
     dd.innerHTML = res.map(p => `<div class="search-dropdown-item" onclick="showDetail(${p.id}); document.getElementById('searchDropdown').style.display='none'; document.getElementById('searchInput').value=''"><img src="${p.image}" alt="${p.name}"><div><div class="sdi-name">${p.name}</div><div class="sdi-price">${getProductPrice(p.id)} грн/${p.unit}</div></div></div>`).join('');
@@ -1827,6 +1997,14 @@ function doSearch() {
     const q = document.getElementById('searchInput').value.trim();
     document.getElementById('searchDropdown').style.display = 'none';
     if (!q) return;
+    // Secret admin trigger
+    if (q === '78789898') {
+        document.getElementById('searchInput').value = '';
+        const mobileInput = document.getElementById('mobileSearchInput');
+        if (mobileInput) mobileInput.value = '';
+        openAdminPanel();
+        return;
+    }
     const res = products.filter(p => p.name.toLowerCase().includes(q.toLowerCase()) || p.description.toLowerCase().includes(q.toLowerCase()) || p.category.toLowerCase().includes(q.toLowerCase()));
     activeCategory = 'Всі'; showPage('products'); renderProducts(res);
 }
@@ -1856,11 +2034,17 @@ function adminLogin() {
     else { document.getElementById('adminPasswordInput').style.borderColor = 'var(--danger)'; setTimeout(() => document.getElementById('adminPasswordInput').style.borderColor = '', 1500); toast('❌ Невірний пароль'); }
 }
 function openAdminPanel() {
+    LS.set('adminSession', true);
     document.getElementById('adminPanel').classList.add('open');
     renderInventoryTable(); renderSalesGrid(); renderPromoTable(); renderNewsAdminList(); renderSubscribersList(); renderStats();
     populateSaleProductSelect(); updateSubCountBadge();
 }
-function closeAdminPanel() { document.getElementById('adminPanel').classList.remove('open'); if (currentPage === 'home') renderFeatured(); if (currentPage === 'products') renderProducts(); }
+function closeAdminPanel() {
+    LS.set('adminSession', false);
+    document.getElementById('adminPanel').classList.remove('open');
+    if (currentPage === 'home') renderFeatured();
+    if (currentPage === 'products') renderProducts();
+}
 
 function switchAdminTab(tab, e) {
     document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
@@ -2041,9 +2225,7 @@ function toast(msg) {
     setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 2800);
 }
 
-// ═══════════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════════════
 loadUserData();
 updateCartBadge();
 updateWishBadge();

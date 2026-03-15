@@ -1566,36 +1566,96 @@ function productCardHTML(p) {
 // PRODUCT DETAIL
 // ═══════════════════════════════════════════════
 // ═══════════════════════════════════════════════
-// REVIEWS — real, persistent, with replies
+// FIREBASE CONFIG — заміни на свої дані!
+// Інструкція нижче в коментарях
 // ═══════════════════════════════════════════════
-// Always start with empty reviews (no fakes)
-let productReviews = LS.get('productReviews_v2', null);
-if (!productReviews) {
-    productReviews = {};
-    products.forEach(p => { productReviews[p.id] = []; });
-}
-// Ensure all products have an array
-products.forEach(p => { if (!productReviews[p.id]) productReviews[p.id] = []; });
+const FIREBASE_CONFIG = {
+    // 1. Зайди на https://firebase.google.com → "Get started"
+    // 2. Створи проєкт (назва будь-яка, наприклад "beebloom")
+    // 3. Зліва → Build → Realtime Database → Create database
+    //    Вибери "Start in test mode" → Enable
+    // 4. Зліва → Project settings (шестерня) → "Your apps" → </> Web
+    //    Зареєструй додаток, скопіюй дані нижче:
+    databaseURL: "https://beebloom-69f18-default-rtdb.firebaseio.com"
+    // Замість YOUR-PROJECT-ID встав свій ID проєкту
+};
 
-function saveReviews() { LS.set('productReviews_v2', productReviews); }
+// ═══════════════════════════════════════════════
+// REVIEWS — Firebase Realtime Database
+// ═══════════════════════════════════════════════
+let productReviews = {}; // локальний кеш
+products.forEach(p => { productReviews[p.id] = []; });
+
+// Завантажуємо відгуки з Firebase для конкретного товару
+function loadReviewsFromFirebase(pid, callback) {
+    const url = `${FIREBASE_CONFIG.databaseURL}/reviews/${pid}.json`;
+    fetch(url)
+        .then(r => r.json())
+        .then(data => {
+            if (!data) { productReviews[pid] = []; }
+            else {
+                // Firebase повертає об'єкт, конвертуємо в масив і сортуємо за датою (новіші перші)
+                const arr = Object.values(data).sort((a, b) => (b.ts || 0) - (a.ts || 0));
+                productReviews[pid] = arr;
+            }
+            if (callback) callback();
+        })
+        .catch(() => {
+            // Firebase недоступний або не налаштований — показуємо порожньо
+            productReviews[pid] = [];
+            if (callback) callback();
+        });
+}
+
+// Зберігаємо відгук у Firebase
+function saveReviewToFirebase(pid, review) {
+    const url = `${FIREBASE_CONFIG.databaseURL}/reviews/${pid}/${review.id}.json`;
+    return fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(review)
+    });
+}
+
+// Зберігаємо відповідь у Firebase
+function saveReplyToFirebase(pid, reviewId, replies) {
+    const url = `${FIREBASE_CONFIG.databaseURL}/reviews/${pid}/${reviewId}/replies.json`;
+    return fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(replies)
+    });
+}
 
 let selectedStars = 5;
 
 function renderReviews(p) {
+    // Спочатку завантажуємо актуальні відгуки з Firebase
+    const section = document.getElementById('reviewsSection');
+    if (section) section.innerHTML = `<div class="reviews-section"><div style="text-align:center;padding:2rem;color:var(--muted)">⏳ Завантаження відгуків...</div></div>`;
+
+    loadReviewsFromFirebase(p.id, () => {
+        _renderReviewsUI(p);
+    });
+}
+
+function _renderReviewsUI(p) {
     const revs = productReviews[p.id] || [];
-    const avgRating = revs.length ? (revs.reduce((s,r) => s + r.rating, 0) / revs.length).toFixed(1) : null;
+    const avgRating = revs.length ? (revs.reduce((s, r) => s + r.rating, 0) / revs.length).toFixed(1) : null;
 
     const reviewsHTML = revs.length === 0
         ? `<div class="reviews-empty"><div class="empty-icon">💬</div><p>Будьте першим, хто залишить відгук!</p></div>`
         : revs.map((r, idx) => {
-            const repliesHTML = (r.replies || []).map((rp, ri) => `
+            const repliesHTML = (r.replies ? Object.values(r.replies) : []).map(rp => `
                 <div class="reply-item ${rp.isOwner ? 'owner-reply' : ''}">
                     <div class="reply-header">
-                        <span class="reply-author ${rp.isOwner ? 'owner'  : ''}">${escapeHtml(rp.author)}${rp.isOwner ? '<span class="reply-owner-badge">🐝 Власник</span>' : ''}</span>
+                        <span class="reply-author ${rp.isOwner ? 'owner' : ''}">${escapeHtml(rp.author)}${rp.isOwner ? '<span class="reply-owner-badge">🐝 Власник</span>' : ''}</span>
                         <span class="reply-date">${rp.date}</span>
                     </div>
                     <div class="reply-text">${escapeHtml(rp.text)}</div>
                 </div>`).join('');
+
+            const replyCount = r.replies ? Object.values(r.replies).length : 0;
 
             return `
             <div class="review-item" id="review-${p.id}-${idx}">
@@ -1606,20 +1666,22 @@ function renderReviews(p) {
                 <div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
                 <div class="review-text">${escapeHtml(r.text)}</div>
                 <div class="review-actions">
-                    <button class="reply-toggle-btn" onclick="toggleReplyForm(${p.id}, ${idx})">💬 Відповісти</button>
+                    <button class="reply-toggle-btn" onclick="toggleReplyForm('${p.id}', '${r.id}', ${idx})">💬 Відповісти${replyCount ? ` (${replyCount})` : ''}</button>
                 </div>
-                ${(r.replies && r.replies.length) ? `<div class="review-replies">${repliesHTML}</div>` : ''}
+                ${replyCount ? `<div class="review-replies">${repliesHTML}</div>` : ''}
                 <div class="reply-form" id="replyForm-${p.id}-${idx}">
                     <textarea class="reply-input" id="replyText-${p.id}-${idx}" placeholder="Напишіть відповідь..."></textarea>
                     <div class="reply-submit-row">
-                        <button class="reply-cancel-btn" onclick="toggleReplyForm(${p.id}, ${idx})">Скасувати</button>
-                        <button class="reply-submit-btn" onclick="submitReply(${p.id}, ${idx})">Надіслати</button>
+                        <button class="reply-cancel-btn" onclick="toggleReplyForm('${p.id}', '${r.id}', ${idx})">Скасувати</button>
+                        <button class="reply-submit-btn" onclick="submitReply('${p.id}', '${r.id}', ${idx})">Надіслати</button>
                     </div>
                 </div>
             </div>`;
         }).join('');
 
-    document.getElementById('reviewsSection').innerHTML = `
+    const section = document.getElementById('reviewsSection');
+    if (!section) return;
+    section.innerHTML = `
     <div class="reviews-section">
         <h3>Відгуки (${revs.length})${avgRating ? ` · <span style="color:var(--honey);font-size:1.1rem">★ ${avgRating}</span>` : ''}</h3>
         <div class="review-form">
@@ -1658,21 +1720,29 @@ function submitReview(pid) {
     if (!name) { toast('Введіть ваше ім\'я'); nameEl.focus(); return; }
     if (!text) { toast('Напишіть текст відгуку'); textEl.focus(); return; }
     if (text.length < 5) { toast('Відгук занадто короткий'); return; }
-    if (!productReviews[pid]) productReviews[pid] = [];
-    productReviews[pid].unshift({
-        id: Date.now(),
+
+    const review = {
+        id: Date.now().toString(),
+        ts: Date.now(),
         name,
         rating: selectedStars,
         text,
         date: new Date().toLocaleDateString('uk-UA', {day:'numeric', month:'short', year:'numeric'}),
-        replies: []
-    });
-    saveReviews();
-    renderReviews(products.find(x => x.id === pid));
-    toast('✅ Відгук опубліковано! Дякуємо!');
+        replies: {}
+    };
+
+    // Зберігаємо у Firebase
+    saveReviewToFirebase(pid, review)
+        .then(() => {
+            toast('✅ Відгук опубліковано! Дякуємо!');
+            renderReviews(products.find(x => x.id === pid));
+        })
+        .catch(() => {
+            toast('⚠️ Помилка збереження. Перевір налаштування Firebase');
+        });
 }
 
-function toggleReplyForm(pid, idx) {
+function toggleReplyForm(pid, reviewId, idx) {
     const form = document.getElementById(`replyForm-${pid}-${idx}`);
     if (!form) return;
     form.classList.toggle('open');
@@ -1682,24 +1752,16 @@ function toggleReplyForm(pid, idx) {
     }
 }
 
-function submitReply(pid, idx) {
+function submitReply(pid, reviewId, idx) {
     const ta = document.getElementById(`replyText-${pid}-${idx}`);
     if (!ta) return;
     const text = ta.value.trim();
     if (!text) { toast('Введіть текст відповіді'); return; }
 
-    const isAdmin = (typeof adminPanelOpen !== 'undefined' && adminPanelOpen);
     const isOwnerSession = LS.get('adminSession', false);
-
-    const review = productReviews[pid] && productReviews[pid][idx];
-    // Note: reviews are stored newest-first (unshift), so idx 0 = newest
-    // Need to find by position in rendered list
-    if (!review) { toast('Помилка: відгук не знайдено'); return; }
-
-    if (!review.replies) review.replies = [];
-
     let author;
     let isOwner = false;
+
     if (isOwnerSession) {
         author = 'BeeBloom';
         isOwner = true;
@@ -1711,16 +1773,30 @@ function submitReply(pid, idx) {
         return;
     }
 
-    review.replies.push({
-        id: Date.now(),
+    // Знаходимо відгук в кеші
+    const revArr = productReviews[pid] || [];
+    const review = revArr[idx];
+    if (!review) { toast('Помилка: відгук не знайдено'); return; }
+
+    if (!review.replies || Array.isArray(review.replies)) review.replies = {};
+
+    const replyId = Date.now().toString();
+    review.replies[replyId] = {
+        id: replyId,
         author,
         isOwner,
         text,
         date: new Date().toLocaleDateString('uk-UA', {day:'numeric', month:'short', year:'numeric'})
-    });
-    saveReviews();
-    renderReviews(products.find(x => x.id === pid));
-    toast(isOwner ? '🐝 Відповідь від BeeBloom опубліковано!' : '✅ Відповідь надіслано!');
+    };
+
+    saveReplyToFirebase(pid, review.id, review.replies)
+        .then(() => {
+            toast(isOwner ? '🐝 Відповідь від BeeBloom опубліковано!' : '✅ Відповідь надіслано!');
+            renderReviews(products.find(x => x.id === pid));
+        })
+        .catch(() => {
+            toast('⚠️ Помилка збереження. Перевір налаштування Firebase');
+        });
 }
 
 function showDetail(id) {
